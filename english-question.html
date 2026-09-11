@@ -20,7 +20,7 @@ main{padding-bottom:36px}
 #verb-card{z-index:1;box-shadow:0 3px 0 #dcae9e;transform-origin:center center}
 #verb{position:relative;display:grid;place-items:center;width:100%}
 #verb-current,#verb-previous{grid-area:1/1;display:block}
-#verb-previous{opacity:0;pointer-events:none}
+#verb-previous{opacity:0;pointer-events:none;text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:#a63822}
 #verb-card.morphing{animation:verb-lift 800ms ease-in-out both;z-index:2}
 .morphing #verb-previous{animation:verb-before 800ms linear both}
 .morphing #verb-current{animation:verb-after 800ms linear both}
@@ -70,7 +70,7 @@ main{padding-bottom:36px}
   <section class="intro" aria-labelledby="title"><div><h1 id="title">一般動詞の疑問文</h1><p class="lead"><strong lang="en">Does</strong> が前に来ると、動詞は<strong>原形</strong>になります。</p></div></section>
   <section class="lesson" id="lesson" aria-label="疑問文への変化">
     <div class="source"><span class="small-label">もとの文</span><div><p class="original" lang="en"><span class="subject-text" id="original-subject">He</span> <span class="verb-text" id="original-verb">plays</span> <span class="object-text" id="original-object">soccer</span>.</p><p class="translation" id="original-ja">彼はサッカーをします。</p></div></div>
-    <div class="workspace"><div class="workspace-heading"><span id="stage-status">単語の動きを見てみよう</span><span class="counter"><b id="step-count">0</b> / 4</span></div>
+    <div class="workspace"><div class="workspace-heading"><span id="stage-status">単語の動きを見てみよう</span><span class="counter"><b id="step-count">0</b> / 3</span></div>
       <div class="arena" id="arena" data-step="0" aria-label="単語の配置">
         <span class="incoming-label" id="incoming-label" aria-hidden="true">疑問文をつくる助動詞</span>
         <div class="sentence-track" lang="en">
@@ -102,8 +102,8 @@ const examples = [
 function frame(exampleIndex, step) {
   if (!Number.isInteger(exampleIndex) || !examples[exampleIndex] || !Number.isInteger(step) || step < 0 || step > 4) throw new RangeError('教材または段階が範囲外です。');
   const example=examples[exampleIndex];
-  const subject=step===4?example.questionSubject:example.subject;
-  const verb=step>=3?example.base:example.present;
+  const subject=step>=2?example.questionSubject:example.subject;
+  const verb=step>=2?example.base:example.present;
   return { ...example, subject, verb, complete:step===4, sentence:`${step>=2?'Does ':''}${subject} ${verb} ${example.object}${step===4?'?':'.'}` };
 }
 function checkAnswer(answer) {
@@ -123,8 +123,8 @@ let pausedAnimations = [];
 const descriptions = [
   ['「〜しますか？」に変えてみよう。','下のボタンで、一つずつ変化を確かめられます。'],
   ['Does が登場。','he・she などを主語とする現在形の疑問文では、Does を使います。'],
-  ['Does を、主語の前へ。','Does を文のいちばん前に置きます。次は動詞の形を変えます。'],
-  ['動詞を原形に戻します。',''],
+  ['Does と動詞の形を、一緒に。','Does を文頭に置き、動詞を原形にします。'],
+  ['Does が前へ、動詞は原形へ。',''],
   ['疑問文のできあがり。',''],
 ];
 
@@ -156,8 +156,8 @@ function render(instant = false) {
   $('verb-role').textContent = step >= 3 ? '動詞・原形' : '動詞';
   $('punctuation').textContent = step === 4 ? '?' : step === 0 ? '.' : '';
   $('aux').setAttribute('aria-hidden', String(step === 0));
-  $('step-count').textContent = String(step);
-  $('stage-status').textContent = step === 0 ? '単語の動きを見てみよう' : step === 4 ? '完成した疑問文' : '組み立て中 — まだ完成した文ではありません';
+  $('step-count').textContent = String(step >= 3 ? step - 1 : step);
+  $('stage-status').textContent = step === 0 ? '単語の動きを見てみよう' : step === 4 ? '完成した疑問文' : '変化の途中 — 取り消し線の形は使いません';
   $('step-title').textContent = descriptions[step][0];
   $('step-description').textContent = step === 3 ? `${original.present} → ${original.base}` : step === 4 ? `${current.sentence}（${original.questionJa}）` : descriptions[step][1];
   $('step-icon').textContent = step === 4 ? '✓' : '→';
@@ -178,7 +178,8 @@ function reset() { cancelPlayback(); step = 0; render(true); }
 
 function advance() {
   if (step >= 4) return;
-  step += 1;
+  // Move Does and restore the base verb as one indivisible lesson action.
+  step += step === 1 ? 2 : 1;
   render();
   if (step === 3 && !$('reduce-motion').checked) {
     // Keep the original form readable during the lift, then reveal the base form.
