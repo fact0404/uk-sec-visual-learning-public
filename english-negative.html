@@ -3,19 +3,19 @@
 @media(max-width:700px){header{height:66px;padding:0 20px}main{padding:24px 20px 32px}.workspace{padding:20px}.original-row{padding:18px 20px;gap:14px}.lower{grid-template-columns:1fr}.visual{padding:35px 0 26px}.explanation{padding:14px 16px}.choices{gap:8px}.choices>span{width:100%}}
 @media(max-width:420px){header{padding:0 16px}main{padding:20px 12px 28px}.workspace{padding:18px 12px}.original-row{padding:16px 12px;align-items:flex-start}.tag{font-size:.8rem;padding:7px 8px}.original{font-size:1.2rem}.lead{font-size:.95rem}.controls{gap:8px}.controls button{padding:12px;min-width:0}.primary{flex:1}.explanation h2{font-size:1rem}.status-row{align-items:flex-start}summary{padding:18px}.detail{padding:0 18px 18px}}
 
-.negative-track{display:grid;grid-template-columns:.8fr 1.35fr 1.1fr 1.3fr 12px;gap:12px;perspective:850px;align-items:center;min-height:228px}.word{min-width:0;min-height:106px;border:1px solid;border-bottom-width:4px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:10px 3px}.word strong{font:650 clamp(1.35rem,3vw,2.2rem)/1.25 Arial,sans-serif;white-space:nowrap}.role{font-size:.875rem;white-space:nowrap}.subject{background:#edf5ff;border-color:#bed3ed;color:var(--subject)}.aux{background:#f3edff;border-color:#d4c4f0;color:var(--aux);visibility:hidden}.verb{background:#fff0e9;border-color:#efc2b2;color:var(--verb);box-shadow:0 3px 0 #dcae9e}.object{background:#eaf7f0;border-color:#bcdccd;color:var(--object)}.period{font:600 1.8rem Arial,sans-serif;align-self:center;padding-top:28px}.verb-forms{display:grid}.verb-forms span{grid-area:1/1}#verb-previous{opacity:0;pointer-events:none}#result-sentence{margin:0}
+.negative-track{display:grid;grid-template-columns:.8fr 1.35fr 1.1fr 1.3fr 12px;gap:12px;perspective:850px;align-items:center;min-height:228px}.word{min-width:0;min-height:106px;border:1px solid;border-bottom-width:4px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:10px 3px}.word strong{font:650 clamp(1.35rem,3vw,2.2rem)/1.25 Arial,sans-serif;white-space:nowrap}.role{font-size:.875rem;white-space:nowrap}.subject{background:#edf5ff;border-color:#bed3ed;color:var(--subject)}.aux{background:#f3edff;border-color:#d4c4f0;color:var(--aux);visibility:hidden}.verb{background:#fff0e9;border-color:#efc2b2;color:var(--verb);box-shadow:0 3px 0 #dcae9e}.object{background:#eaf7f0;border-color:#bcdccd;color:var(--object)}.period{font:600 1.8rem Arial,sans-serif;align-self:center;padding-top:28px}.verb-forms{display:grid}.verb-forms span{grid-area:1/1}#verb-previous{opacity:0;pointer-events:none;text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:#a63822}#result-sentence{margin:0}
 @media(max-width:600px){.negative-track{gap:6px;grid-template-columns:.72fr 1.4fr 1.15fr 1.35fr 6px}.word{min-height:90px;border-radius:7px}.word strong{font-size:clamp(.98rem,3.5vw,1.6rem)}.role{font-size:.8rem}.negative-track{min-height:215px}}
 </style></head><body><a class="skip" href="#lesson">教材へ進む</a><header><a class="brand" href="./english-negative.html"><span class="brand-icon" aria-hidden="true">E</span>英語のしくみ</a></header><main><h1>一般動詞の否定文</h1><p class="lead"><strong>do not / does not</strong> の後ろは、動詞の<strong>原形</strong>です。</p><section class="lesson" aria-label="一般動詞を否定文にする" id="lesson">
  <div class="original-row"><span class="tag">もとの文</span><div><p class="original" lang="en" id="original-sentence">He plays soccer.</p><p class="ja" id="original-ja">彼はサッカーをします。</p></div></div>
  <div class="workspace">
-  <div class="status-row"><span id="stage-status">「〜しません」をつくろう</span><span class="stage-count" id="stage-count">0 / 3</span></div>
+  <div class="status-row"><span id="stage-status">「〜しません」をつくろう</span><span class="stage-count" id="stage-count">0 / 2</span></div>
   <div class="visual negative-track" id="negative-track" lang="en" aria-label="He plays soccer.">
    <div class="word subject"><span class="role" lang="ja">主語</span><strong id="negative-subject">He</strong></div>
    <div class="aux-space"><div class="word aux" id="negative-aux"><span class="role" lang="ja">否定を表す</span><strong id="aux-current">does not</strong></div></div>
    <div class="word verb" id="negative-verb"><span class="role" id="verb-role" lang="ja">動詞</span><strong class="verb-forms"><span id="verb-current">plays</span><span id="verb-previous" aria-hidden="true">plays</span></strong></div>
    <div class="word object"><span class="role" lang="ja">目的語</span><strong id="negative-object">soccer</strong></div><span class="period">.</span>
   </div>
-  <div class="explanation" aria-live="polite"><h2 id="step-title">主語の後ろに、否定の言葉を。</h2><p id="step-copy">ボタンで、一つずつ変化を確かめよう。</p></div>
+  <div class="explanation" aria-live="polite"><h2 id="step-title">否定語と動詞の原形を、セットに。</h2><p id="step-copy">ボタンを押すと、動詞の形も一緒に整います。</p></div>
   <p class="sr-only" id="result-sentence"></p>
   <div class="controls"><button class="primary" id="next">否定文にする →</button><button class="quiet" id="reset">最初に戻す</button></div>
   <label class="motion-setting"><input type="checkbox" id="reduce-motion">動きを減らす</label>
@@ -53,32 +53,36 @@ function render(){
  const e=examples[example];
  $('original-sentence').textContent=`${e.subject} ${e.present} ${e.object}.`;$('original-ja').textContent=e.ja;
  $('negative-subject').textContent=e.subject;$('negative-object').textContent=e.object;
- $('aux-current').textContent=step===3?e.short:e.aux;$('negative-aux').style.visibility=step?'visible':'hidden';
- $('verb-current').textContent=step>=2?e.base:e.present;$('verb-previous').textContent=e.present;
- $('verb-role').textContent=step>=2?'動詞・原形':'動詞';$('stage-count').textContent=`${step} / 3`;
- $('stage-status').textContent=step===0?'「〜しません」をつくろう':step===1?'組み立て中 — 次に動詞の形を整えます':'完成した否定文';
- const sentence=step>=2?`${e.subject} ${step===3?e.short:e.aux} ${e.base} ${e.object}.`:'';
+ $('aux-current').textContent=step===2?e.short:e.aux;$('negative-aux').style.visibility=step?'visible':'hidden';
+ $('verb-current').textContent=step>=1?e.base:e.present;$('verb-previous').textContent=e.present;
+ $('verb-role').textContent=step>=1?'動詞・原形':'動詞';$('stage-count').textContent=`${step} / 2`;
+ $('stage-status').textContent=step===0?'「〜しません」をつくろう':busy?'変化中：取り消し線の形は使いません':'完成した否定文';
+ $('negative-track').setAttribute('aria-busy',String(busy));
+ const sentence=step>=1?`${e.subject} ${step===2?e.short:e.aux} ${e.base} ${e.object}.`:'';
  $('result-sentence').textContent=sentence;
  $('negative-track').setAttribute('aria-label',sentence|| (step===0?`${e.subject} ${e.present} ${e.object}.`:'組み立て中。動詞の形はまだ整っていません。'));
- const titles=['主語の後ろに、否定の言葉を。',`${e.aux} を、主語の後ろへ。`,'動詞を原形に戻します。','短く書いても、同じ意味。'];
- const copy=['ボタンで、一つずつ変化を確かめよう。','次は、後ろの動詞を原形にします。',`${e.present} → ${e.base}。${e.negative}`,`${e.aux} = ${e.short}。${e.negative}`];
+ const titles=['否定語と動詞の原形を、セットに。',`${e.aux} の後ろは、原形の ${e.base}。`,'短く書いても、同じ意味。'];
+ const copy=['ボタンを押すと、動詞の形も一緒に整います。',e.present===e.base?`${e.base} は、すでに原形です。${e.negative}`:`${e.present} → ${e.base}。${e.negative}`,`${e.aux} = ${e.short}。${e.negative}`];
  $('step-title').textContent=titles[step];$('step-copy').textContent=copy[step];
- $('next').textContent=step===0?'否定文にする →':step===3?'もう一度見る ↺':step===2?'短く書いてみる →':'動詞を原形にする →';$('next').disabled=busy;
+ $('next').textContent=step===0?'否定文にする →':step===2?'もう一度見る ↺':'短く書いてみる →';$('next').disabled=busy;
  document.querySelectorAll('[data-example]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.example)===example)));
 }
 function reset(){resetMotion();busy=false;step=0;render();}
 $('reset').addEventListener('click',reset);
 document.querySelectorAll('[data-example]').forEach(b=>b.addEventListener('click',()=>{example=Number(b.dataset.example);reset();}));
 $('next').addEventListener('click',async()=>{
- if(busy)return;if(step===3){reset();return;} busy=true;step++;const token=generation;render();
- if(step===1)await animate($('negative-aux'),[{opacity:0,transform:'translateY(-30px)'},{opacity:1,transform:'translateY(0)'}]);
- if(step===2)await Promise.all([
-  animate($('negative-verb'),[{transform:'translateY(0) translateZ(0)'},{transform:'translateY(-12px) translateZ(60px)',offset:.3,boxShadow:'0 18px 24px #70361f35'},{transform:'translateY(-12px) translateZ(60px)',offset:.7,boxShadow:'0 18px 24px #70361f35'},{transform:'translateY(0) translateZ(0)'}],800),
-  animate($('verb-previous'),[{opacity:1,transform:'translateY(0)'},{opacity:1,offset:.3},{opacity:0,transform:'translateY(-15px)',offset:.65},{opacity:0}],800),
-  animate($('verb-current'),[{opacity:0,transform:'translateY(15px)'},{opacity:0,offset:.35},{opacity:1,transform:'translateY(0)',offset:.75},{opacity:1}],800)
- ]);
- if(step===3)await animate($('aux-current'),[{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],600);
- if(token===generation){busy=false;$('next').disabled=false;}
+ if(busy)return;if(step===2){reset();return;} busy=true;step++;const token=generation;render();
+ if(step===1){
+  const jobs=[animate($('negative-aux'),[{opacity:0,transform:'translateY(-30px)'},{opacity:1,transform:'translateY(0)'}])];
+  if(examples[example].present!==examples[example].base) jobs.push(
+   animate($('negative-verb'),[{transform:'translateY(0) translateZ(0)'},{transform:'translateY(-12px) translateZ(60px)',offset:.3,boxShadow:'0 18px 24px #70361f35'},{transform:'translateY(-12px) translateZ(60px)',offset:.7,boxShadow:'0 18px 24px #70361f35'},{transform:'translateY(0) translateZ(0)'}],800),
+   animate($('verb-previous'),[{opacity:1,transform:'translateY(0)'},{opacity:1,offset:.3},{opacity:0,transform:'translateY(-15px)',offset:.65},{opacity:0}],800),
+   animate($('verb-current'),[{opacity:0,transform:'translateY(15px)'},{opacity:0,offset:.35},{opacity:1,transform:'translateY(0)',offset:.75},{opacity:1}],800)
+  );
+  await Promise.all(jobs);
+ }
+ else if(step===2)await animate($('aux-current'),[{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],600);
+ if(token===generation){busy=false;render();}
 });
 render();
 </script></body></html>
