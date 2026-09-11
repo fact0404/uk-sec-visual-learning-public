@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>文の構造：SVOとSVC｜英語のしくみ</title><meta name="description" content="目的語は動詞の対象、補語は主語を説明します。"><meta name="theme-color" content="#172f49"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23172f49'/%3E%3Ctext x='16' y='24' text-anchor='middle' fill='white' font-size='24' font-family='serif'%3EE%3C/text%3E%3C/svg%3E"><style>:root{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;color:#172f49;background:#f4f7fa;color-scheme:light;--ink:#172f49;--muted:#526579;--line:#d7e1e8;--subject:#1356a0;--verb:#a63822;--aux:#6740a7;--object:#166750}*{box-sizing:border-box}body{margin:0}button,input,summary{font:inherit}button{cursor:pointer;min-height:48px;border:1px solid #b4c4d1;border-radius:8px;background:white;color:var(--ink);padding:12px 18px;font-weight:600;font-size:.95rem}button:disabled{opacity:.5;cursor:default}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #197db4;outline-offset:4px}a{color:inherit}header{max-width:1100px;margin:auto;height:76px;padding:0 28px;display:flex;align-items:center;border-bottom:1px solid var(--line)}.brand{font-weight:750;letter-spacing:.07em;text-decoration:none;display:flex;gap:12px;align-items:center}.brand-icon{background:var(--ink);color:white;width:32px;height:34px;border-radius:6px;display:grid;place-items:center;font:700 23px Georgia,serif}main{max-width:1100px;margin:auto;padding:30px 28px 40px}h1{font-size:clamp(1.6rem,3vw,2.25rem);letter-spacing:.035em;line-height:1.5;margin:0 0 10px}.lead{line-height:1.9;color:var(--muted);margin:0 0 25px;font-size:1rem}.lead strong{color:var(--ink)}.lesson{background:white;border:1px solid #cad8e3;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px #1c395607}.original-row{display:flex;align-items:center;gap:22px;padding:22px 26px;border-bottom:1px solid var(--line)}.tag{background:#edf2f6;padding:8px 12px;border-radius:5px;white-space:nowrap;font-size:.875rem}.original{font:600 clamp(1.25rem,3vw,1.7rem)/1.6 Arial,sans-serif;margin:0}.ja{color:var(--muted);font-size:.9rem;line-height:1.8;margin:3px 0 0}.subject-text{color:var(--subject)}.verb-text{color:var(--verb)}.aux-text{color:var(--aux)}.object-text{color:var(--object)}.workspace{padding:24px 26px}.status-row{display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--muted);font-size:.875rem}.stage-count{white-space:nowrap;font-family:Arial,sans-serif}.visual{padding:45px 0 32px}.explanation{padding:16px 20px;border-radius:9px;border-left:3px solid #547b9e;background:#f3f7fb;min-height:95px}.explanation h2{font-size:1.08rem;line-height:1.6;margin:0 0 5px}.explanation p{margin:0;color:var(--muted);line-height:1.8;font-size:.95rem}.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px}.primary{color:white;background:var(--ink);border-color:var(--ink);min-width:184px}.primary:hover{background:#294d70}.quiet{border-color:transparent;background:transparent;color:var(--muted)}.motion-setting{display:flex;justify-content:flex-end;align-items:center;gap:7px;min-height:48px;font-size:.875rem;color:var(--muted)}input[type=checkbox]{width:20px;height:20px;accent-color:var(--ink)}.choices{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:24px 0}.choices>span{font-size:.9rem;margin-right:8px;font-weight:650}.choices button{font-weight:500;font-family:Arial,sans-serif}.choices button[aria-pressed=true]{background:#e3edf6;border-color:#6e90af;box-shadow:inset 0 0 0 1px #6e90af}.lower{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}details{background:white;border:1px solid var(--line);border-radius:12px}summary{cursor:pointer;list-style:none;min-height:76px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:650;line-height:1.6}summary::-webkit-details-marker{display:none}summary::after{content:'＋';font-size:1.2rem;font-weight:400}details[open]>summary::after{content:'−'}.detail{padding:0 22px 20px;line-height:1.9;font-size:.95rem}.detail p{margin:0 0 14px}.detail p:last-child{margin-bottom:0}.rule{padding:14px;background:#f4f7fa;border-radius:7px;text-align:center;font:600 1.05rem/1.7 Arial,sans-serif}.quiz-sentence{font:600 1.3rem/1.8 Arial,sans-serif}.answers{display:flex;gap:10px;flex-wrap:wrap}.answers button[aria-pressed=true]{background:#e3edf6;border-color:#6e90af}.feedback{min-height:3.6em;margin:14px 0 0!important;color:var(--muted);font-size:.9rem}.feedback.correct{color:var(--object)}.feedback.incorrect{color:var(--verb)}.note{font-size:.875rem;color:var(--muted);line-height:1.8}.sentence{font:600 clamp(1.4rem,3.4vw,2rem)/1.7 Arial,sans-serif;margin:0;overflow-wrap:anywhere}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.skip{position:absolute;top:-80px}.skip:focus{top:10px;left:16px;background:white;padding:14px;z-index:9}.reduce-motion *{animation:none!important;transition:none!important}[hidden]{display:none!important}
+@media(max-width:700px){header{height:66px;padding:0 20px}main{padding:24px 20px 32px}.workspace{padding:20px}.original-row{padding:18px 20px;gap:14px}.lower{grid-template-columns:1fr}.visual{padding:35px 0 26px}.explanation{padding:14px 16px}.choices{gap:8px}.choices>span{width:100%}}
+@media(max-width:420px){header{padding:0 16px}main{padding:20px 12px 28px}.workspace{padding:18px 12px}.original-row{padding:16px 12px;align-items:flex-start}.tag{font-size:.8rem;padding:7px 8px}.original{font-size:1.2rem}.lead{font-size:.95rem}.controls{gap:8px}.controls button{padding:12px;min-width:0}.primary{flex:1}.explanation h2{font-size:1rem}.status-row{align-items:flex-start}summary{padding:18px}.detail{padding:0 18px 18px}}
+
+:root{--complement:#805b12}.structure-original{font-family:inherit;font-size:clamp(1.1rem,2.5vw,1.45rem)}.structure-choices{margin:0 0 24px}.structure-choices button{min-width:64px}.structure-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}.structure-card{border:1px solid var(--line);border-radius:12px;padding:20px 16px;min-width:0}.structure-card h2{margin:0 0 24px;display:flex;flex-direction:column;gap:7px;font-size:1rem;line-height:1.6}.structure-card h2>span:first-child{font:700 1.5rem/1.3 Arial,sans-serif;letter-spacing:.12em}.svo-card h2>span:first-child{color:var(--object)}.svc-card h2>span:first-child{color:var(--complement)}.word-row{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr) minmax(0,1.4fr);gap:6px}.word{border-radius:7px;padding:10px 4px 13px;text-align:center;min-width:0}.role-label{display:block;font-size:.75rem;white-space:nowrap;margin-bottom:9px;font-weight:650}.word strong{font:600 clamp(1.1rem,2.5vw,1.5rem)/1.5 Arial,sans-serif;white-space:nowrap}.subject-word{color:var(--subject);background:#edf5ff;border-bottom:3px solid var(--subject)}.verb-word{color:var(--verb);background:#fff1eb;border-bottom:3px solid var(--verb)}.object-word{color:var(--object);background:#eaf7f0;border-bottom:3px solid var(--object)}.complement-word{color:var(--complement);background:#fff7df;border-bottom:3px solid var(--complement)}.complement-text{color:var(--complement)}.period{color:var(--ink)}.object-link,.subject-complement-link{height:51px;margin:8px 10% 0;position:relative;text-align:center;font-size:.8rem;font-weight:650;padding-top:9px}.object-link{margin-left:31%;color:var(--object);border-top:2px solid var(--object)}.subject-complement-link{color:var(--complement);border:solid var(--complement);border-width:0 2px 2px;height:32px;margin-bottom:19px}.subject-complement-link span{position:relative;top:9px;padding:0 7px;background:white}.structure-ja{margin:12px 0 8px;line-height:1.8;font-size:.95rem}.structure-reading{margin:0;color:var(--muted);font-size:.9rem;line-height:1.9}.structure-takeaway{margin:22px 0 0;padding:16px 18px;background:#f3f7fb;border-radius:9px;font-size:.95rem;line-height:1.9}.structure-takeaway strong{margin:0 .2em}
+@media(max-width:720px){.structure-pair{grid-template-columns:1fr}.structure-card{padding:18px 16px}.structure-card h2{flex-direction:row;gap:14px;align-items:center;margin-bottom:19px}.word strong{font-size:1.4rem}.structure-choices{margin-bottom:18px}.structure-choices>span{width:auto}}
+@media(max-width:420px){.structure-card{padding:16px 10px}.structure-card h2{gap:10px;font-size:.9rem}.structure-card h2>span:first-child{font-size:1.25rem}.word strong{font-size:1.22rem}.role-label{font-size:.7rem}.structure-takeaway{padding:14px 12px;font-size:.875rem}.structure-reading{font-size:.85rem}.structure-choices{gap:8px}.structure-choices button{min-width:60px;padding:12px}.structure-choices>span{margin-right:0;font-size:.85rem}}
+</style></head><body><a class="skip" href="#lesson">教材へ進む</a><header><a class="brand" href="./english-structure.html"><span class="brand-icon" aria-hidden="true">E</span>英語のしくみ</a></header><main><h1>文の構造：SVOとSVC</h1><p class="lead"><strong>目的語</strong>は動詞の対象、<strong>補語</strong>は主語を説明します。</p><section class="lesson" id="lesson" aria-label="目的語と補語の違い">
+ <div class="original-row"><span class="tag">文の組み立て</span><div><p class="original structure-original">最後の部分は、何を表す？</p><p class="ja">同じ主語の2つの文を見比べよう。</p></div></div>
+ <div class="workspace">
+  <div class="choices structure-choices" role="group" aria-label="例文を選ぶ"><span>例を選ぶ</span><button data-structure-example="0" aria-pressed="true" lang="en">He</button><button data-structure-example="1" aria-pressed="false" lang="en">She</button><button data-structure-example="2" aria-pressed="false" lang="en">I</button></div>
+  <div class="structure-pair" id="structure-visual" aria-live="polite" aria-atomic="true">
+   <section class="structure-card svo-card" aria-labelledby="svo-title">
+    <h2 id="svo-title"><span lang="en">SVO</span><span>目的語は、動詞の対象</span></h2>
+    <p class="sr-only" id="svo-sentence" lang="en">He plays soccer.</p>
+    <div class="word-row" aria-label="Sは主語、Vは動詞、Oは目的語">
+     <div class="word subject-word"><span class="role-label">S · 主語</span><strong id="svo-subject" lang="en">He</strong></div>
+     <div class="word verb-word"><span class="role-label">V · 動詞</span><strong id="svo-verb" lang="en">plays</strong></div>
+     <div class="word object-word"><span class="role-label">O · 目的語</span><strong lang="en"><span id="svo-object">soccer</span><span class="period">.</span></strong></div>
+    </div>
+    <div class="object-link" aria-hidden="true"><span>動詞の対象 →</span></div>
+    <p class="structure-ja" id="svo-ja">彼はサッカーをします。</p>
+    <p class="structure-reading" id="svo-reading">何をする？ → <strong class="object-text">サッカーを</strong></p>
+   </section>
+   <section class="structure-card svc-card" aria-labelledby="svc-title">
+    <h2 id="svc-title"><span lang="en">SVC</span><span>補語は、主語を説明</span></h2>
+    <p class="sr-only" id="svc-sentence" lang="en">He is happy.</p>
+    <div class="word-row" aria-label="Sは主語、Vは動詞、Cは補語">
+     <div class="word subject-word"><span class="role-label">S · 主語</span><strong id="svc-subject" lang="en">He</strong></div>
+     <div class="word verb-word"><span class="role-label">V · 動詞</span><strong id="svc-verb" lang="en">is</strong></div>
+     <div class="word complement-word"><span class="role-label">C · 補語</span><strong lang="en"><span id="svc-complement">happy</span><span class="period">.</span></strong></div>
+    </div>
+    <div class="subject-complement-link" aria-label="補語が主語を説明する"><span>主語 ↔ 補語</span></div>
+    <p class="structure-ja" id="svc-ja">彼はうれしいです。</p>
+    <p class="structure-reading" id="svc-reading">彼はどんな様子？ → <strong class="complement-text">うれしい</strong></p>
+   </section>
+  </div>
+  <p class="structure-takeaway">動詞の対象を表すのが<strong class="object-text">目的語</strong>。<br>主語が「どんな様子・何者か」を表すのが<strong class="complement-text">補語</strong>。</p>
+ </div>
+</section>
+<div class="lower">
+ <details id="structure-help"><summary>S・V・O・Cを確かめる</summary><div class="detail"><p><strong class="subject-text">S＝主語</strong>：誰が・何が<br><strong class="verb-text">V＝動詞</strong>：動作や状態を表す<br><strong class="object-text">O＝目的語</strong>：動詞の対象<br><strong class="complement-text">C＝補語</strong>：主語の説明</p><p><span lang="en">He is happy.</span> の <strong class="complement-text" lang="en">happy</strong> は、<strong class="subject-text" lang="en">He</strong> の様子を説明します。<span lang="en">She is a teacher.</span> では、<strong class="complement-text" lang="en">a teacher</strong> が彼女は何者かを説明します。</p><p class="note">ここではSVOとSVCだけを比べます。英語の文には、ほかの組み立てもあります。</p></div></details>
+ <details id="quiz"><summary>1問だけ、確かめよう</summary><div class="detail"><p>この文の <strong class="complement-text" lang="en">busy</strong> は、目的語？ 補語？</p><p class="quiz-sentence" lang="en">She is busy.</p><p class="note">意味：彼女は忙しいです。</p><div class="answers"><button data-correct="false" data-feedback="busy は動詞の対象ではなく、She の様子を説明しています。補語です。">目的語（O）</button><button data-correct="true" data-feedback="busy は主語 She の様子「忙しい」を説明するので、補語です。">補語（C）</button></div><p class="feedback" id="quiz-feedback" aria-live="polite">選ぶと、答えと理由が見られます。</p></div></details>
+</div>
+</main><noscript>操作にはJavaScriptを有効にしてください。</noscript><script type="module">const $ = id => document.getElementById(id);
+let animations = [], generation = 0;
+function stopAnimations(){ animations.forEach(a=>a.cancel()); animations=[]; }
+function resetMotion(){generation++;stopAnimations();}
+async function animate(element,frames,duration=700){
+ if($('reduce-motion')?.checked) return;
+ const animation=element.animate(frames,{duration,easing:'ease-in-out'});
+ animations.push(animation);
+ try{await animation.finished;}catch{}
+ animations=animations.filter(a=>a!==animation);
+}
+const motion=$('reduce-motion');
+if(motion){motion.checked=false;motion.addEventListener('change',()=>{document.body.classList.toggle('reduce-motion',motion.checked);if(motion.checked)stopAnimations();});}
+document.querySelectorAll('[data-correct]').forEach(button=>button.addEventListener('click',()=>{
+ const correct=button.dataset.correct==='true';
+ $('quiz-feedback').textContent=(correct?'正解！ ':'もう一度。 ')+button.dataset.feedback;
+ $('quiz-feedback').className=`feedback ${correct?'correct':'incorrect'}`;
+ document.querySelectorAll('[data-correct]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+}));
+
+const structureExamples = [
+ {subject:'He',verb:'plays',object:'soccer',be:'is',complement:'happy',svoJa:'彼はサッカーをします。',svcJa:'彼はうれしいです。',objectQuestion:'何をする？',objectAnswer:'サッカーを',complementQuestion:'彼はどんな様子？',complementAnswer:'うれしい'},
+ {subject:'She',verb:'likes',object:'music',be:'is',complement:'a teacher',svoJa:'彼女は音楽が好きです。',svcJa:'彼女は先生です。',objectQuestion:'何が好き？',objectAnswer:'音楽が',complementQuestion:'彼女は何者？',complementAnswer:'先生',},
+ {subject:'I',verb:'study',object:'English',be:'am',complement:'tired',svoJa:'私は英語を勉強します。',svcJa:'私は疲れています。',objectQuestion:'何を勉強する？',objectAnswer:'英語を',complementQuestion:'私はどんな様子？',complementAnswer:'疲れている'}
+];
+function showStructureExample(index){
+ const example=structureExamples[index];
+ for(const pattern of ['svo','svc']) $(pattern+'-subject').textContent=example.subject;
+ $('svo-verb').textContent=example.verb;
+ $('svo-object').textContent=example.object;
+ $('svc-verb').textContent=example.be;
+ $('svc-complement').textContent=example.complement;
+ $('svo-sentence').textContent=`${example.subject} ${example.verb} ${example.object}.`;
+ $('svc-sentence').textContent=`${example.subject} ${example.be} ${example.complement}.`;
+ $('svo-ja').textContent=example.svoJa;
+ $('svc-ja').textContent=example.svcJa;
+ for(const [pattern,question,answer,role] of [['svo',example.objectQuestion,example.objectAnswer,'object'],['svc',example.complementQuestion,example.complementAnswer,'complement']]){
+  const emphasis=document.createElement('strong');emphasis.className=`${role}-text`;emphasis.textContent=answer;
+  $(pattern+'-reading').replaceChildren(document.createTextNode(question+' → '),emphasis);
+ }
+ document.querySelectorAll('[data-structure-example]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.structureExample)===index)));
+}
+document.querySelectorAll('[data-structure-example]').forEach(button=>button.addEventListener('click',()=>showStructureExample(Number(button.dataset.structureExample))));
+showStructureExample(0);
+</script></body></html>
