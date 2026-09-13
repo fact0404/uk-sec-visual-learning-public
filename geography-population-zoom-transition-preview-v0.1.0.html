@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>人口地図：ズーム時の円の分割方法</title>
+<style>
+:root{color-scheme:light;--ink:#17343b;--muted:#5e7076;--line:#cddcdf;--paper:#f7faf9;--teal:#287885;--teal2:#5da5af;--teal3:#9acbd1;--accent:#e3a33c}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(160deg,#edf5f3,#f9fbfa 45%,#eef3f5);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}
+main{max-width:1180px;margin:auto;padding:40px 24px 56px}
+header{margin-bottom:28px}
+.eyebrow{font-size:13px;letter-spacing:.08em;color:var(--teal);font-weight:700}
+h1{font-size:clamp(26px,4vw,42px);line-height:1.25;margin:7px 0 12px}
+.lead{color:var(--muted);line-height:1.75;max-width:850px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{appearance:none;text-align:left;border:2px solid transparent;border-radius:18px;background:white;padding:0;overflow:hidden;box-shadow:0 9px 28px rgba(23,52,59,.09);cursor:pointer;color:inherit;font:inherit;transition:.18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(23,52,59,.14)}
+.card[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 4px rgba(227,163,60,.18),0 12px 32px rgba(23,52,59,.13)}
+.visual{background:#eaf1f2;min-height:230px;display:flex;align-items:center;padding:16px}
+svg{display:block;width:100%;height:auto}
+.copy{padding:20px 20px 23px}
+.label{font-size:12px;font-weight:800;color:var(--teal);letter-spacing:.07em}
+h2{font-size:21px;margin:5px 0 9px}
+p{line-height:1.65}
+.copy p{font-size:14px;color:var(--muted);margin:0}
+.badge{display:inline-block;margin-top:14px;padding:5px 9px;border-radius:999px;background:#e8f4f2;color:#216872;font-size:12px;font-weight:700}
+.card.recommended .badge{background:#fff2d9;color:#855b14}
+.result{margin-top:24px;border-radius:16px;background:#17343b;color:white;padding:20px 22px;min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.result strong{font-size:18px}
+.result span{color:#d8e6e8;font-size:14px}
+.note{margin-top:20px;padding:16px 18px;border-left:4px solid var(--teal);background:rgba(255,255,255,.72);color:var(--muted);line-height:1.7}
+@media(max-width:820px){main{padding:26px 15px 40px}.grid{grid-template-columns:1fr}.visual{min-height:190px}.result{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">WORLD POPULATION MAP — INTERACTION STUDY</div>
+<h1>ズーム時に、人口の円をどう分割するか</h1>
+<p class="lead">世界の地域別人口から国別人口へ、さらに日本では都道府県別人口へ移るときの基本動作を比較します。各案を選ぶと、下部に選択結果が表示されます。</p>
+</header>
+
+<section class="grid" aria-label="分割方法の選択肢">
+<button class="card" data-choice="A：段階切替" aria-pressed="false">
+<div class="visual">
+<svg viewBox="0 0 360 185" role="img" aria-label="親円から複数の子円へ瞬時に切り替わる図">
+<circle cx="65" cy="86" r="48" fill="#287885" opacity=".9"/>
+<text x="65" y="151" text-anchor="middle" font-size="13" fill="#36545b">地域</text>
+<path d="M123 86H203" stroke="#587177" stroke-width="3"/>
+<path d="m194 77 11 9-11 9" fill="none" stroke="#587177" stroke-width="3"/>
+<line x1="164" y1="51" x2="164" y2="121" stroke="#e3a33c" stroke-width="4"/>
+<text x="164" y="39" text-anchor="middle" font-size="12" fill="#855b14">境界倍率</text>
+<circle cx="249" cy="58" r="27" fill="#287885"/>
+<circle cx="309" cy="84" r="21" fill="#5da5af"/>
+<circle cx="267" cy="124" r="17" fill="#9acbd1"/>
+<text x="281" y="166" text-anchor="middle" font-size="13" fill="#36545b">国別</text>
+</svg>
+</div>
+<div class="copy"><div class="label">OPTION A</div><h2>段階切替</h2><p>所定のズーム倍率を越えた瞬間に、親円を子円へ置き換えます。挙動が明確で軽量ですが、円が急に変わって見えます。</p><span class="badge">単純・軽量</span></div>
+</button>
+
+<button class="card recommended" data-choice="B：連続分割" aria-pressed="false">
+<div class="visual">
+<svg viewBox="0 0 360 185" role="img" aria-label="親円が徐々に複数の子円へ分かれる図">
+<circle cx="46" cy="86" r="42" fill="#287885" opacity=".9"/>
+<path d="M93 86H120M224 86H249" stroke="#587177" stroke-width="2.5"/>
+<circle cx="171" cy="86" r="37" fill="none" stroke="#287885" stroke-width="2" stroke-dasharray="5 5" opacity=".45"/>
+<circle cx="158" cy="72" r="23" fill="#287885" opacity=".78"/>
+<circle cx="188" cy="91" r="17" fill="#5da5af" opacity=".78"/>
+<circle cx="168" cy="111" r="12" fill="#9acbd1" opacity=".85"/>
+<circle cx="278" cy="57" r="27" fill="#287885"/>
+<circle cx="320" cy="91" r="21" fill="#5da5af"/>
+<circle cx="275" cy="126" r="17" fill="#9acbd1"/>
+<text x="46" y="151" text-anchor="middle" font-size="13" fill="#36545b">地域</text>
+<text x="171" y="151" text-anchor="middle" font-size="13" fill="#36545b">分割中</text>
+<text x="295" y="166" text-anchor="middle" font-size="13" fill="#36545b">国別</text>
+</svg>
+</div>
+<div class="copy"><div class="label">OPTION B</div><h2>連続分割</h2><p>親円を薄くしながら、子円を各地域へ移動・拡大します。総人口と内訳の関係を視線で追いやすい方式です。</p><span class="badge">推奨案</span></div>
+</button>
+
+<button class="card" data-choice="C：選択して展開" aria-pressed="false">
+<div class="visual">
+<svg viewBox="0 0 360 185" role="img" aria-label="親円をタップして複数の子円を開く図">
+<circle cx="75" cy="86" r="48" fill="#287885" opacity=".9" stroke="#e3a33c" stroke-width="5"/>
+<circle cx="75" cy="86" r="17" fill="none" stroke="white" stroke-width="2" opacity=".8"/>
+<path d="M75 64v44M53 86h44" stroke="white" stroke-width="2" opacity=".8"/>
+<text x="75" y="151" text-anchor="middle" font-size="13" fill="#36545b">タップ</text>
+<path d="M134 86H211" stroke="#587177" stroke-width="3"/>
+<path d="m202 77 11 9-11 9" fill="none" stroke="#587177" stroke-width="3"/>
+<circle cx="255" cy="58" r="27" fill="#287885"/>
+<circle cx="315" cy="84" r="21" fill="#5da5af"/>
+<circle cx="273" cy="124" r="17" fill="#9acbd1"/>
+<text x="287" y="166" text-anchor="middle" font-size="13" fill="#36545b">内訳を展開</text>
+</svg>
+</div>
+<div class="copy"><div class="label">OPTION C</div><h2>選択して展開</h2><p>ズームだけでは階層を変えず、円または地域をタップしたときに内訳を開きます。意図しない切替を防げますが、一操作増えます。</p><span class="badge">操作を明示</span></div>
+</button>
+</section>
+
+<div class="result" aria-live="polite">
+<div><strong id="result-title">選択されていません</strong><br><span id="result-note">比較したい案をタップしてください。</span></div>
+<span>選択後、このチャットで案名や感想を伝えてください。</span>
+</div>
+<div class="note"><strong>判断の観点：</strong>「一つの地域の総人口が、国別・地方別の内訳へ分かれた」という関係を、中学生が操作だけで理解できるかを重視します。</div>
+</main>
+<script>
+const cards=[...document.querySelectorAll(".card")];
+cards.forEach(card=>card.addEventListener("click",()=>{
+ cards.forEach(item=>item.setAttribute("aria-pressed","false"));
+ card.setAttribute("aria-pressed","true");
+ document.getElementById("result-title").textContent=card.dataset.choice+"を選択";
+ document.getElementById("result-note").textContent=card.querySelector(".copy p").textContent;
+}));
+</script>
+</body>
+</html>
