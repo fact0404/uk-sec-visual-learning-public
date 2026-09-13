@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>人口地図：重なる円の扱い</title>
+<style>
+:root{--ink:#17343b;--muted:#5e7076;--teal:#287885;--blue:#5da5af;--pale:#9acbd1;--accent:#e3a33c}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#edf5f3,#fbfcfb);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}
+main{max-width:1180px;margin:auto;padding:40px 24px 56px}.eyebrow{font-size:13px;letter-spacing:.08em;color:var(--teal);font-weight:700}
+h1{font-size:clamp(26px,4vw,42px);line-height:1.25;margin:7px 0 12px}.lead{color:var(--muted);line-height:1.75;max-width:850px;margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{appearance:none;text-align:left;border:2px solid transparent;border-radius:18px;background:#fff;padding:0;overflow:hidden;box-shadow:0 9px 28px #17343b17;cursor:pointer;color:inherit;font:inherit;transition:.18s}
+.card:hover{transform:translateY(-2px)}.card[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 4px #e3a33c2e,0 12px 32px #17343b20}
+.visual{background:#eaf1f2;min-height:240px;display:flex;align-items:center;padding:12px}.copy{padding:20px 20px 23px}.label{font-size:12px;font-weight:800;color:var(--teal);letter-spacing:.07em}
+h2{font-size:21px;margin:5px 0 9px}.copy p{font-size:14px;line-height:1.65;color:var(--muted);margin:0}.badge{display:inline-block;margin-top:14px;padding:5px 9px;border-radius:999px;background:#e8f4f2;color:#216872;font-size:12px;font-weight:700}.recommended .badge{background:#fff2d9;color:#855b14}
+.result{margin-top:24px;border-radius:16px;background:var(--ink);color:#fff;padding:20px 22px;min-height:88px;display:flex;justify-content:space-between;gap:20px}.result strong{font-size:18px}.result span{color:#d8e6e8;font-size:14px;line-height:1.6}
+.note{margin-top:20px;padding:16px 18px;border-left:4px solid var(--teal);background:#ffffffb8;color:var(--muted);line-height:1.7}
+svg{width:100%;height:auto;display:block}.land{fill:#d3dedc;stroke:#afc0be;stroke-width:2}.leader{stroke:#855b14;stroke-width:2;stroke-dasharray:4 3}
+@media(max-width:820px){main{padding:26px 15px 40px}.grid{grid-template-columns:1fr}.result{flex-direction:column}}
+</style></head>
+<body><main>
+<div class="eyebrow">WORLD POPULATION MAP — OVERLAP STUDY</div>
+<h1>人口の円が重なるとき、どう見せるか</h1>
+<p class="lead">東アジアや西ヨーロッパのように人口の多い地域が近接すると、大きな円どうしが重なります。位置の正確さと読みやすさの均衡を選びます。</p>
+<section class="grid">
+<button class="card" data-choice="A：位置を固定" aria-pressed="false">
+<div class="visual"><svg viewBox="0 0 360 210" role="img" aria-label="正確な位置で円が重なる例">
+<path class="land" d="M40 45 135 24l54 28 93-13 42 54-35 82-90 6-63-34-82 16-29-63z"/>
+<circle cx="155" cy="102" r="58" fill="#287885" opacity=".66"/><circle cx="218" cy="102" r="50" fill="#5da5af" opacity=".68"/><circle cx="194" cy="143" r="28" fill="#9acbd1" opacity=".85"/>
+<circle cx="155" cy="102" r="3" fill="#17343b"/><circle cx="218" cy="102" r="3" fill="#17343b"/><circle cx="194" cy="143" r="3" fill="#17343b"/>
+</svg></div><div class="copy"><div class="label">OPTION A</div><h2>位置を固定</h2><p>各円を地域の代表点に正確に置き、重なりを許します。地理的位置は忠実ですが、小さい円が隠れる場合があります。</p><span class="badge">位置を優先</span></div></button>
+
+<button class="card" data-choice="B：常に重なりを回避" aria-pressed="false">
+<div class="visual"><svg viewBox="0 0 360 210" role="img" aria-label="円を移動して重なりを避ける例">
+<path class="land" d="M40 45 135 24l54 28 93-13 42 54-35 82-90 6-63-34-82 16-29-63z"/>
+<circle cx="94" cy="91" r="58" fill="#287885" opacity=".76"/><circle cx="231" cy="78" r="50" fill="#5da5af" opacity=".78"/><circle cx="190" cy="164" r="28" fill="#9acbd1" opacity=".9"/>
+<path d="M143 92 155 102M205 105 218 102M190 136 194 143" class="leader"/><circle cx="155" cy="102" r="4" fill="#855b14"/><circle cx="218" cy="102" r="4" fill="#855b14"/><circle cx="194" cy="143" r="4" fill="#855b14"/>
+</svg></div><div class="copy"><div class="label">OPTION B</div><h2>常に重なりを回避</h2><p>円を近くの空き位置へ動かし、引出線で本来の位置を示します。比較しやすい一方、地図上の位置がずれて見えます。</p><span class="badge">判読性を優先</span></div></button>
+
+<button class="card recommended" data-choice="C：適応型" aria-pressed="false">
+<div class="visual"><svg viewBox="0 0 360 210" role="img" aria-label="必要な場合だけ円を少し移動する例">
+<path class="land" d="M40 45 135 24l54 28 93-13 42 54-35 82-90 6-63-34-82 16-29-63z"/>
+<circle cx="132" cy="91" r="58" fill="#287885" opacity=".7"/><circle cx="241" cy="93" r="50" fill="#5da5af" opacity=".72"/><circle cx="196" cy="160" r="28" fill="#9acbd1" opacity=".92"/>
+<path d="M155 102 145 98M218 102 226 98M194 143 195 147" class="leader"/><circle cx="155" cy="102" r="4" fill="#855b14"/><circle cx="218" cy="102" r="4" fill="#855b14"/><circle cx="194" cy="143" r="4" fill="#855b14"/>
+</svg></div><div class="copy"><div class="label">OPTION C</div><h2>必要な場合だけ回避</h2><p>通常は代表点に置き、判読できない重なりだけ最小限ずらします。タップ時には本来の地域を強調して対応関係を示します。</p><span class="badge">推奨案</span></div></button>
+</section>
+<div class="result" aria-live="polite"><div><strong id="title">選択されていません</strong><br><span id="detail">比較したい案をタップしてください。</span></div><span>選択後、このチャットで案名や感想を伝えてください。</span></div>
+<div class="note"><strong>共通仕様：</strong>円の半径ではなく面積を人口に比例させます。したがって人口が4倍なら、半径は2倍になります。</div>
+</main><script>
+const cards=[...document.querySelectorAll(".card")];cards.forEach(c=>c.onclick=()=>{cards.forEach(x=>x.setAttribute("aria-pressed","false"));c.setAttribute("aria-pressed","true");document.querySelector("#title").textContent=c.dataset.choice+"を選択";document.querySelector("#detail").textContent=c.querySelector(".copy p").textContent});
+</script></body></html>
