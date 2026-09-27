@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>特徴で分ける生き物 | 自分で作る検索表</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1060px;
+}
+.vl-main {
+  padding-top: 20px;
+}
+.vl-title {
+  font-size: 28px;
+}
+.vl-controls {
+  display: block;
+  padding: 16px 22px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--surface);
+  border-radius: 16px 16px 0 0;
+}
+#target-label {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: #375640;
+}
+.control-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#trait-controls,
+#answer-controls {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+#trait-controls button {
+  background: #487259;
+  color: white;
+  min-width: 136px;
+}
+#trait-controls button:disabled {
+  background: #f0f1eb;
+  color: #73816c;
+  border-color: #dfe4d8;
+  opacity: 1;
+}
+.tools {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.tools button {
+  padding-inline: 13px;
+  font-size: 13px;
+}
+#answer-controls button {
+  min-width: 75px;
+}
+#guide {
+  margin: 16px 22px 0;
+  font-size: 14px;
+  line-height: 1.8;
+  min-height: 3.6em;
+  color: #536c52;
+}
+#board {
+  padding: 14px 22px 24px;
+  min-height: 240px;
+}
+.node {
+  min-width: 0;
+}
+.node-question {
+  border: 1px solid #cbd8c6;
+  background: #eff4e9;
+  border-radius: 9px;
+  padding: 9px 12px;
+  text-align: center;
+  font-size: 15px;
+  width: fit-content;
+  max-width: 100%;
+  margin: auto;
+  min-width: 120px;
+}
+.node-question.current {
+  outline: 2px solid #3a795b;
+  outline-offset: 3px;
+}
+.children {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  padding-top: 14px;
+  margin-top: 16px;
+  position: relative;
+}
+.children:before {
+  content: '';
+  position: absolute;
+  height: 16px;
+  border-left: 1px solid #b9c8b3;
+  left: 50%;
+  top: -16px;
+}
+.branch {
+  position: relative;
+  min-width: 0;
+  padding-top: 8px;
+}
+.branch-label {
+  text-align: center;
+  font-size: 12px;
+  color: #5e7358;
+  margin: 0 0 8px;
+}
+.branch:nth-child(2) > .branch-label {
+  color: #876e55;
+}
+.leaf {
+  padding: 12px 8px;
+  border: 1px solid #e1e7db;
+  border-radius: 12px;
+  min-width: 0;
+  position: relative;
+}
+.leaf[data-selected='true'] {
+  border: 2px solid #4e8160;
+  padding: 11px 7px;
+  background: #f6f8f1;
+}
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.vl-shell .animal {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 10px 8px 8px;
+  min-width: 90px;
+  border: 1px solid #d8e0cf;
+  border-radius: 10px;
+  background: #fffefa;
+  color: #314a37;
+  position: relative;
+  box-shadow: 0 2px 0 #c5d0bb33;
+  z-index: 1;
+}
+.vl-shell .animal svg {
+  width: 84px;
+  height: 63px;
+}
+.animal span {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.animal.dim {
+  opacity: 0.3;
+}
+.vl-shell .pick {
+  display: block;
+  font-size: 12px;
+  min-height: 44px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px 6px;
+  border-color: #d5dfce;
+  background: #edf3e5;
+  color: #527247;
+}
+.vl-shell .pick:disabled {
+  opacity: 1;
+  background: transparent;
+  border-color: transparent;
+  color: #44643e;
+}
+#same-note {
+  font-size: 12px;
+  color: #6f7d67;
+  margin: 0 22px 10px;
+  line-height: 1.7;
+}
+.scope-note {
+  margin: 0;
+  padding: 12px 22px;
+  border-top: 1px solid #dce3d5;
+  color: #63745c;
+  font-size: 12px;
+}
+dialog {
+  border: 1px solid #c5d0c0;
+  border-radius: 18px;
+  padding: 24px;
+  background: #fffefa;
+  color: #253d30;
+  width: calc(100% - 36px);
+  max-width: 390px;
+  box-sizing: border-box;
+}
+dialog::backdrop {
+  background: #20312377;
+}
+#note-image svg {
+  display: block;
+  width: 160px;
+  height: 118px;
+  margin: auto;
+}
+#note-title {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 22px;
+}
+#note-body {
+  font-size: 16px;
+  line-height: 1.8;
+}
+#note-close {
+  display: block;
+  min-height: 48px;
+  min-width: 80px;
+  margin: 16px auto 0;
+  border: 1px solid #bdcfc5;
+  border-radius: 9px;
+  background: #e4f3e9;
+  color: #216448;
+  font: inherit;
+}
+.vl-detail-body h3 {
+  font-size: 16px;
+}
+@media (max-width: 699px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-context {
+    display: none;
+  }
+  .vl-title {
+    font-size: 25px;
+  }
+  .vl-controls {
+    padding: 12px;
+  }
+  #target-label {
+    font-size: 14px;
+    min-height: 3em;
+    margin-bottom: 8px;
+  }
+  .control-row {
+    gap: 8px;
+  }
+  #trait-controls {
+    width: 100%;
+  }
+  #trait-controls button {
+    min-width: 0;
+    flex: 1;
+    padding-inline: 10px;
+  }
+  .tools {
+    margin-left: 0;
+    gap: 5px;
+  }
+  .tools button {
+    padding-inline: 12px;
+    min-height: 44px;
+  }
+  #answer-controls {
+    width: 100%;
+  }
+  #answer-controls button {
+    padding-inline: 11px;
+    min-height: 44px;
+    min-width: 64px;
+  }
+  #guide {
+    margin: 12px 14px 0;
+    font-size: 13px;
+    min-height: 3.6em;
+  }
+  #board {
+    padding: 12px 12px 16px;
+  }
+  .children {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-top: 0;
+    margin-top: 12px;
+    margin-left: 7px;
+    border-left: 2px solid #c6d1bf;
+  }
+  .children:before {
+    display: none;
+  }
+  .branch {
+    border: 0;
+    padding: 0 0 0 13px;
+  }
+  .branch-label {
+    text-align: left;
+    margin-bottom: 4px;
+    position: relative;
+  }
+  .branch-label:before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    width: 10px;
+    border-top: 1px solid #b7c5b0;
+  }
+  .node-question {
+    font-size: 14px;
+    margin-left: 0;
+    min-width: 108px;
+  }
+  .cards {
+    gap: 8px;
+  }
+  .vl-shell .animal {
+    padding: 7px;
+    min-width: 85px;
+  }
+  .vl-shell .animal svg {
+    width: 74px;
+    height: 55px;
+  }
+  .animal span {
+    font-size: 13px;
+  }
+  .leaf {
+    padding: 10px 6px;
+  }
+  .leaf[data-selected='true'] {
+    padding: 9px 5px;
+  }
+  .scope-note {
+    padding: 12px 14px;
+  }
+  #same-note {
+    margin-inline: 14px;
+  }
+}
+@media (min-width: 700px) and (max-height: 820px) {
+  .vl-header {
+    padding-block: 9px;
+  }
+  .vl-kicker {
+    display: none;
+  }
+  .vl-main {
+    padding-top: 8px;
+  }
+  .vl-heading {
+    margin-bottom: 12px;
+  }
+  .vl-controls {
+    padding-block: 12px;
+  }
+  #guide {
+    margin-top: 10px;
+    min-height: 1.8em;
+  }
+  #board {
+    padding-top: 12px;
+    padding-bottom: 14px;
+  }
+  .vl-shell .animal svg {
+    width: 74px;
+    height: 55px;
+  }
+}
+
+.children::after {
+  content: '';
+  position: absolute;
+  left: calc(25% - 4px);
+  right: calc(25% - 4px);
+  top: 0;
+  border-top: 1px solid #b9c8b3;
+}
+.branch::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  height: 14px;
+  border-left: 1px solid #b9c8b3;
+}
+@media (max-width: 699px) {
+  .children::after,
+  .branch::before {
+    display: none;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 6v5H5v6m7-6h7v6"/><circle cx="12" cy="4" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>特徴で分ける生き物</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">特徴で分ける生き物</h1><p class="vl-question">分ける特徴を変えると、同じ仲間になる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><p id="target-label" aria-live="polite">まず、4枚を分ける特徴を選ぼう。</p><div class="control-row"><div id="trait-controls" role="group" aria-label="分ける特徴"><button disabled data-trait="fly">空を飛ぶ？</button><button disabled data-trait="feathers">羽毛がある？</button></div><div id="answer-controls" hidden role="group" aria-label="特徴の答え"><button disabled data-answer="yes">はい</button><button disabled data-answer="no">いいえ</button><button disabled class="vl-secondary" data-answer="unknown">まだ分からない</button></div><div class="tools"><button disabled id="back" class="vl-secondary">← 戻す</button><button disabled id="reset" class="vl-secondary">初めから</button><button disabled id="walk" class="vl-secondary" aria-pressed="false">表をたどる</button></div></div></div>
+        <div class="vl-stage"><p id="guide">カードを押すと、特徴を確かめられます。</p><div id="board"><section class="leaf" data-path="" data-selected="true"><div class="cards"><button class="animal" data-animal="sparrow" aria-label="スズメの観察メモ" disabled><svg viewBox="0 0 100 74" aria-hidden="true"><path d="M24 49 11 56l19-2c14 13 43 5 44-15l13-5-13-2C69 9 50 17 46 33Z" fill="#a58b6b"/><path d="M31 45q17-23 32-7-6 14-23 12" fill="#7a6855"/><path d="m55 23 12 2-9 5" fill="#e6d4b5"/><circle cx="68" cy="30" r="2" fill="#243c3f"/><path d="m46 56-3 8m14-10-1 10m-17 0h8m6 0h8" fill="none" stroke="#a07344" stroke-width="2"/></svg><span>スズメ</span></button><button class="animal" data-animal="bat" aria-label="コウモリの観察メモ" disabled><svg viewBox="0 0 100 74" aria-hidden="true"><path d="M43 32Q30 4 6 15q10 13 5 30 13-7 20 6 8-9 14 4h10q6-13 14-4 7-13 20-6-5-17 5-30Q70 4 57 32Z" fill="#858078"/><path d="M45 33 42 16l9 7 8-7-3 17q10 27-6 29-14-4-5-29" fill="#605953"/><path d="m42 33-26-12m28 13L17 41m40-8 27-12M57 35l26 6" fill="none" stroke="#b5aca0" stroke-width="1.4"/><circle cx="46" cy="29" r="1.5" fill="#fff8da"/><circle cx="54" cy="29" r="1.5" fill="#fff8da"/></svg><span>コウモリ</span></button><button class="animal" data-animal="penguin" aria-label="ペンギンの観察メモ" disabled><svg viewBox="0 0 100 74" aria-hidden="true"><path d="M36 31Q32 7 49 7t15 24q14 24-3 32H39q-17-8-3-32Z" fill="#566369"/><ellipse cx="50" cy="44" rx="13" ry="18" fill="#f2f1e6"/><path d="m36 34-14 14 6-18 11-9m25 13 14 14-6-18-11-9" fill="#566369"/><path d="m50 22 15 4-15 4" fill="#d7a458"/><circle cx="51" cy="19" r="1.8" fill="white"/><path d="m40 61-9 6h16m11-6 10 6H51" fill="#c9944a"/></svg><span>ペンギン</span></button><button class="animal" data-animal="dolphin" aria-label="イルカの観察メモ" disabled><svg viewBox="0 0 100 74" aria-hidden="true"><path d="M12 39q21-23 44-11l6-17 4 20q8 1 15 9l14 3-14 5Q62 64 32 48L14 58l3-12-13-9Z" fill="#83a1aa"/><path d="m44 43 1 16 14-14" fill="#6a8d98"/><path d="M25 44q26 11 52 0" fill="none" stroke="#c3d5d6" stroke-width="3"/><circle cx="76" cy="40" r="1.9" fill="#293f4a"/></svg><span>イルカ</span></button></div><button class="pick" data-pick="" disabled>このグループを分ける</button></section></div><p id="same-note" hidden>薄いボタン：今のグループでは全て同じ答えになるため、分けられません。</p><p class="scope-note">この4枚を見分けるための検索表です。</p><dialog id="animal-note" aria-labelledby="note-title"><div id="note-image"></div><h2 id="note-title"></h2><p id="note-body"></p><button id="note-close">閉じる</button></dialog></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>一つの特徴だけでは</h3><p>「空を飛ぶ」で分けるとスズメとコウモリが同じ側へ、「羽毛がある」で分けるとスズメとペンギンが同じ側へ移ります。コウモリは飛ぶ哺乳類、ペンギンは飛ばない鳥。似た動きだけで、動物の仲間を決めることはできません。</p><h3>検索表を作る・たどる</h3><p>残ったグループを選び、違いのある特徴でさらに二つに分けると、名前へたどり着く検索表になります。「初めから」で最初の特徴を変えることもできます。カードは健康な成体の一般的な特徴を表しています。けがや成長段階などで個体の状態が違う場合は、別の確認が必要です。</p><p>「表をたどる」では、特徴が「まだ分からない」なら候補を残して止まります。分からないことを「いいえ」として進めないようにしましょう。</p><h3>この検索表の範囲</h3><p>この表は、用意した4枚を見分けるためのものです。羽毛がなく空を飛ばない別の動物もたくさんいます。表の外の動物を、そのままイルカと決めることはできません。検索表の分岐の順序は、進化の順序や、仲間の近さを示す系統樹でもありません。</p><p>「同じ特徴を持つ」という共通点と、生物をどんな仲間に分類するかは、複数の特徴を比べて考えます。絵は特徴を追うための模式図で、体の大きさは揃えてあります。</p><p>根拠：<a href="https://zoo.city.kyoto.lg.jp/zoo/animals/p_giganteus" target="_blank" rel="noopener noreferrer">京都市動物園・インドオオコウモリ</a>、<a href="https://sunshinecity.jp/aquarium/animals/penguin.html" target="_blank" rel="noopener noreferrer">サンシャイン水族館・ペンギン</a>、<a href="https://www.kahaku.go.jp/researcher/nid00000157.html" target="_blank" rel="noopener noreferrer">国立科学博物館・クジラとイルカ</a>、<a href="https://www.enosui.com/diaryentry.php?eid=01914" target="_blank" rel="noopener noreferrer">新江ノ島水族館・イルカの子育て</a>。図と操作は独自に制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var m=[{id:"sparrow",name:"\u30B9\u30BA\u30E1",fly:!0,feathers:!0,note:"\u7FBD\u6BDB\u306B\u304A\u304A\u308F\u308C\u305F\u9CE5\u3002\u7FFC\u3092\u306F\u3070\u305F\u304B\u305B\u3066\u7A7A\u3092\u98DB\u3073\u307E\u3059\u3002"},{id:"bat",name:"\u30B3\u30A6\u30E2\u30EA",fly:!0,feathers:!1,note:"\u7A7A\u3092\u98DB\u3076\u54FA\u4E73\u985E\u3002\u7FFC\u306F\u819C\u3067\u3067\u304D\u3066\u3044\u3066\u3001\u7FBD\u6BDB\u306F\u3042\u308A\u307E\u305B\u3093\u3002\u5B50\u306F\u6BCD\u89AA\u306E\u4E73\u3067\u80B2\u3061\u307E\u3059\u3002"},{id:"penguin",name:"\u30DA\u30F3\u30AE\u30F3",fly:!1,feathers:!0,note:"\u7A7A\u3092\u98DB\u3070\u306A\u3044\u9CE5\u3002\u4F53\u306F\u7FBD\u6BDB\u306B\u304A\u304A\u308F\u308C\u3001\u7FFC\u3092\u4F7F\u3063\u3066\u6C34\u4E2D\u3092\u6CF3\u304E\u307E\u3059\u3002"},{id:"dolphin",name:"\u30A4\u30EB\u30AB",fly:!1,feathers:!1,note:"\u6C34\u4E2D\u3067\u66AE\u3089\u3059\u54FA\u4E73\u985E\u3002\u7A7A\u306F\u98DB\u3070\u305A\u3001\u7FBD\u6BDB\u3082\u3042\u308A\u307E\u305B\u3093\u3002\u5B50\u306F\u6BCD\u89AA\u306E\u4E73\u3067\u80B2\u3061\u307E\u3059\u3002"}],g={fly:"\u7A7A\u3092\u98DB\u3076\uFF1F",feathers:"\u7FBD\u6BDB\u304C\u3042\u308B\uFF1F"},v=t=>({ids:[...t],trait:null}),x=()=>v(m.map(t=>t.id));function A(t,n){return Object.hasOwn(g,n)?{yes:t.filter(e=>m.find(a=>a.id===e)[n]),no:t.filter(e=>!m.find(a=>a.id===e)[n])}:null}function $(t,n){let e=t;for(let a of n)if(e=a==="y"?e?.yes:a==="n"?e?.no:null,!e)return null;return e}function S(t,n,e){let a=$(t,n);if(!a||a.trait)return t;let r=A(a.ids,e);if(!r||!r.yes.length||!r.no.length)return t;let i={ids:a.ids,trait:e,yes:v(r.yes),no:v(r.no)};function o(c,f){if(f===n.length)return i;let k=n[f]==="y"?"yes":"no";return{...c,[k]:o(c[k],f+1)}}return o(t,0)}function b(t,n=""){return t.trait?[...b(t.yes,n+"y"),...b(t.no,n+"n")]:[{path:n,node:t}]}function M(t,n){let e=t,a="",r=0;for(;e.trait&&r<n.length;){let i=n[r];if(typeof i!="boolean")break;a+=i?"y":"n",e=i?e.yes:e.no,r++}return{node:e,path:a,ids:e.ids,used:r}}var T={sparrow:'<path d="M24 49 11 56l19-2c14 13 43 5 44-15l13-5-13-2C69 9 50 17 46 33Z" fill="#a58b6b"/><path d="M31 45q17-23 32-7-6 14-23 12" fill="#7a6855"/><path d="m55 23 12 2-9 5" fill="#e6d4b5"/><circle cx="68" cy="30" r="2" fill="#243c3f"/><path d="m46 56-3 8m14-10-1 10m-17 0h8m6 0h8" fill="none" stroke="#a07344" stroke-width="2"/>',bat:'<path d="M43 32Q30 4 6 15q10 13 5 30 13-7 20 6 8-9 14 4h10q6-13 14-4 7-13 20-6-5-17 5-30Q70 4 57 32Z" fill="#858078"/><path d="M45 33 42 16l9 7 8-7-3 17q10 27-6 29-14-4-5-29" fill="#605953"/><path d="m42 33-26-12m28 13L17 41m40-8 27-12M57 35l26 6" fill="none" stroke="#b5aca0" stroke-width="1.4"/><circle cx="46" cy="29" r="1.5" fill="#fff8da"/><circle cx="54" cy="29" r="1.5" fill="#fff8da"/>',penguin:'<path d="M36 31Q32 7 49 7t15 24q14 24-3 32H39q-17-8-3-32Z" fill="#566369"/><ellipse cx="50" cy="44" rx="13" ry="18" fill="#f2f1e6"/><path d="m36 34-14 14 6-18 11-9m25 13 14 14-6-18-11-9" fill="#566369"/><path d="m50 22 15 4-15 4" fill="#d7a458"/><circle cx="51" cy="19" r="1.8" fill="white"/><path d="m40 61-9 6h16m11-6 10 6H51" fill="#c9944a"/>',dolphin:'<path d="M12 39q21-23 44-11l6-17 4 20q8 1 15 9l14 3-14 5Q62 64 32 48L14 58l3-12-13-9Z" fill="#83a1aa"/><path d="m44 43 1 16 14-14" fill="#6a8d98"/><path d="M25 44q26 11 52 0" fill="none" stroke="#c3d5d6" stroke-width="3"/><circle cx="76" cy="40" r="1.9" fill="#293f4a"/>'};function q(t){return`<svg viewBox="0 0 100 74" aria-hidden="true">${T[t]}</svg>`}function I(t,n=!1,e=!1){let a=m.find(r=>r.id===t);return`<button class="animal${n?" dim":""}" data-animal="${t}" aria-label="${a.name}\u306E\u89B3\u5BDF\u30E1\u30E2"${e?" disabled":""}>${q(t)}<span>${a.name}</span></button>`}function E(t,{selected:n="",mode:e="build",path:a="",active:r=t.ids,disabled:i=!1}={},o=""){if(!t.trait)return`<section class="leaf" data-path="${o}" data-selected="${e==="build"&&n===o&&t.ids.length>1}"><div class="cards">${t.ids.map(f=>I(f,!r.includes(f),i)).join("")}</div>${e==="build"&&t.ids.length>1?'<button class="pick" data-pick="'+o+'"'+(i||n===o?" disabled":"")+">"+(n===o?"\u3053\u306E\u30B0\u30EB\u30FC\u30D7\u3092\u5206\u3051\u308B":"\u3053\u306E\u30B0\u30EB\u30FC\u30D7\u3092\u9078\u3076")+"</button>":""}</section>`;let c=f=>{let k=o+(f?"y":"n");return`<div class="branch"><div class="branch-label">${f?"\u306F\u3044":"\u3044\u3044\u3048"}</div>${E(f?t.yes:t.no,{selected:n,mode:e,path:a,active:r,disabled:i},k)}</div>`};return`<div class="node" data-path="${o}"><div class="node-question${e==="walk"&&o===a?" current":""}">${g[t.trait]}</div><div class="children">${c(!0)}${c(!1)}</div></div>`}var l=t=>document.querySelector(t),d=x(),u="",s="build",w=[],y=[],p=!1,L=null;function C(){document.querySelectorAll("#board .animal").forEach(t=>t.getAnimations().forEach(n=>n.finish()))}function h(t=!1){let n=new Map([...document.querySelectorAll("#board .animal")].map(i=>[i.dataset.animal,i.getBoundingClientRect()]));document.querySelectorAll("#board .animal").forEach(i=>i.getAnimations().forEach(o=>o.cancel()));let e=M(d,y),a=$(d,u),r=b(d).every(i=>i.node.ids.length===1);Object.assign(document.body.dataset,{mode:s,selected:u,route:e.path,unknown:p,leaves:b(d).length}),l("#board").innerHTML=E(d,{selected:u,mode:s,path:e.path,active:s==="walk"?e.ids:d.ids}),t&&document.querySelectorAll("#board .animal").forEach(i=>{let o=n.get(i.dataset.animal),c=i.getBoundingClientRect();o&&(o.x!==c.x||o.y!==c.y)&&i.animate([{transform:`translate(${o.x-c.x}px,${o.y-c.y}px)`},{transform:"translate(0,0)"}],{duration:1e3,easing:"cubic-bezier(.3,0,.2,1)"})}),l("#trait-controls").hidden=s!=="build"||r,l("#answer-controls").hidden=s!=="walk"||!e.node.trait,l("#back").disabled=s==="build"?w.length===0:!y.length&&!p,l("#walk").disabled=!d.trait,l("#walk").textContent=s==="build"?"\u8868\u3092\u305F\u3069\u308B":"\u4F5C\u308B\u753B\u9762\u3078",l("#walk").setAttribute("aria-pressed",s==="walk");for(let i of document.querySelectorAll("button[data-trait]")){let o=a&&!a.trait?A(a.ids,i.dataset.trait):null;i.disabled=!o||!o.yes.length||!o.no.length,i.title=i.disabled?"\u3053\u306E\u30B0\u30EB\u30FC\u30D7\u3067\u306F\u3001\u5168\u3066\u540C\u3058\u7B54\u3048\u306B\u306A\u308B\u305F\u3081\u5206\u3051\u3089\u308C\u307E\u305B\u3093\u3002":""}l("#target-label").textContent=s==="walk"?e.node.trait?g[e.node.trait]:"\u3053\u306E4\u679A\u306E\u4E2D\u3067\u306F\u2026":r?"4\u679A\u3092\u898B\u5206\u3051\u308B\u5206\u5C90\u304C\u3067\u304D\u307E\u3057\u305F\u3002":a?.ids.length===4?"\u307E\u305A\u30014\u679A\u3092\u5206\u3051\u308B\u7279\u5FB4\u3092\u9078\u307C\u3046\u3002":a?.ids.map(i=>m.find(o=>o.id===i).name).join("\u30FB")+"\u3092\u3001\u3055\u3089\u306B\u5206\u3051\u3088\u3046\u3002",l("#guide").textContent=s==="walk"?p?"\u3053\u306E\u7279\u5FB4\u306F\u672A\u78BA\u8A8D\u3002\u4ECA\u306E\u5019\u88DC\u3092\u6B8B\u3057\u3066\u3001\u8ABF\u3079\u3066\u304B\u3089\u7B54\u3048\u3088\u3046\u3002":e.node.trait?"\u7279\u5FB4\u3092\u78BA\u304B\u3081\u3066\u3001\u5206\u5C90\u3092\u305F\u3069\u308D\u3046\u3002":e.ids.length===1?"\u660E\u308B\u304F\u6B8B\u3063\u305F\u30AB\u30FC\u30C9\u304C\u3001\u3053\u306E\u8868\u3067\u305F\u3069\u308A\u7740\u304F\u5148\u3067\u3059\u3002":"\u3053\u3053\u306F\u307E\u3060\u5206\u3051\u3066\u3044\u306A\u3044\u306E\u3067\u3001\u5019\u88DC\u304C\u8907\u6570\u6B8B\u308A\u307E\u3059\u3002":d.trait?d.trait==="fly"?"\u30B3\u30A6\u30E2\u30EA\u306F\u98DB\u3076\u3051\u308C\u3069\u3001\u7FBD\u6BDB\u3092\u6301\u3064\u9CE5\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u3002":"\u30DA\u30F3\u30AE\u30F3\u306F\u98DB\u3070\u306A\u304F\u3066\u3082\u3001\u7FBD\u6BDB\u3092\u6301\u3064\u9CE5\u3067\u3059\u3002":"\u30AB\u30FC\u30C9\u3092\u62BC\u3059\u3068\u3001\u7279\u5FB4\u3092\u78BA\u304B\u3081\u3089\u308C\u307E\u3059\u3002",l("#same-note").hidden=s!=="build"||r||!d.trait}document.querySelectorAll("button[data-trait]").forEach(t=>t.addEventListener("click",()=>{let n=S(d,u,t.dataset.trait);n!==d&&(w.push({tree:d,selected:u}),d=n,u=b(d).find(e=>e.node.ids.length>1)?.path??"",h(!0))}));l("#board").addEventListener("click",t=>{let n=t.target.closest("[data-pick]");if(n){u=n.dataset.pick,h(),l("#trait-controls button:not(:disabled)")?.focus({preventScroll:!0});return}let e=t.target.closest("[data-animal]");if(e){let a=m.find(r=>r.id===e.dataset.animal);L=a.id,l("#note-image").innerHTML=q(a.id),l("#note-title").textContent=a.name,l("#note-body").textContent=a.note,l("#animal-note").showModal()}});l("#note-close").addEventListener("click",()=>l("#animal-note").close());l("#animal-note").addEventListener("click",t=>{t.target===l("#animal-note")&&l("#animal-note").close()});l("#animal-note").addEventListener("close",()=>{L&&l('#board [data-animal="'+L+'"]')?.focus({preventScroll:!0})});l("#walk").addEventListener("click",()=>{s=s==="build"?"walk":"build",y=[],p=!1,h(),s==="walk"&&l("#answer-controls button")?.focus({preventScroll:!0})});document.querySelectorAll("[data-answer]").forEach(t=>t.addEventListener("click",()=>{t.dataset.answer==="unknown"?p=!0:(y.push(t.dataset.answer==="yes"),p=!1),h()}));l("#back").addEventListener("click",()=>{if(s==="walk")p?p=!1:y.pop();else{let t=w.pop();t&&(d=t.tree,u=t.selected)}h(!0)});l("#reset").addEventListener("click",()=>{d=x(),u="",w=[],y=[],s="build",p=!1,h(!0)});window.addEventListener("resize",C);document.addEventListener("visibilitychange",()=>{document.hidden&&C()});document.querySelectorAll("button").forEach(t=>t.disabled=!1);h();})();
+</script>
+</body>
+</html>
