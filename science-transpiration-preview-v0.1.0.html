@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>植物の2つの通り道 | 蒸散と吸水</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1030px;
+}
+.vl-main {
+  padding-top: 20px;
+}
+.vl-title {
+  font-size: 28px;
+}
+.vl-controls {
+  padding: 14px 22px;
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+#play {
+  min-width: 132px;
+  background: #477453;
+  color: white;
+}
+#play[aria-pressed='true'] {
+  background: #b45045;
+}
+.view-tabs {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.view-tabs button {
+  padding-inline: 13px;
+  background: transparent;
+}
+.view-tabs button[aria-pressed='true'] {
+  background: #e1edda;
+  border-color: #6d9569;
+}
+#reset {
+  margin-left: auto;
+}
+#guide {
+  margin: 16px 22px 0;
+  min-height: 3.6em;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #47623f;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  padding: 0 22px 10px;
+}
+.illustration {
+  position: relative;
+  min-width: 0;
+  max-width: 430px;
+  width: 100%;
+  margin: auto;
+}
+#plant-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+#plant-svg text {
+  font-family: inherit;
+  font-size: 24px;
+  fill: #5d7450;
+}
+.transport-path {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#water-layer .transport-path {
+  stroke: #c5dfe5;
+}
+#water-layer .marker {
+  fill: #3885a8;
+}
+#plant-svg .water-text {
+  fill: #4383a0;
+}
+#organic-layer .transport-path {
+  stroke: #ebd9b6;
+}
+#organic-layer .marker {
+  fill: #c7832a;
+}
+#organic-layer [data-route] {
+  transition: opacity 0.25s;
+}
+.panel {
+  min-width: 0;
+  background: #f1f5ea;
+  border-radius: 14px;
+  padding: 18px;
+}
+.panel h2 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #4b693e;
+}
+#pore-svg {
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+#opening {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+}
+.range-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #627550;
+  gap: 8px;
+}
+.opening-title {
+  font-size: 14px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pore-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #57744b;
+  margin: 10px 0;
+}
+.strength {
+  border-top: 1px solid #d5dfc9;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+.strength > p {
+  font-size: 12px;
+  margin: 0 0 8px;
+  color: #667859;
+}
+.strength-row {
+  display: grid;
+  grid-template-columns: 3em 1fr;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+  color: #537445;
+  margin-block: 8px;
+}
+.bar {
+  height: 9px;
+  background: #dce7d1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  width: 66.666%;
+  background: #729eaf;
+  border-radius: 8px;
+  transition: width 0.18s;
+}
+.organic-note {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #6a724c;
+  margin: 0 0 12px;
+}
+#organic-controls {
+  margin-top: 16px;
+}
+#water-controls[hidden] + #organic-controls {
+  margin-top: 0;
+}
+.destinations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.destinations button {
+  padding: 9px 12px;
+  min-height: 44px;
+  background: transparent;
+  color: #86612f;
+  border-color: #d6c8ad;
+}
+.destinations button[aria-pressed='true'] {
+  background: #f6e7c8;
+  border-color: #b88b4a;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  font-size: 13px;
+  padding: 12px 22px;
+  border-top: 1px solid #d7e1ce;
+  color: #5e7352;
+}
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.water-key {
+  background: #3885a8;
+}
+.organic-key {
+  background: #c7832a;
+}
+#state-note {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #607653;
+  margin: 6px 22px;
+  min-height: 1.7em;
+}
+#progress {
+  display: block;
+  width: calc(100% - 44px);
+  height: 4px;
+  margin: 12px 22px;
+  border: 0;
+  border-radius: 4px;
+  accent-color: #719366;
+}
+.model-note {
+  font-size: 12px;
+  color: #6d7c60;
+  margin: 10px 22px 16px;
+  line-height: 1.8;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #00a540;
+  color: #fff;
+  font-size: 30px;
+  pointer-events: none;
+}
+#flash[data-playing='false'] {
+  background: #ec283a;
+}
+.vl-detail-body h3 {
+  font-size: 16px;
+}
+@media (max-width: 699px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-context {
+    display: none;
+  }
+  .vl-title {
+    font-size: 25px;
+  }
+  .vl-controls {
+    padding: 10px;
+  }
+  .toolbar {
+    gap: 8px;
+  }
+  #reset {
+    margin-left: 0;
+  }
+  .view-tabs {
+    order: 3;
+    width: 100%;
+  }
+  .view-tabs button {
+    flex: 1;
+    padding-inline: 8px;
+    font-size: 12px;
+  }
+  #guide {
+    margin: 12px 14px 4px;
+    font-size: 14px;
+  }
+  .workspace {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 0 12px 12px;
+  }
+  .illustration {
+    max-width: 355px;
+  }
+  .panel {
+    padding: 16px;
+  }
+  .panel h2 {
+    font-size: 15px;
+  }
+  #pore-svg {
+    width: 180px;
+  }
+  .legend {
+    padding: 12px 14px;
+    font-size: 12px;
+    gap: 8px 14px;
+  }
+  #state-note,
+  .model-note {
+    margin-inline: 14px;
+  }
+  .model-note {
+    font-size: 12px;
+  }
+}
+@media (min-width: 700px) and (max-height: 820px) {
+  .vl-header {
+    padding-block: 9px;
+  }
+  .vl-kicker {
+    display: none;
+  }
+  .vl-main {
+    padding-top: 8px;
+  }
+  .vl-heading {
+    margin-bottom: 12px;
+  }
+  .vl-controls {
+    padding-block: 10px;
+  }
+  #guide {
+    min-height: 1.8em;
+    margin-top: 10px;
+  }
+  .workspace {
+    gap: 20px;
+  }
+  .illustration {
+    max-width: 350px;
+  }
+  .panel {
+    padding: 12px 16px;
+  }
+  #pore-svg {
+    width: 140px;
+  }
+  .strength {
+    padding-top: 6px;
+    margin-top: 6px;
+  }
+  #organic-controls {
+    margin-top: 12px;
+  }
+  .legend {
+    padding-block: 8px;
+  }
+  .model-note {
+    margin-block: 7px 12px;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21V10M12 15C4 15 4 8 4 8c8 0 8 7 8 7ZM12 10C12 3 20 3 20 3s0 7-8 7ZM7 22l5-4 5 4"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>植物の2つの通り道</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">植物の2つの通り道</h1><p class="vl-question">葉から水が出ると、根からの吸水はどうなる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="play" aria-pressed="false">▶ 流れを見る</button><div class="view-tabs" role="group" aria-label="見る通り道"><button disabled data-mode="water" aria-pressed="true">水（道管）</button><button disabled data-mode="organic" aria-pressed="false">有機物（師管）</button><button disabled data-mode="both" aria-pressed="false">両方</button></div><button disabled id="reset" class="vl-secondary">初めから</button></div></div>
+        <div class="vl-stage"><p id="guide">青い点を追って、根から葉、空気へ。気孔の開きを変えてみよう。</p><div class="workspace"><div class="illustration"><svg id="plant-svg" viewBox="0 0 460 500" role="img" aria-labelledby="plant-title"><title id="plant-title">根・茎・葉をつなぐ道管と師管。青は水、オレンジは有機物の移動。</title>
+<path d="M35 401h390v70H35Z" fill="#eee6d7"/><path d="M35 401h390" stroke="#d2c5ac" stroke-width="2"/>
+<path d="M247 406V123" stroke="#b1be92" stroke-width="40" stroke-linecap="round"/><path d="M247 242q34-28 100-30M246 126l-22-42" fill="none" stroke="#b1be92" stroke-width="24" stroke-linecap="round"/>
+<path d="M247 395q-12 27-65 47m65-47q8 28 45 50m-47-44-12 62m-29-32-10 28m74-33 38 5" fill="none" stroke="#ac9671" stroke-width="10" stroke-linecap="round"/>
+<path d="M272 217q11-69 126-61-13 96-126 61Z" fill="#a5bd83" stroke="#7f9d65" stroke-width="2"/><path d="m277 216 108-49m-54 35 10-30m-1 23 33 14" stroke="#77925e" stroke-width="1.5" fill="none"/>
+<path d="M225 89q-54-9-45-50 44 2 45 50m0 0q-3-47 33-58 14 42-33 58" fill="#b8ca87" stroke="#8eaa68" stroke-width="2"/>
+<text x="158" y="28">育つ芽</text><text x="280" y="142">育った葉</text><text x="103" y="481">根</text>
+<g id="water-layer"><g data-route="water"><path d="M176 444C202 420 248 418 248 388C248 335 248 276 248 244C248 218 330 211 360 186C388 157 416 130 420 96" class="transport-path"/><g><circle class="marker" data-track="water" data-phase="0" cx="176" cy="444" r="5"/><circle class="marker" data-track="water" data-phase="0.1" cx="212.57599999999996" cy="422.55999999999995" r="5"/><circle class="marker" data-track="water" data-phase="0.2" cx="243.008" cy="403.03999999999996" r="5"/><circle class="marker" data-track="water" data-phase="0.3" cx="248.00000000000003" cy="355.744" r="5"/><circle class="marker" data-track="water" data-phase="0.4" cx="248" cy="293.248" r="5"/><circle class="marker" data-track="water" data-phase="0.5" cx="248" cy="244" r="5"/><circle class="marker" data-track="water" data-phase="0.6" cx="278.78399999999993" cy="219.55200000000002" r="5"/><circle class="marker" data-track="water" data-phase="0.7" cx="336.832" cy="199.13600000000002" r="5"/><circle class="marker" data-track="water" data-phase="0.8" cx="376.60800000000006" cy="168.768" r="5"/><circle class="marker" data-track="water" data-phase="0.9" cx="405.216" cy="134.016" r="5"/></g></g><text x="328" y="69" class="water-text">水蒸気</text><path d="m412 110 8-14 3 15" fill="none" stroke="#468baa" stroke-width="2"/></g>
+<g id="organic-layer" hidden><g data-route="shoot"><path d="M350 205C307 214 233 228 233 196C233 160 231 100 224 79" class="transport-path"/><g><circle class="marker" data-track="shoot" data-phase="0" cx="350" cy="205" r="5.5"/><circle class="marker" data-track="shoot" data-phase="0.16666666666666666" cx="300.5555555555556" cy="213.7777777777778" r="5.5"/><circle class="marker" data-track="shoot" data-phase="0.3333333333333333" cx="253.77777777777777" cy="214.55555555555554" r="5.5"/><circle class="marker" data-track="shoot" data-phase="0.5" cx="233" cy="196" r="5.5"/><circle class="marker" data-track="shoot" data-phase="0.6666666666666666" cx="232.22222222222223" cy="154.33333333333337" r="5.5"/><circle class="marker" data-track="shoot" data-phase="0.8333333333333334" cx="229.44444444444446" cy="110.66666666666666" r="5.5"/></g></g><g data-route="root"><path d="M349 214C307 225 266 225 266 255C269 330 266 398 292 445" class="transport-path"/><g><circle class="marker" data-track="root" data-phase="0" cx="349" cy="214" r="5.5"/><circle class="marker" data-track="root" data-phase="0.16666666666666666" cx="308.81481481481484" cy="222.85185185185185" r="5.5"/><circle class="marker" data-track="root" data-phase="0.3333333333333333" cx="278.18518518518516" cy="233.48148148148147" r="5.5"/><circle class="marker" data-track="root" data-phase="0.5" cx="266" cy="255" r="5.5"/><circle class="marker" data-track="root" data-phase="0.6666666666666666" cx="268.29629629629625" cy="327.1481481481481" r="5.5"/><circle class="marker" data-track="root" data-phase="0.8333333333333334" cx="274.3703703703704" cy="391.5185185185186" r="5.5"/></g></g><path d="M216 94l8-15 5 15M278 436l14 9 1-15" fill="none" stroke="#c78a39" stroke-width="2"/></g>
+<text x="205" y="264" text-anchor="end" class="tube-label" id="tube-label">道管</text><path d="M212 259h13" fill="none" stroke="#a0b09a" stroke-width="1.5"/>
+</svg><span id="flash" hidden aria-hidden="true"></span></div><div class="panel"><section id="water-controls"><h2>葉の表面：気孔を拡大</h2><svg id="pore-svg" viewBox="0 0 220 155" role="img" aria-label="気孔の開きの模式図"><rect x="20" y="12" width="180" height="135" rx="35" fill="#f0f4e7"/><g id="guard-left"><ellipse cx="82" cy="79" rx="25" ry="47" fill="#b8ce99" stroke="#819f65" stroke-width="2"/><g fill="#729653"><circle cx="78" cy="48" r="4"/><circle cx="69" cy="79" r="4"/><circle cx="78" cy="109" r="4"/></g></g><g id="guard-right"><ellipse cx="138" cy="79" rx="25" ry="47" fill="#b8ce99" stroke="#819f65" stroke-width="2"/><g fill="#729653"><circle cx="142" cy="48" r="4"/><circle cx="151" cy="79" r="4"/><circle cx="142" cy="109" r="4"/></g></g><g id="pore-markers" fill="#468baa"><circle data-phase="0" cx="110" cy="137" r="3"/><circle data-phase="0.25" cx="110" cy="105.25" r="3"/><circle data-phase="0.5" cx="110" cy="73.5" r="3"/><circle data-phase="0.75" cx="110" cy="41.75" r="3"/></g></svg><label class="opening-title" for="opening">気孔の開き <strong id="opening-word">中くらい</strong></label><input disabled id="opening" type="range" min="0" max="100" step="1" value="50"><div class="range-label"><span>小さい</span><span>大きい</span></div><p class="pore-note">外に出るのは水蒸気。<br>水に溶けた無機養分は、植物の中に残ります。</p><div class="strength"><p>移動の強さを比べる（模式）</p><div class="strength-row"><span>蒸散</span><span class="bar"><i id="transpiration-fill"></i></span></div><div class="strength-row"><span>吸水</span><span class="bar"><i id="absorption-fill"></i></span></div></div></section><section id="organic-controls" hidden><h2>育った葉から、使う場所へ</h2><p class="organic-note">有機物は、葉でつくられた糖など。<br>師管は下向きだけの通り道ではありません。</p><div class="destinations" role="group" aria-label="強調して追う送り先"><button disabled data-focus="all" aria-pressed="true">全体</button><button disabled data-focus="shoot" aria-pressed="false">育つ芽へ</button><button disabled data-focus="root" aria-pressed="false">根へ</button></div></section></div></div><div class="legend"><span id="water-legend"><i class="key water-key"></i>水の移動</span><span id="organic-legend"><i class="key organic-key"></i>有機物の移動</span></div><p id="state-note" aria-live="polite">再生して、物質の動きを見てみよう。</p><progress id="progress" value="0" max="1" aria-label="30秒の観察の進み具合"></progress><p class="model-note">水が十分にある植物で、変化が落ち着いた状態を比べる模式図です。</p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>葉と根はつながっている</h3><p>葉から水蒸気が出ていくことを蒸散といいます。蒸散は、根から葉へ水を引き上げる働きを支えます。図では、気孔が大きく開いた条件ほど蒸散が多く、根からの吸水も多い場合を比べています。</p><p>このつまみは気孔の開きを条件として変えるものです。実際の気孔は光や水分などに応じて調節されます。土が乾く場合や、植物内に水が蓄えられる短い時間の変化はこの図に含めていません。小さい側も完全に閉じた状態ではありません。</p><h3>道管と師管</h3><p>根から吸収した水や無機養分が通る道管と、糖などの有機物を運ぶ師管は、役割が違います。この図では道管を通る水だけを青い点で追っています。無機養分がそのまま水蒸気として出ていく意味ではありません。</p><p>師管では、育った葉などの供給する場所から、育つ芽や根などの使う・蓄える場所へ、有機物が運ばれます。別々の師管の流れをまとめ、上向きと下向きの二つの経路を描いています。同じ一本の管で、有機物が同時に反対方向へ走る図ではありません。種子や根などが蓄えた有機物を送り出す段階もありますが、ここでは育った葉からの輸送に絞っています。</p><h3>図の点・色・速さについて</h3><p>点は移動を追う目印で、実物の水滴や有機物の粒の形ではありません。色・速度・数・棒の長さは、測定値や実際の濃度を表していません。30秒はこのアニメーションを観察する時間で、植物内を移動する実際の所要時間ではありません。</p><p>有機物も水に溶けて運ばれます。師管には水がないという意味ではありません。気孔の開きが光合成や有機物輸送へ及ぼす詳しい影響は省略しています。「育つ芽へ」「根へ」は注目する経路を強調する操作で、他の送り先への輸送を止める操作ではありません。</p><p>根拠：<a href="https://openstax.org/books/biology-2e/pages/30-5-transport-of-water-and-solutes-in-plants" target="_blank" rel="noopener noreferrer">OpenStax Biology 2e・30.5 植物内の水と溶質の輸送</a>、<a href="https://openstax.org/books/biology-2e/pages/31-1-nutritional-requirements-of-plants" target="_blank" rel="noopener noreferrer">同31.1 植物の栄養</a>。図と操作は独自に制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var S={water:[[[176,444],[202,420],[248,418],[248,388]],[[248,388],[248,335],[248,276],[248,244]],[[248,244],[248,218],[330,211],[360,186]],[[360,186],[388,157],[416,130],[420,96]]],shoot:[[[350,205],[307,214],[233,228],[233,196]],[[233,196],[233,160],[231,100],[224,79]]],root:[[[349,214],[307,225],[266,225],[266,255]],[[266,255],[269,330],[266,398],[292,445]]]},y=(t,n,c)=>Math.max(n,Math.min(c,Number.isFinite(t)?t:n));function b(t){return .03+.06*y(t,0,1)}function E(t,n,c){let e=y(n,0,Math.max(0,30-t.time));return{time:Math.min(30,t.time+e),water:t.water+e*b(c),organic:t.organic+e*.055}}function v(t,n){let c=S[t],e=y(n,0,1)*c.length,d=Math.min(c.length-1,Math.floor(e)),i=e-d,s=1-i,u=c[d];return{x:s**3*u[0][0]+3*s*s*i*u[1][0]+3*s*i*i*u[2][0]+i**3*u[3][0],y:s**3*u[0][1]+3*s*s*i*u[1][1]+3*s*i*i*u[2][1]+i**3*u[3][1]}}var a=t=>document.querySelector(t),o={time:0,water:0,organic:0},m=.5,r="water",h="all",l=!1,A,p,w;function g(){l=!1,cancelAnimationFrame(A),p=void 0}function x(){clearTimeout(w),a("#flash").hidden=!0}function q(t){clearTimeout(w);let n=a("#flash");n.hidden=!1,n.textContent=t?"\u25B6":"\u2161",n.dataset.playing=t,n.getAnimations().forEach(c=>c.cancel()),n.animate([{opacity:1},{opacity:0}],{duration:1e3,fill:"forwards"}),w=setTimeout(()=>n.hidden=!0,1e3)}function f(){Object.assign(document.body.dataset,{...o,opening:m,mode:r,focus:h,playing:l}),a("#water-layer").toggleAttribute("hidden",r==="organic"),a("#organic-layer").toggleAttribute("hidden",r==="water"),a("#water-legend").hidden=r==="organic",a("#organic-legend").hidden=r==="water",a("#water-controls").hidden=r==="organic",a("#organic-controls").hidden=r==="water",a("#tube-label").textContent=r==="water"?"\u9053\u7BA1":r==="organic"?"\u5E2B\u7BA1":"\u9053\u7BA1\u30FB\u5E2B\u7BA1",document.querySelectorAll("button[data-mode]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.mode===r)),document.querySelectorAll("button[data-focus]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.focus===h));for(let e of["shoot","root"])a('[data-route="'+e+'"]').style.opacity=h==="all"||h===e?"1":".25";document.querySelectorAll("#plant-svg .marker").forEach(e=>{let d=e.dataset.track,i=((d==="water"?o.water:o.organic)+ +e.dataset.phase)%1,s=v(d,i);e.setAttribute("cx",s.x),e.setAttribute("cy",s.y),e.setAttribute("opacity",Math.min(1,i/.04,(1-i)/.05))});let t=10*m;a("#guard-left").setAttribute("transform","translate("+-t+" 0)"),a("#guard-right").setAttribute("transform","translate("+t+" 0)"),document.querySelectorAll("#pore-markers circle").forEach(e=>{let d=(o.water*2+ +e.dataset.phase)%1;e.setAttribute("cy",137-d*127),e.setAttribute("opacity",Math.min(1,d/.1,(1-d)/.15))});let n=b(m)/.09*100;a("#absorption-fill").style.width=n+"%",a("#transpiration-fill").style.width=n+"%",a("#opening-word").textContent=m<.34?"\u5C0F\u3055\u3081":m>.66?"\u5927\u304D\u3081":"\u4E2D\u304F\u3089\u3044",a("#play").setAttribute("aria-pressed",l),a("#play").textContent=l?"\u2161 \u4E00\u6642\u505C\u6B62":o.time===30?"\u25B6 \u3082\u3046\u4E00\u5EA6":"\u25B6 \u6D41\u308C\u3092\u898B\u308B",a("#progress").value=o.time/30,a("#guide").textContent=r==="water"?"\u9752\u3044\u70B9\u3092\u8FFD\u3063\u3066\u3001\u6839\u304B\u3089\u8449\u3001\u7A7A\u6C17\u3078\u3002\u6C17\u5B54\u306E\u958B\u304D\u3092\u5909\u3048\u3066\u307F\u3088\u3046\u3002":r==="organic"?"\u8449\u3067\u3067\u304D\u305F\u6709\u6A5F\u7269\u306F\u3001\u80B2\u3064\u82BD\u306B\u3082\u6839\u306B\u3082\u904B\u3070\u308C\u307E\u3059\u3002":"\u9752\u3044\u6C34\u3068\u3001\u30AA\u30EC\u30F3\u30B8\u306E\u6709\u6A5F\u7269\u3002\u901A\u308A\u9053\u3068\u9001\u308A\u5148\u3092\u6BD4\u3079\u3088\u3046\u3002";let c=l?"\u52D5\u304D\u3092\u89B3\u5BDF\u3057\u3066\u3044\u307E\u3059\u3002\u9014\u4E2D\u3067\u3082\u6761\u4EF6\u3092\u5909\u3048\u3089\u308C\u307E\u3059\u3002":o.time===30?"30\u79D2\u3067\u6B62\u3081\u307E\u3057\u305F\u3002\u56F3\u3092\u6BD4\u3079\u3066\u3001\u3082\u3046\u4E00\u5EA6\u8A66\u305B\u307E\u3059\u3002":o.time===0?"\u518D\u751F\u3057\u3066\u3001\u7269\u8CEA\u306E\u52D5\u304D\u3092\u898B\u3066\u307F\u3088\u3046\u3002":"\u3053\u306E\u4F4D\u7F6E\u3067\u6B62\u3081\u3066\u3044\u307E\u3059\u3002\u518D\u751F\u3067\u7D9A\u304D\u3092\u898B\u3089\u308C\u307E\u3059\u3002";a("#state-note").textContent!==c&&(a("#state-note").textContent=c)}function M(t){if(!l)return;let n=p===void 0?0:Math.min(.1,(t-p)/1e3);p=t,o=E(o,n,m),o.time===30&&(g(),x()),f(),l&&(A=requestAnimationFrame(M))}a("#play").addEventListener("click",()=>{l?(g(),q(!1)):(o.time===30&&(o={time:0,water:0,organic:0}),l=!0,p=void 0,A=requestAnimationFrame(M),q(!0)),f()});a("#reset").addEventListener("click",()=>{g(),x(),o={time:0,water:0,organic:0},m=.5,r="water",h="all",a("#opening").value=50,f()});a("#opening").addEventListener("input",t=>{m=+t.target.value/100,f()});document.querySelectorAll("button[data-mode]").forEach(t=>t.addEventListener("click",()=>{r=t.dataset.mode,f()}));document.querySelectorAll("button[data-focus]").forEach(t=>t.addEventListener("click",()=>{h=t.dataset.focus,f()}));document.addEventListener("visibilitychange",()=>{document.hidden&&(g(),x(),f())});document.querySelectorAll("button,input").forEach(t=>t.disabled=!1);f();})();
+</script>
+</body>
+</html>
