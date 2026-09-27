@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高低気圧と風 | 地上と上空のつながり</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1120px;
+}
+.vl-title {
+  font-size: clamp(24px, 3.3vw, 34px);
+}
+.vl-controls {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 252, 252, 0.98);
+  backdrop-filter: blur(8px);
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.toolbar button {
+  min-width: 48px;
+  min-height: 48px;
+}
+#play {
+  min-width: 155px;
+  background: #167454;
+  color: white;
+}
+#play[data-playing='true'] {
+  background: #bc3543;
+}
+.toolbar p {
+  font-size: 13px;
+  color: #5a7179;
+  margin: 0 0 0 auto;
+}
+.vl-stage {
+  padding: 20px;
+}
+.intro {
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 15px;
+  color: #4c666f;
+}
+.mode-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.kind-switch,
+.spacing-switch {
+  display: flex;
+  gap: 8px;
+}
+.kind-switch button,
+.spacing-switch button {
+  background: #fff;
+  color: #34525c;
+  border: 1px solid #b5c8ce;
+  min-height: 48px;
+}
+.kind-switch [aria-pressed='true'],
+.spacing-switch [aria-pressed='true'] {
+  background: #e9f2f5;
+  box-shadow: inset 0 0 0 2px #346e83;
+  font-weight: 700;
+}
+.low {
+  color: #25709c;
+}
+.high {
+  color: #b26532;
+}
+#hemisphere-label {
+  font-size: 13px;
+  color: #4e6d77;
+}
+.comparison {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 20px;
+}
+.map-card,
+.section-card {
+  min-width: 0;
+  border: 1px solid #d4e1e4;
+  border-radius: 13px;
+  overflow: hidden;
+  background: #f3f7f8;
+}
+.map-card h2,
+.section-card h2 {
+  font-size: 17px;
+  margin: 14px 16px 0;
+}
+.map-card h2 span,
+.section-card h2 span {
+  font-size: 12px;
+  color: #6c8690;
+  margin-right: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.map-wrap {
+  position: relative;
+}
+#wind-map,
+#wind-section {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#station {
+  position: absolute;
+  left: 80%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border: 2px solid #397d8c;
+  background: white;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 750;
+  font-size: 23px;
+  box-shadow: 0 2px 6px #31566930;
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  color: #2b5968;
+}
+#station:focus-visible {
+  outline: 3px solid #139a87;
+  outline-offset: 4px;
+}
+#station[aria-disabled='true'] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+[data-dragging='true'] #station {
+  cursor: grabbing;
+  background: #fff8d7;
+}
+.figure-caption {
+  font-size: 16px;
+  font-weight: 650;
+  text-align: center;
+  margin: 0 12px 14px;
+  color: #286f68;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 16px;
+  font-size: 12px;
+  color: #5d727c;
+  margin: 10px;
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.flow-line {
+  width: 20px;
+  border-top: 3px solid #44948b;
+}
+.isobar {
+  width: 20px;
+  border-top: 1px solid #aabac2;
+}
+.mini-note {
+  font-size: 12px;
+  color: #657c84;
+  line-height: 1.7;
+  text-align: center;
+  margin: 10px 14px 16px;
+}
+.station-panel {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 18px;
+  background: #edf4f1;
+  border-radius: 12px;
+}
+.station-panel h2,
+.spacing-panel h2 {
+  font-size: 17px;
+  margin: 0 0 6px;
+}
+.station-panel p,
+.spacing-panel p {
+  font-size: 13px;
+  margin: 0;
+  color: #567069;
+  line-height: 1.8;
+}
+.position-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  max-width: 420px;
+  margin-top: 6px;
+}
+.position-control span {
+  white-space: nowrap;
+}
+.position-control input {
+  min-width: 60px;
+  flex: 1;
+  width: 100%;
+  height: 44px;
+}
+.wind-reading {
+  min-width: 176px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  color: #526c64;
+}
+.wind-reading strong {
+  font-size: 24px;
+  color: #286f68;
+  min-height: 38px;
+  font-variant-numeric: tabular-nums;
+}
+.spacing-panel {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.spacing-switch button {
+  min-width: 80px;
+}
+.model-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #627975;
+  margin: 12px 0 16px;
+}
+.story {
+  padding-top: 16px;
+  border-top: 1px solid #d7e1df;
+  min-height: 120px;
+}
+.story h2 {
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+.story p {
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0;
+}
+#hemisphere {
+  height: 48px;
+  min-width: 190px;
+  appearance: none;
+  background: #fff
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='m3 6 5 5 5-5' fill='none' stroke='%23466870' stroke-width='2'/%3E%3C/svg%3E")
+    no-repeat right 12px center;
+  border: 1px solid #afc2bb;
+  border-radius: 8px;
+  padding: 8px 36px 8px 12px;
+  color: #34574e;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #00a05a;
+  color: white;
+  font-size: 34px;
+  pointer-events: none;
+  animation: flash-out 1s ease-out both;
+  z-index: 3;
+}
+#flash[data-kind='pause'] {
+  background: #ef2438;
+}
+[hidden] {
+  display: none !important;
+}
+@keyframes flash-out {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 750px) {
+  .comparison {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .station-panel {
+    grid-template-columns: 1fr;
+  }
+  .wind-reading {
+    border-top: 1px solid #ccded4;
+    padding-top: 12px;
+    min-width: 0;
+  }
+  .spacing-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .spacing-switch button {
+    flex: 1;
+  }
+  .story {
+    min-height: 145px;
+  }
+}
+@media (max-width: 430px) {
+  .vl-shell {
+    padding: 12px;
+  }
+  .vl-stage,
+  .vl-controls {
+    padding: 12px;
+  }
+  .toolbar p {
+    display: none;
+  }
+  .toolbar #play {
+    flex: 1;
+  }
+  .kind-switch {
+    width: 100%;
+  }
+  .kind-switch button {
+    flex: 1;
+  }
+  .intro {
+    font-size: 14px;
+  }
+  .map-card h2,
+  .section-card h2 {
+    font-size: 16px;
+    margin: 12px 12px 0;
+  }
+  .station-panel {
+    padding: 14px;
+  }
+  .station-panel h2,
+  .spacing-panel h2 {
+    font-size: 16px;
+  }
+  .story h2 {
+    font-size: 19px;
+  }
+  .story p {
+    font-size: 15px;
+  }
+  .figure-caption {
+    font-size: 14px;
+  }
+  .mode-row {
+    gap: 10px;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h12a3 3 0 1 0-3-3M2 12h17a3 3 0 1 1-3 3M5 17h5a2 2 0 1 1-2 2"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>高低気圧と風</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">高低気圧と風</h1><p class="vl-question">低気圧に集まる空気は、どこへ行く？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="play" aria-pressed="false">▶ 風を流す</button><button disabled id="reset" class="vl-secondary" title="種類・半球・間隔・地点Aを最初に戻す">初めから</button><p>緑の目印が、空気の流れを追います</p></div></div>
+        <div class="vl-stage">
+<p class="intro">低気圧は、まわりより気圧が低い場所。風を流して、地上と上空のつながりを見よう。</p>
+<div class="mode-row"><div class="kind-switch" role="group" aria-label="気圧の種類"><button disabled data-kind-button="low" aria-pressed="true"><b class="low">低</b>低気圧</button><button disabled data-kind-button="high" aria-pressed="false"><b class="high">高</b>高気圧</button></div><span id="hemisphere-label">北半球・地上付近</span></div>
+<div class="comparison">
+<section class="map-card"><h2><span>01</span>上から見る</h2><div class="map-wrap" id="map-wrap">
+<svg id="wind-map" viewBox="0 0 500 500" role="img" aria-label="気圧の中心と地上付近の風の流れ">
+<rect width="500" height="500" rx="15" fill="#f3f7f8"/><g fill="#526b76" font-size="25" text-anchor="middle"><text x="250" y="29">北</text><text x="478" y="259">東</text><text x="250" y="491">南</text><text x="22" y="259">西</text></g>
+<g id="map-static"><circle cx="250" cy="250" r="55" fill="none" stroke="#aabac2" stroke-width="1.5"/><circle cx="250" cy="250" r="115" fill="none" stroke="#aabac2" stroke-width="1.5"/><circle cx="250" cy="250" r="175" fill="none" stroke="#aabac2" stroke-width="1.5"/><path d="M465.00,250.00L462.01,244.22L458.91,238.60L455.69,233.14L452.38,227.84L448.97,222.71L445.47,217.73L441.88,212.93L438.22,208.28L434.48,203.80L430.67,199.48L426.80,195.32L422.87,191.33L418.89,187.50L414.86,183.82L410.78,180.31L406.67,176.96L402.53,173.76L398.36,170.72L394.16,167.83L389.95,165.09L385.72,162.51L381.48,160.08L377.23,157.79L372.98,155.65L368.74,153.66L364.49,151.81L360.26,150.09L356.04,148.52L351.84,147.08L347.65,145.77L343.49,144.59L339.36,143.54L335.25,142.62L331.18,141.82L327.14,141.14L323.14,140.58L319.18,140.14L315.26,139.80L311.39,139.58L307.57,139.47L303.79,139.46L300.07,139.55L296.41,139.74L292.79,140.02L289.24,140.40L285.75,140.87L282.32,141.42L278.95,142.07L275.64,142.79L272.40,143.59L269.23,144.47L266.12,145.42L263.09,146.44L260.12,147.53L257.22,148.68L254.40,149.89L251.64,151.17L248.96,152.50L246.36,153.88L243.82,155.32L241.36,156.80L238.97,158.33L236.66,159.90L234.42,161.51L232.26,163.16L230.17,164.85L228.16,166.56L226.22,168.31L224.35,170.09L222.56,171.89L220.84,173.71L219.19,175.56L217.62,177.42L216.12,179.30L214.69,181.20L213.33,183.10L212.04,185.02L210.82,186.94L209.67,188.87L208.59,190.81L207.57,192.75L206.62,194.68L205.74,196.62L204.92,198.55L204.16,200.48L203.47,202.40L202.83,204.31L202.26,206.22L201.75,208.11L201.29,209.99L200.89,211.86L200.55,213.71L200.26,215.54L200.03,217.36L199.84,219.16L199.71,220.94L199.63,222.69L199.60,224.43L199.61,226.14" fill="none" stroke="#44948b" stroke-width="2" opacity=".55"/><path d="M-15 -8.25L0 0 -15 8.25" fill="none" stroke="#277e76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(257.2222451834059,148.6797511916513) rotate(157.51217376651775)"/><path d="M142.50,436.20L149.00,436.50L155.42,436.62L161.76,436.57L168.00,436.35L174.15,435.96L180.21,435.41L186.17,434.71L192.02,433.86L197.77,432.86L203.42,431.72L208.95,430.45L214.38,429.04L219.69,427.51L224.88,425.86L229.96,424.09L234.92,422.21L239.76,420.22L244.48,418.12L249.08,415.93L253.56,413.65L257.91,411.28L262.13,408.82L266.24,406.29L270.21,403.68L274.07,401.00L277.79,398.25L281.39,395.44L284.87,392.57L288.22,389.65L291.44,386.68L294.54,383.67L297.52,380.61L300.37,377.52L303.10,374.39L305.70,371.23L308.19,368.05L310.56,364.84L312.80,361.62L314.93,358.37L316.94,355.12L318.84,351.86L320.62,348.59L322.29,345.32L323.85,342.05L325.30,338.78L326.64,335.52L327.87,332.27L329.00,329.04L330.03,325.81L330.95,322.61L331.78,319.42L332.51,316.25L333.14,313.11L333.69,310.00L334.13,306.91L334.50,303.86L334.77,300.84L334.96,297.85L335.06,294.90L335.09,291.99L335.03,289.12L334.90,286.29L334.70,283.50L334.42,280.76L334.07,278.06L333.66,275.41L333.18,272.80L332.64,270.25L332.03,267.74L331.37,265.29L330.65,262.89L329.87,260.54L329.04,258.25L328.17,256.01L327.24,253.82L326.27,251.69L325.25,249.62L324.20,247.60L323.10,245.64L321.97,243.73L320.80,241.88L319.60,240.09L318.36,238.36L317.10,236.68L315.81,235.06L314.49,233.50L313.15,231.99L311.79,230.55L310.40,229.16L309.00,227.82L307.59,226.54L306.15,225.32L304.71,224.15L303.25,223.04L301.79,221.98L300.31,220.98L298.83,220.03L297.35,219.14L295.86,218.29" fill="none" stroke="#44948b" stroke-width="2" opacity=".55"/><path d="M-15 -8.25L0 0 -15 8.25" fill="none" stroke="#277e76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(334.13478679408706,306.91477220536365) rotate(-82.4878262334823)"/><path d="M142.50,63.80L138.99,69.29L135.67,74.78L132.55,80.30L129.62,85.81L126.88,91.33L124.32,96.85L121.95,102.36L119.76,107.86L117.75,113.34L115.91,118.80L114.25,124.23L112.76,129.63L111.43,134.99L110.26,140.32L109.26,145.60L108.40,150.84L107.71,156.03L107.16,161.16L106.76,166.24L106.50,171.25L106.37,176.21L106.39,181.10L106.53,185.92L106.80,190.67L107.20,195.34L107.71,199.94L108.35,204.47L109.09,208.91L109.95,213.27L110.91,217.55L111.97,221.74L113.13,225.84L114.38,229.86L115.73,233.79L117.16,237.63L118.67,241.37L120.27,245.02L121.94,248.58L123.68,252.04L125.49,255.41L127.37,258.69L129.31,261.86L131.31,264.94L133.36,267.93L135.46,270.82L137.62,273.61L139.81,276.30L142.05,278.90L144.33,281.40L146.65,283.80L148.99,286.11L151.37,288.33L153.77,290.45L156.20,292.47L158.64,294.41L161.11,296.24L163.59,297.99L166.08,299.65L168.58,301.22L171.09,302.69L173.61,304.08L176.12,305.38L178.64,306.60L181.15,307.73L183.67,308.78L186.17,309.75L188.66,310.63L191.15,311.44L193.62,312.17L196.07,312.82L198.51,313.40L200.93,313.90L203.33,314.33L205.71,314.69L208.07,314.98L210.40,315.21L212.70,315.36L214.98,315.46L217.23,315.49L219.45,315.46L221.63,315.37L223.78,315.23L225.90,315.02L227.99,314.77L230.03,314.46L232.05,314.10L234.02,313.69L235.95,313.23L237.85,312.73L239.71,312.19L241.52,311.60L243.30,310.97L245.03,310.30L246.72,309.60L248.37,308.86L249.97,308.08L251.54,307.28L253.06,306.44L254.53,305.57" fill="none" stroke="#44948b" stroke-width="2" opacity=".55"/><path d="M-15 -8.25L0 0 -15 8.25" fill="none" stroke="#277e76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(158.6429680225071,294.4054766029851) rotate(37.5121737665177)"/></g><g id="map-particles"></g><circle cx="250" cy="250" r="38" fill="#fff" stroke="#7facc0" stroke-width="2"/><text id="pressure-symbol" x="250" y="265" text-anchor="middle" fill="#25709c" font-size="38" font-weight="750">低</text>
+<path id="station-arrow" fill="none" stroke="#26786f" stroke-width="5"/><path id="station-head" fill="none" stroke="#26786f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><div role="slider" id="station" tabindex="-1" aria-disabled="true" aria-label="地点Aを中心のまわりへ動かす" aria-valuemin="0" aria-valuemax="359" aria-valuenow="0">A</div>
+</div><p id="map-caption" class="figure-caption">反時計回りに、吹き込む</p></section>
+<section class="section-card"><h2><span>02</span>中心を横から見る</h2><svg id="wind-section" viewBox="0 0 420 410" role="img" aria-label="中心付近の上昇・下降と地上の吹き込み・吹き出しの断面">
+<rect width="420" height="410" rx="15" fill="#f3f7f8"/><rect x="0" y="358" width="420" height="52" fill="#d9d6c9"/><path d="M0 358H420" stroke="#8a948d" stroke-width="2"/><path d="M210 15V345" stroke="#d0dadd" stroke-dasharray="4 5"/>
+<g id="section-static"><path d="M40.00,330.00L47.90,329.95L55.60,329.80L63.10,329.55L70.40,329.20L77.50,328.75L84.40,328.20L91.10,327.55L97.60,326.80L103.90,325.95L110.00,325.00L115.90,323.95L121.60,322.80L127.10,321.55L132.40,320.20L137.50,318.75L142.40,317.20L147.10,315.55L151.60,313.80L155.90,311.95L160.00,310.00L163.90,307.95L167.60,305.80L171.10,303.55L174.40,301.20L177.50,298.75L180.40,296.20L183.10,293.55L185.60,290.80L187.90,287.95L190.00,285.00L191.90,281.95L193.60,278.80L195.10,275.55L196.40,272.20L197.50,268.75L198.40,265.20L199.10,261.55L199.60,257.80L199.90,253.95L200.00,250.00L200.00,245.00L200.00,240.00L200.00,235.00L200.00,230.00L200.00,225.00L200.00,220.00L200.00,215.00L200.00,210.00L200.00,205.00L200.00,200.00L200.00,195.00L200.00,190.00L200.00,185.00L200.00,180.00L200.00,175.00L200.00,170.00L200.00,165.00L200.00,160.00L200.00,155.00L200.00,150.00L200.00,145.00L200.00,140.00L200.00,135.00L200.00,130.00L200.00,125.00L200.00,120.00L200.00,115.00L200.00,110.00L200.00,105.00L200.00,100.00L199.82,96.72L199.29,93.56L198.40,90.50L197.16,87.56L195.56,84.72L193.60,82.00L191.29,79.39L188.62,76.89L185.60,74.50L182.22,72.22L178.49,70.06L174.40,68.00L169.96,66.06L165.16,64.22L160.00,62.50L154.49,60.89L148.62,59.39L142.40,58.00L135.82,56.72L128.89,55.56L121.60,54.50L113.96,53.56L105.96,52.72L97.60,52.00L88.89,51.39L79.82,50.89L70.40,50.50L60.62,50.22L50.49,50.06L40.00,50.00" fill="none" stroke="#66a69e" stroke-width="4"/><path d="M-13 -7.15L0 0 -13 7.15" fill="none" stroke="#277e76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(160,310) rotate(-26.67981472818848)"/><path d="M-13 -7.15L0 0 -13 7.15" fill="none" stroke="#277e76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(200,160) rotate(-90)"/><path d="M-13 -7.15L0 0 -13 7.15" fill="none" stroke="#277e76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(142.39999999999998,57.99999999999999) rotate(-168.31095884006123)"/><path d="M380.00,330.00L372.10,329.95L364.40,329.80L356.90,329.55L349.60,329.20L342.50,328.75L335.60,328.20L328.90,327.55L322.40,326.80L316.10,325.95L310.00,325.00L304.10,323.95L298.40,322.80L292.90,321.55L287.60,320.20L282.50,318.75L277.60,317.20L272.90,315.55L268.40,313.80L264.10,311.95L260.00,310.00L256.10,307.95L252.40,305.80L248.90,303.55L245.60,301.20L242.50,298.75L239.60,296.20L236.90,293.55L234.40,290.80L232.10,287.95L230.00,285.00L228.10,281.95L226.40,278.80L224.90,275.55L223.60,272.20L222.50,268.75L221.60,265.20L220.90,261.55L220.40,257.80L220.10,253.95L220.00,250.00L220.00,245.00L220.00,240.00L220.00,235.00L220.00,230.00L220.00,225.00L220.00,220.00L220.00,215.00L220.00,210.00L220.00,205.00L220.00,200.00L220.00,195.00L220.00,190.00L220.00,185.00L220.00,180.00L220.00,175.00L220.00,170.00L220.00,165.00L220.00,160.00L220.00,155.00L220.00,150.00L220.00,145.00L220.00,140.00L220.00,135.00L220.00,130.00L220.00,125.00L220.00,120.00L220.00,115.00L220.00,110.00L220.00,105.00L220.00,100.00L220.18,96.72L220.71,93.56L221.60,90.50L222.84,87.56L224.44,84.72L226.40,82.00L228.71,79.39L231.38,76.89L234.40,74.50L237.78,72.22L241.51,70.06L245.60,68.00L250.04,66.06L254.84,64.22L260.00,62.50L265.51,60.89L271.38,59.39L277.60,58.00L284.18,56.72L291.11,55.56L298.40,54.50L306.04,53.56L314.04,52.72L322.40,52.00L331.11,51.39L340.18,50.89L349.60,50.50L359.38,50.22L369.51,50.06L380.00,50.00" fill="none" stroke="#66a69e" stroke-width="4"/><path d="M-13 -7.15L0 0 -13 7.15" fill="none" stroke="#277e76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(260,310) rotate(-153.32018527181316)"/><path d="M-13 -7.15L0 0 -13 7.15" fill="none" stroke="#277e76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(220,160) rotate(-90)"/><path d="M-13 -7.15L0 0 -13 7.15" fill="none" stroke="#277e76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(277.6,57.99999999999999) rotate(-11.689041159939766)"/></g><g id="section-particles"></g><g fill="#526b76" font-size="23"><text x="18" y="28">上空</text><text x="18" y="392">地面</text></g><text id="vertical-label" x="267" y="204" fill="#286f68" font-size="27" font-weight="700">上昇</text><circle cx="210" cy="377" r="27" fill="white" stroke="#7facc0" stroke-width="2"/><text id="section-symbol" x="210" y="387" text-anchor="middle" font-size="28" font-weight="700" fill="#25709c">低</text>
+</svg><p id="section-caption" class="figure-caption">集まった空気が、上へ</p><div class="legend"><span><i class="flow-line"></i>空気の流れ</span><span><i class="isobar"></i>等圧線</span></div><p class="mini-note">等圧線は、同じ気圧の場所を結ぶ線。<br>この図では4hPaごとに引いています。</p></section><span id="flash" hidden aria-hidden="true"></span>
+</div>
+<section class="station-panel"><div><h2>Aをつかんで、場所を変えよう</h2><p>矢印は進む向き。風向は<strong>吹いてくる方位</strong>です。</p><label class="position-control" for="position"><span>Aを回す</span><input disabled id="position" type="range" min="0" max="359" step="1" value="0" aria-label="地点Aの位置を中心のまわりで変える"></label></div><div class="wind-reading"><span>地点Aでは</span><strong id="wind-from">南東からの風</strong><span id="position-label">低気圧の東側</span></div></section>
+<div class="spacing-panel"><div><h2>等圧線の間隔を変える</h2><p>同じ場所で、風の流れる速さを比べよう。</p></div><div class="spacing-switch" role="group" aria-label="等圧線の間隔"><button disabled data-spacing="wide" aria-pressed="true">広い</button><button disabled data-spacing="narrow" aria-pressed="false">狭い</button></div></div>
+<p id="spacing-note" class="model-note">風の強さは、間隔の広い・狭いで比べるための模式的な速さです。</p>
+<section class="story" aria-live="polite"><h2 id="story-title">地上で集まり、中心付近で上昇</h2><p id="story-note">「風を流す」で、緑の目印を追おう。まわる向きだけでなく、中心へ近づくことにも注目。</p></section></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>低気圧と高気圧は、まわりと比べた高低</h3><p>低気圧は周囲より気圧が低いところ、高気圧は周囲より気圧が高いところです。記号の「低」「高」は、気温の低い・高いを表しているのではありません。</p><h3>地上の回り方と、上下の動き</h3><p>日本付近の地上では、低気圧に反時計回りに風が吹き込みます。中心付近で空気が集まり、上昇する流れにつながります。高気圧では中心付近に下りてきた空気が、地上で時計回りに吹き出します。</p><p>横からの図では、回転を省き、中心へ集まる・外へ広がる動きと、上下の動きだけを取り出しています。上昇する湿った空気が冷えると雲ができやすく、下降して温まる空気では雲が消えやすくなります。ただし、低気圧なら必ず雨、高気圧なら必ず晴れとは限りません。</p><h3>風向は「どこから来るか」</h3><p>北へ進む風は、南から吹いてくるので南風です。地点Aのそばの矢印は進む向き、下の表示は吹いてくる方位を示します。Aをつかんで中心のまわりへ動かすと、同じ低気圧でも場所によって風向が違うことを比べられます。Aは観測する場所で、流れる空気の粒ではありません。</p><p>Aのゲージやキーボードでも位置を変えられます。Aの上で左右キーを押すと15度ずつ動き、Homeで最初の東側へ戻ります。風向表示は8方位に丸めた模式的な例です。</p><h3>等圧線が詰まっている場所</h3><p>同じ気圧の場所を結ぶ線が等圧線です。同じ気圧差の線が狭い間隔で並ぶと、短い距離で気圧が大きく変わるため、風が強まる傾向があります。「広い」「狭い」を再生中に切り替え、同じ場所で目印の速さを比べよう。実際の風は地形、摩擦、気圧配置などでも変わります。</p><h3>発展：南半球では</h3><label for="hemisphere">比べる半球</label> <select disabled id="hemisphere"><option value="north">北半球（日本付近）</option><option value="south">南半球</option></select><p>切り替えると止まります。上の図へ戻り、もう一度風を流して比べられます。南半球では回転方向が逆になりますが、低気圧へ吹き込むこと、高気圧から吹き出すことは同じです。赤道付近に、この単純な回転模型をそのまま当てはめることはできません。</p><h3>模型で省いたこと</h3><p>円形の孤立した気圧場と、地上付近の典型的な流れを表しています。実際の天気図や風速予報ではありません。緑の目印は空気を追う印で、空気の分子数や水分量、密度を表すものではありません。</p><p>等圧線は4hPaごとの模式的な線です。図の距離・時間・高度は実寸ではなく、中心付近の上下の速度と地上の速度を同じ縮尺で比べられません。目印は画面内を循環して見せるため、経路の端で薄く消え、入り口から現れます。気圧配置そのものは固定し、流れの向きと強弱の傾向を取り出しています。</p><p>「初めから」で北半球の低気圧・広い間隔・東側のAへ戻ります。気圧の種類と半球の切り替えは停止し、間隔とAの変更は再生状態を保ちます。</p><p>根拠：<a href="https://weather.metoffice.gov.uk/learn-about/weather/how-weather-works/high-and-low-pressure/wind-flow" target="_blank" rel="noopener noreferrer">Met Office・Wind flow</a>、<a href="https://weather.metoffice.gov.uk/learn-about/weather/how-weather-works/high-and-low-pressure" target="_blank" rel="noopener noreferrer">Met Office・High and low pressure</a>、<a href="https://weather.metoffice.gov.uk/learn-about/met-office-for-schools/other-content/other-resources/understanding-weather" target="_blank" rel="noopener noreferrer">Met Office・Understanding weather</a>、<a href="https://www.weather.gov/jkl/education" target="_blank" rel="noopener noreferrer">NWS・Weather Education</a>。図・文章・操作は独自制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var u=Math.log(3.909090909090909)/.08,y=(t,e)=>(t%e+e)%e;function L(t,e,n="low",a="north"){let o=n==="low"?-1:1,r=.16*o*(a==="north"?1:-1);return{x:o*.08*t-r*e,y:o*.08*e+r*t}}function M(t,e=0,n="low",a="north"){t=y(t,u);let o=n==="low"?-1:1,r=(n==="low"?215:55)*Math.exp(o*.08*t),s=e+.16*o*(a==="north"?1:-1)*t;return{x:r*Math.cos(s),y:r*Math.sin(s),radius:r,opacity:Math.max(0,Math.min(1,t/.65,(u-t)/.65))}}function C(t){let e=y(Math.atan2(-t.x,t.y),Math.PI*2);return["\u5317","\u5317\u6771","\u6771","\u5357\u6771","\u5357","\u5357\u897F","\u897F","\u5317\u897F"][Math.round(e/(Math.PI/4))%8]}function $(t,e=-1,n="low"){t=Math.max(0,Math.min(1,t)),n==="high"&&(t=1-t);let a=(o,r,s,l)=>({x:(1-o)**2*r.x+2*o*(1-o)*s.x+o*o*l.x,y:(1-o)**2*r.y+2*o*(1-o)*s.y+o*o*l.y});return t<.4?a(t/.4,{x:210+e*170,y:330},{x:210+e*10,y:330},{x:210+e*10,y:250}):t<.7?{x:210+e*10,y:250-(t-.4)/.3*150}:a((t-.7)/.3,{x:210+e*10,y:100},{x:210+e*10,y:50},{x:210+e*170,y:50})}function q(t="wide",e="low"){let n=[];for(let a=0;55+a*(t==="wide"?60:34)<=215;a++)n.push({r:55+a*(t==="wide"?60:34),pressure:(e==="low"?1e3:1028)+(e==="low"?1:-1)*4*(a+1)});return n}var _=t=>t==="wide"?1:1.65,R=(t,e,n="wide")=>y(t+Math.max(0,Math.min(.1,e))*_(n),u);var F=t=>t.map((e,n)=>`${n?"L":"M"}${e.x.toFixed(2)},${e.y.toFixed(2)}`).join(""),H=(t,e,n=12)=>{let a=Math.atan2(e.y,e.x)*180/Math.PI;return`<path d="M-${n} -${n*.55}L0 0 -${n} ${n*.55}" fill="none" stroke="#277e76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(${t.x},${t.y}) rotate(${a})"/>`};function B(t="low",e="north",n="wide"){let a=q(n,t).map(r=>`<circle cx="250" cy="250" r="${r.r}" fill="none" stroke="#aabac2" stroke-width="1.5"/>`).join(""),o=[0,Math.PI*2/3,Math.PI*4/3].map(r=>{let s=Array.from({length:100},(E,N)=>{let j=M(u*N/100,r,t,e);return{x:j.x+250,y:j.y+250}}),l=M(u*.55,r,t,e),x=L(l.x,l.y,t,e);return`<path d="${F(s)}" fill="none" stroke="#44948b" stroke-width="2" opacity=".55"/>${H({x:l.x+250,y:l.y+250},x,15)}`}).join("");return a+o}function U(t="low"){return[-1,1].map(e=>{let n=Array.from({length:101},(a,o)=>$(o/100,e,t));return`<path d="${F(n)}" fill="none" stroke="#66a69e" stroke-width="4"/>`+[.2,.58,.88].map(a=>{let o=$(a,e,t),r=$(a+.001,e,t);return H(o,{x:r.x-o.x,y:r.y-o.y},13)}).join("")}).join("")}var i=t=>document.querySelector(t),d="low",h="north",g="wide",w=0,c=0,m=!1,S=0,T=0,I,f=null,Y="";function z(t){clearTimeout(I);let e=i("#flash");e.hidden=!1,e.dataset.kind=t,e.textContent=t==="play"?"\u25B6":"\u2161",e.style.animation="none",e.offsetWidth,e.style.animation="",I=setTimeout(()=>e.hidden=!0,1e3)}function p(){Object.assign(document.body.dataset,{kind:d,hemisphere:h,spacing:g,phase:w.toFixed(5),angle:c.toFixed(4),playing:String(m),dragging:String(!!f)}),i("#play").textContent=m?"\u2161 \u4E00\u6642\u505C\u6B62":"\u25B6 \u98A8\u3092\u6D41\u3059",i("#play").dataset.playing=String(m),i("#play").setAttribute("aria-pressed",String(m)),i("#map-particles").innerHTML=[0,1,2].flatMap(t=>[0,.5].map(e=>{let n=M(w+e*u,t*Math.PI*2/3,d,h);return`<circle cx="${250+n.x}" cy="${250+n.y}" r="5" fill="#238479" opacity="${n.opacity}"/>`})).join(""),i("#section-particles").innerHTML=[-1,1].flatMap(t=>[0,1/3,2/3].map(e=>{let n=y(w/u+e,1),a=$(n,t,d),o=Math.min(1,n*12,(1-n)*12);return`<circle cx="${a.x}" cy="${a.y}" r="5" fill="#238479" opacity="${o}"/>`})).join("")}function P(){let t=c*Math.PI/180,e=150*Math.cos(t),n=150*Math.sin(t),a=L(e,n,d,h),o=Math.hypot(a.x,a.y),r=a.x/o,s=a.y/o,l=250+e,x=250+n;i("#station").style.left=`${l/5}%`,i("#station").style.top=`${x/5}%`,i("#station").setAttribute("aria-valuenow",String(Math.floor(c)));let E=C({x:-e,y:-n});i("#station").setAttribute("aria-valuetext",`\u4E2D\u5FC3\u306E${E}\u5074\u3001${C(a)}\u304B\u3089\u306E\u98A8`),i("#position").value=String(c),i("#position").setAttribute("aria-valuetext",`\u4E2D\u5FC3\u306E${E}\u5074`),i("#station-arrow").setAttribute("d",`M${l+r*45} ${x+s*45}L${l+r*87} ${x+s*87}`),i("#station-head").setAttribute("d",`M${l+r*72-s*11} ${x+s*72+r*11}L${l+r*87} ${x+s*87} ${l+r*72+s*11} ${x+s*72-r*11}`),i("#wind-from").textContent=`${C(a)}\u304B\u3089\u306E\u98A8`,i("#position-label").textContent=`${d==="low"?"\u4F4E\u6C17\u5727":"\u9AD8\u6C17\u5727"}\u306E${E}\u5074`}function k(){let t=d==="low",e=h==="north",n=t?"\u4F4E":"\u9AD8",a=t?"#25709c":"#b26532",o=t===e;i("#map-static").innerHTML=B(d,h,g),i("#section-static").innerHTML=U(d);for(let s of["pressure-symbol","section-symbol"])i("#"+s).textContent=n,i("#"+s).setAttribute("fill",a);i("#hemisphere-label").textContent=e?"\u5317\u534A\u7403\u30FB\u5730\u4E0A\u4ED8\u8FD1":"\u5357\u534A\u7403\u30FB\u5730\u4E0A\u4ED8\u8FD1",i("#hemisphere").value=h,i("#map-caption").textContent=`${o?"\u53CD\u6642\u8A08\u56DE\u308A":"\u6642\u8A08\u56DE\u308A"}\u306B\u3001${t?"\u5439\u304D\u8FBC\u3080":"\u5439\u304D\u51FA\u3059"}`,i("#vertical-label").textContent=t?"\u4E0A\u6607":"\u4E0B\u964D",i("#section-caption").textContent=t?"\u96C6\u307E\u3063\u305F\u7A7A\u6C17\u304C\u3001\u4E0A\u3078":"\u4E0A\u304B\u3089\u4E0B\u308A\u305F\u7A7A\u6C17\u304C\u3001\u5916\u3078",document.querySelectorAll("[data-kind-button]").forEach(s=>s.setAttribute("aria-pressed",String(s.dataset.kindButton===d))),document.querySelectorAll("button[data-spacing]").forEach(s=>s.setAttribute("aria-pressed",String(s.dataset.spacing===g))),i("#spacing-note").textContent=g==="wide"?"\u98A8\u306E\u5F37\u3055\u306F\u3001\u9593\u9694\u306E\u5E83\u3044\u30FB\u72ED\u3044\u3067\u6BD4\u3079\u308B\u305F\u3081\u306E\u6A21\u5F0F\u7684\u306A\u901F\u3055\u3067\u3059\u3002":"\u540C\u3058\u6C17\u5727\u5DEE\u3067\u3082\u3001\u9593\u9694\u304C\u72ED\u3044\u307B\u3069\u98A8\u306F\u5F37\u307E\u308B\u50BE\u5411\u304C\u3042\u308A\u307E\u3059\u3002\u76EE\u5370\u304C\u901F\u304F\u6D41\u308C\u308B\u3053\u3068\u3092\u6BD4\u3079\u3088\u3046\u3002",i(".intro").textContent=(t?"\u4F4E\u6C17\u5727\u306F\u3001\u307E\u308F\u308A\u3088\u308A\u6C17\u5727\u304C\u4F4E\u3044\u5834\u6240\u3002":"\u9AD8\u6C17\u5727\u306F\u3001\u307E\u308F\u308A\u3088\u308A\u6C17\u5727\u304C\u9AD8\u3044\u5834\u6240\u3002")+"\u98A8\u3092\u6D41\u3057\u3066\u3001\u5730\u4E0A\u3068\u4E0A\u7A7A\u306E\u3064\u306A\u304C\u308A\u3092\u898B\u3088\u3046\u3002";let r=d+h+g;r!==Y&&(Y=r,i("#story-title").textContent=t?"\u5730\u4E0A\u3067\u96C6\u307E\u308A\u3001\u4E2D\u5FC3\u4ED8\u8FD1\u3067\u4E0A\u6607":"\u4E2D\u5FC3\u4ED8\u8FD1\u3067\u4E0B\u964D\u3057\u3001\u5730\u4E0A\u3067\u5E83\u304C\u308B",i("#story-note").textContent=t?"\u7DD1\u306E\u76EE\u5370\u306F\u7A7A\u6C17\u306E\u6D41\u308C\u3002\u4E2D\u5FC3\u3078\u8FD1\u3065\u304F\u5730\u4E0A\u306E\u6D41\u308C\u3068\u3001\u305D\u306E\u4E0A\u306E\u4E0A\u6607\u3092\u7D50\u3073\u3064\u3051\u3088\u3046\u3002":"\u9AD8\u6C17\u5727\u3067\u306F\u3001\u4F4E\u6C17\u5727\u3068\u5411\u304D\u304C\u9006\u306B\u306A\u308A\u307E\u3059\u3002\u307E\u308F\u308B\u5411\u304D\u3068\u3001\u4E2D\u5FC3\u304B\u3089\u9060\u3056\u304B\u308B\u3053\u3068\u3092\u6BD4\u3079\u3088\u3046\u3002"),P(),p()}function A(t=!1){m=!1,cancelAnimationFrame(S),S=0,t&&z("pause")}function K(){m=!0,T=performance.now(),z("play"),p();let t=e=>{m&&(w=R(w,(e-T)/1e3,g),T=e,p(),S=requestAnimationFrame(t))};S=requestAnimationFrame(t)}function b(){if(!f)return;let t=f.id;f=null,i("#station").hasPointerCapture(t)&&i("#station").releasePointerCapture(t),p()}i("#play").addEventListener("click",()=>{b(),m?(A(!0),p()):K()});i("#reset").addEventListener("click",()=>{b(),A(),d="low",h="north",g="wide",w=0,c=0,clearTimeout(I),i("#flash").hidden=!0,k()});document.querySelectorAll("[data-kind-button]").forEach(t=>t.addEventListener("click",()=>{b(),A(),d=t.dataset.kindButton,w=0,k()}));document.querySelectorAll("button[data-spacing]").forEach(t=>t.addEventListener("click",()=>{g=t.dataset.spacing,k()}));i("#hemisphere").addEventListener("change",t=>{b(),A(),h=t.target.value,w=0,k()});i("#position").addEventListener("input",t=>{c=+t.target.value,P(),p()});var v=i("#station");function D(t){let e=i("#wind-map").getBoundingClientRect(),n=t.clientX-e.left-e.width/2,a=t.clientY-e.top-e.height/2;return Math.hypot(n,a)<20?null:Math.atan2(a,n)*180/Math.PI}v.addEventListener("pointerdown",t=>{if(t.button!==0||f)return;let e=D(t);e!==null&&(f={id:t.pointerId,offset:c-e},v.setPointerCapture(t.pointerId),v.focus({preventScroll:!0}),p())});v.addEventListener("pointermove",t=>{if(f?.id!==t.pointerId)return;let e=D(t);e!==null&&(c=y(e+f.offset,360),P(),p())});for(let t of["pointerup","pointercancel","lostpointercapture"])v.addEventListener(t,e=>{f?.id===e.pointerId&&b()});v.addEventListener("keydown",t=>{if(t.key==="ArrowRight"||t.key==="ArrowDown")c=y(c+15,360);else if(t.key==="ArrowLeft"||t.key==="ArrowUp")c=y(c-15,360);else if(t.key==="Home")c=0;else if(t.key==="End")c=359;else return;t.preventDefault(),P(),p()});document.addEventListener("visibilitychange",()=>{document.hidden&&(b(),A(),p())});window.addEventListener("resize",b);document.querySelectorAll("button,input,select").forEach(t=>t.disabled=!1);v.tabIndex=0;v.setAttribute("aria-disabled","false");k();})();
+</script>
+</body>
+</html>
