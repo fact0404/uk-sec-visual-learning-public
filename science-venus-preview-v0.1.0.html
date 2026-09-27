@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>金星の形と大きさ | 位置を動かして見え方を比べる</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1180px;
+}
+.vl-title {
+  font-size: clamp(25px, 3.3vw, 34px);
+}
+.vl-controls {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 252, 252, 0.98);
+  backdrop-filter: blur(8px);
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.toolbar button {
+  min-width: 48px;
+  min-height: 48px;
+}
+#play {
+  min-width: 150px;
+  background: #167454;
+  color: white;
+}
+#play[data-playing='true'] {
+  background: #bc3543;
+}
+.timeline-wrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex: 1;
+  min-width: 245px;
+  font-size: 13px;
+}
+.timeline-wrap input {
+  min-width: 70px;
+  width: 100%;
+  height: 44px;
+}
+.timeline-wrap span {
+  white-space: nowrap;
+}
+#progress {
+  font-size: 12px;
+  min-width: 113px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.vl-stage {
+  padding: 20px;
+}
+.intro {
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 18px;
+  color: #4c666f;
+}
+.views {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.orbit-card,
+.image-card {
+  min-width: 0;
+  border: 1px solid #315069;
+  border-radius: 13px;
+  overflow: hidden;
+  background: #101f33;
+  color: #dce7ed;
+}
+.views h2 {
+  font-size: 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 15px 16px;
+  flex-wrap: wrap;
+}
+.views h2 > span {
+  font-size: 12px;
+  color: #93adc0;
+}
+.views h2 small {
+  font-size: 12px;
+  color: #b6d3dc;
+  margin-left: auto;
+  font-weight: 400;
+}
+.orbit-wrap {
+  position: relative;
+}
+#orbit,
+#image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.sun-label,
+#earth-label {
+  position: absolute;
+  font-size: 12px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.sun-label {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 22px);
+  color: #ffdc93;
+}
+#earth-label {
+  transform: translate(-50%, -50%);
+  color: #8fe0eb;
+  background: #101f33c9;
+  padding: 0 3px;
+  border-radius: 2px;
+}
+#venus-handle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border: 2px solid #e7c37d;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #e7c37d12;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+#venus-handle[aria-disabled='true'] {
+  pointer-events: none;
+  cursor: default;
+}
+#venus-handle:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 4px;
+}
+[data-dragging='true'] #venus-handle {
+  cursor: grabbing;
+  background: #edc47717;
+}
+.hint {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #d3d6ce;
+  margin: 6px 16px 12px;
+}
+.gold-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #ffda93;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+.legend {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #aec4d5;
+  margin: 8px 16px;
+  flex-wrap: wrap;
+}
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sight-key,
+.light-key {
+  width: 22px;
+  border-top: 2px solid #d8e5ed;
+}
+.light-key {
+  border-color: #eac17b;
+}
+.distance {
+  margin: 18px 22px 25px;
+}
+.distance-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #bcd0de;
+}
+.distance-track {
+  position: relative;
+  height: 2px;
+  background: #455970;
+  margin: 12px 5px 0;
+}
+#distance-marker {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffda93;
+  top: -4px;
+  transform: translateX(-50%);
+}
+.disk-note {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #a6bdce;
+  margin: 4px 16px 16px;
+  text-align: center;
+}
+.presets {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin: 0 14px 16px;
+}
+.presets button {
+  font-size: 13px;
+  min-height: 48px;
+  min-width: 44px;
+  padding: 7px 3px;
+  background: #19324b;
+  color: #deebf3;
+  border: 1px solid #4d677d;
+}
+.presets button[aria-pressed='true'] {
+  background: #3b3c32;
+  border: 2px solid #eac27b;
+  color: #ffe9ba;
+}
+.observation {
+  margin: 0 16px 18px;
+  padding-top: 15px;
+  border-top: 1px solid #344c60;
+  min-height: 155px;
+}
+.separation {
+  font-size: 12px;
+  color: #a8bdcd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 13px;
+}
+.separation strong {
+  color: #e4d3a6;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+#observing-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffdf99;
+  margin: 0 0 6px;
+}
+#observing-note {
+  font-size: 13px;
+  line-height: 1.85;
+  margin: 0;
+  color: #d2dfe8;
+}
+.story {
+  border-top: 1px solid #d7e1df;
+  padding-top: 17px;
+  margin-top: 20px;
+  min-height: 128px;
+}
+.story h2 {
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+.story p {
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0;
+}
+.model-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #627975;
+  margin: 12px 0 0;
+}
+.position-settings {
+  display: grid;
+  gap: 14px;
+}
+.position-settings label {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+.position-settings input {
+  width: 100%;
+  height: 44px;
+}
+.position-settings output {
+  text-align: right;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1;
+  background: #001324aa;
+  padding: 15px 24px;
+  border-radius: 18px;
+  pointer-events: none;
+  animation: flash-out 1s ease-out forwards;
+  z-index: 5;
+}
+#flash[data-kind='play'] {
+  color: #00ff81;
+}
+#flash[data-kind='pause'] {
+  color: #ff324c;
+}
+#flash[hidden] {
+  display: none;
+}
+@keyframes flash-out {
+  0% {
+    opacity: 0.95;
+  }
+  15% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+@media (max-width: 740px) {
+  .views {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .orbit-wrap {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .image-card #image {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .observation {
+    min-height: 148px;
+  }
+  .story {
+    min-height: 165px;
+  }
+}
+@media (max-width: 480px) {
+  .vl-stage {
+    padding: 12px;
+  }
+  .vl-controls {
+    padding: 12px;
+  }
+  .toolbar {
+    gap: 8px;
+  }
+  .timeline-wrap {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+  .views {
+    gap: 14px;
+  }
+  .views h2 {
+    margin: 14px 12px;
+    font-size: 15px;
+  }
+  .presets {
+    margin: 0 10px 15px;
+  }
+  .story h2 {
+    font-size: 19px;
+  }
+  .intro {
+    font-size: 14px;
+  }
+  .model-note {
+    font-size: 12px;
+  }
+  .hint {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  .legend {
+    margin-left: 12px;
+    margin-right: 12px;
+    gap: 12px;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="6" transform="rotate(-30 12 12)"/><circle cx="20" cy="7" r="2"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>金星の形と大きさ</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">金星の形と大きさ</h1><p class="vl-question">金星が大きく見えるとき、なぜ細い形になる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="play" aria-pressed="false">▶ 公転を再生</button><button disabled id="reset" class="vl-secondary">初めから</button><label class="timeline-wrap" for="timeline"><span>進み</span><input disabled id="timeline" type="range" min="0" max="583.9236487922877" step="0.1" value="0" aria-label="今の位置からの公転の進み"><output id="progress" for="timeline">0日 / 約584日</output></label></div></div>
+        <div class="vl-stage"><p class="intro">金星は、太陽に照らされた半分が明るくなります。金星を動かして、地球から見える形を比べよう。</p>
+ <div class="views">
+ <section class="orbit-card"><h2><span>01</span> 太陽系を上から見る</h2>
+ <div class="orbit-wrap">
+ <svg id="orbit" viewBox="0 0 440 440" role="img" aria-label="太陽のまわりを回る地球と、内側を回る金星">
+ <defs><radialGradient id="sun-glow"><stop stop-color="#f8cc68" stop-opacity=".25"/><stop offset="1" stop-color="#f8cc68" stop-opacity="0"/></radialGradient></defs>
+ <circle cx="220" cy="220" r="150" fill="none" stroke="#53798e" stroke-dasharray="3 5"/>
+ <circle cx="220" cy="220" r="108" fill="none" stroke="#8e7955" stroke-width="1.4"/>
+ <g id="orbit-state"><path d="M370,220L338,220A32,32 0 0,0 339.3351354061892,229.14691638986866Z" fill="#efd388" opacity=".22"/><path d="M370,220L220,220" stroke="#b99147" stroke-width="1.6" stroke-dasharray="5 5"/><path id="sight-line" d="M370,220L137.26720014315038,289.42106184614624" stroke="#d8e5ed" stroke-width="2.4"/><path d="M220,220L137.26720014315038,289.42106184614624" stroke="#eac17b" stroke-width="3" opacity=".55"/><g transform="translate(370 220)"><circle r="10" fill="#164555" stroke="#77d5e2" stroke-width="1.4"/><path d="M0,-10 A10,10 0 0,1 0,10 Z" transform="rotate(180)" fill="#78c9df"/></g><g transform="translate(137.26720014315038 289.42106184614624)"><circle r="9" fill="#584733" stroke="#ffda93" stroke-width="1.4"/><path d="M0,-9 A9,9 0 0,1 0,9 Z" transform="rotate(320)" fill="#ffe5b1"/></g></g>
+ <circle cx="220" cy="220" r="48" fill="url(#sun-glow)"/><circle cx="220" cy="220" r="17" fill="#ffd178"/>
+ </svg>
+ <span class="sun-label">太陽</span><span id="earth-label" style="left:calc(84.09090909090908% + 22px);top:49.99999999999999%">地球</span>
+ <div id="venus-handle" role="slider" tabindex="-1" aria-disabled="true" aria-label="金星を軌道に沿って動かす" aria-valuemin="0" aria-valuemax="360" aria-valuenow="220" style="left:31.19709094162508%;top:65.77751405594232%"><span class="sr-only">金星</span></div>
+ <div id="flash" hidden aria-hidden="true"></div></div>
+ <p class="hint"><span class="gold-dot"></span> 金星をつかんで、軌道に沿って動かそう</p>
+ <div class="legend"><span><i class="sight-key"></i>地球からの視線</span><span><i class="light-key"></i>太陽の光</span></div>
+ <div class="distance"><div class="distance-label"><span>地球から近い</span><span>遠い</span></div><div class="distance-track"><i id="distance-marker" style="left:92.99346705080103%"></i></div></div>
+ </section>
+ <section class="image-card"><h2><span>02</span> 地球から見た金星 <small>倍率は固定</small></h2>
+ <svg id="image" viewBox="0 0 400 280" role="img" aria-label="地球から見る金星の形と見かけの大きさ"><path d="M70,140h260 M200,20v240" stroke="#32465c" stroke-dasharray="2 5"/><circle id="dark-disk" cx="200" cy="140" r="17.29349485939773" fill="#263444" stroke="#87949f" stroke-opacity=".3"/><path id="lit-disk" d="M200.000,122.707L200.212,122.708L200.424,122.712L200.637,122.718L200.849,122.727L201.060,122.739L201.272,122.753L201.484,122.770L201.695,122.790L201.906,122.812L202.117,122.837L202.327,122.864L202.537,122.894L202.747,122.926L202.957,122.961L203.165,122.999L203.374,123.039L203.582,123.081L203.789,123.127L203.996,123.174L204.202,123.225L204.408,123.278L204.612,123.333L204.817,123.391L205.020,123.451L205.223,123.514L205.425,123.579L205.626,123.647L205.826,123.717L206.025,123.790L206.224,123.865L206.421,123.943L206.618,124.023L206.813,124.105L207.008,124.190L207.202,124.277L207.394,124.367L207.585,124.459L207.775,124.553L207.964,124.650L208.152,124.748L208.339,124.850L208.524,124.953L208.708,125.059L208.891,125.167L209.072,125.277L209.252,125.390L209.431,125.504L209.608,125.621L209.783,125.740L209.958,125.861L210.130,125.984L210.302,126.110L210.471,126.237L210.640,126.367L210.806,126.498L210.971,126.632L211.134,126.768L211.296,126.905L211.455,127.045L211.614,127.186L211.770,127.330L211.925,127.475L212.077,127.623L212.228,127.772L212.377,127.923L212.525,128.075L212.670,128.230L212.814,128.386L212.955,128.545L213.095,128.704L213.232,128.866L213.368,129.029L213.502,129.194L213.633,129.360L213.763,129.529L213.890,129.698L214.016,129.870L214.139,130.042L214.260,130.217L214.379,130.392L214.496,130.569L214.610,130.748L214.723,130.928L214.833,131.109L214.941,131.292L215.047,131.476L215.150,131.661L215.252,131.848L215.350,132.036L215.447,132.225L215.541,132.415L215.633,132.606L215.723,132.798L215.810,132.992L215.895,133.187L215.977,133.382L216.057,133.579L216.135,133.776L216.210,133.975L216.283,134.174L216.353,134.374L216.421,134.575L216.486,134.777L216.549,134.980L216.609,135.183L216.667,135.388L216.722,135.592L216.775,135.798L216.826,136.004L216.873,136.211L216.919,136.418L216.961,136.626L217.001,136.835L217.039,137.043L217.074,137.253L217.106,137.463L217.136,137.673L217.163,137.883L217.188,138.094L217.210,138.305L217.230,138.516L217.247,138.728L217.261,138.940L217.273,139.151L217.282,139.363L217.288,139.576L217.292,139.788L217.293,140.000L217.292,140.212L217.288,140.424L217.282,140.637L217.273,140.849L217.261,141.060L217.247,141.272L217.230,141.484L217.210,141.695L217.188,141.906L217.163,142.117L217.136,142.327L217.106,142.537L217.074,142.747L217.039,142.957L217.001,143.165L216.961,143.374L216.919,143.582L216.873,143.789L216.826,143.996L216.775,144.202L216.722,144.408L216.667,144.612L216.609,144.817L216.549,145.020L216.486,145.223L216.421,145.425L216.353,145.626L216.283,145.826L216.210,146.025L216.135,146.224L216.057,146.421L215.977,146.618L215.895,146.813L215.810,147.008L215.723,147.202L215.633,147.394L215.541,147.585L215.447,147.775L215.350,147.964L215.252,148.152L215.150,148.339L215.047,148.524L214.941,148.708L214.833,148.891L214.723,149.072L214.610,149.252L214.496,149.431L214.379,149.608L214.260,149.783L214.139,149.958L214.016,150.130L213.890,150.302L213.763,150.471L213.633,150.640L213.502,150.806L213.368,150.971L213.232,151.134L213.095,151.296L212.955,151.455L212.814,151.614L212.670,151.770L212.525,151.925L212.377,152.077L212.228,152.228L212.077,152.377L211.925,152.525L211.770,152.670L211.614,152.814L211.455,152.955L211.296,153.095L211.134,153.232L210.971,153.368L210.806,153.502L210.640,153.633L210.471,153.763L210.302,153.890L210.130,154.016L209.958,154.139L209.783,154.260L209.608,154.379L209.431,154.496L209.252,154.610L209.072,154.723L208.891,154.833L208.708,154.941L208.524,155.047L208.339,155.150L208.152,155.252L207.964,155.350L207.775,155.447L207.585,155.541L207.394,155.633L207.202,155.723L207.008,155.810L206.813,155.895L206.618,155.977L206.421,156.057L206.224,156.135L206.025,156.210L205.826,156.283L205.626,156.353L205.425,156.421L205.223,156.486L205.020,156.549L204.817,156.609L204.612,156.667L204.408,156.722L204.202,156.775L203.996,156.826L203.789,156.873L203.582,156.919L203.374,156.961L203.165,157.001L202.957,157.039L202.747,157.074L202.537,157.106L202.327,157.136L202.117,157.163L201.906,157.188L201.695,157.210L201.484,157.230L201.272,157.247L201.060,157.261L200.849,157.273L200.637,157.282L200.424,157.288L200.212,157.292L200.000,157.293L200.000,157.293L199.805,157.292L199.610,157.288L199.416,157.282L199.221,157.273L199.027,157.261L198.832,157.247L198.638,157.230L198.444,157.210L198.251,157.188L198.057,157.163L197.864,157.136L197.671,157.106L197.479,157.074L197.286,157.039L197.095,157.001L196.903,156.961L196.713,156.919L196.522,156.873L196.333,156.826L196.143,156.775L195.955,156.722L195.767,156.667L195.579,156.609L195.393,156.549L195.206,156.486L195.021,156.421L194.837,156.353L194.653,156.283L194.470,156.210L194.288,156.135L194.106,156.057L193.926,155.977L193.746,155.895L193.568,155.810L193.390,155.723L193.214,155.633L193.038,155.541L192.864,155.447L192.690,155.350L192.518,155.252L192.347,155.150L192.177,155.047L192.008,154.941L191.840,154.833L191.674,154.723L191.508,154.610L191.344,154.496L191.182,154.379L191.021,154.260L190.861,154.139L190.702,154.016L190.545,153.890L190.389,153.763L190.235,153.633L190.082,153.502L189.931,153.368L189.781,153.232L189.633,153.095L189.486,152.955L189.341,152.814L189.197,152.670L189.055,152.525L188.915,152.377L188.777,152.228L188.640,152.077L188.505,151.925L188.371,151.770L188.239,151.614L188.109,151.455L187.981,151.296L187.855,151.134L187.731,150.971L187.608,150.806L187.487,150.640L187.368,150.471L187.251,150.302L187.136,150.130L187.023,149.958L186.912,149.783L186.803,149.608L186.695,149.431L186.590,149.252L186.487,149.072L186.386,148.891L186.287,148.708L186.190,148.524L186.095,148.339L186.002,148.152L185.911,147.964L185.822,147.775L185.736,147.585L185.652,147.394L185.569,147.202L185.489,147.008L185.412,146.813L185.336,146.618L185.262,146.421L185.191,146.224L185.122,146.025L185.056,145.826L184.991,145.626L184.929,145.425L184.869,145.223L184.811,145.020L184.756,144.817L184.703,144.612L184.652,144.408L184.603,144.202L184.557,143.996L184.513,143.789L184.472,143.582L184.433,143.374L184.396,143.165L184.361,142.957L184.329,142.747L184.300,142.537L184.272,142.327L184.247,142.117L184.224,141.906L184.204,141.695L184.186,141.484L184.171,141.272L184.158,141.060L184.147,140.849L184.138,140.637L184.133,140.424L184.129,140.212L184.128,140.000L184.129,139.788L184.133,139.576L184.138,139.363L184.147,139.151L184.158,138.940L184.171,138.728L184.186,138.516L184.204,138.305L184.224,138.094L184.247,137.883L184.272,137.673L184.300,137.463L184.329,137.253L184.361,137.043L184.396,136.835L184.433,136.626L184.472,136.418L184.513,136.211L184.557,136.004L184.603,135.798L184.652,135.592L184.703,135.388L184.756,135.183L184.811,134.980L184.869,134.777L184.929,134.575L184.991,134.374L185.056,134.174L185.122,133.975L185.191,133.776L185.262,133.579L185.336,133.382L185.412,133.187L185.489,132.992L185.569,132.798L185.652,132.606L185.736,132.415L185.822,132.225L185.911,132.036L186.002,131.848L186.095,131.661L186.190,131.476L186.287,131.292L186.386,131.109L186.487,130.928L186.590,130.748L186.695,130.569L186.803,130.392L186.912,130.217L187.023,130.042L187.136,129.870L187.251,129.698L187.368,129.529L187.487,129.360L187.608,129.194L187.731,129.029L187.855,128.866L187.981,128.704L188.109,128.545L188.239,128.386L188.371,128.230L188.505,128.075L188.640,127.923L188.777,127.772L188.915,127.623L189.055,127.475L189.197,127.330L189.341,127.186L189.486,127.045L189.633,126.905L189.781,126.768L189.931,126.632L190.082,126.498L190.235,126.367L190.389,126.237L190.545,126.110L190.702,125.984L190.861,125.861L191.021,125.740L191.182,125.621L191.344,125.504L191.508,125.390L191.674,125.277L191.840,125.167L192.008,125.059L192.177,124.953L192.347,124.850L192.518,124.748L192.690,124.650L192.864,124.553L193.038,124.459L193.214,124.367L193.390,124.277L193.568,124.190L193.746,124.105L193.926,124.023L194.106,123.943L194.288,123.865L194.470,123.790L194.653,123.717L194.837,123.647L195.021,123.579L195.206,123.514L195.393,123.451L195.579,123.391L195.767,123.333L195.955,123.278L196.143,123.225L196.333,123.174L196.522,123.127L196.713,123.081L196.903,123.039L197.095,122.999L197.286,122.961L197.479,122.926L197.671,122.894L197.864,122.864L198.057,122.837L198.251,122.812L198.444,122.790L198.638,122.770L198.832,122.753L199.027,122.739L199.221,122.727L199.416,122.718L199.610,122.712L199.805,122.708L200.000,122.707Z" fill="#ffe5b1"/></svg>
+ <p class="disk-note">陰の部分も、位置がわかるよう薄く表示</p>
+ <div class="presets" aria-label="位置を比べる"><button disabled data-preset="far">遠い位置</button><button disabled data-preset="half">半分の形</button><button disabled data-preset="near">近い位置</button></div>
+ <div class="observation"><p class="separation">太陽との見かけの離れ <strong id="elongation">16°</strong></p><p id="observing-title">夕方の西の空</p><p id="observing-note">太陽より東側にあるので、太陽が沈んだ後に見えます。</p></div>
+ </section></div>
+ <div class="story" aria-live="polite"><h2 id="story-title">まず、遠い位置から比べよう</h2><p id="story-note">小さく、丸く見えています。「近い位置」を押すと、大きさと形が一緒に変わります。</p></div>
+ <p class="model-note">金星そのものの大きさは変わりません。右は同じ倍率での比較、左の天体は見やすく拡大した模型です。</p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>地球の位置も変えてみる</h3><p>地球を動かしても、金星との位置関係で同じように見え方が変わります。手で位置を変えると、その位置を出発点にして再生できます。</p><div class="position-settings"><label for="earth-angle">地球<input disabled id="earth-angle" type="range" min="0" max="360" step=".1" value="0"><output id="earth-angle-value">0°</output></label><label for="venus-angle">金星<input disabled id="venus-angle" type="range" min="0" max="360" step=".1" value="220"><output id="venus-angle-value">220°</output></label></div>
+<h3>太陽の光と、地球から見る向き</h3><p>金星は地球より内側を公転しています。明るいのはいつも太陽に向いた半分ですが、地球からその半分をどれだけ見られるかは位置によって変わります。金星が地球に近い側にあると、陰の側を多く見るため細い形になり、遠い側にあると明るい側を広く見るため丸い形になります。</p><p>右の像は、同じ倍率の望遠鏡で比べたときの形と見かけの大きさです。金星そのものが大きくなったり小さくなったりするわけではありません。輪郭を理解するため、実際にはほぼ見えない陰の側も薄く描いています。像の上は軌道面の北としており、実際の空や望遠鏡で見た傾き・上下左右とは異なります。</p>
+<h3>宵の明星・明けの明星</h3><p>地球から見て太陽より東側にあると、日の入り後の西の空に見え、宵の明星と呼びます。西側にあると、日の出前の東の空に見え、明けの明星と呼びます。太陽の近くに見えるため、真夜中の空には見えません。</p><p>太陽と金星の見かけの角度の隔たりを、離角といいます。この模型では最大約46度です。離角が小さい位置では、見えにくいという案内を表示します。10度未満を案内の目安にしていますが、実際に見えるかどうかの境界ではありません。太陽の向こう側で丸い形になる位置も、実際には太陽と同じ方向にあるため観察できません。</p>
+<h3>操作のしかた</h3><p>金星の輪をつかんで、軌道に沿って動かせます。輪を選んで矢印キーを押すと5度ずつ、Homeで0度、Endで359度になります。補足のゲージも同じ操作です。三つの比較ボタンは地球を止めて金星の位置だけを移動します。</p><p>公転を再生すると、地球も金星も動きます。約584日分を約40秒で進め、一周すると停止します。途中で止めたり、進みゲージで前後に戻したりできます。初めからは最初の配置に戻ります。見かけの変化が一巡する間に、どちらの惑星も軌道を一周以上進みます。</p>
+<h3>模型で省いているもの</h3><p>軌道は同一平面の円とし、地球の軌道半径を1、金星を0.72としました。公転周期は地球約365.256日、金星約224.701日を使っています。天体そのものの大きさは見やすく拡大し、距離と同じ縮尺にはしていません。再生の日数は模式的な出発点からの経過で、今日の配置や実際の暦日ではありません。</p><p>軌道の傾き・楕円形、地球の自転、季節、観測地ごとの高度、大気、雲の散乱は省いています。明るさの変化や最大光度を計算したものではありません。太陽と近い方向でも模型の像は表示します。実際の観察で、望遠鏡や双眼鏡を太陽へ向けてはいけません。</p>
+<p>根拠：<a href="https://www.jaxa.jp/countdown/f17/overview/venus_j.html" target="_blank" rel="noopener noreferrer">JAXA・金星の概要</a>、<a href="https://www.nao.ac.jp/astro/sky/2017/02-topics02.html" target="_blank" rel="noopener noreferrer">国立天文台・金星の満ち欠けと見かけの大きさ</a>、<a href="https://www.nao.ac.jp/astro/sky/2021/10-topics04.html" target="_blank" rel="noopener noreferrer">国立天文台・東方最大離角</a>、<a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/venusfact.html" target="_blank" rel="noopener noreferrer">NASA・Venus Fact Sheet</a>。図・文章・操作は独自制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var L=Math.PI/180,B=365.256,G=224.701,E=1/(1/G-1/B),D=(t,e,n)=>Math.max(e,Math.min(n,t)),g=t=>(t%360+360)%360,V=t=>g(t+180)-180,Z=(t,e=1)=>({x:e*Math.cos(t*L),y:e*Math.sin(t*L)});function C(t,e){let n=Z(t),a=Z(e,.72),s=n.x-a.x,o=n.y-a.y,h=Math.hypot(s,o),l={x:s/h,y:o/h},d={x:-a.x/.72,y:-a.y/.72},y=D(l.x*d.x+l.y*d.y,-1,1),P=Math.atan2(-n.x*-o- -n.y*-s,-n.x*-s+-n.y*-o)/L,T=Math.abs(P);return{E:n,V:a,distance:h,cosPhase:y,lit:(1+y)/2,radius:28/h,elongation:T,signedElongation:P,side:d.x*-l.y+d.y*l.x>=0?1:-1,observing:T<10?"near-sun":P>0?"evening":"morning"}}function O(t,e,n){let a=[];for(let s=0;s<=256;s++){let o=-Math.PI/2+Math.PI*s/256;a.push({x:e*n*Math.cos(o),y:n*Math.sin(o)})}for(let s=256;s>=0;s--){let o=-Math.PI/2+Math.PI*s/256;a.push({x:-e*t*n*Math.cos(o),y:n*Math.sin(o)})}return a}var I=(t,e,n)=>({e:t+360*n/B,v:e+360*n/G}),Y=(t,e)=>g(Math.atan2(-e,t)/L);function j(t,e,n){let a=D(n,0,1);return t+V(e-t)*a*a*(3-2*a)}var H=(t,e)=>Math.min(E,t+E/40*D(e,0,.1));var A=t=>({x:220+t.x*150,y:220-t.y*150});function _(t,e,n,a=200,s=140){return O(t,e,n).map((o,h)=>`${h?"L":"M"}${(a+o.x).toFixed(3)},${(s+o.y).toFixed(3)}`).join("")+"Z"}function z(t,e){let n=C(t,e),a=A(n.E),s=A(n.V),o=Math.atan2(s.y-a.y,s.x-a.x),h=Math.atan2(220-a.y,220-a.x),l=o-h;for(;l>Math.PI;)l-=Math.PI*2;for(;l<-Math.PI;)l+=Math.PI*2;let d={x:a.x+32*Math.cos(h),y:a.y+32*Math.sin(h)},y={x:a.x+32*Math.cos(o),y:a.y+32*Math.sin(o)};return`<path d="${`M${a.x},${a.y}L${d.x},${d.y}A32,32 0 0,${l>0?1:0} ${y.x},${y.y}Z`}" fill="#efd388" opacity=".22"/><path d="M${a.x},${a.y}L220,220" stroke="#b99147" stroke-width="1.6" stroke-dasharray="5 5"/><path id="sight-line" d="M${a.x},${a.y}L${s.x},${s.y}" stroke="#d8e5ed" stroke-width="2.4"/><path d="M220,220L${s.x},${s.y}" stroke="#eac17b" stroke-width="3" opacity=".55"/><g transform="translate(${a.x} ${a.y})"><circle r="10" fill="#164555" stroke="#77d5e2" stroke-width="1.4"/><path d="M0,-10 A10,10 0 0,1 0,10 Z" transform="rotate(${180-t})" fill="#78c9df"/></g><g transform="translate(${s.x} ${s.y})"><circle r="9" fill="#584733" stroke="#ffda93" stroke-width="1.4"/><path d="M0,-9 A9,9 0 0,1 0,9 Z" transform="rotate(${180-e})" fill="#ffe5b1"/></g>`}var i=t=>document.querySelector(t),W={far:-140,half:-Math.acos(.72)*180/Math.PI,near:-15},p=0,r=-140,S=p,F=r,f=0,m=!1,c=null,v=null,w=0,q=0,R,K="";function U(t){clearTimeout(R);let e=i("#flash");e.hidden=!1,e.dataset.kind=t,e.textContent=t==="play"?"\u25B6":"\u2161",e.style.animation="none",e.offsetWidth,e.style.animation="",R=setTimeout(()=>e.hidden=!0,1e3)}function k(){clearTimeout(R),i("#flash").hidden=!0}function M(){m=!1,c=null,cancelAnimationFrame(w),w=0}function x(){S=p=g(p),F=r=g(r),f=0}function b(){if(!v)return;let t=v.id;v=null,i("#venus-handle").hasPointerCapture(t)&&i("#venus-handle").releasePointerCapture(t)}function u(){let t=C(p,r),e=A(t.E),n=A(t.V),a=m||!!c;Object.assign(document.body.dataset,{earth:g(p).toFixed(5),venus:g(r).toFixed(5),days:f.toFixed(5),playing:String(m),moving:String(!!c),dragging:String(!!v),observing:t.observing,lit:t.lit.toFixed(6),radius:t.radius.toFixed(6)}),i("#play").textContent=a?"\u2161 \u4E00\u6642\u505C\u6B62":f>=E?"\u25B6 \u3082\u3046\u4E00\u5EA6":"\u25B6 \u516C\u8EE2\u3092\u518D\u751F",i("#play").dataset.playing=String(a),i("#play").setAttribute("aria-pressed",String(a)),i("#timeline").value=String(f),i("#timeline").setAttribute("aria-valuetext",`\u7D04${Math.floor(f)}\u65E5\u7D4C\u904E`),i("#progress").textContent=`${Math.floor(f)}\u65E5 / \u7D04584\u65E5`,i("#orbit-state").innerHTML=z(p,r);let s=i("#venus-handle");s.style.left=n.x/4.4+"%",s.style.top=n.y/4.4+"%",s.setAttribute("aria-valuenow",String(Math.floor(g(r)))),s.setAttribute("aria-valuetext",`\u91D1\u661F\u306E\u4F4D\u7F6E${Math.floor(g(r))}\u5EA6`);let o=i("#earth-label");o.style.left=`calc(${e.x/4.4}% + ${t.E.x*22}px)`,o.style.top=`calc(${e.y/4.4}% - ${t.E.y*22}px)`,i("#dark-disk").setAttribute("r",String(t.radius)),i("#lit-disk").setAttribute("d",_(t.cosPhase,t.side,t.radius)),i("#distance-marker").style.left=(t.distance-.28)/1.44*100+"%",i("#elongation").textContent=Math.floor(t.elongation+1e-8)+"\xB0",i("#image").setAttribute("aria-label",`\u5730\u7403\u304B\u3089\u898B\u308B\u91D1\u661F\u3002\u660E\u308B\u3044\u9762\u306F\u7D04${Math.round(t.lit*100)}\u30D1\u30FC\u30BB\u30F3\u30C8\u3002${t.observing==="near-sun"?"\u592A\u967D\u306B\u8FD1\u3044\u65B9\u5411\u3067\u898B\u3048\u306B\u304F\u3044\u4F4D\u7F6E\u3002":""}`);for(let[l,d]of[["earth-angle",p],["venus-angle",r]])i(`#${l}`).value=String(g(d)),i(`#${l}-value`).textContent=Math.floor(g(d))+"\xB0";document.querySelectorAll("button[data-preset]").forEach(l=>l.setAttribute("aria-pressed",String(Math.abs(V(r-p-W[l.dataset.preset]))<.1)));let h=(c?"moving":t.lit<.01?"dark":t.lit<.35?"crescent":t.lit<.65?"half":"round")+"-"+t.observing;if(h!==K){K=h;let l=t.observing==="near-sun";i("#observing-title").textContent=l?"\u592A\u967D\u306B\u8FD1\u3044\u65B9\u5411\u3067\u3001\u898B\u3048\u306B\u304F\u3044":t.observing==="evening"?"\u5915\u65B9\u306E\u897F\u306E\u7A7A":"\u660E\u3051\u65B9\u306E\u6771\u306E\u7A7A",i("#observing-note").textContent=l?"\u3053\u306E\u4F4D\u7F6E\u306E\u5F62\u3082\u3001\u6BD4\u8F03\u306E\u305F\u3081\u306B\u8868\u793A\u3057\u3066\u3044\u307E\u3059\u3002":t.observing==="evening"?"\u592A\u967D\u3088\u308A\u6771\u5074\u306B\u3042\u308B\u306E\u3067\u3001\u592A\u967D\u304C\u6C88\u3093\u3060\u5F8C\u306B\u898B\u3048\u307E\u3059\u3002":"\u592A\u967D\u3088\u308A\u897F\u5074\u306B\u3042\u308B\u306E\u3067\u3001\u592A\u967D\u304C\u6607\u308B\u524D\u306B\u898B\u3048\u307E\u3059\u3002";let d,y;c?(d="\u4F4D\u7F6E\u304C\u5909\u308F\u308B\u3068\u3001\u5F62\u3068\u5927\u304D\u3055\u3082\u5909\u308F\u308B",y="\u767D\u3044\u8996\u7DDA\u306E\u5148\u304C\u91D1\u661F\u3067\u3059\u3002\u5730\u7403\u3068\u306E\u8DDD\u96E2\u3068\u3001\u7167\u3089\u3055\u308C\u305F\u5074\u306E\u898B\u3048\u65B9\u306B\u6CE8\u76EE\u3057\u3088\u3046\u3002"):t.lit<.01?(d="\u6700\u3082\u8FD1\u3044\u3068\u304D\u3001\u660E\u308B\u3044\u5074\u306F\u307B\u307C\u898B\u3048\u306A\u3044",y="\u5927\u304D\u304F\u898B\u3048\u308B\u4F4D\u7F6E\u3067\u3082\u3001\u91D1\u661F\u306E\u9670\u306E\u5074\u304C\u5730\u7403\u3092\u5411\u3044\u3066\u3044\u307E\u3059\u3002"):t.lit<.35?(d="\u8FD1\u3044\u3068\u3001\u5927\u304D\u304F\u3001\u7D30\u304F\u898B\u3048\u308B",y="\u8FD1\u3065\u3044\u305F\u306E\u3067\u5927\u304D\u304F\u898B\u3048\u307E\u3059\u3002\u4E00\u65B9\u3001\u592A\u967D\u306B\u7167\u3089\u3055\u308C\u305F\u5074\u306F\u3001\u7AEF\u306E\u7D30\u3044\u90E8\u5206\u3057\u304B\u898B\u3048\u307E\u305B\u3093\u3002"):t.lit<.65?(d="\u6A2A\u304B\u3089\u7167\u3089\u3055\u308C\u3001\u534A\u5206\u307B\u3069\u660E\u308B\u3044",y="\u91D1\u661F\u304B\u3089\u898B\u308B\u592A\u967D\u306E\u65B9\u5411\u3068\u5730\u7403\u306E\u65B9\u5411\u304C\u3001\u307B\u307C\u76F4\u89D2\u306B\u306A\u308B\u4F4D\u7F6E\u3067\u3059\u3002"):(d="\u9060\u3044\u3068\u3001\u5C0F\u3055\u304F\u3001\u4E38\u304F\u898B\u3048\u308B",y="\u9060\u304F\u306B\u3042\u308B\u306E\u3067\u5C0F\u3055\u304F\u898B\u3048\u307E\u3059\u3002\u592A\u967D\u306B\u7167\u3089\u3055\u308C\u305F\u5074\u304C\u3001\u5E83\u304F\u5730\u7403\u3092\u5411\u3044\u3066\u3044\u307E\u3059\u3002"),i("#story-title").textContent=d,i("#story-note").textContent=y}}function X(t){let e=(t-q)/1e3;if(q=t,c){let n=Math.min(1,(t-c.start)/1500);r=j(c.from,c.to,n),n>=1&&(c=null,x())}else m&&(f=H(f,e),{e:p,v:r}=I(S,F,f),f>=E&&(m=!1));u(),m||c?w=requestAnimationFrame(X):w=0}function J(){cancelAnimationFrame(w),q=performance.now(),w=requestAnimationFrame(X)}i("#play").addEventListener("click",()=>{if(b(),m||c){let t=!!c;M(),t&&x(),U("pause")}else f>=E&&(f=0,{e:p,v:r}=I(S,F,0)),m=!0,U("play"),J();u()});i("#reset").addEventListener("click",()=>{b(),M(),p=0,r=-140,x(),k(),u()});i("#timeline").addEventListener("input",t=>{let e=+t.target.value;b();let n=!!c;M(),n&&x(),f=e,{e:p,v:r}=I(S,F,f),k(),u()});document.querySelectorAll("button[data-preset]").forEach(t=>t.addEventListener("click",()=>{b(),M(),x(),k(),c={from:r,to:p+W[t.dataset.preset],start:performance.now()},u(),J()}));for(let t of["earth-angle","venus-angle"])i(`#${t}`).addEventListener("input",e=>{let n=+e.target.value;b(),M(),t==="earth-angle"?p=n:r=n,x(),k(),u()});var $=i("#venus-handle"),N=i("#orbit");$.addEventListener("pointerdown",t=>{t.button!==0||v||(M(),x(),k(),v={id:t.pointerId},$.setPointerCapture(t.pointerId),u(),t.preventDefault())});$.addEventListener("pointermove",t=>{if(!v||v.id!==t.pointerId)return;let e=N.getBoundingClientRect(),n=t.clientX-e.left-e.width/2,a=t.clientY-e.top-e.height/2;Math.hypot(n,a)<12||(r=Y(n,a),x(),u())});for(let t of["pointerup","pointercancel","lostpointercapture"])$.addEventListener(t,e=>{v?.id===e.pointerId&&(b(),u())});$.addEventListener("keydown",t=>{let e=r;if(t.key==="ArrowRight"||t.key==="ArrowUp")e+=5;else if(t.key==="ArrowLeft"||t.key==="ArrowDown")e-=5;else if(t.key==="Home")e=0;else if(t.key==="End")e=359;else return;t.preventDefault(),b(),M(),r=e,x(),k(),u()});addEventListener("resize",()=>{b(),u()});document.addEventListener("visibilitychange",()=>{if(document.hidden){b();let t=!!c;M(),t&&x(),k(),u()}});document.querySelectorAll("button,input").forEach(t=>t.disabled=!1);$.tabIndex=0;$.setAttribute("aria-disabled","false");u();})();
+</script>
+</body>
+</html>
