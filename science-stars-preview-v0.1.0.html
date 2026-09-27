@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>地球の自転と星の動き | 四つの方角から空を見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1180px;
+}
+.vl-title {
+  font-size: clamp(24px, 3.3vw, 34px);
+}
+.vl-controls {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 252, 252, 0.98);
+  backdrop-filter: blur(8px);
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.toolbar button {
+  min-width: 48px;
+  min-height: 48px;
+}
+#play {
+  min-width: 142px;
+  background: #167454;
+  color: white;
+}
+#play[data-playing='true'] {
+  background: #bc3543;
+}
+.timeline-wrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex: 1;
+  min-width: 220px;
+  font-size: 13px;
+}
+.timeline-wrap input {
+  min-width: 70px;
+  width: 100%;
+  height: 44px;
+}
+.timeline-wrap span {
+  white-space: nowrap;
+}
+#progress {
+  font-size: 12px;
+  min-width: 89px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.vl-stage {
+  padding: 20px;
+}
+.intro {
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 18px;
+  color: #4c666f;
+}
+.views {
+  display: grid;
+  grid-template-columns: minmax(270px, 0.9fr) minmax(0, 1.4fr);
+  gap: 18px;
+  align-items: start;
+}
+.earth-card,
+.sky-card {
+  min-width: 0;
+  border: 1px solid #315069;
+  border-radius: 13px;
+  overflow: hidden;
+  background: #101f33;
+  color: #dce7ed;
+}
+.earth-card h2,
+.sky-card h2 {
+  font-size: 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 15px 16px;
+}
+.views h2 > span {
+  font-size: 12px;
+  color: #93adc0;
+  font-variant-numeric: tabular-nums;
+}
+.sky-card small {
+  font-size: 13px;
+  color: #ffdd92;
+  margin-left: auto;
+  white-space: nowrap;
+}
+#earth,
+#sky {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#earth {
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+#earth:focus-visible {
+  outline: 3px solid #76d1dd;
+  outline-offset: -4px;
+}
+#earth[aria-disabled='true'] {
+  pointer-events: none;
+  cursor: default;
+}
+[data-dragging='true'] #earth {
+  cursor: grabbing;
+}
+.figure-caption {
+  font-size: 14px;
+  margin: 8px 16px;
+  color: #b7dfdf;
+  font-weight: 650;
+}
+.hint {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #afc1d1;
+  margin: 12px 16px 16px;
+}
+.sky-wrap {
+  position: relative;
+}
+.horizon-label {
+  position: absolute;
+  bottom: 3px;
+  right: 9px;
+  color: #a4bcbc;
+  font-size: 12px;
+  background: #162c31c9;
+  padding: 0 4px;
+}
+.directions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 14px;
+}
+.directions button {
+  min-width: 44px;
+  min-height: 48px;
+  background: #132b43;
+  color: #dce7ed;
+  border: 1px solid #456077;
+  padding: 8px;
+}
+.directions [aria-pressed='true'] {
+  background: #25455d;
+  border: 2px solid #9bdbe2;
+  font-weight: 700;
+  color: #d8fafb;
+}
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 12px;
+  color: #b2c6d3;
+  margin: 10px 14px 16px;
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.star-dot {
+  width: 7px;
+  height: 7px;
+  background: #ffe4a1;
+  border-radius: 50%;
+}
+.trail-line {
+  width: 23px;
+  border-top: 2px solid #f5cc78;
+}
+.story {
+  border-top: 1px solid #d7e1df;
+  padding-top: 17px;
+  margin-top: 20px;
+  min-height: 120px;
+}
+.story h2 {
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+.story p {
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0;
+}
+.model-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #627975;
+  margin: 12px 0 0;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #00a05a;
+  color: white;
+  font-size: 34px;
+  pointer-events: none;
+  animation: flash-out 1s ease-out both;
+  z-index: 3;
+}
+#flash[data-kind='pause'] {
+  background: #ef2438;
+}
+[hidden] {
+  display: none !important;
+}
+@keyframes flash-out {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 700px) {
+  .views {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .earth-wrap {
+    max-width: 380px;
+    margin: auto;
+  }
+  .timeline-wrap {
+    flex-basis: 100%;
+  }
+  .sky-card h2 {
+    font-size: 16px;
+  }
+  .story {
+    min-height: 150px;
+  }
+}
+@media (max-width: 430px) {
+  .vl-shell {
+    padding: 12px;
+  }
+  .vl-stage,
+  .vl-controls {
+    padding: 12px;
+  }
+  .toolbar #play {
+    flex: 1;
+  }
+  .timeline-wrap {
+    min-width: 0;
+    font-size: 12px;
+  }
+  .timeline-wrap input {
+    min-width: 50px;
+  }
+  .timeline-wrap span {
+    font-size: 12px;
+  }
+  #progress {
+    min-width: 80px;
+    font-size: 12px;
+  }
+  .intro {
+    font-size: 14px;
+  }
+  .views h2 {
+    margin: 13px 12px;
+  }
+  .hint,
+  .figure-caption {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  .story h2 {
+    font-size: 19px;
+  }
+  .story p {
+    font-size: 15px;
+  }
+  .directions {
+    gap: 8px;
+    margin: 12px;
+  }
+}
+
+.legend {
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+#pole-key {
+  color: #a7e6f0;
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="13" r="8"/><ellipse cx="11" cy="13" rx="3" ry="8"/><path d="M3 13h16M19 1v6m-3-3h6"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>地球の自転と星の動き</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">地球の自転と星の動き</h1><p class="vl-question">同じ自転なのに、見る方角で星の動きが違うのはなぜ？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="play" aria-pressed="false">▶ 再生する</button><button disabled id="reset" class="vl-secondary">初めから</button><label class="timeline-wrap" for="timeline"><span>自転</span><input disabled id="timeline" type="range" min="0" max="360" step="0.1" value="0" aria-label="地球の自転の進み"><output id="progress" for="timeline">0° / 360°</output></label></div></div>
+        <div class="vl-stage"><p class="intro">Aは、地球上の観測者です。地球と一緒にAが回ると、空はどう動いて見えるでしょう。</p><div class="views">
+<section class="earth-card"><h2><span>01</span>北極側から見る</h2><div class="earth-wrap">
+<svg id="earth" viewBox="0 0 400 320" role="slider" tabindex="-1" aria-disabled="true" aria-label="地球を左右に動かして自転を進める" aria-valuemin="0" aria-valuemax="360" aria-valuenow="0"><defs><radialGradient id="earth-shade" cx="32%" cy="26%" r="76%"><stop stop-color="#2c8eab"/><stop offset=".62" stop-color="#245976"/><stop offset="1" stop-color="#0c283f"/></radialGradient><radialGradient id="earth-air"><stop offset=".89" stop-color="#5493ba" stop-opacity="0"/><stop offset=".94" stop-color="#8dc6e3" stop-opacity=".28"/><stop offset="1" stop-color="#407eaa" stop-opacity="0"/></radialGradient></defs><rect width="400" height="320" rx="12" fill="#101f33"/>
+<g fill="#c6d8e6" opacity=".55"><circle cx="22" cy="70" r="1.5"/><circle cx="355" cy="72" r="1.8"/><circle cx="380" cy="219" r="1.4"/><circle cx="40" cy="261" r="1.6"/><circle cx="79" cy="23" r="1.1"/><circle cx="318" cy="16" r="1.5"/></g>
+<circle cx="200" cy="170" r="130" fill="url(#earth-air)"/><circle cx="200" cy="170" r="120" fill="url(#earth-shade)"/><path id="earth-grid" d="M320.00,170.00L319.84,167.35L319.34,164.70L318.52,162.07L317.38,159.46L315.91,156.87L314.13,154.33L312.03,151.83L309.63,149.37L306.92,146.98L303.92,144.64L300.64,142.38L297.08,140.19L293.26,138.08L289.18,136.07L284.85,134.14L280.30,132.31L275.52,130.59L270.53,128.97L265.36,127.47L260.00,126.08L254.48,124.81L248.81,123.67L243.00,122.65L237.08,121.77L231.06,121.01L224.95,120.39L218.77,119.91L212.54,119.56L206.28,119.36L200.00,119.29M300.38,104.35L298.84,102.61L297.02,101.06L294.94,99.70L292.60,98.52L290.00,97.55L287.16,96.77L284.08,96.20L280.76,95.82L277.23,95.65L273.48,95.69L269.54,95.93L265.40,96.37L261.08,97.01L256.60,97.85L251.96,98.89L247.18,100.13L242.27,101.55L237.24,103.17L232.11,104.96L226.90,106.94L221.61,109.09L216.26,111.40L210.86,113.88L205.44,116.51L200.00,119.29M254.81,63.33L253.46,63.06L251.96,63.08L250.32,63.39L248.54,63.99L246.63,64.89L244.59,66.07L242.43,67.54L240.15,69.29L237.76,71.31L235.27,73.61L232.68,76.17L230.00,78.99L227.24,82.05L224.40,85.36L221.50,88.90L218.54,92.66L215.53,96.64L212.47,100.81L209.39,105.18L206.27,109.72L203.14,114.43L200.00,119.29M200.00,50.07L200.00,50.46L200.00,51.17L200.00,52.20L200.00,53.56L200.00,55.24L200.00,57.24L200.00,59.54L200.00,62.14L200.00,65.05L200.00,68.23L200.00,71.70L200.00,75.44L200.00,79.43L200.00,83.68L200.00,88.16L200.00,92.87L200.00,97.78L200.00,102.90L200.00,108.20L200.00,113.66L200.00,119.29M145.19,63.33L146.54,63.06L148.04,63.08L149.68,63.39L151.46,63.99L153.37,64.89L155.41,66.07L157.57,67.54L159.85,69.29L162.24,71.31L164.73,73.61L167.32,76.17L170.00,78.99L172.76,82.05L175.60,85.36L178.50,88.90L181.46,92.66L184.47,96.64L187.53,100.81L190.61,105.18L193.73,109.72L196.86,114.43L200.00,119.29M99.62,104.35L101.16,102.61L102.98,101.06L105.06,99.70L107.40,98.52L110.00,97.55L112.84,96.77L115.92,96.20L119.24,95.82L122.77,95.65L126.52,95.69L130.46,95.93L134.60,96.37L138.92,97.01L143.40,97.85L148.04,98.89L152.82,100.13L157.73,101.55L162.76,103.17L167.89,104.96L173.10,106.94L178.39,109.09L183.74,111.40L189.14,113.88L194.56,116.51L200.00,119.29M80.16,167.35L80.66,164.70L81.48,162.07L82.62,159.46L84.09,156.87L85.87,154.33L87.97,151.83L90.37,149.37L93.08,146.98L96.08,144.64L99.36,142.38L102.92,140.19L106.74,138.08L110.82,136.07L115.15,134.14L119.70,132.31L124.48,130.59L129.47,128.97L134.64,127.47L140.00,126.08L145.52,124.81L151.19,123.67L157.00,122.65L162.92,121.77L168.94,121.01L175.05,120.39L181.23,119.91L187.46,119.56L193.72,119.36L200.00,119.29M98.35,233.73L97.36,231.64L96.65,229.38L96.22,226.96L96.08,224.38L96.22,221.65L96.65,218.78L97.36,215.78L98.35,212.65L99.62,209.40L101.16,206.05L102.98,202.59L105.06,199.05L107.40,195.43L110.00,191.74L112.84,187.98L115.92,184.18L119.24,180.34L122.77,176.48L126.52,172.59L130.46,168.70L134.60,164.81L138.92,160.93L143.40,157.08L148.04,153.27L152.82,149.50L157.73,145.79L162.76,142.14L167.89,138.57L173.10,135.09L178.39,131.70L183.74,128.42L189.14,125.25L194.56,122.20L200.00,119.29M143.99,276.10L142.94,275.25L142.04,274.10L141.31,272.67L140.74,270.96L140.33,268.97L140.08,266.71L140.00,264.19L140.08,261.40L140.33,258.37L140.74,255.09L141.31,251.58L142.04,247.85L142.94,243.90L143.99,239.76L145.19,235.42L146.54,230.90L148.04,226.21L149.68,221.37L151.46,216.39L153.37,211.28L155.41,206.06L157.57,200.74L159.85,195.33L162.24,189.86L164.73,184.33L167.32,178.77L170.00,173.17L172.76,167.57L175.60,161.98L178.50,156.41L181.46,150.87L184.47,145.39L187.53,139.98L190.61,134.64L193.73,129.41L196.86,124.28L200.00,119.29M200.00,289.98L200.00,289.71L200.00,289.11L200.00,288.18L200.00,286.92L200.00,285.35L200.00,283.46L200.00,281.26L200.00,278.76L200.00,275.95L200.00,272.86L200.00,269.48L200.00,265.84L200.00,261.93L200.00,257.76L200.00,253.36L200.00,248.73L200.00,243.88L200.00,238.83L200.00,233.59L200.00,228.18L200.00,222.60L200.00,216.89L200.00,211.04L200.00,205.08L200.00,199.03L200.00,192.90L200.00,186.70L200.00,180.46L200.00,174.19L200.00,167.91L200.00,161.63L200.00,155.38L200.00,149.16L200.00,143.01L200.00,136.92L200.00,130.93L200.00,125.05L200.00,119.29M256.01,276.10L257.06,275.25L257.96,274.10L258.69,272.67L259.26,270.96L259.67,268.97L259.92,266.71L260.00,264.19L259.92,261.40L259.67,258.37L259.26,255.09L258.69,251.58L257.96,247.85L257.06,243.90L256.01,239.76L254.81,235.42L253.46,230.90L251.96,226.21L250.32,221.37L248.54,216.39L246.63,211.28L244.59,206.06L242.43,200.74L240.15,195.33L237.76,189.86L235.27,184.33L232.68,178.77L230.00,173.17L227.24,167.57L224.40,161.98L221.50,156.41L218.54,150.87L215.53,145.39L212.47,139.98L209.39,134.64L206.27,129.41L203.14,124.28L200.00,119.29M301.65,233.73L302.64,231.64L303.35,229.38L303.78,226.96L303.92,224.38L303.78,221.65L303.35,218.78L302.64,215.78L301.65,212.65L300.38,209.40L298.84,206.05L297.02,202.59L294.94,199.05L292.60,195.43L290.00,191.74L287.16,187.98L284.08,184.18L280.76,180.34L277.23,176.48L273.48,172.59L269.54,168.70L265.40,164.81L261.08,160.93L256.60,157.08L251.96,153.27L247.18,149.50L242.27,145.79L237.24,142.14L232.11,138.57L226.90,135.09L221.61,131.70L216.26,128.42L210.86,125.25L205.44,122.20L200.00,119.29M320.00,170.00M80.16,175.69L80.66,181.37L81.48,187.01L82.62,192.61L84.09,198.15L85.87,203.61L87.97,208.97L90.37,214.24L93.08,219.37L96.08,224.38L99.36,229.23L102.92,233.93L106.74,238.44L110.82,242.77L115.15,246.90L119.70,250.82L124.48,254.52L129.47,257.99L134.64,261.21L140.00,264.19L145.52,266.90L151.19,269.35L157.00,271.53L162.92,273.43L168.94,275.05L175.05,276.38L181.23,277.42L187.46,278.16L193.72,278.61L200.00,278.76L206.28,278.61L212.54,278.16L218.77,277.42L224.95,276.38L231.06,275.05L237.08,273.43L243.00,271.53L248.81,269.35L254.48,266.90L260.00,264.19L265.36,261.21L270.53,257.99L275.52,254.52L280.30,250.82L284.85,246.90L289.18,242.77L293.26,238.44L297.08,233.93L300.64,229.23L303.92,224.38L306.92,219.37L309.63,214.24L312.03,208.97L314.13,203.61L315.91,198.15L317.38,192.61L318.52,187.01L319.34,181.37L319.84,175.69L320.00,170.00M298.30,140.91L298.16,136.25L297.76,131.60L297.09,126.98L296.15,122.39L294.95,117.85L293.49,113.38L291.77,108.99L289.80,104.68L287.58,100.47L285.13,96.37L282.44,92.39L279.52,88.55L276.39,84.85L273.05,81.30L269.51,77.92L265.77,74.71L261.86,71.68L257.78,68.84L253.54,66.20L249.15,63.76L244.63,61.53L239.98,59.53L235.23,57.74L230.38,56.18L225.44,54.86L220.44,53.77L215.38,52.92L210.27,52.31L205.14,51.95L200.00,51.82L194.86,51.95L189.73,52.31L184.62,52.92L179.56,53.77L174.56,54.86L169.62,56.18L164.77,57.74L160.02,59.53L155.37,61.53L150.85,63.76L146.46,66.20L142.22,68.84L138.14,71.68L134.23,74.71L130.49,77.92L126.95,81.30L123.61,84.85L120.48,88.55L117.56,92.39L114.87,96.37L112.42,100.47L110.20,104.68L108.23,108.99L106.51,113.38L105.05,117.85L103.85,122.39L102.91,126.98L102.24,131.60L101.84,136.25L101.70,140.91L101.84,145.57L102.24,150.22L102.91,154.85L103.85,159.43L105.05,163.97L106.51,168.44L108.23,172.84L110.20,177.15L112.42,181.36L114.87,185.46L117.56,189.43L120.48,193.28L123.61,196.98L126.95,200.52L130.49,203.91L134.23,207.12L138.14,210.15L142.22,212.99L146.46,215.63L150.85,218.06L155.37,220.29L160.02,222.30L164.77,224.08L169.62,225.64L174.56,226.96L179.56,228.05L184.62,228.90L189.73,229.51L194.86,229.88L200.00,230.00L205.14,229.88L210.27,229.51L215.38,228.90L220.44,228.05L225.44,226.96L230.38,225.64L235.23,224.08L239.98,222.30L244.63,220.29L249.15,218.06L253.54,215.63L257.78,212.99L261.86,210.15L265.77,207.12L269.51,203.91L273.05,200.52L276.39,196.98L279.52,193.28L282.44,189.43L285.13,185.46L287.58,181.36L289.80,177.15L291.77,172.84L293.49,168.44L294.95,163.97L296.15,159.43L297.09,154.85L297.76,150.22L298.16,145.57L298.30,140.91M260.00,126.08L259.92,123.23L259.67,120.40L259.26,117.57L258.69,114.77L257.96,112.01L257.06,109.28L256.01,106.59L254.81,103.96L253.46,101.39L251.96,98.89L250.32,96.46L248.54,94.12L246.63,91.86L244.59,89.69L242.43,87.63L240.15,85.67L237.76,83.82L235.27,82.09L232.68,80.47L230.00,78.99L227.24,77.63L224.40,76.40L221.50,75.31L218.54,74.36L215.53,73.55L212.47,72.89L209.39,72.37L206.27,72.00L203.14,71.78L200.00,71.70L196.86,71.78L193.73,72.00L190.61,72.37L187.53,72.89L184.47,73.55L181.46,74.36L178.50,75.31L175.60,76.40L172.76,77.63L170.00,78.99L167.32,80.47L164.73,82.09L162.24,83.82L159.85,85.67L157.57,87.63L155.41,89.69L153.37,91.86L151.46,94.12L149.68,96.46L148.04,98.89L146.54,101.39L145.19,103.96L143.99,106.59L142.94,109.28L142.04,112.01L141.31,114.77L140.74,117.57L140.33,120.40L140.08,123.23L140.00,126.08L140.08,128.93L140.33,131.76L140.74,134.59L141.31,137.39L142.04,140.15L142.94,142.88L143.99,145.57L145.19,148.20L146.54,150.77L148.04,153.27L149.68,155.70L151.46,158.04L153.37,160.30L155.41,162.47L157.57,164.53L159.85,166.49L162.24,168.34L164.73,170.07L167.32,171.69L170.00,173.17L172.76,174.53L175.60,175.76L178.50,176.85L181.46,177.80L184.47,178.61L187.53,179.27L190.61,179.79L193.73,180.16L196.86,180.38L200.00,180.46L203.14,180.38L206.27,180.16L209.39,179.79L212.47,179.27L215.53,178.61L218.54,177.80L221.50,176.85L224.40,175.76L227.24,174.53L230.00,173.17L232.68,171.69L235.27,170.07L237.76,168.34L240.15,166.49L242.43,164.53L244.59,162.47L246.63,160.30L248.54,158.04L250.32,155.70L251.96,153.27L253.46,150.77L254.81,148.20L256.01,145.57L257.06,142.88L257.96,140.15L258.69,137.39L259.26,134.59L259.67,131.76L259.92,128.93L260.00,126.08" fill="none" stroke="#a4c9cd" opacity=".45" stroke-width="1"/><path d="M200 119V24" stroke="#7ad0e1" stroke-dasharray="4 4" stroke-width="1.5"/><circle cx="200" cy="24" r="3" fill="#a9e9f5"/><text x="213" y="29" font-size="19" fill="#acd9e7">地軸の延長</text>
+<path id="sight-ray" d="M298.29824531467904 140.91153481926753L298.29824531467904 109.4687361457595" stroke="#ffc968" stroke-width="3" fill="none"/><path id="sight-head" d="M303.29824531467904 118.4687361457595L298.29824531467904 109.4687361457595 293.29824531467904 118.4687361457595" stroke="#ffc968" stroke-width="3" fill="none"/><circle id="observer" cx="298.29824531467904" cy="140.91153481926753" r="7" fill="#ffda88" stroke="#fff2c9" stroke-width="2"/><text id="observer-label" x="309.29824531467904" y="146.91153481926753" font-size="22" font-weight="700" fill="#ffe6b2">A</text></svg></div><p class="figure-caption">地球は、西から東へ自転する</p><p class="hint">黄色の矢印がAの見る向き。地球は左右に動かせます。</p></section>
+<section class="sky-card"><h2><span>02</span>Aから見る空 <small id="sky-title">北</small></h2><div class="sky-wrap"><svg id="sky" viewBox="0 0 600 400" role="img" aria-label="北の空。時間とともに星の軌跡が伸びる"><defs><linearGradient id="sky-color" x2="0" y2="1"><stop stop-color="#0b182c"/><stop offset="1" stop-color="#233f56"/></linearGradient><clipPath id="sky-clip"><rect width="600" height="382.0539599345245"/></clipPath></defs><rect width="600" height="400" fill="url(#sky-color)"/><g id="sky-drawing" clip-path="url(#sky-clip)"><path d="M300.00,49.89" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="M405.05,200.00" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="M300.00,264.83" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="M268.08,200.00" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="M986.13,-486.13" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="M116.15,16.15" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><path d="M-670.33,200.00" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/><circle cx="-2.866371669434841" cy="174.07779114751557" r="1.7" fill="#cbd8e8"/><circle cx="520.0953957907685" cy="30.503727437382736" r="1.7" fill="#cbd8e8"/><circle cx="176.5146446326575" cy="6.79248258005353" r="1.7" fill="#cbd8e8"/><circle cx="499.35942906661796" cy="253.13487223124403" r="1.7" fill="#cbd8e8"/><circle cx="137.12775670178294" cy="285.03175853668466" r="1.7" fill="#cbd8e8"/><circle cx="354.95231969596296" cy="48.526383812681416" r="1.7" fill="#cbd8e8"/><circle cx="352.914626022487" cy="327.41999768343476" r="1.7" fill="#cbd8e8"/><circle cx="197.22779922085297" cy="152.1725860633237" r="1.7" fill="#cbd8e8"/><circle cx="381.4864542500153" cy="174.25111914717627" r="1.7" fill="#cbd8e8"/><circle cx="275.9842026797416" cy="241.6435662471627" r="1.7" fill="#cbd8e8"/><circle cx="300" cy="49.888930010697266" r="3.3" fill="#ffe4a1"/><circle cx="405.04681871714075" cy="200" r="3.3" fill="#ffe4a1"/><circle cx="300" cy="264.82528073922697" r="3.3" fill="#ffe4a1"/><circle cx="268.0760141652448" cy="200" r="3.3" fill="#ffe4a1"/><circle cx="116.15223689149755" cy="16.152236891497665" r="3.3" fill="#ffe4a1"/><g id="pole-marker"><circle cx="300" cy="200" r="5" fill="#8edce8"/><path d="M289 200h22m-11-11v22" stroke="#8edce8" opacity=".5"/></g></g><path d="M0 382.0539599345245H600V400H0Z" fill="#182e30"/><path d="M0 382.0539599345245H600" stroke="#779595" stroke-width="1.5"/></svg><span class="horizon-label">地平線</span><span id="flash" hidden aria-hidden="true"></span></div>
+<div class="directions" role="group" aria-label="見る方角"><button disabled data-view="0" aria-pressed="true">北</button><button disabled data-view="90" aria-pressed="false">東</button><button disabled data-view="180" aria-pressed="false">南</button><button disabled data-view="270" aria-pressed="false">西</button></div><p class="hint" id="view-note">Aの場所と時間を保ち、見る方角だけを変えます。</p><div class="legend"><span><i class="star-dot"></i>今の星</span><span><i class="trail-line"></i>通った跡</span><span id="pole-key">＋ 天の北極</span></div></section>
+</div><section class="story" aria-live="polite"><h2 id="story-title">まず、北の空を見てみよう</h2><p id="story-note">再生すると、点が動き、通った跡が伸びます。中心付近と、そのまわりの動きを比べよう。</p></section><p class="model-note">日本付近（北緯35度）の模式図です。星の配置は実際の星座を表しません。昼の時間も軌跡を追えるよう表示しています。</p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>動いているのは、地球と観測者</h3><p>地球は西から東へ自転しています。地球上のAも一緒に動くので、遠くの星が動いて見えます。この一日の見かけの動きを、日周運動といいます。空の星が、この模型のような小さな地球のまわりを回っているわけではありません。</p><p>宇宙からの図は、北極側の斜め上から立体を投影しています。黄色い点Aが観測者で、黄色い矢印が見る方角です。遠方の星や地軸の向きは、この1回転の間は固定しています。</p><h3>北・東・南・西</h3><p>北の空では、天の北極のまわりに星の軌跡が伸びます。北極星は天の北極の近くにあるため、ほとんど動かないように見えます。この図で動かない青い印は、天の北極を表しています。</p><p>南の空では東から西へ弧を描き、東の空では地平線から昇り、西の空では地平線へ沈む様子が見られます。4方向で別の仕組みが働いているのではなく、同じ自転を別の向きから見ています。</p><h3>操作のしかた</h3><p>1回転を約40秒で再生します。停止中も自転ゲージを動かせます。地球を左右に動かすと自転の進みを変えられ、地球を選んで左右キーを押すと15度ずつ変わります。Homeで0度、Endで360度になります。進みを戻すと、軌跡もその時点までに戻ります。</p><p>見る方角の切り替えでは、自転を一時停止します。空が横に動くのは、Aが見る向きを変えているためです。切り替えが終わってから再生すると、その方向の星の動きを観察できます。初めからを押すと、自転0度と北の空へ戻ります。</p><h3>この模型の条件</h3><p>観測場所は日本付近の北緯35度、見上げる角度は35度です。空の方位名は地上のAを基準にしています。地球の大きさ、星までの距離、画面の図の大きさは実寸ではありません。地球の模様は経緯線を示すためのもので、国や地形は描いていません。</p><p>星の配置は方位による軌跡の違いを比較するための模式的な配置で、特定の日付の実際の星座ではありません。明るい点にのみ跡をつけ、地平線の下の星は表示していません。実際には昼の明るさで見えない時間も、この図では星と軌跡を表示しています。</p><p>地球の自転1回は、遠くの恒星に対して約23時間56分です。太陽を基準にした約24時間とは少し異なります。この教材では自転角で進みを示し、昼夜の明るさ、公転、季節による星座の違い、大気差や歳差などは省いています。</p><p>根拠：<a href="https://www.nao.ac.jp/faq/a0506.html" target="_blank" rel="noopener noreferrer">国立天文台・地球はどうして回り続けているの？</a>、<a href="https://eco.mtk.nao.ac.jp/koyomi/topics/html/topics2015.html" target="_blank" rel="noopener noreferrer">国立天文台暦計算室・恒星時について</a>、<a href="https://www.nao.ac.jp/faq/a1007.html" target="_blank" rel="noopener noreferrer">国立天文台・歳差ってなに？</a>。図・文章・操作は独自制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var u=Math.PI/180,I=260,H=200+I*Math.tan(35*u),g=(t,e)=>t.reduce((r,a,i)=>r+a*e[i],0),P=(t,e)=>(t%e+e)%e;function F(t){let e=t*u,r=35*u;return{east:[-Math.sin(e),0,-Math.cos(e)],north:[-Math.sin(r)*Math.cos(e),Math.cos(r),Math.sin(r)*Math.sin(e)],up:[Math.cos(r)*Math.cos(e),Math.sin(r),-Math.cos(r)*Math.sin(e)]}}function G({ra:t,dec:e}){let r=t*u,a=e*u;return[Math.cos(a)*Math.cos(r),Math.sin(a),-Math.cos(a)*Math.sin(r)]}function w(t,e){let r=F(e),a=G(t);return[g(a,r.east),g(a,r.north),g(a,r.up)]}function $(t,e){if(t[2]<-1e-10)return null;let r=e*u,a=35*u,i=[Math.sin(r)*Math.cos(a),Math.cos(r)*Math.cos(a),Math.sin(a)],s=[Math.cos(r),-Math.sin(r),0],l=[-Math.sin(r)*Math.sin(a),-Math.cos(r)*Math.sin(a),Math.cos(a)],x=g(t,i);return x<=.08?null:{x:300+I*g(t,s)/x,y:200-I*g(t,l)/x}}function A(t){let e=65*u;return{x:200+120*t[0],y:170-120*(Math.cos(e)*t[1]-Math.sin(e)*t[2]),front:Math.sin(e)*t[1]+Math.cos(e)*t[2]}}function V(t,e,r){e=Math.max(0,Math.min(360,e));let a=[];for(let i=0;i<e;i+=2)a.push({time:i,point:$(w(t,i),r)});return a.push({time:e,point:$(w(t,e),r)}),a}var O=(t,e,r)=>t+(P(e-t+180,360)-180)*(Math.max(0,Math.min(1,r))**2*(3-2*Math.max(0,Math.min(1,r)))),z=(t,e)=>Math.min(360,Math.max(0,t+Math.max(0,Math.min(.1,e))*9)),T=[...Array.from({length:4},(t,e)=>({ra:e*90,dec:[60,68,76,83][e]})),...Array.from({length:4},(t,e)=>({ra:45+e*90,dec:[15,25,35,45][e]})),...Array.from({length:4},(t,e)=>({ra:e*90,dec:[-15,-5,5,15][e]}))],D=Array.from({length:60},(t,e)=>({ra:(e*137.508+17)%360,dec:Math.asin(2*(e+.5)/60-1)/u}));function _(t,e){let r=F(t),a=e*u,i=35*u;return r.up.map((s,l)=>Math.sin(i)*s+Math.cos(i)*(Math.cos(a)*r.north[l]+Math.sin(a)*r.east[l]))}function q(t){let e=!0;return t.map(r=>{if(!r)return e=!0,"";let a=`${e?"M":"L"}${r.x.toFixed(2)},${r.y.toFixed(2)}`;return e=!1,a}).join("")}function B(t){let e="";for(let r=0;r<360;r+=30){let a=[];for(let i=-90;i<=90;i+=3){let s=A(G({ra:r+t,dec:i}));a.push(s.front>=0?s:null)}e+=q(a)}for(let r of[-60,-30,0,35,60]){let a=[];for(let i=0;i<=360;i+=3){let s=A(G({ra:i+t,dec:r}));a.push(s.front>=0?s:null)}e+=q(a)}return e}function Z(t,e){let r=F(t),a=A(r.up),i=_(t,e),s=A(r.up.map((J,Q)=>J+.62*i[Q])),l=s.x-a.x,x=s.y-a.y,E=Math.hypot(l,x),p=l/E,C=x/E;return{p:a,ray:`M${a.x} ${a.y}L${s.x} ${s.y}`,head:`M${s.x-p*9-C*5} ${s.y-C*9+p*5}L${s.x} ${s.y} ${s.x-p*9+C*5} ${s.y-C*9-p*5}`}}function N(t,e){let r=T.map(l=>`<path d="${q(V(l,t,e).map(x=>x.point))}" fill="none" stroke="#f5cc78" stroke-width="1.8" opacity=".65"/>`).join(""),a=[...D.map(l=>({s:l,r:1.7,color:"#cbd8e8"})),...T.map(l=>({s:l,r:3.3,color:"#ffe4a1"}))].map(({s:l,r:x,color:E})=>{let p=$(w(l,t),e);return p&&p.x>-10&&p.x<610&&p.y>-10&&p.y<H?`<circle cx="${p.x}" cy="${p.y}" r="${x}" fill="${E}"/>`:""}).join(""),i=$(w({ra:0,dec:90},t),e),s=i&&i.x>=80&&i.x<=520&&i.y>=20&&i.y<=H-55?`<g id="pole-marker"><circle cx="${i.x}" cy="${i.y}" r="5" fill="#8edce8"/><path d="M${i.x-11} ${i.y}h22m-11-11v22" stroke="#8edce8" opacity=".5"/></g>`:"";return r+a+s}var o=t=>document.querySelector(t),n=0,h=0,d=0,m=!1,c=null,v=0,R=0,y=null,j,X="",Y=["\u5317","\u5317\u6771","\u6771","\u5357\u6771","\u5357","\u5357\u897F","\u897F","\u5317\u897F"],S=t=>Y[Math.round(P(t,360)/45)%8];function K(t){clearTimeout(j);let e=o("#flash");e.hidden=!1,e.dataset.kind=t,e.textContent=t==="play"?"\u25B6":"\u2161",e.style.animation="none",e.offsetWidth,e.style.animation="",j=setTimeout(()=>e.hidden=!0,1e3)}function f(){Object.assign(document.body.dataset,{theta:n.toFixed(4),azimuth:P(h,360).toFixed(4),target:String(d),playing:String(m),turning:String(!!c),dragging:String(!!y)}),o("#play").textContent=m?"\u2161 \u4E00\u6642\u505C\u6B62":n>=360?"\u25B6 \u3082\u3046\u4E00\u5EA6":"\u25B6 \u518D\u751F\u3059\u308B",o("#play").dataset.playing=String(m),o("#play").setAttribute("aria-pressed",String(m)),o("#timeline").value=String(n),o("#timeline").setAttribute("aria-valuetext",`\u81EA\u8EE2${Math.floor(n)}\u5EA6`),o("#progress").textContent=`${Math.floor(n)}\xB0 / 360\xB0`,o("#earth").setAttribute("aria-valuenow",String(Math.floor(n))),o("#earth").setAttribute("aria-valuetext",`\u81EA\u8EE2${Math.floor(n)}\u5EA6`),o("#earth-grid").setAttribute("d",B(n));let t=Z(n,h);o("#observer").setAttribute("cx",String(t.p.x)),o("#observer").setAttribute("cy",String(t.p.y)),o("#observer-label").setAttribute("x",String(t.p.x+11)),o("#observer-label").setAttribute("y",String(t.p.y+6)),o("#sight-ray").setAttribute("d",t.ray),o("#sight-head").setAttribute("d",t.head),o("#sky-drawing").innerHTML=N(n,h);let e=!!o("#pole-marker");o("#pole-key").style.visibility=e?"visible":"hidden",o("#pole-key").setAttribute("aria-hidden",String(!e)),o("#sky-title").textContent=c?`${S(h)} \u2192 ${S(d)}`:S(h),o("#sky").setAttribute("aria-label",`${S(h)}\u306E\u7A7A\u3002\u81EA\u8EE2${Math.floor(n)}\u5EA6\u306E\u661F\u3068\u8ECC\u8DE1`),document.querySelectorAll("button[data-view]").forEach(a=>a.setAttribute("aria-pressed",String(+a.dataset.view===d))),o("#view-note").textContent=c?"\u6642\u9593\u3092\u6B62\u3081\u3066\u3001\u898B\u308B\u5411\u304D\u3060\u3051\u3092\u5909\u3048\u3066\u3044\u307E\u3059\u3002":"A\u306E\u5834\u6240\u3068\u6642\u9593\u3092\u4FDD\u3061\u3001\u898B\u308B\u65B9\u89D2\u3060\u3051\u3092\u5909\u3048\u307E\u3059\u3002";let r=c?"turn":n===0?"intro-"+d:"view-"+d;if(r!==X){X=r;let a,i;c?(a="\u898B\u308B\u65B9\u89D2\u3092\u5909\u3048\u3066\u3044\u307E\u3059",i="\u5730\u7403\u306E\u81EA\u8EE2\u306F\u6B62\u307E\u3063\u3066\u3044\u307E\u3059\u3002\u5207\u308A\u66FF\u308F\u3063\u305F\u3089\u3001\u518D\u751F\u3057\u3066\u540C\u3058\u6642\u9593\u306E\u6D41\u308C\u3092\u6BD4\u3079\u3088\u3046\u3002"):n===0?(a=`\u307E\u305A\u3001${S(h)}\u306E\u7A7A\u3092\u898B\u3066\u307F\u3088\u3046`,i="\u518D\u751F\u3059\u308B\u3068\u3001\u70B9\u304C\u52D5\u304D\u3001\u901A\u3063\u305F\u8DE1\u304C\u4F38\u3073\u307E\u3059\u3002\u5730\u7403\u306EA\u3082\u4E00\u7DD2\u306B\u52D5\u304F\u3053\u3068\u3092\u78BA\u304B\u3081\u3088\u3046\u3002"):d===0?(a="\u5317\u3067\u306F\u3001\u4E2D\u5FC3\u4ED8\u8FD1\u306E\u307E\u308F\u308A\u3092\u56DE\u308B",i="\u5929\u306E\u5317\u6975\u4ED8\u8FD1\u3092\u4E2D\u5FC3\u306B\u3001\u53CD\u6642\u8A08\u56DE\u308A\u306B\u52D5\u3044\u3066\u898B\u3048\u307E\u3059\u3002\u5317\u6975\u661F\u306F\u3001\u3053\u306E\u4E2D\u5FC3\u306E\u8FD1\u304F\u306B\u3042\u308A\u307E\u3059\u3002"):d===90?(a="\u6771\u3067\u306F\u3001\u661F\u304C\u6607\u3063\u3066\u304F\u308B",i="\u5730\u5E73\u7DDA\u304B\u3089\u4E0A\u3078\u3001\u661F\u306E\u8DE1\u304C\u4F38\u3073\u307E\u3059\u3002A\u304C\u5730\u7403\u3068\u4E00\u7DD2\u306B\u56DE\u308B\u3053\u3068\u3067\u3001\u898B\u3048\u308B\u7A7A\u304C\u5909\u308F\u308A\u307E\u3059\u3002"):d===180?(a="\u5357\u3067\u306F\u3001\u6771\u304B\u3089\u897F\u3078",i="\u5357\u3092\u5411\u304F\u3068\u3001\u5DE6\u304C\u6771\u3001\u53F3\u304C\u897F\u3002\u661F\u306F\u5F27\u3092\u63CF\u304D\u306A\u304C\u3089\u3001\u6771\u304B\u3089\u897F\u3078\u52D5\u3044\u3066\u898B\u3048\u307E\u3059\u3002"):(a="\u897F\u3067\u306F\u3001\u661F\u304C\u6C88\u3093\u3067\u3044\u304F",i="\u661F\u306F\u5730\u5E73\u7DDA\u3078\u8FD1\u3065\u304D\u3001\u3084\u304C\u3066\u898B\u3048\u306A\u304F\u306A\u308A\u307E\u3059\u3002\u5730\u5E73\u7DDA\u306E\u4E0B\u306B\u306F\u3001\u661F\u306E\u8DE1\u3092\u63CF\u3044\u3066\u3044\u307E\u305B\u3093\u3002"),o("#story-title").textContent=a,o("#story-note").textContent=i}}function b(t=!1){m=!1,cancelAnimationFrame(v),v=0,t&&K("pause")}function L(){c&&(h=d,c=null)}function U(t){let e=(t-R)/1e3;if(R=t,c){let r=Math.min(1,(t-c.started)/1100);h=O(c.from,d,r),r>=1&&(h=d,c=null)}else m&&(n=z(n,e),n>=360&&(m=!1));f(),m||c?v=requestAnimationFrame(U):v=0}function W(){cancelAnimationFrame(v),R=performance.now(),v=requestAnimationFrame(U)}function k(){if(!y)return;let t=y.id;y=null,o("#earth").hasPointerCapture(t)&&o("#earth").releasePointerCapture(t),f()}o("#play").addEventListener("click",()=>{k(),m?(b(!0),f()):(b(),L(),n>=360&&(n=0),m=!0,K("play"),f(),W())});o("#timeline").addEventListener("input",t=>{let e=+t.target.value;b(),L(),n=e,f()});o("#reset").addEventListener("click",()=>{k(),b(),c=null,n=0,h=0,d=0,clearTimeout(j),o("#flash").hidden=!0,f()});document.querySelectorAll("button[data-view]").forEach(t=>t.addEventListener("click",()=>{k(),b(),d=+t.dataset.view,c={from:h,started:performance.now()},clearTimeout(j),o("#flash").hidden=!0,f(),W()}));var M=o("#earth");M.addEventListener("pointerdown",t=>{t.button!==0||y||(b(),L(),y={id:t.pointerId,x:t.clientX,theta:n,width:M.getBoundingClientRect().width},M.setPointerCapture(t.pointerId),M.focus({preventScroll:!0}),f())});M.addEventListener("pointermove",t=>{y?.id===t.pointerId&&(n=Math.max(0,Math.min(360,y.theta+(t.clientX-y.x)/y.width*360)),f())});for(let t of["pointerup","pointercancel","lostpointercapture"])M.addEventListener(t,e=>{y?.id===e.pointerId&&k()});M.addEventListener("keydown",t=>{let e=n;if(t.key==="ArrowRight"||t.key==="ArrowUp")e+=15;else if(t.key==="ArrowLeft"||t.key==="ArrowDown")e-=15;else if(t.key==="Home")e=0;else if(t.key==="End")e=360;else return;t.preventDefault(),b(),L(),n=Math.max(0,Math.min(360,e)),f()});document.addEventListener("visibilitychange",()=>{document.hidden&&(k(),b(),L(),f())});window.addEventListener("resize",k);document.querySelectorAll("button,input").forEach(t=>t.disabled=!1);M.tabIndex=0;M.setAttribute("aria-disabled","false");f();})();
+</script>
+</body>
+</html>
