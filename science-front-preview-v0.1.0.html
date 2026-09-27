@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>前線の通過と天気 | 地点Aを通る空気</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1120px;
+}
+.vl-title {
+  font-size: clamp(24px, 3.3vw, 34px);
+}
+.vl-controls {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 252, 252, 0.98);
+  backdrop-filter: blur(8px);
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.toolbar button {
+  min-width: 48px;
+  min-height: 48px;
+}
+#play {
+  min-width: 140px;
+  background: #167454;
+  color: white;
+}
+#play[data-playing='true'] {
+  background: #bc3543;
+}
+.timeline-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex: 1;
+  min-width: 150px;
+  font-size: 13px;
+}
+.timeline-wrap span {
+  white-space: nowrap;
+}
+.timeline-wrap input {
+  width: 100%;
+  min-width: 80px;
+  height: 44px;
+  accent-color: #267974;
+}
+.vl-stage {
+  padding: 22px;
+}
+.intro {
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 16px;
+  color: #4c666f;
+}
+.kind-switch {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.kind-switch button {
+  background: #fff;
+  color: #34525c;
+  border: 1px solid #b5c8ce;
+  min-height: 48px;
+  flex: 1;
+}
+.kind-switch [aria-pressed='true'] {
+  background: #e9f2f5;
+  box-shadow: inset 0 0 0 2px #346e83;
+  font-weight: 700;
+}
+.kind-switch button span {
+  margin-right: 7px;
+}
+.blue {
+  color: #2177b1;
+}
+.orange {
+  color: #c04443;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.diagrams {
+  position: relative;
+  min-width: 0;
+}
+.diagram-card {
+  border: 1px solid #d4e1e4;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f7fafb;
+  margin-bottom: 14px;
+}
+.diagram-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  gap: 8px;
+}
+.diagram-heading h2 {
+  font-size: 16px;
+  margin: 0;
+}
+.diagram-heading h2 span {
+  font-size: 12px;
+  color: #647f89;
+  margin-right: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.diagram-heading p {
+  font-size: 12px;
+  color: #58727d;
+  margin: 0;
+}
+.plan-wrap {
+  position: relative;
+}
+#plan,
+#section {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: hidden;
+}
+#front-handle {
+  position: absolute;
+  top: 4%;
+  left: 10%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: white;
+  border: 2px solid #2177b1;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px #28435230;
+  color: #294552;
+  font-size: 25px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+#front-handle:focus-visible {
+  outline: 3px solid #13837e;
+  outline-offset: 3px;
+}
+#front-handle[aria-disabled='true'] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+[data-dragging='true'] #front-handle {
+  cursor: grabbing;
+  background: #fff9df;
+}
+.drag-hint {
+  font-size: 12px;
+  color: #58717d;
+  margin: 8px 14px;
+}
+.record {
+  min-width: 0;
+  background: #f0f5f5;
+  border-radius: 13px;
+  padding: 18px;
+}
+.record h2 {
+  font-size: 19px;
+  margin: 0 0 8px;
+}
+.record-caption {
+  font-size: 12px;
+  color: #607780;
+  margin: 8px 0;
+  line-height: 1.7;
+}
+.readouts {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 20px 0 10px;
+}
+.temperature > span {
+  font-size: 13px;
+  display: block;
+  color: #526e77;
+}
+.temperature strong {
+  font-size: 40px;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+  display: block;
+  min-width: 90px;
+}
+.temperature strong span {
+  font-size: 20px;
+  margin-left: 4px;
+}
+.weather p {
+  font-size: 13px;
+  margin: 10px 0;
+}
+.weather strong {
+  margin-left: 8px;
+  font-weight: 600;
+}
+#graph {
+  width: 100%;
+  display: block;
+  margin-top: 12px;
+}
+.legend {
+  display: flex;
+  gap: 10px 20px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  margin: 4px 0 18px;
+  color: #4c6671;
+  align-items: center;
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.swatch {
+  width: 17px;
+  height: 13px;
+  display: inline-block;
+  border: 1px solid #92b0bc;
+}
+.swatch.cold {
+  background: #c1e0f5;
+}
+.swatch.warm {
+  background: #ffe1b4;
+}
+.rain-swatch {
+  display: inline-block;
+  background: repeating-linear-gradient(
+    110deg,
+    transparent 0 5px,
+    #536d86 6px 7px,
+    transparent 8px 11px
+  );
+  width: 18px;
+  height: 16px;
+}
+.story {
+  padding-top: 16px;
+  border-top: 1px solid #d7e1df;
+  min-height: 115px;
+}
+.story h2 {
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+.story p {
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0;
+}
+.model-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #627975;
+  margin: 12px 0 0;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #00a05a;
+  color: white;
+  font-size: 34px;
+  pointer-events: none;
+  animation: flash-out 1s ease-out both;
+  z-index: 3;
+}
+#flash[data-kind='pause'] {
+  background: #ef2438;
+}
+[hidden] {
+  display: none !important;
+}
+@keyframes flash-out {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 850px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  .record {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+  }
+  .record h2,
+  .record > .record-caption {
+    grid-column: 1/-1;
+  }
+  .readouts {
+    margin: 4px 0;
+    gap: 18px;
+  }
+  #graph {
+    margin: 0;
+  }
+  .story {
+    margin-top: 16px;
+  }
+}
+@media (max-width: 560px) {
+  .record {
+    display: block;
+  }
+  .readouts {
+    justify-content: space-between;
+  }
+  .diagram-heading {
+    padding: 12px 10px;
+  }
+  .diagram-heading h2 {
+    font-size: 15px;
+  }
+  .diagram-heading p {
+    font-size: 12px;
+  }
+  .diagram-heading h2 span {
+    margin-right: 5px;
+  }
+  .vl-stage {
+    padding: 14px;
+  }
+  .toolbar .timeline-wrap {
+    flex-basis: 100%;
+  }
+  .story {
+    min-height: 160px;
+  }
+}
+@media (max-width: 430px) {
+  .vl-shell {
+    padding: 12px;
+  }
+  .vl-stage,
+  .vl-controls {
+    padding: 12px;
+  }
+  .toolbar {
+    gap: 6px;
+  }
+  #play {
+    min-width: 120px;
+    flex: 1;
+  }
+  .toolbar #reset {
+    font-size: 12px;
+    padding: 8px;
+    min-width: 64px;
+  }
+  .toolbar #previous,
+  .toolbar #next {
+    min-width: 44px;
+    width: 44px;
+    padding: 8px;
+  }
+  .kind-switch button {
+    padding: 10px 6px;
+    font-size: 14px;
+  }
+  .record {
+    padding: 14px;
+  }
+  .story h2 {
+    font-size: 19px;
+  }
+  .story p {
+    font-size: 15px;
+  }
+  .intro {
+    font-size: 14px;
+  }
+  .diagram-heading p {
+    max-width: 108px;
+  }
+  .legend {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 430px) {
+  .toolbar {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+  }
+  .timeline-wrap {
+    grid-column: 1/3;
+  }
+  #reset {
+    grid-column: 3;
+    min-width: 44px !important;
+    width: 44px;
+  }
+  .toolbar #play {
+    min-width: 0;
+  }
+  .toolbar input {
+    min-width: 0;
+  }
+  .timeline-wrap {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .plan-wrap {
+    padding-top: 48px;
+    background: #f7fafb;
+  }
+  #front-handle {
+    top: 2px;
+  }
+  #front-handle::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 42px;
+    height: 4px;
+    border-left: 1px solid currentColor;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 14h13a4 4 0 0 0 0-8 6 6 0 0 0-11-1A4.5 4.5 0 0 0 5 14ZM8 17l-2 4m7-4-2 4m7-4-2 4"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>前線の通過と天気</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">前線の通過と天気</h1><p class="vl-question">前線が通過すると、どうして気温が変わる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="previous" class="vl-secondary" aria-label="前の場面へ">‹</button><button disabled id="play" aria-pressed="false">▶ 再生する</button><button disabled id="next" class="vl-secondary" aria-label="次の場面へ">›</button><label class="timeline-wrap" for="timeline"><span>進行</span><input disabled id="timeline" type="range" min="0" max="30" step="0.01" value="0" aria-label="前線の通過を見直す"></label><button disabled id="reset" class="vl-secondary" aria-label="初めに戻す" title="初めに戻す">↺</button></div></div>
+        <div class="vl-stage"><p class="intro">Aは、天気を記録する場所です。再生して、前線が通り過ぎる前と後を比べよう。</p><div class="kind-switch" role="group" aria-label="前線の種類"><button disabled data-kind-button="cold" aria-pressed="true"><span class="blue">▲</span>寒冷前線</button><button disabled data-kind-button="warm" aria-pressed="false"><span class="orange">◗</span>温暖前線</button></div><div class="legend"><span><i class="swatch cold"></i>寒気</span><span><i class="swatch warm"></i>暖気</span><span><i class="rain-swatch"></i>雨の範囲</span><span>↗ 暖気の上昇</span></div><div class="workspace">
+<div class="diagrams">
+ <section class="diagram-card"><div class="diagram-heading"><h2><span>01</span> 上から見る</h2><p>西から東へ →</p></div>
+ <div class="plan-wrap" id="plan-wrap">
+ <svg id="plan" viewBox="0 0 600 140" role="img" aria-label="上から見た前線。地点Aは中央に固定">
+ <defs><pattern id="rain-plan" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M4 1l-4 9m16-9-4 9" stroke="#516c81" stroke-width="2"/></pattern></defs>
+ <rect width="600" height="140" fill="#ffe1b4"/><rect id="plan-cold" x="0" width="60" height="140" fill="#c1e0f5"/>
+ <rect id="plan-rain" y="0" height="140" fill="url(#rain-plan)" opacity=".5"/>
+ <path d="M300 0V140" stroke="#485b65" stroke-dasharray="4 5" opacity=".6"/><g id="front-symbol"><path d="M60 0V140M60 53l17 10-17 10Z M60 105l17 10-17 10Z" stroke="#2177b1" stroke-width="4" fill="#2177b1"/></g>
+ <circle cx="300" cy="88" r="22" fill="#fff" stroke="#293f48" stroke-width="2"/><text x="300" y="99" text-anchor="middle" font-size="30" font-weight="750" fill="#293f48">A</text>
+ </svg><div id="front-handle" role="slider" tabindex="-1" aria-disabled="true" aria-label="前線を左右に動かす" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0"><span aria-hidden="true">↔</span></div>
+ </div><p class="drag-hint">↔ の前線を左右に動かせます</p></section>
+ <section class="diagram-card"><div class="diagram-heading"><h2><span>02</span> 横から見る</h2><p>地点Aを通る断面</p></div>
+ <svg id="section" viewBox="0 0 600 260" role="img" aria-label="暖気が寒気の上へ上がる前線の断面">
+ <defs><clipPath id="air-clip"><rect width="600" height="235"/></clipPath><marker id="rise-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#ad5a13"/></marker></defs>
+ <rect width="600" height="235" fill="#ffe1b4"/>
+ <g clip-path="url(#air-clip)"><polygon id="section-cold" points="-500,0 -91.61,0 60,235 -500,235" fill="#c1e0f5"/><path id="boundary" fill="none" stroke="#558194" stroke-width="2"/>
+ <g id="rain-section"></g><g id="clouds" fill="#fff" stroke="#8097a3" stroke-width="1.5"></g>
+ <path id="ascent-path" stroke="#ad5a13" stroke-width="3" fill="none" marker-end="url(#rise-arrow)"/><circle id="parcel" r="7" fill="#f49428" stroke="#fff" stroke-width="2"/>
+ </g><path d="M300 0V235" stroke="#485b65" stroke-dasharray="4 5" opacity=".55"/>
+ <path d="M0 235H600V260H0Z" fill="#d9d1bb"/><path d="M0 235H600" stroke="#8c8675" stroke-width="2"/>
+ <path d="M283 218l17-17 17 17v17h-34z" fill="#fff" stroke="#293f48" stroke-width="2"/><text x="300" y="193" text-anchor="middle" font-size="30" font-weight="750" fill="#293f48">A</text>
+ </svg></section><span id="flash" hidden aria-hidden="true"></span>
+</div><aside class="record"><h2>地点Aの記録</h2><p class="record-caption">この場所に入ってくる空気を見る</p><div class="readouts"><div class="temperature"><span>気温</span><strong id="temperature">18<span>℃</span></strong></div><div class="weather"><p>風 <strong id="wind">南から</strong></p><p>雨 <strong id="rain">降っていない</strong></p></div></div>
+<svg id="graph" viewBox="0 0 360 180" role="img" aria-label="前線の通過に伴う地点Aの気温の模式記録"><path d="M40 20V145H340" fill="none" stroke="#9aa9af"/><path d="M40 40H340M40 125H340" stroke="#d7e0e3" stroke-dasharray="4 4"/><path d="M190 20V145" stroke="#b4c3c8" stroke-dasharray="3 4"/><g fill="#4c626a" font-size="22"><text x="5" y="45">18</text><text x="5" y="130">10</text><text x="43" y="23">℃</text><text x="40" y="170">初め</text><text x="190" y="170" text-anchor="middle">通過</text><text x="340" y="170" text-anchor="end">終わり</text></g><path id="temperature-line" fill="none" stroke="#ad6324" stroke-width="3"/><circle id="temperature-point" cx="40" cy="40" r="5" fill="#ad6324" stroke="#fff" stroke-width="2"/></svg><p class="record-caption">気温・風・雨は、典型的な一例です。</p></aside></div><section class="story" aria-live="polite"><h2 id="story-title">地点Aは動きません</h2><p id="story-note">再生して、前線が地点Aを通り過ぎる様子を見よう。二つの図のAは、同じ場所です。</p></section><p class="model-note">時間と距離を縮め、断面の傾きを強調した模式図です。Aの気温や雨の降り方は一例です。</p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>二つの図は同じ前線</h3><p>上は地面を上から見た図、下は地点Aを通る断面です。地面に接する前線の位置がそろっています。上の図の三角や半円は、前線の進む向きを向いています。↔ をつかむほか、進行ゲージや前後のボタンでも途中を見直せます。前線の種類を切り替えると、最初からの比較になります。</p><h3>暖気が上昇すると</h3><p>寒冷前線では、進んできた寒気が暖気の下にもぐりこみ、暖気を押し上げます。温暖前線では、暖気が寒気の上へ緩やかにはい上がります。暖気が上がって冷えると、水蒸気が凝結して雲ができ、雨を降らせることがあります。断面のオレンジの矢印と動く丸は、この暖気の上昇を表します。地上の風向を表す矢印ではありません。</p><h3>Aに入ってくる空気が変わる</h3><p>寒冷前線の通過後は、地上付近の暖気が寒気にかわって気温が下がることが多く、温暖前線の通過後は、寒気が暖気にかわって気温が上がることが多くあります。グラフは前線全体の温度ではなく、動かない地点Aの記録です。</p><h3>風と雨について</h3><p>風向は「どちらから吹いてくるか」です。この例では寒冷前線の前後で南寄りから北寄りへ、温暖前線の前後で東寄りから南寄りへ変わる様子を示しています。前線付近で必ずこの方位になるわけではありません。</p><p>温暖前線の前方に広い雨域、寒冷前線の付近に比較的狭い雨域がある例を描きました。雨域の幅・強さ・雨の有無は、実際には水蒸気の量や上昇の様子などでも変わります。「寒冷前線なら必ず激しい雨」とは限りません。</p><h3>模式図の約束</h3><p>18℃と10℃は、気温が上がる・下がるを比較するための値で、実測値ではありません。変化する途中は滑らかにつなぎ、表示する気温は切り捨てています。前線は線で描きますが、実際の変化には幅があります。縦横の縮尺と断面の傾きは実寸ではなく、低気圧全体、湿度、気圧、閉塞前線などは省いています。雲の形・雨粒・空気の移動経路も単純化しています。</p><p>根拠：<a href="https://www.jma.go.jp/jma/kishou/know/yougo_hp/haichi3.html" target="_blank" rel="noopener noreferrer">気象庁・気団と前線</a>、<a href="https://www.jma.go.jp/jma/kishou/know/windpro/kaisetsu.html" target="_blank" rel="noopener noreferrer">気象庁・ウィンドプロファイラの解説</a>、<a href="https://weather.metoffice.gov.uk/learn-about/weather/atmosphere/weather-fronts" target="_blank" rel="noopener noreferrer">Met Office・Weather fronts</a>、<a href="https://weather.metoffice.gov.uk/learn-about/met-office-for-schools/other-content/other-resources/understanding-weather" target="_blank" rel="noopener noreferrer">Met Office・Understanding weather</a>、<a href="https://www.weather.gov/jkl/education" target="_blank" rel="noopener noreferrer">NWS・Weather Education</a>。図・文章・操作は独自制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var h=(t,e=0,n=1)=>Math.max(e,Math.min(n,t)),B=t=>(t=h(t),t*t*(3-2*t)),N=(t,e,n)=>n==="cold"?e-(235-t)*100/155:e+(235-t)*280/155;var q=t=>h((t-60)/16,0,30);function S(t,e,n){n=h(n);let o=e==="cold"?[t+100,220]:[t-100,218],l=e==="cold"?[t+30,130]:[t+70,130],c=e==="cold"?[t-80,60]:[t+200,68];return{x:(1-n)**2*o[0]+2*(1-n)*n*l[0]+n*n*c[0],y:(1-n)**2*o[1]+2*(1-n)*n*l[1]+n*n*c[1]}}function v(t,e="cold"){t=h(t,0,30);let n=60+16*t,o=B((n-280)/40),l=e==="cold"?[n-35,n+55]:[n-10,n+220],c=(300-l[0])/(l[1]-l[0]),g=c>0&&c<1?Math.sin(Math.PI*c):0;return{time:t,front:n,kind:e,rainArea:l,rain:g,temperature:e==="cold"?18-8*o:10+8*o,wind:o>0&&o<1?"\u5909\u5316\u4E2D":e==="cold"?o===0?"\u5357\u304B\u3089":"\u5317\u304B\u3089":o===0?"\u6771\u304B\u3089":"\u5357\u304B\u3089",phase:t===0?"intro":t<12?"approach":t<14?"near":t<=16?"passing":t<30?"after":"finished"}}function I(t,e){t=h(t,0,30);let n=[];for(let o=0;o<t;o+=.25)n.push(v(o,e));return n.push(v(t,e)),n}function P(t,e){let n=[0,12,15,18,30];return e>0?n.find(o=>o>t+.01)??30:[...n].reverse().find(o=>o<t-.01)??0}var r=t=>document.querySelector(t),i=0,d="cold",p=!1,w=0,C=0,j="",L,u=null;function H(t){clearTimeout(L);let e=r("#flash");e.hidden=!1,e.dataset.kind=t,e.textContent=t==="play"?"\u25B6":"\u2161",e.style.animation="none",e.offsetWidth,e.style.animation="",L=setTimeout(()=>e.hidden=!0,1e3)}function s(){let t=v(i,d),e=t.front,n=d==="cold";Object.assign(document.body.dataset,{time:i.toFixed(4),kind:d,playing:String(p),phase:t.phase,dragging:String(!!u)}),r("#timeline").value=String(i),r("#timeline").setAttribute("aria-valuetext",i<14?"\u524D\u7DDA\u304C\u8FD1\u3065\u304F":i<=16?"\u5730\u70B9A\u3092\u901A\u904E\u4E2D":"\u524D\u7DDA\u304C\u901A\u308A\u904E\u304E\u305F"),r("#play").textContent=p?"\u2161 \u4E00\u6642\u505C\u6B62":i>=30?"\u25B6 \u3082\u3046\u4E00\u5EA6":"\u25B6 \u518D\u751F\u3059\u308B",r("#play").dataset.playing=String(p),r("#play").setAttribute("aria-pressed",String(p)),r("#previous").disabled=i<=0,r("#next").disabled=i>=30,document.querySelectorAll("[data-kind-button]").forEach(a=>a.setAttribute("aria-pressed",String(a.dataset.kindButton===d)));let o=r("#plan-cold");o.setAttribute("x",n?"0":String(e)),o.setAttribute("width",String(n?e:600-e)),r("#plan-rain").setAttribute("x",String(t.rainArea[0])),r("#plan-rain").setAttribute("width",String(t.rainArea[1]-t.rainArea[0]));let l=n?"#2177b1":"#c04443";r("#front-symbol").innerHTML=`<path d="M${e} 0V140" stroke="${l}" stroke-width="4"/>`+[15,63,115].map(a=>n?`<path d="M${e} ${a-10}l17 10-17 10Z" fill="${l}"/>`:`<path d="M${e} ${a-11}a11 11 0 0 1 0 22Z" fill="${l}"/>`).join("");let c=N(0,e,d);r("#section-cold").setAttribute("points",n?`-500,0 ${c},0 ${e},235 -500,235`:`${e},235 ${c},0 1100,0 1100,235`),r("#boundary").setAttribute("d",`M${c} 0L${e} 235`);let g=S(e,d,0),E=S(e,d,1);r("#ascent-path").setAttribute("d",n?`M${g.x} ${g.y}Q${e+30} 130 ${E.x} ${E.y}`:`M${g.x} ${g.y}Q${e+70} 130 ${E.x} ${E.y}`);let k=i%4/4,D=S(e,d,k);r("#parcel").setAttribute("cx",String(D.x)),r("#parcel").setAttribute("cy",String(D.y)),r("#parcel").setAttribute("opacity",String(Math.min(1,k*8,(1-k)*8)));let M=t.rainArea[0],F=t.rainArea[1];r("#rain-section").innerHTML=Array.from({length:n?6:15},(a,f)=>`<path d="M${M+8+(F-M-16)*f/(n?5:14)} 103l-5 18m5 12-5 18m5 12-5 18m5 12-5 18" stroke="#536d86" stroke-width="2" opacity=".5"/>`).join(""),r("#clouds").innerHTML=Array.from({length:n?2:5},(a,f)=>`<path d="M${M+18+f*(F-M-36)/(n?1:4)-20} 98c-13 0-15-21 0-23 2-18 26-20 32-5 18-3 23 27 6 28Z"/>`).join(""),r("#front-handle").style.left=`${e/6}%`,r("#front-handle").setAttribute("aria-valuenow",String(Math.round(i))),r("#front-handle").setAttribute("aria-valuetext",r("#timeline").getAttribute("aria-valuetext")),r("#front-handle").style.borderColor=l,r("#temperature").innerHTML=`${Math.floor(t.temperature+1e-8)}<span>\u2103</span>`,r("#wind").textContent=t.wind,r("#rain").textContent=t.rain>0?"\u964D\u3063\u3066\u3044\u308B":"\u964D\u3063\u3066\u3044\u306A\u3044",r("#temperature-line").setAttribute("d",I(i,d).map((a,f)=>`${f?"L":"M"}${40+a.time*10},${125-(a.temperature-10)*85/8}`).join("")),r("#temperature-point").setAttribute("cx",String(40+i*10)),r("#temperature-point").setAttribute("cy",String(125-(t.temperature-10)*85/8));let T=d+t.phase;if(T!==j){j=T;let a=n?"\u6696\u6C17":"\u5BD2\u6C17",f=n?"\u5BD2\u6C17":"\u6696\u6C17",y="\u5730\u70B9A\u306F\u52D5\u304D\u307E\u305B\u3093",x="\u518D\u751F\u3057\u3066\u3001\u524D\u7DDA\u304C\u5730\u70B9A\u3092\u901A\u308A\u904E\u304E\u308B\u69D8\u5B50\u3092\u898B\u3088\u3046\u3002\u4E8C\u3064\u306E\u56F3\u306EA\u306F\u3001\u540C\u3058\u5834\u6240\u3067\u3059\u3002";t.phase==="approach"&&(y="\u524D\u7DDA\u304C\u8FD1\u3065\u3044\u3066\u304F\u308B",x=n?"\u9752\u3044\u5BD2\u6C17\u304C\u3001\u5730\u9762\u306B\u6CBF\u3063\u3066\u6696\u6C17\u306E\u4E0B\u3078\u5165\u308A\u3053\u307F\u307E\u3059\u3002\u30AA\u30EC\u30F3\u30B8\u306E\u6696\u6C17\u306F\u62BC\u3057\u4E0A\u3052\u3089\u308C\u307E\u3059\u3002":"\u30AA\u30EC\u30F3\u30B8\u306E\u6696\u6C17\u304C\u3001\u9752\u3044\u5BD2\u6C17\u306E\u4E0A\u3078\u7DE9\u3084\u304B\u306B\u4E0A\u304C\u308A\u307E\u3059\u3002\u524D\u7DDA\u3088\u308A\u524D\u306E\u5E83\u3044\u7BC4\u56F2\u3067\u3001\u96E8\u304C\u964D\u308B\u4F8B\u3067\u3059\u3002"),t.phase==="near"&&(y="\u307E\u3082\u306A\u304F\u3001\u5730\u70B9A\u3092\u901A\u904E",x=`\u307E\u3060A\u306E\u5730\u4E0A\u4ED8\u8FD1\u306B\u3042\u308B\u306E\u306F${a}\u3002\u4E0A\u306E\u56F3\u306E\u524D\u7DDA\u3068\u3001\u65AD\u9762\u304C\u5730\u9762\u306B\u63A5\u3059\u308B\u4F4D\u7F6E\u3092\u6BD4\u3079\u3088\u3046\u3002`),t.phase==="passing"&&(y="\u5730\u70B9A\u306E\u7A7A\u6C17\u304C\u5165\u308C\u66FF\u308F\u308B",x=`${a}\u306B\u304B\u308F\u3063\u3066\u3001${f}\u304C\u5165\u3063\u3066\u304D\u307E\u3059\u3002A\u306E\u6C17\u6E29\u306F${n?"\u4E0B\u304C\u3063\u3066":"\u4E0A\u304C\u3063\u3066"}\u3044\u304D\u307E\u3059\u3002`),(t.phase==="after"||t.phase==="finished")&&(y=`\u901A\u904E\u5F8C\u3001\u5730\u70B9A\u306F${f}\u306E\u4E2D`,x=n?"\u6C17\u6E29\u304C\u4E0B\u304C\u308A\u3001\u98A8\u5411\u3082\u5909\u308F\u308A\u307E\u3057\u305F\u3002\u30B0\u30E9\u30D5\u306E\u5909\u5316\u306F\u3001\u5730\u70B9A\u306B\u5165\u308B\u7A7A\u6C17\u304C\u5909\u308F\u3063\u305F\u3053\u3068\u3092\u8868\u3057\u307E\u3059\u3002":"\u6C17\u6E29\u304C\u4E0A\u304C\u308A\u3001\u98A8\u5411\u3082\u5909\u308F\u308A\u307E\u3057\u305F\u3002\u300C\u6E29\u6696\u524D\u7DDA\u300D\u306B\u5207\u308A\u66FF\u3048\u305F\u3068\u304D\u306E\u6700\u521D\u306E\u5BD2\u6C17\u304C\u3001\u6696\u6C17\u306B\u304B\u308F\u3063\u3066\u3044\u307E\u3059\u3002",n||(x="\u6C17\u6E29\u304C\u4E0A\u304C\u308A\u3001\u98A8\u5411\u3082\u5909\u308F\u308A\u307E\u3057\u305F\u3002\u5BD2\u51B7\u524D\u7DDA\u3068\u6BD4\u3079\u308B\u3068\u3001\u5730\u4E0A\u306E\u7A7A\u6C17\u304C\u5165\u308C\u66FF\u308F\u308B\u9806\u5E8F\u304C\u9006\u3067\u3059\u3002")),r("#story-title").textContent=y,r("#story-note").textContent=x}}function A(t=!1){p=!1,cancelAnimationFrame(w),w=0,t&&H("pause")}function X(){i>=30&&(i=0),p=!0,C=performance.now(),H("play"),s();let t=e=>{p&&(i=h(i+Math.min(.1,(e-C)/1e3),0,30),C=e,i>=30&&(p=!1),s(),p&&(w=requestAnimationFrame(t)))};w=requestAnimationFrame(t)}function $(){if(!u)return;let t=u.id;u=null;let e=r("#front-handle");e.hasPointerCapture(t)&&e.releasePointerCapture(t),s()}r("#play").addEventListener("click",()=>{$(),p?(A(!0),s()):X()});r("#timeline").addEventListener("input",t=>{let e=+t.target.value;A(),i=e,s()});r("#reset").addEventListener("click",()=>{$(),A(),i=0,clearTimeout(L),r("#flash").hidden=!0,s()});for(let[t,e]of[["previous",-1],["next",1]])r("#"+t).addEventListener("click",()=>{A(),i=P(i,e),s()});document.querySelectorAll("[data-kind-button]").forEach(t=>t.addEventListener("click",()=>{$(),A(),d=t.dataset.kindButton,i=0,clearTimeout(L),r("#flash").hidden=!0,s()}));var m=r("#front-handle");m.addEventListener("pointerdown",t=>{if(t.button!==0||u)return;A();let e=r("#plan").getBoundingClientRect();u={id:t.pointerId,offset:(t.clientX-e.left)*600/e.width-v(i,d).front},m.setPointerCapture(t.pointerId),m.focus({preventScroll:!0}),s()});m.addEventListener("pointermove",t=>{if(!u||u.id!==t.pointerId)return;let e=r("#plan").getBoundingClientRect();i=q((t.clientX-e.left)*600/e.width-u.offset),s()});for(let t of["pointerup","pointercancel","lostpointercapture"])m.addEventListener(t,e=>{u?.id===e.pointerId&&$()});m.addEventListener("keydown",t=>{let e=i;if(t.key==="ArrowRight"||t.key==="ArrowUp")e+=1;else if(t.key==="ArrowLeft"||t.key==="ArrowDown")e-=1;else if(t.key==="Home")e=0;else if(t.key==="End")e=30;else return;t.preventDefault(),A(),i=h(e,0,30),s()});document.addEventListener("visibilitychange",()=>{document.hidden&&($(),A(),s())});window.addEventListener("resize",$);document.querySelectorAll("button,input").forEach(t=>t.disabled=!1);m.tabIndex=0;m.setAttribute("aria-disabled","false");s();})();
+</script>
+</body>
+</html>
