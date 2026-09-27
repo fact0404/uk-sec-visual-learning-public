@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ダニエル電池 | 電子とイオンの通り道</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1020px;
+}
+.vl-title {
+  font-size: 28px;
+}
+.vl-main {
+  padding-top: 18px;
+}
+.vl-controls {
+  padding: 14px 22px;
+}
+.toolbar {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.toolbar button {
+  min-height: 48px;
+  font-size: 14px;
+}
+#play {
+  min-width: 205px;
+  background: #487958;
+  color: #fff;
+}
+#play[aria-pressed='true'] {
+  background: #b14c43;
+}
+#back {
+  min-width: 48px;
+}
+#reset {
+  margin-left: auto;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 28px;
+  padding: 20px 22px 10px;
+  align-items: center;
+}
+.illustration {
+  min-width: 0;
+  position: relative;
+  width: 100%;
+  max-width: 470px;
+  margin: auto;
+}
+#cell {
+  width: 100%;
+  display: block;
+}
+#cell text {
+  font-size: 22px;
+  font-family: inherit;
+  fill: #425e56;
+}
+#cell .particle text {
+  font-size: 20px;
+  fill: white;
+}
+#cell .solution {
+  font-size: 20px;
+}
+#cell .membrane-label {
+  font-size: 20px;
+}
+#cell .switch-label {
+  font-size: 20px;
+}
+.explanation {
+  min-width: 0;
+  background: #f0f4ed;
+  padding: 22px 20px;
+  border-radius: 15px;
+}
+#step {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #5d7966;
+  margin: 0 0 10px;
+}
+#guide-title {
+  font-size: 19px;
+  line-height: 1.7;
+  margin: 0;
+  min-height: 3.4em;
+}
+#guide-note {
+  font-size: 14px;
+  color: #5e7368;
+  line-height: 1.8;
+  min-height: 5.4em;
+  margin: 10px 0;
+}
+.formulas {
+  display: grid;
+  align-items: center;
+  min-height: 70px;
+  padding: 12px 0;
+  border-top: 1px solid #d4dfcf;
+  font-size: 22px;
+}
+.formulas [data-formula='0'] {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #647a65;
+}
+#membrane-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #667763;
+  margin: 8px 0 0;
+}
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 10px 20px;
+  flex-wrap: wrap;
+  font-size: 15px;
+  padding: 10px 20px 14px;
+}
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.zinc {
+  background: #7e9d9f;
+}
+.copper {
+  background: #c58751;
+}
+.sulfate {
+  background: #9784af;
+}
+.electron {
+  background: #e1b942;
+  width: 10px;
+  height: 10px;
+}
+#state-note {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #466a56;
+  margin: 8px 22px;
+  min-height: 3.6em;
+}
+#progress {
+  width: calc(100% - 44px);
+  height: 5px;
+  margin: 0 22px;
+  display: block;
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  accent-color: #668d70;
+}
+.model-note {
+  font-size: 12px;
+  color: #6b7a65;
+  line-height: 1.8;
+  margin: 8px 22px 18px;
+}
+.final-balance {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  border-top: 1px solid #dce5d5;
+  padding: 12px 22px;
+  font-size: 13px;
+  color: #5d715f;
+}
+.final-balance p {
+  margin: 0;
+  line-height: 1.8;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #00a540;
+  font-size: 30px;
+  pointer-events: none;
+}
+#flash[data-playing='false'] {
+  background: #ec283a;
+}
+.announcement {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 699px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-context {
+    display: none;
+  }
+  .vl-title {
+    font-size: 25px;
+  }
+  .vl-controls {
+    padding: 10px;
+  }
+  .toolbar {
+    gap: 6px;
+  }
+  .toolbar button {
+    font-size: 13px;
+    padding-inline: 10px;
+  }
+  #play {
+    min-width: 178px;
+  }
+  #reset {
+    margin-left: 0;
+  }
+  .workspace {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px 10px;
+  }
+  .explanation {
+    padding: 14px 16px;
+  }
+  #guide-title {
+    min-height: 0;
+    font-size: 17px;
+  }
+  #guide-note {
+    min-height: 0;
+    font-size: 13px;
+  }
+  .formulas {
+    min-height: 65px;
+    font-size: 21px;
+  }
+  .legend {
+    padding: 10px 12px;
+    gap: 10px 14px;
+    font-size: 14px;
+  }
+  #state-note {
+    font-size: 13px;
+    margin-inline: 14px;
+  }
+  .model-note {
+    margin-inline: 14px;
+  }
+  #cell .solution,
+  #cell .membrane-label,
+  #cell .switch-label {
+    font-size: 20px;
+  }
+}
+@media (min-width: 700px) and (max-height: 820px) {
+  .vl-header {
+    padding-block: 9px;
+  }
+  .vl-kicker {
+    display: none;
+  }
+  .vl-main {
+    padding-top: 8px;
+  }
+  .vl-heading {
+    margin-bottom: 12px;
+  }
+  .workspace {
+    padding-top: 10px;
+    gap: 20px;
+  }
+  .illustration {
+    max-width: 380px;
+  }
+  .explanation {
+    padding: 16px 18px;
+  }
+  #guide-note {
+    min-height: 5.4em;
+  }
+  .legend {
+    padding-block: 0 8px;
+  }
+  #state-note {
+    min-height: 0;
+    margin-block: 6px;
+  }
+  .model-note {
+    margin-block: 6px 14px;
+  }
+}
+
+.vl-title .title-part { display: inline-block; }
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3v12a4 4 0 0 0 8 0V3M3 3h12M5 10h8"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span><span class="title-part">ダニエル電池の</span><wbr><span class="title-part">電子とイオン</span></span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title"><span class="title-part">ダニエル電池の</span><wbr><span class="title-part">電子とイオン</span></h1><p class="vl-question">電子は、水溶液の中も通る？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="back" class="vl-secondary" aria-label="前の段階へ戻る">←</button><button disabled id="play" aria-pressed="false">▶ 回路をつなぐ</button><button disabled id="reset" class="vl-secondary">初めから</button></div></div>
+        <div class="vl-stage"><div class="workspace"><div class="illustration"><div id="diagram"><svg id="cell" viewBox="0 0 420 405" role="img" aria-label="亜鉛と銅のダニエル電池。電子は導線、イオンは水溶液を通る"><rect x="24" y="166" width="182" height="168" rx="10" fill="#eef2ed"/><rect x="214" y="166" width="182" height="168" rx="10" fill="#dcedf5"/><path d="M24 152V333Q24 339 31 339H389Q396 339 396 333V152" stroke="#91adb5" stroke-width="3" fill="none"/><rect x="203" y="161" width="14" height="178" rx="3" fill="#d3c8ac" stroke="#b2a585"/><path d="M210 169v158" stroke="#f5f2e6" stroke-width="4" stroke-dasharray="4 9"/><path d="M210 341v26" stroke="#a3946d" stroke-width="2"/><text x="210" y="392" text-anchor="middle" class="membrane-label">仕切りの中は、イオンが移動</text>
+<path d="M70 173V65H160M218 65H342V173" stroke="#829797" stroke-width="5" fill="none"/><circle cx="160" cy="65" r="5" fill="#607c75"/><circle cx="218" cy="65" r="5" fill="#607c75"/><path id="switch-lever" d="M160 65L218 32" stroke="#607c75" stroke-width="5" fill="none" stroke-linecap="round"/><text x="188" y="111" text-anchor="middle" class="switch-label">開いている</text><circle cx="278" cy="65" r="21" fill="#fffdf8" stroke="#829797" stroke-width="2"/><text x="278" y="73" text-anchor="middle">M</text><text x="70" y="143" text-anchor="middle">− 亜鉛</text><text x="342" y="143" text-anchor="middle">銅 ＋</text>
+
+<rect x="55" y="157" width="30" height="157" rx="5" fill="#a2b7b7"/><rect x="327" y="157" width="30" height="157" rx="5" fill="#bd794a"/>
+<g class="particle" data-id="zinc-fixed-1" transform="translate(113 247)"><circle r="16" fill="#7e9d9f" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">2＋</text></g><g class="particle" data-id="zinc-fixed-2" transform="translate(155 284)"><circle r="16" fill="#7e9d9f" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">2＋</text></g><g class="particle" data-id="sulfate-left-1" transform="translate(154 232)"><circle r="16" fill="#9784af" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">2−</text></g><g class="particle" data-id="sulfate-left-2" transform="translate(113 304)"><circle r="16" fill="#9784af" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">2−</text></g><g class="particle" data-id="copper-fixed-1" transform="translate(252 282)"><circle r="16" fill="#c58751" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">2＋</text></g><g class="particle" data-id="copper-fixed-2" transform="translate(313 281)"><circle r="16" fill="#c58751" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">2＋</text></g><g class="particle" data-id="sulfate-right-1" transform="translate(306 209)"><circle r="16" fill="#9784af" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">2−</text></g><g class="particle" data-id="sulfate-right-2" transform="translate(285 317)"><circle r="16" fill="#9784af" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">2−</text></g>
+
+<g class="particle" data-id="zinc-moving" transform="translate(70 245)"><circle r="16" fill="#7e9d9f" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">Zn</text></g><g class="particle" data-id="copper-moving" transform="translate(282 245)"><circle r="16" fill="#c58751" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">2＋</text></g><g class="particle" data-id="sulfate-moving" transform="translate(258 190)"><circle r="16" fill="#9784af" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">2−</text></g>
+
+<text x="112" y="359" text-anchor="middle" class="solution">硫酸亜鉛水溶液</text><text x="304" y="359" text-anchor="middle" class="solution">硫酸銅水溶液</text></svg></div><span id="flash" hidden aria-hidden="true"></span></div><div class="explanation"><p id="step">準備</p><h2 id="guide-title">回路をつないでみよう。</h2><p id="guide-note">亜鉛側と銅側を、金属の導線でつなぎます。</p><div class="formulas"><div data-formula="0">亜鉛は−極、銅は＋極。<br>上のMはモーターです。</div><div data-formula="1" hidden><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">Z</mi><mi mathvariant="normal">n</mi></mrow><mo>⟶</mo><msup><mrow><mi mathvariant="normal">Z</mi><mi mathvariant="normal">n</mi></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><mn>2</mn><msup><mi mathvariant="normal">e</mi><mo lspace="0em" rspace="0em">−</mo></msup></mrow><annotation encoding="application/x-tex">\mathrm{Zn}\longrightarrow\mathrm{Zn}^{2+}+2\mathrm{e}^{-}</annotation></semantics></math></span></div><div data-formula="2" hidden><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><munder><mrow><msup><mi mathvariant="normal">e</mi><mo lspace="0em" rspace="0em">−</mo></msup><mspace width="1em"/><msup><mi mathvariant="normal">e</mi><mo lspace="0em" rspace="0em">−</mo></msup></mrow><mo stretchy="true">⏟</mo></munder><mtext>電子2個</mtext></munder></mrow><annotation encoding="application/x-tex">\underbrace{\mathrm{e}^{-}\quad\mathrm{e}^{-}}_{\text{電子2個}}</annotation></semantics></math></span></div><div data-formula="3" hidden><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">u</mi></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><mn>2</mn><msup><mi mathvariant="normal">e</mi><mo lspace="0em" rspace="0em">−</mo></msup><mo>⟶</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">u</mi></mrow></mrow><annotation encoding="application/x-tex">\mathrm{Cu}^{2+}+2\mathrm{e}^{-}\longrightarrow\mathrm{Cu}</annotation></semantics></math></span></div></div><p id="membrane-note" hidden>紫の硫酸イオンが銅側から亜鉛側へ移る、電荷を補う一例を示しています。</p></div></div>
+<div class="legend"><span><i class="dot zinc"></i><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mi mathvariant="normal">Z</mi><mi mathvariant="normal">n</mi></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Zn}^{2+}</annotation></semantics></math></span> 亜鉛イオン</span><span><i class="dot copper"></i><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">u</mi></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\mathrm{Cu}^{2+}</annotation></semantics></math></span> 銅イオン</span><span><i class="dot sulfate"></i><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">O</mi></mrow><mn>4</mn><mrow><mn>2</mn><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\mathrm{SO}_{4}^{2-}</annotation></semantics></math></span> 硫酸イオン</span><span><i class="dot electron"></i><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="normal">e</mi><mo lspace="0em" rspace="0em">−</mo></msup></mrow><annotation encoding="application/x-tex">\mathrm{e}^{-}</annotation></semantics></math></span> 電子</span></div><p id="state-note">まずは、上の「回路をつなぐ」を押そう。</p><progress id="progress" value="0" max="1" aria-label="1組の変化の進み具合"></progress><p class="model-note">動きを分けて観察しています。実際には、両極の反応とイオンの移動が連動して進みます。</p><div id="final-balance" class="final-balance" hidden><p>図の亜鉛側：2＋と2−は <strong id="final-left">3個ずつ</strong></p><p>図の銅側：2＋と2−は <strong id="final-right">2個ずつ</strong></p></div><p id="announce" class="announcement" aria-live="polite"></p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>電子とイオンの通り道</h3><p>亜鉛では原子が亜鉛イオンになり、電子を放出します。銅側では水溶液の銅イオンが電子を受け取り、銅として付きます。亜鉛という元素が銅という元素に変わるわけではありません。電子は金属の導線を通り、水溶液の中ではイオンが電気を運びます。電流の向きは、導線内の電子の移動方向と逆です。</p><p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">Z</mi><mi mathvariant="normal">n</mi></mrow><mo>+</mo><msup><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">u</mi></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>⟶</mo><msup><mrow><mi mathvariant="normal">Z</mi><mi mathvariant="normal">n</mi></mrow><mrow><mn>2</mn><mo>+</mo></mrow></msup><mo>+</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">u</mi></mrow></mrow><annotation encoding="application/x-tex">\mathrm{Zn}+\mathrm{Cu}^{2+}\longrightarrow\mathrm{Zn}^{2+}+\mathrm{Cu}</annotation></semantics></math></span></p><h3>仕切りは何をしている？</h3><p>仕切りは二つの水溶液の急な混合を抑えながら、イオンを通します。亜鉛側では陽イオンが増え、銅側では陽イオンが減ります。イオンの移動が、両側で電気の偏りが大きくならないように支えます。</p><p>この図では、硫酸イオン1個が銅側から亜鉛側へ移る一例を取り出しています。実際の仕切りを硫酸イオンだけが通れるわけではなく、陽イオンの移動や、濃度差による拡散もあります。移動を分担する割合を測定した模型ではありません。</p><h3>図の見方</h3><p>金属板の大部分や水分子は省略し、変化を追う原子・イオンだけを表示しています。色は種類を分けるための模式的な色です。丸の中の「2＋」「2−」は電気の符号と大きさで、個数ではありません。黄色い小さな丸は電子です。</p><p>図の初めと終わりで、亜鉛・銅・硫酸イオンの全体の数は保存されます。電子2個を出す変化と、受け取る変化が組になります。途中を見やすく区切った演出で、実際に電極反応が順番待ちをする意味ではありません。動く時間や粒子数は実際の濃度・電流・速度を表しません。</p><p>根拠：<a href="https://kinki.chemistry.or.jp/pre/a-15.html" target="_blank" rel="noopener noreferrer">日本化学会近畿支部・Q15 ダニエル電池の仕切り</a>、<a href="https://kinki.chemistry.or.jp/pre/a-38.html" target="_blank" rel="noopener noreferrer">同Q38 イオンの移動</a>。図と操作は独自に制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{function x(e,t=3){if(typeof e!="number"||!Number.isFinite(e)||e<0||e>t)throw new RangeError("Invalid observation position")}var v=e=>{let t=Math.max(0,Math.min(1,e));return t*t*(3-2*t)};function y(e){x(e);let t=v(e),n=v(e-2);return{zinc:{x:70+44*t,y:245-55*t},copper:{x:282+60*n,y:245},sulfate:{x:258-88*n,y:190}}}function w(e){x(e);let t=+(e>0),n=+(e===3),a=+(y(e).sulfate.x<210);return{zincMetal:1-t,zincIons:2+t,copperMetal:n,copperIons:3-n,sulfateLeft:2+a,sulfateRight:3-a,electrons:2*(t-n)}}function M(e){x(e,1);let t=e*592;return t<=155?{x:70,y:220-t}:t<=427?{x:70+t-155,y:65}:{x:342,y:65+t-427}}function g(e){return x(e),Math.min(3,Math.floor(e+1e-9)+1)}function $(e){return x(e),Math.max(0,Math.ceil(e-1e-9)-1)}var o={zinc:"#7e9d9f",copper:"#c58751",sulfate:"#9784af"};function c(e,t,n,a,m){return`<g class="particle" data-id="${e}" transform="translate(${t} ${n})"><circle r="16" fill="${a}" stroke="#fffdfa" stroke-width="1.5"/><text x="0" y="7" text-anchor="middle">${m}</text></g>`}function z(e,t,n){let a=y(e),m=M(Math.max(0,Math.min(1,e-1)));return`<svg id="cell" viewBox="0 0 420 405" role="img" aria-label="\u4E9C\u925B\u3068\u9285\u306E\u30C0\u30CB\u30A8\u30EB\u96FB\u6C60\u3002\u96FB\u5B50\u306F\u5C0E\u7DDA\u3001\u30A4\u30AA\u30F3\u306F\u6C34\u6EB6\u6DB2\u3092\u901A\u308B"><rect x="24" y="166" width="182" height="168" rx="10" fill="#eef2ed"/><rect x="214" y="166" width="182" height="168" rx="10" fill="#dcedf5"/><path d="M24 152V333Q24 339 31 339H389Q396 339 396 333V152" stroke="#91adb5" stroke-width="3" fill="none"/><rect x="203" y="161" width="14" height="178" rx="3" fill="#d3c8ac" stroke="#b2a585"/><path d="M210 169v158" stroke="#f5f2e6" stroke-width="4" stroke-dasharray="4 9"/><path d="M210 341v26" stroke="#a3946d" stroke-width="2"/><text x="210" y="392" text-anchor="middle" class="membrane-label">\u4ED5\u5207\u308A\u306E\u4E2D\u306F\u3001\u30A4\u30AA\u30F3\u304C\u79FB\u52D5</text>
+<path d="M70 173V65H160M218 65H342V173" stroke="${n===2?"#b5a066":"#829797"}" stroke-width="${n===2?7:5}" fill="none"/><circle cx="160" cy="65" r="5" fill="#607c75"/><circle cx="218" cy="65" r="5" fill="#607c75"/><path id="switch-lever" d="M160 65L218 ${t?65:32}" stroke="#607c75" stroke-width="5" fill="none" stroke-linecap="round"/><text x="188" y="111" text-anchor="middle" class="switch-label">${t?"\u3064\u306A\u304C\u3063\u3066\u3044\u308B":"\u958B\u3044\u3066\u3044\u308B"}</text><circle cx="278" cy="65" r="21" fill="#fffdf8" stroke="#829797" stroke-width="2"/><text x="278" y="73" text-anchor="middle">M</text><text x="70" y="143" text-anchor="middle">\u2212 \u4E9C\u925B</text><text x="342" y="143" text-anchor="middle">\u9285 \uFF0B</text>
+${n===1?'<rect x="44" y="155" width="109" height="167" rx="14" stroke="#709f7b" stroke-width="2" fill="none" stroke-dasharray="5 4"/>':""}${n===3?'<rect x="232" y="155" width="141" height="179" rx="14" stroke="#709f7b" stroke-width="2" fill="none" stroke-dasharray="5 4"/>':""}
+<rect x="55" y="157" width="30" height="157" rx="5" fill="#a2b7b7"/><rect x="327" y="157" width="30" height="157" rx="5" fill="#bd794a"/>
+${c("zinc-fixed-1",113,247,o.zinc,"2\uFF0B")+c("zinc-fixed-2",155,284,o.zinc,"2\uFF0B")+c("sulfate-left-1",154,232,o.sulfate,"2\u2212")+c("sulfate-left-2",113,304,o.sulfate,"2\u2212")+c("copper-fixed-1",252,282,o.copper,"2\uFF0B")+c("copper-fixed-2",313,281,o.copper,"2\uFF0B")+c("sulfate-right-1",306,209,o.sulfate,"2\u2212")+c("sulfate-right-2",285,317,o.sulfate,"2\u2212")}
+${e>0?'<circle cx="70" cy="245" r="16" fill="none" stroke="#e4ece8" stroke-width="1.5" stroke-dasharray="3 3"/>':""}
+${c("zinc-moving",a.zinc.x,a.zinc.y,o.zinc,e===0?"Zn":"2\uFF0B")+c("copper-moving",a.copper.x,a.copper.y,o.copper,e===3?"Cu":"2\uFF0B")+c("sulfate-moving",a.sulfate.x,a.sulfate.y,o.sulfate,"2\u2212")}
+${e>0&&e<3?`<g class="electron-pair" transform="translate(${m.x} ${m.y})"><circle cx="-5" cy="-5" r="4.5" fill="#e1b942" stroke="#fff"/><circle cx="5" cy="5" r="4.5" fill="#e1b942" stroke="#fff"/></g>`:""}
+<text x="112" y="359" text-anchor="middle" class="solution">\u786B\u9178\u4E9C\u925B\u6C34\u6EB6\u6DB2</text><text x="304" y="359" text-anchor="middle" class="solution">\u786B\u9178\u9285\u6C34\u6EB6\u6DB2</text></svg>`}var i=e=>document.querySelector(e),r=0,f=1,l=!1,s=!1,b,u,k,C=[["\u56DE\u8DEF\u3092\u3064\u306A\u3044\u3067\u307F\u3088\u3046\u3002","\u4E9C\u925B\u5074\u3068\u9285\u5074\u3092\u3001\u91D1\u5C5E\u306E\u5C0E\u7DDA\u3067\u3064\u306A\u304E\u307E\u3059\u3002"],["\u4E9C\u925B\u304C\u96FB\u5B50\u3092\u6B8B\u3057\u3066\u3001\u6EB6\u3051\u51FA\u3059\u3002","\u4E9C\u925B\u539F\u5B50\u304C\u96FB\u5B502\u500B\u3092\u6B8B\u3057\u3001\u4E9C\u925B\u30A4\u30AA\u30F3\u306B\u306A\u308A\u307E\u3059\u3002"],["\u96FB\u5B50\u306F\u3001\u5C0E\u7DDA\u3092\u901A\u3063\u3066\u9285\u5074\u3078\u3002","\u96FB\u5B50\u306F\u91D1\u5C5E\u306E\u4E2D\u3092\u9032\u307F\u307E\u3059\u3002\u6C34\u6EB6\u6DB2\u3092\u6A2A\u5207\u308B\u3053\u3068\u306F\u3042\u308A\u307E\u305B\u3093\u3002"],["\u9285\u304C\u4ED8\u304D\u3001\u30A4\u30AA\u30F3\u304C\u504F\u308A\u3092\u88DC\u3046\u3002","\u9285\u30A4\u30AA\u30F3\u304C\u96FB\u5B502\u500B\u3092\u53D7\u3051\u53D6\u308B\u3068\u3001\u9285\u306B\u306A\u308A\u307E\u3059\u3002\u4ED5\u5207\u308A\u3067\u306F\u30A4\u30AA\u30F3\u304C\u79FB\u52D5\u3057\u307E\u3059\u3002"]];function h(){l=!1,cancelAnimationFrame(b),u=void 0}function p(){clearTimeout(k),i("#flash").hidden=!0}function E(e){clearTimeout(k);let t=i("#flash");t.hidden=!1,t.textContent=e?"\u25B6":"\u2161",t.dataset.playing=e,t.getAnimations().forEach(n=>n.cancel()),matchMedia("(prefers-reduced-motion: reduce)").matches||t.animate([{opacity:1},{opacity:0}],{duration:1e3,fill:"forwards"}),k=setTimeout(()=>t.hidden=!0,1e3)}function d(){let e=l?f:Math.ceil(r);Object.assign(document.body.dataset,{q:r,target:f,playing:l,closed:s,focus:e}),i("#diagram").innerHTML=z(r,s,e),i("#step").textContent=e===0?"\u6E96\u5099":e+" / 3",i("#guide-title").textContent=C[e][0],i("#guide-note").textContent=C[e][1],document.querySelectorAll("[data-formula]").forEach(n=>n.hidden=+n.dataset.formula!==e),i("#back").disabled=r===0,i("#play").setAttribute("aria-pressed",l),i("#play").textContent=l?"\u2161 \u56DE\u8DEF\u3092\u958B\u304F":r===3?"\u25B6 \u3082\u3046\u4E00\u5EA6":Number.isInteger(r)?r===0?"\u25B6 \u56DE\u8DEF\u3092\u3064\u306A\u3050":r===1?"\u25B6 \u5C0E\u7DDA\u3092\u8FFD\u3046":"\u25B6 \u9285\u3068\u4ED5\u5207\u308A\u3092\u8FFD\u3046":"\u25B6 \u3064\u306A\u3044\u3067\u7D9A\u3051\u308B",i("#progress").value=r/3,i("#state-note").textContent=l?"\u56DE\u8DEF\u3092\u3064\u306A\u3044\u3067\u3001\u52D5\u304D\u3092\u89B3\u5BDF\u3057\u3066\u3044\u307E\u3059\u3002":r===3?"1\u7D44\u306E\u5909\u5316\u3092\u898B\u7D42\u3048\u307E\u3057\u305F\u3002\u4E21\u5074\u306E\uFF0B\u3068\u2212\u306E\u5408\u8A08\u306F\u3064\u308A\u5408\u3044\u307E\u3059\u3002":r===0?"\u307E\u305A\u306F\u3001\u4E0A\u306E\u300C\u56DE\u8DEF\u3092\u3064\u306A\u3050\u300D\u3092\u62BC\u305D\u3046\u3002":s?"\u533A\u5207\u308A\u3067\u6B62\u3081\u3066\u3044\u307E\u3059\u3002\u56F3\u3092\u898B\u3066\u304B\u3089\u6B21\u3078\u3002":"\u56DE\u8DEF\u3092\u958B\u3044\u3066\u3001\u3053\u306E\u4F4D\u7F6E\u3067\u6B62\u3081\u3066\u3044\u307E\u3059\u3002",i("#membrane-note").hidden=e!==3,i("#final-balance").hidden=r!==3;let t=w(r);i("#final-left").textContent=t.zincIons+"\u500B\u305A\u3064",i("#final-right").textContent=t.copperIons+"\u500B\u305A\u3064"}function A(e){if(!l)return;let t=u===void 0?0:Math.min((e-u)/1e3,.1);u=e,r=Math.min(f,r+t/6),r===f&&(h(),p(),r===3&&(s=!1),i("#announce").textContent=r===3?"1\u7D44\u306E\u5909\u5316\u304C\u7D42\u308F\u308A\u307E\u3057\u305F\u3002":"\u56F3\u306E\u5909\u5316\u3092\u78BA\u8A8D\u3057\u3066\u3001\u6B21\u3078\u9032\u307F\u307E\u3057\u3087\u3046\u3002"),d(),l&&(b=requestAnimationFrame(A))}i("#play").addEventListener("click",()=>{l?(h(),s=!1,E(!1)):(r===3&&(r=0),f=g(r),s=!0,l=!0,u=void 0,E(!0),b=requestAnimationFrame(A)),d()});i("#back").addEventListener("click",()=>{h(),p(),r=$(r),f=g(r),s=!1,d()});i("#reset").addEventListener("click",()=>{h(),p(),r=0,f=1,s=!1,d()});document.addEventListener("visibilitychange",()=>{document.hidden&&(h(),p(),s=!1,d())});document.querySelectorAll("button").forEach(e=>e.disabled=!1);d();})();
+</script>
+</body>
+</html>
