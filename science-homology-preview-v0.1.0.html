@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>腕・胸びれ・翼を重ねる | 相同器官</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1120px;
+}
+.vl-title {
+  font-size: clamp(23px, 3.2vw, 34px);
+}
+.vl-controls {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 252, 252, 0.97);
+  backdrop-filter: blur(8px);
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.toolbar button {
+  min-height: 48px;
+  min-width: 48px;
+}
+#main-action {
+  background: #167454;
+  color: white;
+  min-width: 180px;
+}
+#main-action[data-playing='true'] {
+  background: #bd353f;
+}
+.species {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.species button {
+  background: #fff;
+  color: #355261;
+  border: 1px solid #d1dddd;
+  font-weight: 600;
+}
+.species button[aria-pressed='true'] {
+  border: 2px solid #257c77;
+  background: #e7f3ef;
+}
+.toolbar #reset {
+  margin-left: auto;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 270px;
+  gap: 22px;
+  align-items: center;
+}
+.diagram-panel {
+  position: relative;
+  min-width: 0;
+  border: 1px solid #d5e1df;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f1f5f4;
+}
+.figure-names {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 20px 10px 0;
+  text-align: center;
+}
+.figure-names div {
+  width: 50%;
+}
+.figure-names strong {
+  font-size: 17px;
+}
+.figure-names small {
+  display: block;
+  font-size: 13px;
+  color: #5a727b;
+  margin-top: 5px;
+}
+#comparison {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+.outline {
+  fill: #d5e2df;
+  stroke: #6e8c91;
+  stroke-width: 1.8;
+  opacity: 0.94;
+  transition: opacity 0.35s;
+}
+.skeleton {
+  opacity: 0;
+  transition: opacity 0.45s;
+  pointer-events: none;
+}
+.revealed .outline {
+  opacity: 0.19;
+}
+.revealed .skeleton {
+  opacity: 1;
+  pointer-events: auto;
+}
+.overlaid #human .outline {
+  opacity: 0;
+}
+.overlaid #human .bones {
+  stroke-dasharray: 6 5;
+  stroke: #78868d;
+}
+.overlaid #human .bones path {
+  stroke-width: 3.5;
+}
+.overlaid #human .bones circle {
+  stroke-width: 1.8;
+}
+.bones {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.bones.muted {
+  opacity: 0.12;
+}
+.bones.selected {
+  filter: drop-shadow(0 0 1px currentColor);
+}
+.bones:focus-visible {
+  outline: 2px dashed #243f4f;
+  outline-offset: 7px;
+}
+.comparison-key {
+  margin: 0;
+  padding: 0 10px 14px;
+  text-align: center;
+  font-size: 13px;
+  color: #415f68;
+  min-height: 34px;
+}
+#comparison-key[hidden] {
+  display: block !important;
+  visibility: hidden;
+}
+.story h2 {
+  font-size: 22px;
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+.story p {
+  line-height: 1.85;
+  font-size: 16px;
+  margin: 0;
+}
+.story #conclusion {
+  margin-top: 15px;
+  padding-top: 14px;
+  border-top: 1px solid #d1deda;
+  font-size: 15px;
+}
+.story b {
+  color: #155d62;
+}
+.compare-controls {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin: 12px 0 0;
+}
+.compare-controls span {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.compare-controls input {
+  min-width: 44px;
+  width: 100%;
+  height: 44px;
+  accent-color: #157b70;
+}
+.groups {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.groups button {
+  min-height: 48px;
+  min-width: 60px;
+  color: #294956;
+  background: white;
+  border: 1px solid #ccd9d8;
+  font-size: 14px;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.groups i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bone);
+}
+.groups button[aria-pressed='true'] {
+  border: 2px solid #225e67;
+  background: #edf6f3;
+}
+.model-note {
+  font-size: 12px;
+  color: #667d83;
+  line-height: 1.7;
+  margin: 12px 0 0;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 34px;
+  background: #00a35b;
+  animation: flash-out 1s ease-out both;
+}
+#flash[data-kind='pause'] {
+  background: #ed2337;
+}
+#flash[hidden],
+[hidden] {
+  display: none !important;
+}
+@keyframes flash-out {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 800px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  .story {
+    min-height: 155px;
+  }
+  .vl-stage {
+    padding: 16px;
+  }
+  .workspace {
+    gap: 18px;
+  }
+}
+@media (max-width: 430px) {
+  .vl-shell {
+    padding: 12px;
+  }
+  .vl-controls {
+    padding: 12px;
+  }
+  .vl-stage {
+    padding: 12px;
+  }
+  .toolbar {
+    gap: 8px;
+  }
+  .toolbar #main-action {
+    flex: 1;
+    min-width: 150px;
+    order: 0;
+  }
+  .toolbar #reset {
+    flex: 0 0 76px;
+    min-width: 76px;
+    padding: 8px;
+    order: 1;
+    font-size: 13px;
+  }
+  .species {
+    order: 2;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .figure-names {
+    padding-top: 16px;
+  }
+  .figure-names strong {
+    font-size: 14px;
+  }
+  .figure-names small {
+    font-size: 12px;
+  }
+  .story h2 {
+    font-size: 20px;
+  }
+  .story p {
+    font-size: 15px;
+  }
+  .groups {
+    gap: 6px;
+  }
+  .groups button {
+    font-size: 12px;
+    padding: 8px;
+    flex: 1 1 42%;
+  }
+  .comparison-key {
+    font-size: 12px;
+  }
+  .compare-controls {
+    gap: 6px;
+  }
+  .model-note {
+    font-size: 12px;
+  }
+  .story {
+    min-height: 185px;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 4v8l4 7m-4-7 7-4m-3 11 8-4M13 8l6 3"/><circle cx="6" cy="4" r="2"/><circle cx="10" cy="19" r="2"/><circle cx="18" cy="15" r="2"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>腕・胸びれ・翼を重ねる</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">腕・胸びれ・翼を重ねる</h1><p class="vl-question">腕・胸びれ・翼。中の骨に共通点はある？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="main-action" aria-pressed="false">骨をのぞいてみる</button><div class="species" role="group" aria-label="ヒトと比べる動物"><button disabled data-choice="dolphin" aria-pressed="true">イルカ</button><button disabled data-choice="bat" aria-pressed="false">コウモリ</button></div><button disabled id="reset" class="vl-secondary">初めから</button></div></div>
+        <div class="vl-stage"><div class="workspace"><div><div class="diagram-panel"><div class="figure-names"><div><strong>ヒトの腕</strong><small>ものをつかむ</small></div><div><strong id="animal-name">イルカの胸びれ</strong><small id="animal-use">水中で向きを変える</small></div></div><svg id="comparison" viewBox="0 0 600 375" aria-label="ヒトと動物の前肢を比べる模式図"><title>腕と胸びれを外形から比べる</title><defs><radialGradient id="paper"><stop stop-color="#fff"/><stop offset="1" stop-color="#f1f5f4"/></radialGradient></defs><rect width="600" height="375" fill="url(#paper)"/><path id="alignment-line" d="M300 30V355" stroke="#889b9d" stroke-dasharray="3 7" opacity="0"/><g id="human-slot"><g id="human" transform="translate(150 55) rotate(0) scale(1.12)" data-animal="human"><path class="outline" d="M-23-5Q-30 22-16 74L-19 139Q-23 149-32 162L-59 180Q-66 187-60 196Q-56 199-48 194L-32 182L-40 220Q-44 233-32 234Q-25 234-23 224L-17 206L-12 234Q-11 245 0 245Q10 244 10 233L10 216L12 230Q17 243 27 233L28 218Q34 227 43 221Q49 215 44 204L23 156L25 141L23 79Q30 28 20-5Z"/><g class="skeleton" aria-label="ヒトの腕の骨"><g data-bone="upper" role="button" tabindex="-1" aria-label="ヒトの腕：① 付け根の骨" stroke="#2479b8" fill="none" stroke-linecap="round" stroke-linejoin="round" class="bones"><path d="M0.27544941317062877 6.794418858208844L2.724550586829371 67.20558114179116" stroke-width="12" /></g><g data-bone="forearm" role="button" tabindex="-1" aria-label="ヒトの腕：② その先の骨" stroke="#c26a16" fill="none" stroke-linecap="round" stroke-linejoin="round" class="bones"><path d="M-0.5762509338138646 85.26857996629819L-6.423749066186136 138.7314200337018" stroke-width="9" /><path d="M9.834455812398078 85.29741400326152L8.165544187601922 138.7025859967385" stroke-width="9" /></g><g data-bone="hand" role="button" tabindex="-1" aria-label="ヒトの腕：③ 手首・指の骨" stroke="#24876d" fill="none" stroke-linecap="round" stroke-linejoin="round" class="bones"><circle cx="-8" cy="152" r="3.3" stroke-width="3"/><circle cx="0" cy="152" r="3.3" stroke-width="3"/><circle cx="8" cy="152" r="3.3" stroke-width="3"/><circle cx="-6" cy="158" r="3.3" stroke-width="3"/><circle cx="3" cy="158" r="3.3" stroke-width="3"/><circle cx="10" cy="158" r="3.3" stroke-width="3"/><path d="M-11.073197120352116 160.2350524511652L-26.926802879647884 171.7649475488348" stroke-width="6" /><path d="M-33.258473117707666 175.9550838706246L-41.741526882292334 181.0449161293754" stroke-width="6" /><path d="M-46.895685424949235 184.89568542494925L-50.104314575050765 188.10431457505075" stroke-width="3.761808075912433" /><path d="M-6.60022296452759 165.44663407744403L-16.39977703547241 186.55336592255597" stroke-width="6" /><path d="M-19.60696476825827 193.443495931982L-23.39303523174173 201.556504068018" stroke-width="6" /><path d="M-25.764028500029067 208.05611400011625L-27.235971499970933 213.94388599988375" stroke-width="4.700340413204133" /><path d="M-28.599776902317902 219.09921915811265L-29.400223097682098 221.90078084188735" stroke-width="2.7664417579265974" /><path d="M0.762962512610314 165.792599798235L-0.762962512610314 190.207400201765" stroke-width="6" /><path d="M-1 197.8L-1 209.2" stroke-width="6" /><path d="M-1 216.27L-1 222.73" stroke-width="4.94" /><path d="M-1 228.13L-1 230.87" stroke-width="2.66" /><path d="M7.86347253930439 165.7005965970188L13.13652746069561 188.2994034029812" stroke-width="6" /><path d="M14.660384268854381 195.74217752350816L16.339615731145617 205.25782247649184" stroke-width="6" /><path d="M17.256436383882992 212.0772366065959L17.743563616117008 217.9227633934041" stroke-width="4.5758059399410715" /><path d="M18.321519189844285 222.92911513906571L18.678480810155715 225.07088486093429" stroke-width="2.311449761513323" /><path d="M14.013995972012085 164.22239355521933L24.986004027987917 181.77760644478067" stroke-width="6" /><path d="M28.475246541969398 188.19636750760037L31.524753458030602 194.80363249239963" stroke-width="5.440772004045014" /><path d="M33.82298221281347 200.4689466384404L35.17701778718653 204.5310533615596" stroke-width="3.6049965325919526" /><path d="M36.632982212813474 208.8989466384404L37.367017787186526 211.1010533615596" stroke-width="2.4033310217279684" /></g></g></g></g><g id="animal-slot"><g id="animal" transform="translate(435 50) rotate(26) scale(0.88)" data-animal="dolphin"><path class="outline" d="M-23-7Q-41 15-42 70Q-57 103-44 149Q-39 176-26 213Q-14 247 16 253Q40 252 58 218Q79 168 60 110Q51 65 29-6Z"/><g class="skeleton" aria-label="イルカの胸びれの骨"><g data-bone="upper" role="button" tabindex="-1" aria-label="イルカの胸びれ：① 付け根の骨" stroke="#2479b8" fill="none" stroke-linecap="round" stroke-linejoin="round" class="bones"><path d="M0.5976779100152285 6.77368298017259L2.4023220899847715 27.22631701982741" stroke-width="12" /></g><g data-bone="forearm" role="button" tabindex="-1" aria-label="イルカの胸びれ：② その先の骨" stroke="#c26a16" fill="none" stroke-linecap="round" stroke-linejoin="round" class="bones"><path d="M-5.8970729398009984 46.15816940385574L-8.102927060199002 58.84183059614426" stroke-width="8.871189322745852" /><path d="M10.775250220578954 46.169244926684044L10.224749779421046 58.830755073315956" stroke-width="8.748256969248217" /></g><g data-bone="hand" role="button" tabindex="-1" aria-label="イルカの胸びれ：③ 手首・指の骨" stroke="#24876d" fill="none" stroke-linecap="round" stroke-linejoin="round" class="bones"><circle cx="-13" cy="74" r="3.3" stroke-width="3"/><circle cx="-3" cy="73" r="3.3" stroke-width="3"/><circle cx="8" cy="73" r="3.3" stroke-width="3"/><circle cx="-11" cy="81" r="3.3" stroke-width="3"/><circle cx="0" cy="82" r="3.3" stroke-width="3"/><circle cx="11" cy="81" r="3.3" stroke-width="3"/><path d="M-15.31793089462048 86.6217670228445L-26.682069105379522 104.3782329771555" stroke-width="7" /><path d="M-29.80711937189796 110.60071797611566L-31.19288062810204 115.06594869055101" stroke-width="3.8461640341745422" /><path d="M-32.80711937189796 120.26738464278233L-34.19288062810204 124.73261535721767" stroke-width="3.846164034174537" /><path d="M-35.80711937189796 129.934051309449L-37.19288062810204 134.39928202388435" stroke-width="3.8461640341745422" /><path d="M-6.747276935808905 90.23456930291712L-14.252723064191095 132.76543069708288" stroke-width="7" /><path d="M-15 140.33333333333334L-15 147" stroke-width="5.06666666666667" /><path d="M-15 153.66666666666669L-15 160.33333333333331" stroke-width="5.066666666666659" /><path d="M-15 167L-15 173.66666666666666" stroke-width="5.06666666666667" /><path d="M-15 180.33333333333334L-15 186.99999999999997" stroke-width="5.066666666666659" /><path d="M-15 193.66666666666666L-15 200.33333333333334" stroke-width="5.0666666666666815" /><path d="M-15 207.00000000000003L-15 213.66666666666666" stroke-width="5.066666666666659" /><path d="M0.5527823231579975 92.2643207786474L6.447217676842002 137.7356792213526" stroke-width="7" /><path d="M7.35605741510339 145.34693970197185L8.072514013468039 152.08163172659957" stroke-width="5.13165128374475" /><path d="M8.784628843674819 158.7755111305433L9.501085442039468 165.51020315517098" stroke-width="5.131651283744761" /><path d="M10.213200272246247 172.2040825591147L10.929656870610895 178.93877458374243" stroke-width="5.13165128374475" /><path d="M11.641771700817674 185.63265398768615L12.358228299182324 192.36734601231385" stroke-width="5.131651283744761" /><path d="M13.070343129389103 199.06122541625757L13.786799727753753 205.7959174408853" stroke-width="5.13165128374475" /><path d="M14.498914557960532 212.489796844829L15.215371156325181 219.2244888694567" stroke-width="5.13165128374475" /><path d="M15.927485986531961 225.91836827340043L16.64394258489661 232.65306029802812" stroke-width="5.131651283744761" /><path d="M9.566917198896203 90.00434395273474L24.433082801103797 127.99565604726526" stroke-width="7" /><path d="M26.593072939800997 135.41016940385575L27.806927060199 142.38983059614426" stroke-width="5.322713593647515" /><path d="M28.993072939800996 149.21016940385576L30.206927060199003 156.18983059614425" stroke-width="5.322713593647504" /><path d="M31.393072939800998 163.01016940385574L32.606927060199006 169.98983059614426" stroke-width="5.322713593647515" /><path d="M33.793072939801 176.81016940385575L35.006927060199004 183.78983059614424" stroke-width="5.322713593647504" /><path d="M36.193072939801 190.61016940385574L37.406927060199 197.58983059614425" stroke-width="5.322713593647515" /><path d="M16.67409321748682 85.36737664424267L38.32590678251318 112.63262335575733" stroke-width="7" /><path d="M41.97063914223051 118.84720815054283L43.77936085776949 124.15279184945717" stroke-width="4.416222933684394" /><path d="M45.72063914223051 129.84720815054283L47.52936085776949 135.15279184945717" stroke-width="4.416222933684394" /><path d="M49.47063914223051 140.84720815054283L51.27936085776949 146.15279184945717" stroke-width="4.416222933684394" /><path d="M53.22063914223051 151.84720815054283L55.02936085776949 157.15279184945717" stroke-width="4.416222933684394" /></g></g></g></g><circle id="shoulder" cx="300" cy="62" r="7" fill="#fff" stroke="#4d6570" stroke-width="2" opacity="0"/></svg><p id="comparison-key" class="comparison-key" hidden></p><span id="flash" hidden aria-hidden="true"></span></div><label id="compare-controls" class="compare-controls" hidden for="amount"><span>離す</span><input disabled id="amount" type="range" min="0" max="1" step="0.001" value="0" aria-label="二つの骨の位置をそろえる"><span>そろえる</span></label><div id="group-controls" class="groups" role="group" aria-label="対応する骨を強調" hidden><button disabled data-part="all" aria-pressed="true">全体</button><button disabled data-part="upper" aria-pressed="false"><i style="--bone:#2479b8" aria-hidden="true"></i>① 付け根の骨</button><button disabled data-part="forearm" aria-pressed="false"><i style="--bone:#c26a16" aria-hidden="true"></i>② その先の骨</button><button disabled data-part="hand" aria-pressed="false"><i style="--bone:#24876d" aria-hidden="true"></i>③ 手首・指の骨</button></div></div><section class="story"><div aria-live="polite"><h2 id="explanation-title">使い方も、形も違う</h2><p id="explanation-note">ヒトの腕はものをつかむ。イルカの胸びれは水中で向きを変える。この中には、どんな骨がある？</p></div><p id="conclusion" hidden>基本の構造と由来が共通する器官を、<b>相同器官</b>といいます。共通の祖先を考える手がかりです。</p></section></div>
+
+<p class="model-note">前肢を簡略化した模式図。大きさを調整して表示しています。位置をそろえる動きは、比較のためのものです。</p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>同じ部分を探すには</h3><p>まず骨を表示し、青・オレンジ・緑の順に追ってください。下のボタンや図の骨を選ぶと、両方の動物の対応する部分が強調されます。もう一度押すと全体に戻ります。「重ねて比べる」では、付け根を同じ位置にそろえます。ヒトはグレーの点線で残します。ゲージで途中も見られます。</p><p>青は上腕骨、オレンジは橈骨・尺骨、緑は手首から指の骨をまとめたものです。対応する部分でも形・長さ・骨の数に違いがあり、完全には重なりません。同じ色が、すべて同じ本数という意味ではありません。</p>
+<h3>形の違いと、共通する構造</h3><p>イルカの胸びれの内部にも、上腕・前腕・手首・指に対応する骨があります。コウモリでは短い親指以外の指が長く、翼の膜を支えています。オレンジの骨の一方（尺骨）は細く短くなっています。</p><p>これらは、共通の祖先から受け継いだ前肢の基本構造が、異なるはたらきに関わる形で残っている例です。現在のヒトの腕が、そのままイルカの胸びれになったという意味ではありません。共通性の判断には、骨の位置関係だけでなく、発生や遺伝情報などの証拠も使います。</p>
+<h3>この図で省いたこと</h3><p>動物ごとの骨の配置を比べるための概念図で、標本を正確に写した解剖図や、実際の大きさの比較ではありません。肩甲骨、筋肉、骨の細かな凹凸、関節面、種による違いを省いています。胸びれや翼の外形も単純化しています。コウモリの翼膜は体の側面などにもつながりますが、ここでは前肢を中心に取り出しました。</p><p>イルカなどクジラ類では、指の節が増えたものが見られます。すべての種の指の数や節数が、この図と同じという意味ではありません。コウモリの尺骨の退縮・橈骨との接合も、見分けるため離して描いています。</p>
+<p>根拠：<a href="https://openstax.org/books/biology-2e/pages/20-2-determining-evolutionary-relationships" target="_blank" rel="noopener noreferrer">OpenStax Biology 2e・20.2</a>、<a href="https://animaldiversity.org/collections/mammal_anatomy/bat_wings/" target="_blank" rel="noopener noreferrer">ミシガン大学・Bat Wings and Tails</a>、<a href="https://www.wcupa.edu/sciences-mathematics/biology/fFish/documents/2004IEEEJOE.pdf" target="_blank" rel="noopener noreferrer">Fish (2004)・Structure and Mechanics of Nonpiscine Control Surfaces</a>。図・文章・操作は独自制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var b=["upper","forearm","hand"],A={upper:"#2479b8",forearm:"#c26a16",hand:"#24876d"},u={human:"\u30D2\u30C8\u306E\u8155",dolphin:"\u30A4\u30EB\u30AB\u306E\u80F8\u3073\u308C",bat:"\u30B3\u30A6\u30E2\u30EA\u306E\u7FFC"},S={all:"\u5168\u4F53",upper:"\u2460 \u4ED8\u3051\u6839\u306E\u9AA8",forearm:"\u2461 \u305D\u306E\u5148\u306E\u9AA8",hand:"\u2462 \u624B\u9996\u30FB\u6307\u306E\u9AA8"},v=(t,a=0,o=1)=>Math.min(o,Math.max(a,Number.isFinite(+t)?+t:0)),c=(t,a,o)=>t+(a-t)*o;function f(t,a){let o=[t[0]];for(let r=1;r<t.length;r++)for(let i=1;i<=a[r-1];i++)o.push([c(t[r-1][0],t[r][0],i/a[r-1]),c(t[r-1][1],t[r][1],i/a[r-1])]);return o}var k={human:{elbow:[3,74],wrist:[0,146],upper:[[[0,0],[3,74]]],forearm:[[[0,80],[-7,144]],[[10,80],[8,144]]],carpals:[[-8,152],[0,152],[8,152],[-6,158],[3,158],[10,158]],digits:[[[-8,158],[-30,174],[-45,183],[-52,190]],[[-5,162],[-18,190],[-25,205],[-28,217],[-30,224]],[[1,162],[-1,194],[-1,213],[-1,226],[-1,233]],[[7,162],[14,192],[17,209],[18,221],[19,227]],[[12,161],[27,185],[33,198],[36,207],[38,213]]],outline:"M-23-5Q-30 22-16 74L-19 139Q-23 149-32 162L-59 180Q-66 187-60 196Q-56 199-48 194L-32 182L-40 220Q-44 233-32 234Q-25 234-23 224L-17 206L-12 234Q-11 245 0 245Q10 244 10 233L10 216L12 230Q17 243 27 233L28 218Q34 227 43 221Q49 215 44 204L23 156L25 141L23 79Q30 28 20-5Z"},dolphin:{elbow:[3,34],wrist:[0,66],upper:[[[0,0],[3,34]]],forearm:[[[-5,41],[-9,64]],[[11,41],[10,64]]],carpals:[[-13,74],[-3,73],[8,73],[-11,81],[0,82],[11,81]],digits:[f([[-13,83],[-29,108],[-38,137]],[1,3]),f([[-6,86],[-15,137],[-15,217]],[1,6]),f([[0,88],[7,142],[17,236]],[1,7]),f([[8,86],[26,132],[38,201]],[1,5]),f([[14,82],[41,116],[56,160]],[1,4])],outline:"M-23-7Q-41 15-42 70Q-57 103-44 149Q-39 176-26 213Q-14 247 16 253Q40 252 58 218Q79 168 60 110Q51 65 29-6Z"},bat:{elbow:[-16,72],wrist:[0,146],upper:[[[0,0],[-16,72]]],forearm:[[[-17,79],[0,143]],[[-9,78],[-7,110]]],carpals:[[-5,150],[3,150],[-3,156],[5,156]],digits:[[[-4,154],[-19,157],[-25,168],[-23,177]],[[-1,158],[-37,194],[-64,223],[-80,245]],[[2,158],[7,203],[9,235],[10,256]],[[5,157],[47,183],[72,205],[85,218]],[[8,154],[68,160],[105,164],[130,162]]],outline:"M-9-7L-29 75L-16 145L-26 154L-33 170Q-34 186-22 188L-15 171L-6 165L-85 250Q-35 210 10 261Q33 202 87 225Q87 169 137 164Q66 139 12 24L10-7Z"}};function M(t){return k[t]||k.human}function g(t,a){let o=v(a),r=t==="human";return{x:c(r?150:435,300,o),y:c(r?55:50,62,o),angle:c(r?0:26,0,o),scale:c(r?1.12:.88,1.12,o)}}function q(t,a,o){let r=v(o/1);return c(t,a,r*r*(3-2*r))}function y(t){let a=["dolphin","bat"].includes(t.animal)?t.animal:"dolphin",o=!!t.reveal;return{animal:a,reveal:o,amount:o?v(t.amount):0,group:o&&b.includes(t.group)?t.group:"all"}}function w(t,a){return a==="upper"?"\u4ED8\u3051\u6839\u306B\u3042\u308B\u9752\u3044\u9AA8\u306B\u6CE8\u76EE\u3002\u5F62\u3084\u9577\u3055\u304C\u9055\u3063\u3066\u3082\u3001\u524D\u80A2\u306E\u540C\u3058\u4F4D\u7F6E\u306B\u3042\u308A\u307E\u3059\u3002":a==="forearm"?t==="bat"?"\u4E0A\u8155\u3068\u624B\u9996\u306E\u9593\u306B\u3042\u308B\u9AA8\u3067\u3059\u3002\u30B3\u30A6\u30E2\u30EA\u3067\u306F\u4E00\u65B9\u306E\u9AA8\u304C\u7D30\u304F\u77ED\u304F\u306A\u3063\u3066\u3044\u307E\u3059\u3002":"\u9752\u3044\u9AA8\u306E\u5148\u306B\u3001\u30AA\u30EC\u30F3\u30B8\u306E2\u672C\u306E\u9AA8\u304C\u3042\u308A\u307E\u3059\u3002\u30A4\u30EB\u30AB\u3067\u306F\u3001\u3053\u306E\u90E8\u5206\u304C\u77ED\u304F\u306A\u3063\u3066\u3044\u307E\u3059\u3002":a==="hand"?t==="bat"?"\u7DD1\u306F\u624B\u9996\u3068\u6307\u306E\u9AA8\u3002\u30B3\u30A6\u30E2\u30EA\u306F\u89AA\u6307\u304C\u77ED\u304F\u3001\u307B\u304B\u306E\u9577\u3044\u6307\u304C\u7FFC\u306E\u819C\u3092\u652F\u3048\u3066\u3044\u307E\u3059\u3002":"\u7DD1\u306F\u624B\u9996\u3068\u6307\u306E\u9AA8\u3002\u30A4\u30EB\u30AB\u306E\u80F8\u3073\u308C\u306E\u4E2D\u306B\u3082\u3001\u6307\u306B\u3042\u305F\u308B\u9AA8\u304C\u4E26\u3093\u3067\u3044\u307E\u3059\u3002":"\u9752 \u2192 \u30AA\u30EC\u30F3\u30B8 \u2192 \u7DD1\u306E\u3064\u306A\u304C\u308A\u3092\u8FFD\u304A\u3046\u3002\u9AA8\u304B\u8272\u306E\u30DC\u30BF\u30F3\u3092\u9078\u3076\u3068\u3001\u5BFE\u5FDC\u3059\u308B\u90E8\u5206\u304C\u76EE\u7ACB\u3061\u307E\u3059\u3002"}var L=(t,a,o=10)=>{let r=Math.hypot(a[0]-t[0],a[1]-t[1]);o=Math.min(o,r*.38);let i=Math.min((o/2+.8)/r,.4);return`<path d="M${t[0]+(a[0]-t[0])*i} ${t[1]+(a[1]-t[1])*i}L${a[0]-(a[0]-t[0])*i} ${a[1]-(a[1]-t[1])*i}" stroke-width="${o}" />`},h=t=>`translate(${t.x} ${t.y}) rotate(${t.angle}) scale(${t.scale})`;function x(t,a){let o=M(t),r={upper:o.upper.map(i=>L(...i,12)).join(""),forearm:o.forearm.map((i,p)=>L(...i,t==="bat"&&p===1?4:9)).join(""),hand:o.carpals.map(([i,p])=>`<circle cx="${i}" cy="${p}" r="3.3" stroke-width="3"/>`).join("")+o.digits.map(i=>i.slice(1).map((p,C)=>L(i[C],p,t==="dolphin"?7:6)).join("")).join("")};return`<g id="${a}" transform="${h(g(t,0))}" data-animal="${t}"><path class="outline" d="${o.outline}"/><g class="skeleton" aria-label="${u[t]}\u306E\u9AA8">${b.map(i=>`<g data-bone="${i}" role="button" tabindex="-1" aria-label="${u[t]}\uFF1A${S[i]}" stroke="${A[i]}" fill="none" stroke-linecap="round" stroke-linejoin="round" class="bones">${r[i]}</g>`).join("")}</g></g>`}var n=t=>document.querySelector(t),e=y({animal:"dolphin",reveal:!1,amount:0,group:"all"}),l=null,m=0,$,E="";function j(t){clearTimeout($);let a=n("#flash");a.hidden=!1,a.dataset.kind=t,a.textContent=t==="play"?"\u25B6":"\u2161",a.style.animation="none",a.offsetWidth,a.style.animation="",$=setTimeout(()=>{a.hidden=!0},1e3)}function s(){document.body.dataset.animal=e.animal,document.body.dataset.reveal=String(e.reveal),document.body.dataset.amount=e.amount.toFixed(4),document.body.dataset.group=e.group,document.body.dataset.running=String(!!l),n("#human").setAttribute("transform",h(g("human",e.amount))),n("#animal").setAttribute("transform",h(g(e.animal,e.amount))),n("#comparison").classList.toggle("revealed",e.reveal),n("#comparison").classList.toggle("overlaid",e.amount>.02),n("#comparison title").textContent=`${u.human}\u3068${u[e.animal]}\u306E\u6BD4\u8F03`,n("#human").style.opacity=String(1-e.amount*.15),n("#alignment-line").setAttribute("opacity",String(e.amount*.6)),n("#shoulder").setAttribute("opacity",String(e.amount)),n("#amount").value=String(e.amount),n("#amount").setAttribute("aria-valuetext",e.amount<.02?"\u96E2\u3057\u3066\u6BD4\u8F03":e.amount>.98?"\u4ED8\u3051\u6839\u3092\u305D\u308D\u3048\u3066\u6BD4\u8F03":"\u4F4D\u7F6E\u3092\u305D\u308D\u3048\u308B\u9014\u4E2D"),n("#compare-controls").hidden=!e.reveal,n("#group-controls").hidden=!e.reveal,n("#main-action").textContent=e.reveal?l?"\u2161 \u4E00\u6642\u505C\u6B62":e.amount>.98?"\u25C0 \u96E2\u3057\u3066\u6BD4\u3079\u308B":"\u25B6 \u91CD\u306D\u3066\u6BD4\u3079\u308B":"\u9AA8\u3092\u306E\u305E\u3044\u3066\u307F\u308B",n("#main-action").dataset.playing=String(!!l),n("#main-action").setAttribute("aria-pressed",String(!!l)),n("#animal-name").textContent=u[e.animal],n("#animal-use").textContent=e.animal==="bat"?"\u98DB\u3076":"\u6C34\u4E2D\u3067\u5411\u304D\u3092\u5909\u3048\u308B",n("#comparison-key").hidden=!e.reveal||e.amount<=.02,n("#comparison-key").textContent=`\u8272\u3064\u304D\uFF1A${u[e.animal]} \uFF0F \u30B0\u30EC\u30FC\uFF1A\u30D2\u30C8`;for(let a of document.querySelectorAll("[data-choice]"))a.setAttribute("aria-pressed",String(a.dataset.choice===e.animal));for(let a of document.querySelectorAll("[data-part]"))a.setAttribute("aria-pressed",String(a.dataset.part===e.group));for(let a of document.querySelectorAll("[data-bone]"))a.classList.toggle("muted",e.group!=="all"&&a.dataset.bone!==e.group),a.classList.toggle("selected",e.group!=="all"&&a.dataset.bone===e.group),a.setAttribute("tabindex",e.reveal?"0":"-1"),a.setAttribute("aria-pressed",String(a.dataset.bone===e.group));let t=`${e.reveal}|${e.animal}|${e.group}|${e.amount>.98}|${e.amount>.02}`;t!==E&&(E=t,n("#explanation-title").textContent=e.reveal?e.group!=="all"?"\u5BFE\u5FDC\u3059\u308B\u90E8\u5206\u3092\u898B\u3064\u3051\u3088\u3046":e.amount>.98?"\u5F62\u306F\u9055\u3046\u3002\u9AA8\u306E\u3064\u306A\u304C\u308A\u306F\u5171\u901A\u3002":"\u9AA8\u306E\u4E26\u3073\u65B9\u3092\u898B\u3066\u307F\u3088\u3046":"\u4F7F\u3044\u65B9\u3082\u3001\u5F62\u3082\u9055\u3046",n("#explanation-note").textContent=e.reveal?e.amount>.02&&e.group==="all"?"\u4ED8\u3051\u6839\u304B\u3089\u6307\u3078\u3001\u9AA8\u306E\u3064\u306A\u304C\u308A\u3092\u8FFD\u304A\u3046\u3002\u9AA8\u304B\u8272\u306E\u30DC\u30BF\u30F3\u3092\u9078\u3076\u3068\u3001\u5BFE\u5FDC\u3059\u308B\u90E8\u5206\u304C\u76EE\u7ACB\u3061\u307E\u3059\u3002":w(e.animal,e.group):"\u30D2\u30C8\u306E\u8155\u306F\u3082\u306E\u3092\u3064\u304B\u3080\u3002\u30A4\u30EB\u30AB\u306E\u80F8\u3073\u308C\u306F\u6C34\u4E2D\u3067\u5411\u304D\u3092\u5909\u3048\u308B\u3002\u3053\u306E\u4E2D\u306B\u306F\u3001\u3069\u3093\u306A\u9AA8\u304C\u3042\u308B\uFF1F".replace("\u30A4\u30EB\u30AB\u306E\u80F8\u3073\u308C\u306F\u6C34\u4E2D\u3067\u5411\u304D\u3092\u5909\u3048\u308B",e.animal==="bat"?"\u30B3\u30A6\u30E2\u30EA\u306E\u7FFC\u306F\u7A7A\u3092\u98DB\u3076":"\u30A4\u30EB\u30AB\u306E\u80F8\u3073\u308C\u306F\u6C34\u4E2D\u3067\u5411\u304D\u3092\u5909\u3048\u308B"),n("#conclusion").hidden=!e.reveal||e.amount<.98)}function d(t=!1){m&&cancelAnimationFrame(m),m=0,l=null,t&&j("pause"),s()}function T(t){d(),l={from:e.amount,to:t,start:performance.now()},j("play"),s();let a=o=>{if(!l)return;let r=(o-l.start)/1600;if(e.amount=q(l.from,l.to,r),r>=1){l=null,m=0,s();return}s(),m=requestAnimationFrame(a)};m=requestAnimationFrame(a)}n("#main-action").addEventListener("click",()=>{if(!e.reveal){e.reveal=!0,s();return}if(l){d(!0);return}T(e.amount>.98?0:1)});n("#amount").addEventListener("input",t=>{let a=+t.target.value;d(),e.amount=a,s()});n("#reset").addEventListener("click",()=>{d(),clearTimeout($),n("#flash").hidden=!0,e=y({animal:"dolphin",reveal:!1,amount:0,group:"all"}),n("#animal-slot").innerHTML=x(e.animal,"animal"),s()});for(let t of document.querySelectorAll("[data-choice]"))t.addEventListener("click",()=>{d(),e.animal=t.dataset.choice,n("#animal-slot").innerHTML=x(e.animal,"animal"),s()});function Q(t){e.reveal&&(e.group=t===e.group?"all":t,s())}for(let t of document.querySelectorAll("[data-part]"))t.addEventListener("click",()=>Q(t.dataset.part));n("#comparison").addEventListener("click",t=>{let a=t.target.closest("[data-bone]");a&&Q(a.dataset.bone)});n("#comparison").addEventListener("keydown",t=>{let a=t.target.closest("[data-bone]");a&&["Enter"," "].includes(t.key)&&(t.preventDefault(),Q(a.dataset.bone))});document.addEventListener("visibilitychange",()=>{document.hidden&&d()});document.querySelectorAll("button,input").forEach(t=>{t.disabled=!1});s();})();
+</script>
+</body>
+</html>
