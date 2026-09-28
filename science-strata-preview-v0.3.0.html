@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>堆積・隆起・沈降 | 断面から過去をたどる</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.strata-controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px;width:100%}.strata-controls #play{min-width:150px}.strata-controls #current{margin-left:auto}.strata-stage{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(240px,.8fr);gap:20px;align-items:center;padding:12px 24px 18px}.strata-figure{position:relative;min-width:0}.strata-figure>svg{width:100%;height:340px}.strata-figure text{font-family:inherit;paint-order:stroke;stroke:#fffefa;stroke-width:4px;stroke-linejoin:round}.layer-label{font-size:32px;font-weight:700;fill:#243f37}.boundary-label{font-size:28px;font-weight:600;fill:#914b36}.water-label{font-size:23px;fill:#477f90}.strata-info{min-height:225px;min-width:0}.strata-position{font-size:12px;color:var(--accent);letter-spacing:.1em;margin:0 0 12px}.strata-info h2{font-size:22px;line-height:1.6;margin:0 0 14px}.strata-info>p:last-child{font-size:15px;line-height:1.9;margin:0}.strata-progress{height:4px;background:#dde6df;margin:0 24px 16px;border-radius:3px;overflow:hidden}.strata-progress>span{height:100%;display:block;background:#5b8c75}.strata-note{font-size:12px;color:var(--muted);margin:0;padding:0 24px 16px}.vl-legend .strata-boundary{height:0;border:0;border-top:3px dashed #a84f37}.vl-legend .strata-layer{background:#a9c3b4;border-color:#678c7c}.vl-shell{max-width:1120px}.vl-main{padding-block:24px}.vl-heading{margin-bottom:18px}@media(max-width:760px){.strata-stage{grid-template-columns:1fr;padding:8px 12px 20px;gap:12px}.strata-figure>svg{height:min(63vw,320px);min-height:190px}.strata-info{min-height:180px}.strata-info h2{font-size:20px}.strata-controls button{flex:1;padding:8px 10px}.strata-controls #play{min-width:140px}.strata-controls #current{flex-basis:100%;margin-left:0}.strata-progress{margin-inline:14px}.strata-note{padding-inline:14px}.vl-legend{padding:14px;gap:10px 16px}}
+
+.movement-label{font-size:24px;font-weight:600;fill:#385e77}.vl-legend .strata-sea{height:0;border:0;border-top:3px solid #75a9b5}
+.strata-experiments {
+  padding: 0 24px 22px;
+}
+.strata-extra {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  margin-top: 12px;
+}
+.strata-extra > summary {
+  min-height: 48px;
+  align-content: center;
+  font-weight: 700;
+  cursor: pointer;
+}
+.strata-extra h2 {
+  font-size: 20px;
+  line-height: 1.6;
+  margin: 16px 0 8px;
+}
+.strata-extra p {
+  line-height: 1.8;
+  font-size: 14px;
+}
+.strata-extra .extra-small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.history-palette,
+.history-buttons,
+.history-examples {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.strata-extra button {
+  min-height: 48px;
+}
+.history-palette button {
+  flex: 1;
+}
+.history-buttons button {
+  flex: 1;
+}
+.history-hint {
+  min-height: 52px;
+  align-content: center;
+  margin: 8px 0;
+}
+.history-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-top: 14px;
+}
+.history-pair figure {
+  margin: 0;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+}
+.history-pair figcaption {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  min-height: 28px;
+}
+.history-pair svg {
+  display: block;
+  width: 100%;
+  max-width: 290px;
+  margin: auto;
+  max-height: 360px;
+}
+.history-pair svg text {
+  font-family: inherit;
+  font-size: 19px;
+  fill: #253f38;
+  paint-order: stroke;
+  stroke: #fffefa;
+  stroke-width: 2px;
+}
+.history-pair .h-sea {
+  font-size: 16px;
+  fill: #336777;
+}
+.history-figure {
+  position: relative;
+}
+#history-flash {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+#history-flash svg {
+  width: 40px;
+  height: 40px;
+}
+.history-result {
+  min-height: 72px;
+  align-content: center;
+}
+.history-examples button {
+  flex: 1;
+}
+.history-buttons .is-playing {
+  background: #fce9e4;
+  border-color: #a14a3f;
+  color: #883a30;
+}
+#history-sequence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+  min-height: 44px;
+  margin: 12px 0;
+}
+#history-sequence li {
+  padding: 8px 12px;
+  border: 1px solid #b7c6bb;
+  border-radius: 8px;
+  font-size: 14px;
+  align-content: center;
+  background: #f0f4ed;
+}
+#history-sequence li.is-current {
+  background: #d7e9df;
+  border-color: #397e74;
+  box-shadow: inset 0 0 0 1px #397e74;
+}
+#column-stage {
+  max-width: 590px;
+  margin: auto;
+}
+#column-chart {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+#column-chart text {
+  font-family: inherit;
+  font-size: 24px;
+  fill: #294638;
+  pointer-events: none;
+}
+#column-chart .c-guide {
+  font-size: 23px;
+  fill: #805410;
+}
+#column-chart .c-marker {
+  font-size: 24px;
+  font-weight: 700;
+  fill: #754a09;
+}
+.paper-column {
+  cursor: grab;
+  touch-action: none;
+  outline: none;
+}
+.paper-column:focus .column-hit {
+  stroke: #1d6088;
+  stroke-width: 4;
+}
+.column-result {
+  min-height: 72px;
+  align-content: center;
+}
+#column-shift {
+  width: 100%;
+  min-height: 48px;
+  accent-color: #397e74;
+}
+#column-label {
+  font-size: 14px;
+}
+.strata-extra button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+@media (max-width: 600px) {
+  .strata-experiments {
+    padding: 0 12px 16px;
+  }
+  .history-pair {
+    grid-template-columns: 1fr;
+  }
+  .history-buttons button {
+    flex-basis: 40%;
+  }
+  .history-palette button {
+    padding: 8px 10px;
+  }
+  .strata-figure .water-label {
+    font-size: 34px;
+  }
+  .strata-figure .movement-label {
+    font-size: 34px;
+  }
+}
+
+/* Vertical paper dragging owns gestures inside this chart. */
+#column-chart {
+  touch-action: none;
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>堆積・隆起・沈降</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">堆積・隆起・沈降</h1><p class="vl-question">海底の地層は、どう動いて陸に現れる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="strata-controls"><button id="previous" class="vl-secondary" type="button" disabled>一つ前</button><button id="play" type="button" disabled aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 4 14 8-14 8Z" fill="currentColor"/></svg><span>成り立ちを再生</span></button><button id="next" class="vl-secondary" type="button" disabled>一つ後</button><button id="current" class="vl-secondary" type="button" disabled>現在の断面へ</button></div></div>
+        <div class="vl-stage"><div class="strata-stage"><div class="strata-figure"><svg id="cross-section" viewBox="30 60 640 380" role="img" aria-label="現在の断面。海底にA・B・Cが重なっている。"><defs><pattern id="sand" width="18" height="18" patternUnits="userSpaceOnUse"><rect width="18" height="18" fill="#cfb17d"/><circle cx="4" cy="5" r="1.4" fill="#967653"/><circle cx="13" cy="13" r="1.3" fill="#967653"/></pattern><pattern id="stripes" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#957b6c"/><path d="M0 5h16M0 13h16" stroke="#b09b88" stroke-width="2"/></pattern><pattern id="pebbles" width="27" height="18" patternUnits="userSpaceOnUse"><rect width="27" height="18" fill="#a9c3b4"/><ellipse cx="8" cy="9" rx="4" ry="2.5" fill="none" stroke="#678c7c"/></pattern></defs><rect x="60" y="70" width="580" height="360" fill="#f6f3e9"/><rect x="60" y="210" width="580" height="220" fill="#d9edf1"/><polygon points="60.00,370.00 70.00,370.00 80.00,370.00 90.00,370.00 100.00,370.00 110.00,370.00 120.00,370.00 130.00,370.00 140.00,370.00 150.00,370.00 160.00,370.00 170.00,370.00 180.00,370.00 190.00,370.00 200.00,370.00 210.00,370.00 220.00,370.00 230.00,370.00 240.00,370.00 250.00,370.00 260.00,370.00 270.00,370.00 280.00,370.00 290.00,370.00 300.00,370.00 310.00,370.00 320.00,370.00 330.00,370.00 340.00,370.00 350.00,370.00 360.00,370.00 370.00,370.00 380.00,370.00 390.00,370.00 400.00,370.00 410.00,370.00 420.00,370.00 430.00,370.00 440.00,370.00 450.00,370.00 460.00,370.00 470.00,370.00 480.00,370.00 490.00,370.00 500.00,370.00 510.00,370.00 520.00,370.00 530.00,370.00 540.00,370.00 550.00,370.00 560.00,370.00 570.00,370.00 580.00,370.00 590.00,370.00 600.00,370.00 610.00,370.00 620.00,370.00 630.00,370.00 640.00,370.00 640.00,430.00 60.00,430.00" fill="#b7afa3"/><polygon data-layer="A" points="60.00,320.00 70.00,320.00 80.00,320.00 90.00,320.00 100.00,320.00 110.00,320.00 120.00,320.00 130.00,320.00 140.00,320.00 150.00,320.00 160.00,320.00 170.00,320.00 180.00,320.00 190.00,320.00 200.00,320.00 210.00,320.00 220.00,320.00 230.00,320.00 240.00,320.00 250.00,320.00 260.00,320.00 270.00,320.00 280.00,320.00 290.00,320.00 300.00,320.00 310.00,320.00 320.00,320.00 330.00,320.00 340.00,320.00 350.00,320.00 360.00,320.00 370.00,320.00 380.00,320.00 390.00,320.00 400.00,320.00 410.00,320.00 420.00,320.00 430.00,320.00 440.00,320.00 450.00,320.00 460.00,320.00 470.00,320.00 480.00,320.00 490.00,320.00 500.00,320.00 510.00,320.00 520.00,320.00 530.00,320.00 540.00,320.00 550.00,320.00 560.00,320.00 570.00,320.00 580.00,320.00 590.00,320.00 600.00,320.00 610.00,320.00 620.00,320.00 630.00,320.00 640.00,320.00 640.00,370.00 630.00,370.00 620.00,370.00 610.00,370.00 600.00,370.00 590.00,370.00 580.00,370.00 570.00,370.00 560.00,370.00 550.00,370.00 540.00,370.00 530.00,370.00 520.00,370.00 510.00,370.00 500.00,370.00 490.00,370.00 480.00,370.00 470.00,370.00 460.00,370.00 450.00,370.00 440.00,370.00 430.00,370.00 420.00,370.00 410.00,370.00 400.00,370.00 390.00,370.00 380.00,370.00 370.00,370.00 360.00,370.00 350.00,370.00 340.00,370.00 330.00,370.00 320.00,370.00 310.00,370.00 300.00,370.00 290.00,370.00 280.00,370.00 270.00,370.00 260.00,370.00 250.00,370.00 240.00,370.00 230.00,370.00 220.00,370.00 210.00,370.00 200.00,370.00 190.00,370.00 180.00,370.00 170.00,370.00 160.00,370.00 150.00,370.00 140.00,370.00 130.00,370.00 120.00,370.00 110.00,370.00 100.00,370.00 90.00,370.00 80.00,370.00 70.00,370.00 60.00,370.00" fill="url(#sand)" stroke="#7d766c" stroke-width="1.2"/><text class="layer-label" x="220" y="355" text-anchor="middle">A</text><polygon data-layer="B" points="60.00,270.00 70.00,270.00 80.00,270.00 90.00,270.00 100.00,270.00 110.00,270.00 120.00,270.00 130.00,270.00 140.00,270.00 150.00,270.00 160.00,270.00 170.00,270.00 180.00,270.00 190.00,270.00 200.00,270.00 210.00,270.00 220.00,270.00 230.00,270.00 240.00,270.00 250.00,270.00 260.00,270.00 270.00,270.00 280.00,270.00 290.00,270.00 300.00,270.00 310.00,270.00 320.00,270.00 330.00,270.00 340.00,270.00 350.00,270.00 360.00,270.00 370.00,270.00 380.00,270.00 390.00,270.00 400.00,270.00 410.00,270.00 420.00,270.00 430.00,270.00 440.00,270.00 450.00,270.00 460.00,270.00 470.00,270.00 480.00,270.00 490.00,270.00 500.00,270.00 510.00,270.00 520.00,270.00 530.00,270.00 540.00,270.00 550.00,270.00 560.00,270.00 570.00,270.00 580.00,270.00 590.00,270.00 600.00,270.00 610.00,270.00 620.00,270.00 630.00,270.00 640.00,270.00 640.00,320.00 630.00,320.00 620.00,320.00 610.00,320.00 600.00,320.00 590.00,320.00 580.00,320.00 570.00,320.00 560.00,320.00 550.00,320.00 540.00,320.00 530.00,320.00 520.00,320.00 510.00,320.00 500.00,320.00 490.00,320.00 480.00,320.00 470.00,320.00 460.00,320.00 450.00,320.00 440.00,320.00 430.00,320.00 420.00,320.00 410.00,320.00 400.00,320.00 390.00,320.00 380.00,320.00 370.00,320.00 360.00,320.00 350.00,320.00 340.00,320.00 330.00,320.00 320.00,320.00 310.00,320.00 300.00,320.00 290.00,320.00 280.00,320.00 270.00,320.00 260.00,320.00 250.00,320.00 240.00,320.00 230.00,320.00 220.00,320.00 210.00,320.00 200.00,320.00 190.00,320.00 180.00,320.00 170.00,320.00 160.00,320.00 150.00,320.00 140.00,320.00 130.00,320.00 120.00,320.00 110.00,320.00 100.00,320.00 90.00,320.00 80.00,320.00 70.00,320.00 60.00,320.00" fill="url(#stripes)" stroke="#7d766c" stroke-width="1.2"/><text class="layer-label" x="220" y="305" text-anchor="middle">B</text><polygon data-layer="C" points="60.00,220.00 70.00,220.00 80.00,220.00 90.00,220.00 100.00,220.00 110.00,220.00 120.00,220.00 130.00,220.00 140.00,220.00 150.00,220.00 160.00,220.00 170.00,220.00 180.00,220.00 190.00,220.00 200.00,220.00 210.00,220.00 220.00,220.00 230.00,220.00 240.00,220.00 250.00,220.00 260.00,220.00 270.00,220.00 280.00,220.00 290.00,220.00 300.00,220.00 310.00,220.00 320.00,220.00 330.00,220.00 340.00,220.00 350.00,220.00 360.00,220.00 370.00,220.00 380.00,220.00 390.00,220.00 400.00,220.00 410.00,220.00 420.00,220.00 430.00,220.00 440.00,220.00 450.00,220.00 460.00,220.00 470.00,220.00 480.00,220.00 490.00,220.00 500.00,220.00 510.00,220.00 520.00,220.00 530.00,220.00 540.00,220.00 550.00,220.00 560.00,220.00 570.00,220.00 580.00,220.00 590.00,220.00 600.00,220.00 610.00,220.00 620.00,220.00 630.00,220.00 640.00,220.00 640.00,270.00 630.00,270.00 620.00,270.00 610.00,270.00 600.00,270.00 590.00,270.00 580.00,270.00 570.00,270.00 560.00,270.00 550.00,270.00 540.00,270.00 530.00,270.00 520.00,270.00 510.00,270.00 500.00,270.00 490.00,270.00 480.00,270.00 470.00,270.00 460.00,270.00 450.00,270.00 440.00,270.00 430.00,270.00 420.00,270.00 410.00,270.00 400.00,270.00 390.00,270.00 380.00,270.00 370.00,270.00 360.00,270.00 350.00,270.00 340.00,270.00 330.00,270.00 320.00,270.00 310.00,270.00 300.00,270.00 290.00,270.00 280.00,270.00 270.00,270.00 260.00,270.00 250.00,270.00 240.00,270.00 230.00,270.00 220.00,270.00 210.00,270.00 200.00,270.00 190.00,270.00 180.00,270.00 170.00,270.00 160.00,270.00 150.00,270.00 140.00,270.00 130.00,270.00 120.00,270.00 110.00,270.00 100.00,270.00 90.00,270.00 80.00,270.00 70.00,270.00 60.00,270.00" fill="url(#pebbles)" stroke="#7d766c" stroke-width="1.2"/><text class="layer-label" x="220" y="255" text-anchor="middle">C</text><path data-sea-level="210" d="M60 210H640" stroke="#75a9b5" stroke-width="2" stroke-dasharray="8 5"/><text x="80" y="235" class="water-label">海面の高さ</text><path d="M60 70V430H640V70" fill="none" stroke="#cdc7bc" stroke-width="1"/></svg><div id="feedback"></div></div><aside class="strata-info" aria-live="polite" aria-atomic="true"><p class="strata-position" id="event-position">現在の断面</p><h2 id="event-title">積もる・上がる・下がる</h2><p id="event-text">海底にできた地層は、一度陸上に現れ、再び海底へ沈みました。前へ戻り、土地と土砂の動きを比べよう。</p></aside></div><div class="strata-progress" aria-hidden="true"><span id="event-progress" style="width:100%"></span></div><p class="strata-note">架空の断面の模式図。出来事の順序を比べ、実際の年代やかかった時間は示していません。</p><div class="strata-experiments">
+ <details id="history-experiment" class="strata-extra"><summary>出来事を並べて、断面を作る</summary>
+ <h2>この断面になる順序は、一つだけ？</h2>
+ <p>堆積・隆起・沈降を順に選び、自分の図を「観察資料」と比べよう。</p>
+ <div class="history-palette"><button type="button" data-add="deposit" disabled>堆積</button><button type="button" data-add="up" disabled>隆起 ↑</button><button type="button" data-add="down" disabled>沈降 ↓</button></div>
+ <p class="extra-small">堆積は3回、隆起と沈降は各1回まで。海底に積もる模型です。</p>
+ <p id="history-hint" class="history-hint">まず「堆積」で、海底にAを積もらせてみよう。</p>
+ <ol id="history-sequence" aria-label="選んだ出来事の順序"></ol>
+ <div class="history-buttons"><button id="history-play" type="button" disabled>この順に再生</button><button id="history-undo" class="vl-secondary" type="button" disabled>一つ戻す</button><button id="history-reset" class="vl-secondary" type="button" disabled>やり直す</button></div>
+ <div class="history-pair">
+ <figure><figcaption>自分の順序</figcaption><div class="history-figure"><svg id="history-figure" viewBox="0 0 280 360" role="img" aria-label="まだ地層が積もっていない海底"><rect x="32" y="42" width="216" height="296" fill="#f5f1e7"/><rect x="32" y="150" width="216" height="188" fill="#d9edf1"/><rect x="32" y="240" width="216" height="98" fill="#b7afa3"/><path d="M20 150H260" stroke="#5598a8" stroke-width="2" stroke-dasharray="5 4"/><text x="35" y="140" class="h-sea">海面</text><rect x="32" y="42" width="216" height="296" fill="none" stroke="#c9c3b9"/></svg><div id="history-flash"></div></div></figure>
+ <figure><figcaption>観察資料（架空）</figcaption><svg id="history-target" viewBox="0 0 280 360" role="img" aria-label="下からA、B、C。地層の上端は海面より少し下"><rect x="32" y="42" width="216" height="296" fill="#f5f1e7"/><rect x="32" y="150" width="216" height="188" fill="#d9edf1"/><rect x="32" y="230" width="216" height="108" fill="#b7afa3"/><g data-history-layer="A"><rect x="32" y="205" width="216" height="25" fill="#cfb17d" stroke="#6f6a5d"/><text x="140" y="223.5" text-anchor="middle">A</text></g><g data-history-layer="B"><rect x="32" y="180" width="216" height="25" fill="#957b6c" stroke="#6f6a5d"/><text x="140" y="198.5" text-anchor="middle">B</text></g><g data-history-layer="C"><rect x="32" y="155" width="216" height="25" fill="#a9c3b4" stroke="#6f6a5d"/><text x="140" y="173.5" text-anchor="middle">C</text></g><path d="M20 150H260" stroke="#5598a8" stroke-width="2" stroke-dasharray="5 4"/><text x="35" y="140" class="h-sea">海面</text><rect x="32" y="42" width="216" height="296" fill="none" stroke="#c9c3b9"/></svg></figure>
+ </div>
+ <p id="history-result" class="history-result" aria-live="polite">右の資料と同じ断面になる順序を試そう。</p>
+ <div class="history-examples"><button data-example="0" type="button" class="vl-secondary" disabled>例1を見る</button><button data-example="1" type="button" class="vl-secondary" disabled>例2を見る</button></div>
+ <p class="extra-small">厚さと上下が同じでも、途中の出来事は違う場合があります。侵食・海面の変化は省いた一例です。</p>
+ </details>
+ <details id="column-experiment" class="strata-extra"><summary>離れた地点の柱状図を比べる</summary>
+ <h2>同じ噴火の層を、揃えてみよう。</h2>
+ <p>Fは、同じ噴火でできたと分析で確かめられた火山灰の層。柱状図を上下に動かし、Fの下端を揃えよう。</p>
+ <div id="column-stage"><svg id="column-chart" viewBox="0 0 480 445" aria-label="三地点の柱状図。紙の図を上下に動かして比べる"><path d="M25 200H450" stroke="#b67d2b" stroke-dasharray="6 5" stroke-width="2"/><g class="paper-column" data-column="0" role="button" tabindex="-1" aria-disabled="true" aria-label="地点1の柱状図。上下キーでも移動" aria-pressed="false"><text x="90" y="28" text-anchor="middle">地点1</text><rect class="column-hit" x="41" y="112" width="98" height="188" rx="6" fill="#fffefa" stroke="#b8b9ad" stroke-width="1"/>
+ <rect data-column-layer="after" x="45" y="120" width="90" height="55" fill="#d4dcd1" stroke="#9ca795"/><text x="90" y="155.5" text-anchor="middle">後</text><rect data-column-layer="ash" x="45" y="175" width="90" height="12" fill="#ebc374" stroke="#9ca795"/><rect data-column-layer="before" x="45" y="187" width="90" height="105" fill="#c5cdbf" stroke="#9ca795"/><text x="90" y="247.5" text-anchor="middle">先</text>
+ <path d="M45 187h90" stroke="#966011" stroke-width="3"/><text class="c-marker" x="141" y="194">F</text></g><g class="paper-column" data-column="1" role="button" tabindex="-1" aria-disabled="true" aria-label="地点2の柱状図。上下キーでも移動" aria-pressed="true"><text x="235" y="28" text-anchor="middle">地点2</text><rect class="column-hit" x="186" y="112" width="98" height="214" rx="6" fill="#fffefa" stroke="#36786b" stroke-width="3"/>
+ <rect data-column-layer="after" x="190" y="120" width="90" height="95" fill="#d4dcd1" stroke="#9ca795"/><text x="235" y="175.5" text-anchor="middle">後</text><rect data-column-layer="ash" x="190" y="215" width="90" height="18" fill="#ebc374" stroke="#9ca795"/><rect data-column-layer="before" x="190" y="233" width="90" height="85" fill="#c5cdbf" stroke="#9ca795"/><text x="235" y="283.5" text-anchor="middle">先</text>
+ <path d="M190 233h90" stroke="#966011" stroke-width="3"/><text class="c-marker" x="286" y="240">F</text></g><g class="paper-column" data-column="2" role="button" tabindex="-1" aria-disabled="true" aria-label="地点3の柱状図。上下キーでも移動" aria-pressed="false"><text x="380" y="28" text-anchor="middle">地点3</text><rect class="column-hit" x="331" y="112" width="98" height="181" rx="6" fill="#fffefa" stroke="#b8b9ad" stroke-width="1"/>
+ <rect data-column-layer="after" x="335" y="120" width="90" height="35" fill="#d4dcd1" stroke="#9ca795"/><text x="380" y="145.5" text-anchor="middle">後</text><rect data-column-layer="ash" x="335" y="155" width="90" height="10" fill="#ebc374" stroke="#9ca795"/><rect data-column-layer="before" x="335" y="165" width="90" height="120" fill="#c5cdbf" stroke="#9ca795"/><text x="380" y="233" text-anchor="middle">先</text>
+ <path d="M335 165h90" stroke="#966011" stroke-width="3"/><text class="c-marker" x="431" y="172">F</text></g></svg></div>
+ <p id="column-result" class="column-result" aria-live="polite">地表を揃えても、Fの高さは地点ごとに違います。</p>
+ <label for="column-shift" id="column-label">地点2の図を上下に動かす</label><input id="column-shift" type="range" min="-90" max="90" step="1" value="0" disabled>
+ <div class="history-buttons"><button id="column-align" type="button" disabled>火山灰で揃える</button><button id="column-reset" class="vl-secondary" type="button" disabled>元の配置へ</button></div>
+ <p class="extra-small">図を動かして比較しています。土地が動いたことを示す操作ではありません。似た色だけで同じ噴火と判断することはできません。</p>
+ </details></div></div>
+        <ul class="vl-legend" aria-label="断面の凡例"><li><i class="strata-sea" aria-hidden="true"></i>海面（この模型では一定）</li><li><i class="strata-layer" aria-hidden="true"></i>A・B・C：地層を区別する記号</li></ul>
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><p>「一つ前」で過去へ戻り、「一つ後」で次の出来事を確かめます。「成り立ちを再生」は、Aが積もる前から現在の断面までを連続して表示します。「現在の断面へ」は最初の断面に戻します。</p><p>堆積は、運ばれてきた土砂が積もること。隆起は土地が上がること、沈降は土地が下がることです。Aの堆積 → Bの堆積 → 隆起 → 沈降 → Cの堆積を比べ、地層が増える変化と、同じ地層全体が移動する変化を見分けましょう。</p><p>この模型では海面を一定に保ち、土地の上下動だけで海と陸が変わる例を示します。実際には海水面の変化もあり、断面だけですべての事情や年代を決められるとは限りません。毎回同じ順序で繰り返すという意味ではありません。</p><p>もとの上下が保たれた地層では、原則として下ほど先に堆積しています。この模型は傾き・逆転・侵食を省いています。陸上に現れた地層が現実には風化・侵食されることもありますが、ここでは土地の上下動を比べるため同じ層を保ちます。</p><p>模様や色は地層を区別する記号で、岩石の種類を指定しません。厚さ、動き、20秒の再生時間は模式であり、実際の年代や速度を表しません。圧密・固結、断層、化石は省いています。追加の「出来事を並べる」は、同じ断面になる別の順序も比べる実験です。</p><p>出典：<a href="https://www.nps.gov/articles/geologic-principles-superposition-and-original-horizontality.htm" target="_blank" rel="noreferrer">National Park Service：地層の重なりと初生の水平性</a>、<a href="https://apps.usgs.gov/thesaurus/term-simple.php?code=1751&amp;thcode=2" target="_blank" rel="noreferrer">USGS：uplift</a>、<a href="https://water.usgs.gov/water-basics_glossary.html" target="_blank" rel="noreferrer">USGS：subsidenceの定義</a>。図は本教材で作成しました。</p><p>柱状図は、離れた地点の地層の重なりを縦に表した図です。この教材のFは同じ噴火由来と分析で確かめられた火山灰とします。地表からの深さや厚さが違っても、Fを目印に噴火の前後を比べられます。紙の図を動かす操作で、地層そのものを動かすものではありません。資料は架空で、色だけで火山灰を同定する方法を教えるものではありません。出典：<a href="https://www.gsj.jp/geology/geomap/process-field/tephra.html" target="_blank" rel="noreferrer">産総研地質調査総合センター：火山灰・火砕岩</a>。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var K=[["deposit","deposit","up","down","deposit"],["deposit","up","down","deposit","deposit"]],C={basement:-160,surface:-10,layers:[{id:"A",thickness:50},{id:"B",thickness:50},{id:"C",thickness:50}]};function Q(e,t){if(!["deposit","up","down"].includes(t))throw new RangeError("Unknown event");let r={basement:e.basement,layers:e.layers.map(n=>({...n})),surface:e.surface,up:e.up,down:e.down};if(t==="deposit"){if(r.layers.length>=3)throw new RangeError("\u5806\u7A4D\u306F3\u56DE\u307E\u3067\u3067\u3059\u3002");if(r.surface+50>0)throw new RangeError("\u3053\u306E\u6A21\u578B\u306F\u6D77\u5E95\u306B\u7A4D\u3082\u308B\u4F8B\u3067\u3059\u3002\u4ECA\u306F\u5730\u8868\u304C\u9AD8\u3044\u305F\u3081\u3001\u6C88\u964D\u3055\u305B\u3066\u304B\u3089\u5806\u7A4D\u3092\u8A66\u3057\u307E\u3059\u3002");r.layers.push({id:"ABC"[r.layers.length],thickness:50})}else{if(r[t]>=1)throw new RangeError("\u9686\u8D77\u30FB\u6C88\u964D\u306F\u305D\u308C\u305E\u308C1\u56DE\u307E\u3067\u3067\u3059\u3002");r[t]++,r.basement+=t==="up"?180:-160}return r.surface=r.basement+r.layers.reduce((n,i)=>n+i.thickness,0),r}function L(e){if(!Array.isArray(e)||e.length>5)throw new RangeError("Up to five events");return e.reduce(Q,{basement:-180,surface:-180,layers:[],up:0,down:0})}function H(e,t){try{return L([...e,t]),{allowed:!0,reason:""}}catch(r){if(!(r instanceof RangeError))throw r;return{allowed:!1,reason:r.message}}}function W(e,t){if(L(e),!Number.isFinite(t)||t<0||t>e.length)throw new RangeError("Frame outside history");let r=Math.floor(t),n=L(e.slice(0,r));if(r===e.length)return n;let i=Q(n,e[r]),a=t-r,o=a*a*(3-2*a);return{basement:n.basement+(i.basement-n.basement)*o,surface:n.surface+(i.surface-n.surface)*o,up:n.up,down:n.down,layers:i.layers.map((c,m)=>({...c,thickness:(n.layers[m]?.thickness||0)+(c.thickness-(n.layers[m]?.thickness||0))*o}))}}function P(e){return Math.abs(e.basement-C.basement)<1e-8&&Math.abs(e.surface-C.surface)<1e-8&&e.layers.length===3&&e.layers.every((t,r)=>t.id===C.layers[r].id&&Math.abs(t.thickness-C.layers[r].thickness)<1e-8)}var J=[{above:55,ash:12,below:105},{above:95,ash:18,below:85},{above:35,ash:10,below:120}];function S(e,t){if(!Number.isInteger(e)||e<0||e>=J.length||!Number.isFinite(t)||t<-90||t>90)throw new RangeError("Column outside paper movement bounds");let r=J[e],n=120+t;return{top:n,bottom:n+r.above+r.ash+r.below,ashBase:n+r.above+r.ash,layers:[{id:"after",y:n,height:r.above},{id:"ash",y:n+r.above,height:r.ash},{id:"before",y:n+r.above+r.ash,height:r.below}]}}function ee(e){return 200-S(e,0).ashBase}var _={deposit:"\u5806\u7A4D",up:"\u9686\u8D77 \u2191",down:"\u6C88\u964D \u2193"},ue={A:"#cfb17d",B:"#957b6c",C:"#a9c3b4"};function te(e){let t=e.basement,r=e.layers.map(n=>{let i=150-(t+n.thickness)*.5,a=n.thickness*.5;return t+=n.thickness,`<g data-history-layer="${n.id}"><rect x="32" y="${i}" width="216" height="${a}" fill="${ue[n.id]}" stroke="#6f6a5d"/>${a>14?`<text x="140" y="${i+a/2+6}" text-anchor="middle">${n.id}</text>`:""}</g>`}).join("");return`<rect x="32" y="42" width="216" height="296" fill="#f5f1e7"/><rect x="32" y="150" width="216" height="188" fill="#d9edf1"/><rect x="32" y="${150-e.basement*.5}" width="216" height="${188+e.basement*.5}" fill="#b7afa3"/>${r}<path d="M20 150H260" stroke="#5598a8" stroke-width="2" stroke-dasharray="5 4"/><text x="35" y="140" class="h-sea">\u6D77\u9762</text><rect x="32" y="42" width="216" height="296" fill="none" stroke="#c9c3b9"/>`}function ne(e=[0,0,0],t=1,r=!1){return`<path d="M25 200H450" stroke="#b67d2b" stroke-dasharray="6 5" stroke-width="2"/>${e.map((n,i)=>{let a=S(i,n),o=45+i*145;return`<g class="paper-column" data-column="${i}" role="button" tabindex="${r?0:-1}" aria-disabled="${!r}" aria-label="\u5730\u70B9${i+1}\u306E\u67F1\u72B6\u56F3\u3002\u4E0A\u4E0B\u30AD\u30FC\u3067\u3082\u79FB\u52D5" aria-pressed="${i===t}"><text x="${o+45}" y="28" text-anchor="middle">\u5730\u70B9${i+1}</text><rect class="column-hit" x="${o-4}" y="${a.top-8}" width="98" height="${a.bottom-a.top+16}" rx="6" fill="#fffefa" stroke="${i===t?"#36786b":"#b8b9ad"}" stroke-width="${i===t?3:1}"/>
+ ${a.layers.map(c=>`<rect data-column-layer="${c.id}" x="${o}" y="${c.y}" width="90" height="${c.height}" fill="${c.id==="ash"?"#ebc374":c.id==="after"?"#d4dcd1":"#c5cdbf"}" stroke="#9ca795"/>${c.id==="ash"?"":`<text x="${o+45}" y="${c.y+c.height/2+8}" text-anchor="middle">${c.id==="after"?"\u5F8C":"\u5148"}</text>`}`).join("")}
+ <path d="M${o} ${a.ashBase}h90" stroke="#966011" stroke-width="3"/><text class="c-marker" x="${o+96}" y="${a.ashBase+7}">F</text></g>`}).join("")}`}var j=[{title:"\u6D77\u5E95\u306BA\u304C\u5806\u7A4D\u3059\u308B",text:"\u6D77\u5E95\u306B\u571F\u7802\u304C\u7A4D\u3082\u308A\u3001\u5730\u5C64A\u304C\u3067\u304D\u307E\u3059\u3002\u571F\u5730\u304C\u52D5\u304B\u306A\u304F\u3066\u3082\u3001\u7A4D\u3082\u3063\u305F\u5206\u3060\u3051\u6D77\u5E95\u306F\u9AD8\u304F\u306A\u308A\u307E\u3059\u3002"},{title:"A\u306E\u4E0A\u306BB\u304C\u5806\u7A4D\u3059\u308B",text:"\u65B0\u3057\u3044\u571F\u7802\u304C\u7A4D\u3082\u308A\u3001A\u306E\u4E0A\u306B\u5730\u5C64B\u304C\u91CD\u306A\u308A\u307E\u3059\u3002"},{title:"\u571F\u5730\u304C\u9686\u8D77\u3057\u3066\u3001\u9678\u3078",text:"\u5730\u5C64\u3092\u306E\u305B\u305F\u571F\u5730\u305D\u306E\u3082\u306E\u304C\u4E0A\u304C\u308A\u307E\u3059\u3002\u6D77\u9762\u3088\u308A\u9AD8\u304F\u306A\u3063\u305F\u90E8\u5206\u304C\u3001\u9678\u4E0A\u306B\u73FE\u308C\u307E\u3059\u3002"},{title:"\u571F\u5730\u304C\u6C88\u964D\u3057\u3066\u3001\u6D77\u5E95\u3078",text:"\u4ECA\u5EA6\u306F\u571F\u5730\u305D\u306E\u3082\u306E\u304C\u4E0B\u304C\u308A\u307E\u3059\u3002\u3053\u306E\u6A21\u578B\u3067\u306F\u3001\u5730\u5C64\u304C\u518D\u3073\u6D77\u9762\u3088\u308A\u4E0B\u306B\u6C88\u307F\u307E\u3059\u3002"},{title:"\u518D\u3073\u3001\u6D77\u5E95\u306BC\u304C\u5806\u7A4D\u3059\u308B",text:"\u6D77\u5E95\u3068\u306A\u3063\u305F\u5834\u6240\u306B\u65B0\u305F\u306A\u571F\u7802\u304C\u7A4D\u3082\u308A\u3001B\u306E\u4E0A\u306B\u5730\u5C64C\u304C\u91CD\u306A\u308A\u307E\u3059\u3002"}],T=(e,t)=>{let r=Math.max(0,Math.min(1,(e-t)/4));return r*r*(3-2*r)};function E(e){if(!Number.isFinite(e)||e<0||e>20)throw new RangeError("Time outside history");return{time:e,index:Math.max(0,Math.min(4,Math.ceil(e/4)-1)),a:T(e,0),b:T(e,4),uplift:T(e,8),submerge:T(e,12),c:T(e,16),current:e===20}}function B(e,t){let r=E(e);if(!Number.isFinite(t)||t<60||t>640)throw new RangeError("Position outside cross-section");let n=-180*r.uplift+160*r.submerge,i=390+n,a=i-50*r.a,o=a-50*r.b,c=o-50*r.c,m=[];for(let[d,l,u]of[["A",a,i],["B",o,a],["C",c,o]])u-l>1e-9&&m.push({id:d,top:l,bottom:u});return{layers:m,basement:i,surface:c,displacement:n,seaLevel:210,aboveSea:c<210}}function re(e){return E(e),Math.max(0,(Math.ceil(e/4)-1)*4)}function ae(e){return E(e),Math.min(20,(Math.floor(e/4)+1)*4)}var q=Array.from({length:59},(e,t)=>60+t*10),se=e=>e.map(([t,r])=>`${t.toFixed(2)},${r.toFixed(2)}`).join(" ");function ie(e){let t=E(e),r=q.map(a=>B(e,a)),n=['<defs><pattern id="sand" width="18" height="18" patternUnits="userSpaceOnUse"><rect width="18" height="18" fill="#cfb17d"/><circle cx="4" cy="5" r="1.4" fill="#967653"/><circle cx="13" cy="13" r="1.3" fill="#967653"/></pattern><pattern id="stripes" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#957b6c"/><path d="M0 5h16M0 13h16" stroke="#b09b88" stroke-width="2"/></pattern><pattern id="pebbles" width="27" height="18" patternUnits="userSpaceOnUse"><rect width="27" height="18" fill="#a9c3b4"/><ellipse cx="8" cy="9" rx="4" ry="2.5" fill="none" stroke="#678c7c"/></pattern></defs>'];n.push('<rect x="60" y="70" width="580" height="360" fill="#f6f3e9"/>'),n.push('<rect x="60" y="210" width="580" height="220" fill="#d9edf1"/>'),n.push(`<polygon points="${se([...q.map((a,o)=>[a,r[o].basement]),[640,430],[60,430]])}" fill="#b7afa3"/>`);for(let[a,o]of[["A","sand"],["B","stripes"],["C","pebbles"]]){let c=r.map(l=>l.layers.find(u=>u.id===a)||{top:l.surface,bottom:l.surface});if(!r.some(l=>l.layers.some(u=>u.id===a)))continue;n.push(`<polygon data-layer="${a}" points="${se([...q.map((l,u)=>[l,c[u].top]),...q.map((l,u)=>[l,c[u].bottom]).reverse()])}" fill="url(#${o})" stroke="#7d766c" stroke-width="1.2"/>`);let m=220,d=B(e,m).layers.find(l=>l.id===a);d&&d.bottom-d.top>24&&n.push(`<text class="layer-label" x="${m}" y="${(d.top+d.bottom)/2+10}" text-anchor="middle">${a}</text>`)}if(t.index===2||t.index===3){let a=t.index===2,o=B(e,350).surface+24;n.push(`<g data-movement="${a?"uplift":"subsidence"}"><path d="M590 ${a?o+76:o}V${a?o:o+76}m-10 ${a?12:-12} 10 ${a?-12:12} 10 ${a?12:-12}" fill="none" stroke="#385e77" stroke-width="5"/><text x="555" y="${o+45}" text-anchor="end" class="movement-label">${a?"\u571F\u5730\u304C\u4E0A\u304C\u308B":"\u571F\u5730\u304C\u4E0B\u304C\u308B"}</text></g>`)}if(!t.current&&[0,1,4].includes(t.index))for(let a=0;a<8;a++){let o=90+a*68,c=B(e,o),m=(e/4+a*.17)%1;c.surface>215&&n.push(`<circle cx="${o}" cy="${212+(c.surface-212)*m}" r="3" fill="${t.index===4?"#6f9381":"#a18454"}"/>`)}return n.push('<path data-sea-level="210" d="M60 210H640" stroke="#75a9b5" stroke-width="2" stroke-dasharray="8 5"/><text x="80" y="235" class="water-label">\u6D77\u9762\u306E\u9AD8\u3055</text>'),n.push('<path d="M60 70V430H640V70" fill="none" stroke="#cdc7bc" stroke-width="1"/>'),n.join("")}var F='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 4 14 8-14 8Z" fill="currentColor"/></svg>',I='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zm8 0h4v16h-4Z" fill="currentColor"/></svg>';function oe(e){let t=s=>document.querySelector(s),r=t("#history-experiment"),n=[],i=0,a=!1,o=null,c=null,m=null,d=[0,0,0],l=1,u=null;function g(){let s=W(n,i);Object.assign(r.dataset,{sequence:n.join(","),time:i,playing:a,match:P(s),surface:s.surface}),t("#history-figure").innerHTML=te(s),t("#history-figure").setAttribute("aria-label","\u4E0B\u304B\u3089"+(s.layers.length?s.layers.map(w=>w.id).join("\u3001"):"\u307E\u3060\u5730\u5C64\u306A\u3057")+"\u3002"+(s.surface>0?"\u5730\u8868\u306F\u6D77\u9762\u3088\u308A\u4E0A":"\u5730\u8868\u306F\u6D77\u9762\u4EE5\u4E0B"));let p=Math.min(n.length-1,Math.floor(i)),R=n.join(",")+":"+p;t("#history-sequence").dataset.signature!==R&&(t("#history-sequence").dataset.signature=R,t("#history-sequence").innerHTML=n.map((w,Z)=>`<li class="${Z===p?"is-current":""}">${Z+1}. ${_[w]}</li>`).join("")),document.querySelectorAll("[data-add]").forEach(w=>w.disabled=a||i<n.length||!H(n,w.dataset.add).allowed),t("#history-play").disabled=!n.length,t("#history-play").classList.toggle("is-playing",a),t("#history-play").setAttribute("aria-pressed",String(a)),t("#history-play").textContent=a?"\u4E00\u6642\u505C\u6B62":i<n.length?"\u7D9A\u304D\u304B\u3089\u518D\u751F":"\u3053\u306E\u9806\u306B\u518D\u751F",t("#history-undo").disabled=!n.length,t("#history-reset").disabled=!n.length,document.querySelectorAll("[data-example]").forEach(w=>w.disabled=!1);let D=L(n),b=H(n,"deposit");t("#history-hint").textContent=a?`${p+1}. ${_[n[p]]}\uFF1A${n[p]==="deposit"?"\u65B0\u3057\u3044\u571F\u7802\u304C\u7A4D\u3082\u308A\u307E\u3059\u3002":"\u3059\u3067\u306B\u3042\u308B\u5730\u5C64\u3054\u3068\u3001\u571F\u5730\u304C\u52D5\u304D\u307E\u3059\u3002"}`:n.length?n.length===5?"\u4E8C\u3064\u306E\u4F8B\u3092\u518D\u751F\u3057\u3001\u571F\u5730\u304C\u4E0A\u304C\u308B\u3068\u304D\u306E\u5730\u5C64\u3092\u6BD4\u3079\u3088\u3046\u3002":D.layers.length<3&&!b.allowed?b.reason:"\u6B21\u306E\u51FA\u6765\u4E8B\u3092\u9078\u307C\u3046\u3002\u300C\u4E00\u3064\u623B\u3059\u300D\u3067\u9806\u5E8F\u3092\u8A66\u3057\u76F4\u305B\u307E\u3059\u3002":"\u307E\u305A\u300C\u5806\u7A4D\u300D\u3067\u3001\u6D77\u5E95\u306BA\u3092\u7A4D\u3082\u3089\u305B\u3066\u307F\u3088\u3046\u3002";let U=a||i<n.length?"\u9078\u3093\u3060\u51FA\u6765\u4E8B\u306E\u9014\u4E2D\u3067\u3059\u3002\u5730\u5C64\u304C\u5897\u3048\u308B\u304B\u3001\u5168\u4F53\u304C\u52D5\u304F\u304B\u3092\u898B\u3088\u3046\u3002":P(s)?"\u8CC7\u6599\u3068\u540C\u3058\u65AD\u9762\u306B\u306A\u308A\u307E\u3057\u305F\u3002\u305F\u3060\u3057\u3001\u9686\u8D77\u306E\u6642\u671F\u307E\u3067\u540C\u3058\u3068\u306F\u9650\u308A\u307E\u305B\u3093\u3002\u4F8B1\u3068\u4F8B2\u3092\u6BD4\u3079\u3088\u3046\u3002":n.length?"\u307E\u3060\u8CC7\u6599\u3068\u306F\u9055\u3044\u307E\u3059\u3002\u5730\u5C64\u306E\u6570\u3068\u3001\u6D77\u9762\u304B\u3089\u306E\u4F4D\u7F6E\u3092\u6BD4\u3079\u3088\u3046\u3002":"\u53F3\u306E\u8CC7\u6599\u3068\u540C\u3058\u65AD\u9762\u306B\u306A\u308B\u9806\u5E8F\u3092\u8A66\u305D\u3046\u3002";t("#history-result").textContent!==U&&(t("#history-result").textContent=U)}function v(){a=!1,c=null,o!==null&&cancelAnimationFrame(o),o=null}function X(s){clearTimeout(m),t("#history-flash").innerHTML=`<div class="vl-feedback${s?" is-pause":""}" aria-hidden="true"><span>${s?I:F}</span></div>`,m=setTimeout(()=>t("#history-flash").replaceChildren(),1e3)}function z(s){a&&(c!==null&&(i=Math.min(n.length,i+Math.min((s-c)/1e3,.1)/2.8)),c=s,i===n.length&&v(),g(),a&&(o=requestAnimationFrame(z)))}function V(){e(),v(),a=!0,X(!1),o=requestAnimationFrame(z),g()}document.querySelectorAll("[data-add]").forEach(s=>s.addEventListener("click",()=>{a||i<n.length||!H(n,s.dataset.add).allowed||(n.push(s.dataset.add),i=n.length-1,V())})),t("#history-play").addEventListener("click",()=>{a?(v(),X(!0),g()):(i===n.length&&(i=0),V())}),t("#history-undo").addEventListener("click",()=>{v(),n.pop(),i=n.length,g()}),t("#history-reset").addEventListener("click",()=>{v(),n=[],i=0,clearTimeout(m),t("#history-flash").replaceChildren(),g()}),document.querySelectorAll("[data-example]").forEach(s=>s.addEventListener("click",()=>{n=[...K[Number(s.dataset.example)]],i=0,V()}));function k(s=!1){let p=d.map((b,U)=>S(U,b).ashBase),R=p.every(b=>Math.abs(b-200)<.01);Object.assign(t("#column-experiment").dataset,{offsets:d.join(","),selected:l,aligned:R}),t("#column-chart").innerHTML=ne(d,l,!0),t("#column-shift").disabled=!1,t("#column-shift").value=String(d[l]),t("#column-align").disabled=!1,t("#column-reset").disabled=!1,t("#column-label").textContent=`\u5730\u70B9${l+1}\u306E\u56F3\u3092\u4E0A\u4E0B\u306B\u52D5\u304B\u3059`;let D=p.every(b=>Math.abs(b-p[0])<.01);t("#column-result").textContent=D?"F\u304C\u63C3\u3044\u307E\u3057\u305F\u3002\u300C\u5148\u300D\u306E\u5730\u5C64\u306F\u5674\u706B\u3088\u308A\u524D\u3001\u300C\u5F8C\u300D\u306F\u5674\u706B\u3088\u308A\u5F8C\u306B\u3067\u304D\u307E\u3057\u305F\u3002\u9593\u306E\u539A\u3055\u304C\u9055\u3063\u3066\u3082\u6BD4\u3079\u3089\u308C\u307E\u3059\u3002":d.every(b=>b===0)?"\u5730\u8868\u3092\u63C3\u3048\u3066\u3082\u3001F\u306E\u9AD8\u3055\u306F\u5730\u70B9\u3054\u3068\u306B\u9055\u3044\u307E\u3059\u3002":"F\u306E\u4E0B\u7AEF\u3092\u76EE\u5370\u306E\u7DDA\u306B\u5408\u308F\u305B\u3088\u3046\u3002\u56F3\u306E\u539A\u3055\u3084\u91CD\u306A\u308A\u306E\u9806\u5E8F\u306F\u5909\u308F\u308A\u307E\u305B\u3093\u3002",s&&t("#column-chart").querySelector('[data-column="'+l+'"]').focus({preventScroll:!0})}let y=t("#column-chart");y.addEventListener("pointerdown",s=>{let p=s.target.closest("[data-column]");!p||s.isPrimary===!1||s.button!==0||(l=Number(p.dataset.column),u={id:s.pointerId,y:s.clientY,offset:d[l],scale:445/y.getBoundingClientRect().height},y.setPointerCapture(s.pointerId),k())}),y.addEventListener("pointermove",s=>{!u||u.id!==s.pointerId||(d[l]=Math.max(-90,Math.min(90,Math.round(u.offset+(s.clientY-u.y)*u.scale))),k())});let Y=s=>{u?.id===s.pointerId&&(u=null,y.hasPointerCapture(s.pointerId)&&y.releasePointerCapture(s.pointerId))};y.addEventListener("pointerup",Y),y.addEventListener("pointercancel",Y),y.addEventListener("lostpointercapture",s=>{s.target===y&&u?.id===s.pointerId&&(u=null)}),y.addEventListener("keydown",s=>{let p=s.target.closest("[data-column]");p&&(l=Number(p.dataset.column),["ArrowUp","ArrowDown","Home","End","Enter"," "].includes(s.key)&&(s.preventDefault(),s.key==="ArrowUp"&&(d[l]=Math.max(-90,d[l]-5)),s.key==="ArrowDown"&&(d[l]=Math.min(90,d[l]+5)),s.key==="Home"&&(d[l]=-90),s.key==="End"&&(d[l]=90),k(!0)))}),t("#column-shift").addEventListener("input",s=>{d[l]=Number(s.currentTarget.value),k()}),t("#column-align").addEventListener("click",()=>{d=d.map((s,p)=>ee(p)),k()}),t("#column-reset").addEventListener("click",()=>{d=[0,0,0],l=1,k()});for(let s of["history-experiment","column-experiment"])t("#"+s).addEventListener("toggle",()=>{v(),g(),t("#"+s).open&&e()});t("#play").addEventListener("click",()=>{v(),g()}),document.addEventListener("visibilitychange",()=>{document.hidden&&(v(),g(),u=null)}),window.addEventListener("resize",()=>{u=null}),g(),k()}var h=e=>document.querySelector(e),f=20,x=!1,N=null,O=null,G=null,le="";function $(){h("#play").disabled=!1;let e=E(f);h("#cross-section").innerHTML=ie(f),h("#cross-section").dataset.time=f,h("#cross-section").setAttribute("aria-label",e.current?"\u73FE\u5728\u306E\u65AD\u9762\u3002\u6D77\u5E95\u306BA\u30FBB\u30FBC\u306E\u5730\u5C64\u304C\u91CD\u306A\u3063\u3066\u3044\u307E\u3059\u3002":j[e.index].text);let t=e.current?"current":String(e.index);le!==t&&(le=t,h("#event-position").textContent=e.current?"\u73FE\u5728\u306E\u65AD\u9762":`${e.index+1} / 5 \u306E\u51FA\u6765\u4E8B`,h("#event-title").textContent=e.current?"\u7A4D\u3082\u308B\u30FB\u4E0A\u304C\u308B\u30FB\u4E0B\u304C\u308B":j[e.index].title,h("#event-text").textContent=e.current?"\u6D77\u5E95\u306B\u3067\u304D\u305F\u5730\u5C64\u306F\u3001\u4E00\u5EA6\u9678\u4E0A\u306B\u73FE\u308C\u3001\u518D\u3073\u6D77\u5E95\u3078\u6C88\u307F\u307E\u3057\u305F\u3002\u524D\u3078\u623B\u308A\u3001\u571F\u5730\u3068\u571F\u7802\u306E\u52D5\u304D\u3092\u6BD4\u3079\u3088\u3046\u3002":j[e.index].text),h("#event-progress").style.width=`${f/20*100}%`,h("#previous").disabled=f<=0,h("#next").disabled=f>=20,h("#current").disabled=e.current;let r=x?"\u4E00\u6642\u505C\u6B62":e.current?"\u6210\u308A\u7ACB\u3061\u3092\u518D\u751F":"\u518D\u751F";h("#play").dataset.label!==r&&(h("#play").innerHTML=(x?I:F)+`<span>${r}</span>`,h("#play").dataset.label=r),h("#play").classList.toggle("is-playing",x),h("#play").setAttribute("aria-pressed",String(x))}function M(){x=!1,O=null,N!==null&&cancelAnimationFrame(N),N=null}function ce(e){clearTimeout(G),h("#feedback").innerHTML=`<div class="vl-feedback${e?" is-pause":""}" aria-hidden="true"><span>${e?I:F}</span></div>`,G=setTimeout(()=>h("#feedback").replaceChildren(),1e3)}function de(e){x&&(O!==null&&(f=Math.min(20,f+Math.min((e-O)/1e3,.1))),O=e,f===20&&M(),$(),x&&(N=requestAnimationFrame(de)))}h("#play").addEventListener("click",()=>{x?(M(),ce(!0)):(f===20&&(f=0),x=!0,O=null,ce(!1),N=requestAnimationFrame(de)),$()});h("#previous").addEventListener("click",()=>{M(),f=re(f),$()});h("#next").addEventListener("click",()=>{M(),f=ae(f),$()});h("#current").addEventListener("click",()=>{M(),f=20,clearTimeout(G),h("#feedback").replaceChildren(),$()});document.addEventListener("visibilitychange",()=>{document.hidden&&(M(),$())});$();oe(()=>{M(),$()});})();
+</script>
+</body>
+</html>
