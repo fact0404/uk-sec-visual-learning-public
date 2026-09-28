@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>マグマの冷え方と結晶 | 火成岩の組織</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1100px;
+}
+.vl-title {
+  font-size: clamp(24px, 3.3vw, 34px);
+}
+.vl-controls {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 252, 252, 0.98);
+  backdrop-filter: blur(8px);
+}
+.toolbar {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.toolbar button {
+  min-width: 48px;
+  min-height: 48px;
+}
+#play {
+  background: #167454;
+  color: white;
+  min-width: 174px;
+}
+#play[data-playing='true'] {
+  background: #bc3543;
+}
+.timeline-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex: 1;
+  min-width: 150px;
+  font-size: 13px;
+}
+.timeline-wrap span {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.timeline-wrap input {
+  flex: 1;
+  width: 100%;
+  min-width: 80px;
+  height: 44px;
+  accent-color: #257b76;
+}
+.vl-stage {
+  padding: 22px;
+}
+.comparison {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.sample-card {
+  min-width: 0;
+  border: 1px solid #d7e1df;
+  border-radius: 15px;
+  background: #f9fbf9;
+  overflow: hidden;
+}
+.sample-card h2 {
+  font-size: 19px;
+  margin: 20px 18px 4px;
+}
+.sample-card .condition {
+  font-size: 13px;
+  color: #59767c;
+  margin: 0 18px 8px;
+  min-height: 1.6em;
+}
+.sample {
+  display: block;
+  width: 100%;
+  max-height: 430px;
+}
+.texture {
+  margin: 0 14px 16px;
+  border-top: 1px solid #c6d6d1;
+  padding-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c5f5d;
+  min-height: 38px;
+}
+.texture[hidden] {
+  display: block !important;
+  visibility: hidden;
+}
+.story {
+  border-top: 1px solid #d7e1df;
+  padding-top: 16px;
+  margin-top: 18px;
+  min-height: 115px;
+}
+.story h2 {
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+.story p {
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0;
+}
+.experiment-controls {
+  margin-top: 15px;
+  background: #edf4f0;
+  padding: 16px 18px;
+  border-radius: 12px;
+}
+.experiment-controls label {
+  font-size: 16px;
+  font-weight: 650;
+  display: block;
+}
+.experiment-controls .caption {
+  font-size: 13px;
+  color: #57736f;
+  margin: 7px 0 4px;
+}
+.setting {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 13px;
+}
+.setting input {
+  height: 44px;
+  width: 100%;
+  min-width: 70px;
+  accent-color: #26766f;
+}
+.setting span {
+  white-space: nowrap;
+}
+.setting-output {
+  font-size: 13px;
+  color: #346c63;
+  font-weight: 650;
+  display: block;
+  margin-top: 4px;
+}
+.model-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #627975;
+  margin: 13px 0 0;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #00a05a;
+  color: white;
+  font-size: 34px;
+  pointer-events: none;
+  animation: flash-out 1s ease-out both;
+  z-index: 3;
+}
+#flash[data-kind='pause'] {
+  background: #ef2438;
+}
+#flash[hidden],
+[hidden] {
+  display: none !important;
+}
+@keyframes flash-out {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 700px) {
+  .comparison {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .sample {
+    max-height: 390px;
+  }
+  .sample-card h2 {
+    margin-top: 14px;
+  }
+  .story {
+    min-height: 150px;
+  }
+  .vl-stage {
+    padding: 16px;
+  }
+}
+@media (max-width: 430px) {
+  .vl-shell {
+    padding: 12px;
+  }
+  .vl-controls {
+    padding: 12px;
+  }
+  .vl-stage {
+    padding: 12px;
+  }
+  .toolbar {
+    width: 100%;
+    gap: 8px;
+  }
+  .toolbar #play {
+    flex: 1;
+    min-width: 164px;
+  }
+  .toolbar #reset {
+    flex: 0 0 70px;
+    padding: 8px;
+    font-size: 12px;
+    min-width: 70px;
+  }
+  .timeline-wrap {
+    width: 100%;
+    flex-basis: 100%;
+    font-size: 12px;
+  }
+  .sample-card h2 {
+    font-size: 18px;
+    margin-left: 14px;
+  }
+  .sample-card .condition {
+    font-size: 12px;
+    margin-left: 14px;
+  }
+  .sample-card .texture {
+    font-size: 12px;
+  }
+  .story h2 {
+    font-size: 19px;
+  }
+  .story p {
+    font-size: 15px;
+  }
+  .experiment-controls {
+    padding: 14px 12px;
+  }
+  .experiment-controls label {
+    font-size: 14px;
+  }
+  .setting {
+    gap: 5px;
+    font-size: 12px;
+  }
+  .setting-output {
+    font-size: 12px;
+  }
+}
+.intro {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #4c6b70;
+  margin: 0 0 15px;
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 21 6-11 4 3 4-6 6 14H2Zm7-17 2 4m4-7-2 5m7-2-3 3"/><path d="m8 10 4 3 4-6 3 7-6 5Z"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>マグマの冷え方と結晶</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">マグマの冷え方と結晶</h1><p class="vl-question">大きな結晶と小さな粒は、どうして混ざる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="play" aria-pressed="false">▶ 再生して比べる</button><button disabled id="reset" class="vl-secondary">初めから</button><label class="timeline-wrap" for="timeline"><span>進行</span><input disabled id="timeline" type="range" min="0" max="30" step="0.01" value="0" aria-label="冷却の過程を見直す"></label></div></div>
+        <div class="vl-stage"><p class="intro">同じ組成のマグマを拡大して比べます。再生して、育つ結晶を追おう。</p><div class="comparison"><section class="sample-card"><h2>左｜地下に残す</h2><p class="condition">地下でゆっくり冷える</p><svg class="sample" id="slow-sample" viewBox="0 0 300 350" aria-label="地下でゆっくり冷えるマグマと結晶の拡大模式図"><title>同じ部分を拡大して追う</title><defs><clipPath id="slow-clip"><rect width="240" height="200" rx="10"/></clipPath><pattern id="slow-fine" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M1 1l2-.5 1 2-2 1z" fill="#bac5be"/><path d="M5 5l2 1-.5 2-2-1z" fill="#414f51"/><path d="M7 1l1 1-1 1z" fill="#dce2da"/></pattern></defs>
+<rect x="12" y="5" width="276" height="75" rx="8" fill="#e8f0ee"/><path d="M12 30H288V80H12Z" fill="#d9c7b4"/><path d="M12 30H288" stroke="#8c735c" stroke-width="2"/><text x="24" y="23" font-size="15" fill="#4b6570">地表</text><text x="24" y="66" font-size="15" fill="#705c4b">地下</text><path class="route" d="M150 55V12" fill="none" stroke="#987855" stroke-dasharray="3 3" opacity="0"/><circle class="location" cx="150" cy="55" r="9" fill="#d96945" stroke="#fff" stroke-width="2"/><text class="place" x="180" y="62" font-size="15" fill="#4b443d">マグマ</text><path d="M150 82V99" stroke="#738781" stroke-dasharray="3 3"/><text x="168" y="100" font-size="15" fill="#566f72">同じ部分を拡大</text>
+<g transform="translate(30 113)"><g clip-path="url(#slow-clip)"><rect class="melt" width="240" height="200" fill="#df7955"/><rect class="matrix" width="240" height="200" fill="url(#slow-fine)" opacity="0"/><g class="crystals"><polygon data-crystal="0" points="25,20 25,20 25,20 25,20 25,20" fill="#c5c4b9" stroke="#405450" stroke-width=".7"/><polygon data-crystal="1" points="90,12 90,12 90,12 90,12 90,12" fill="#8a9290" stroke="#405450" stroke-width=".7"/><polygon data-crystal="2" points="163,26 163,26 163,26 163,26 163,26" fill="#dbe0d8" stroke="#405450" stroke-width=".7"/><polygon data-crystal="3" points="220,15 220,15 220,15 220,15 220,15" fill="#677472" stroke="#405450" stroke-width=".7"/><polygon data-crystal="4" points="52,62 52,62 52,62 52,62 52,62" fill="#8a9290" stroke="#405450" stroke-width=".7"/><polygon data-crystal="5" points="124,58 124,58 124,58 124,58 124,58 124,58" fill="#dbe0d8" stroke="#405450" stroke-width=".7"/><polygon data-crystal="6" points="190,78 190,78 190,78 190,78 190,78 190,78" fill="#677472" stroke="#405450" stroke-width=".7"/><polygon data-crystal="7" points="229,67 229,67 229,67 229,67" fill="#c5c4b9" stroke="#405450" stroke-width=".7"/><polygon data-crystal="8" points="18,107 18,107 18,107 18,107 18,107" fill="#dbe0d8" stroke="#405450" stroke-width=".7"/><polygon data-crystal="9" points="84,113 84,113 84,113 84,113 84,113 84,113" fill="#677472" stroke="#405450" stroke-width=".7"/><polygon data-crystal="10" points="148,109 148,109 148,109 148,109 148,109 148,109" fill="#c5c4b9" stroke="#405450" stroke-width=".7"/><polygon data-crystal="11" points="210,125 210,125 210,125 210,125 210,125 210,125" fill="#8a9290" stroke="#405450" stroke-width=".7"/><polygon data-crystal="12" points="40,167 40,167 40,167 40,167 40,167" fill="#677472" stroke="#405450" stroke-width=".7"/><polygon data-crystal="13" points="108,178 108,178 108,178 108,178 108,178" fill="#c5c4b9" stroke="#405450" stroke-width=".7"/><polygon data-crystal="14" points="168,167 168,167 168,167 168,167 168,167" fill="#8a9290" stroke="#405450" stroke-width=".7"/><polygon data-crystal="15" points="234,182 234,182 234,182 234,182" fill="#dbe0d8" stroke="#405450" stroke-width=".7"/></g><polygon class="tracked" fill="none" stroke="#fff1a0" stroke-width="3" points="124,58 124,58 124,58 124,58 124,58 124,58"/></g><rect width="240" height="200" rx="10" fill="none" stroke="#657b75" stroke-width="1.5"/></g><text class="sample-caption" x="150" y="337" text-anchor="middle" font-size="16" font-weight="600" fill="#34545d">まだ熱いマグマ</text></svg><p id="texture-slow" class="texture" hidden>等粒状組織</p></section><section class="sample-card"><h2 id="fast-title">右｜途中で地表へ</h2><p class="condition" id="fast-location">まだ地下でゆっくり冷える</p><svg class="sample" id="fast-sample" viewBox="0 0 300 350" aria-label="途中で地表へ出るマグマと結晶の拡大模式図"><title>同じ部分を拡大して追う</title><defs><clipPath id="fast-clip"><rect width="240" height="200" rx="10"/></clipPath><pattern id="fast-fine" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M1 1l2-.5 1 2-2 1z" fill="#bac5be"/><path d="M5 5l2 1-.5 2-2-1z" fill="#414f51"/><path d="M7 1l1 1-1 1z" fill="#dce2da"/></pattern></defs>
+<rect x="12" y="5" width="276" height="75" rx="8" fill="#e8f0ee"/><path d="M12 30H288V80H12Z" fill="#d9c7b4"/><path d="M12 30H288" stroke="#8c735c" stroke-width="2"/><text x="24" y="23" font-size="15" fill="#4b6570">地表</text><text x="24" y="66" font-size="15" fill="#705c4b">地下</text><path class="route" d="M150 55V12" fill="none" stroke="#987855" stroke-dasharray="3 3" opacity="0"/><circle class="location" cx="150" cy="55" r="9" fill="#d96945" stroke="#fff" stroke-width="2"/><text class="place" x="180" y="62" font-size="15" fill="#4b443d">マグマ</text><path d="M150 82V99" stroke="#738781" stroke-dasharray="3 3"/><text x="168" y="100" font-size="15" fill="#566f72">同じ部分を拡大</text>
+<g transform="translate(30 113)"><g clip-path="url(#fast-clip)"><rect class="melt" width="240" height="200" fill="#df7955"/><rect class="matrix" width="240" height="200" fill="url(#fast-fine)" opacity="0"/><g class="crystals"><polygon data-crystal="0" points="25,20 25,20 25,20 25,20 25,20" fill="#c5c4b9" stroke="#405450" stroke-width=".7"/><polygon data-crystal="1" points="90,12 90,12 90,12 90,12 90,12" fill="#8a9290" stroke="#405450" stroke-width=".7"/><polygon data-crystal="2" points="163,26 163,26 163,26 163,26 163,26" fill="#dbe0d8" stroke="#405450" stroke-width=".7"/><polygon data-crystal="3" points="220,15 220,15 220,15 220,15 220,15" fill="#677472" stroke="#405450" stroke-width=".7"/><polygon data-crystal="4" points="52,62 52,62 52,62 52,62 52,62" fill="#8a9290" stroke="#405450" stroke-width=".7"/><polygon data-crystal="5" points="124,58 124,58 124,58 124,58 124,58 124,58" fill="#dbe0d8" stroke="#405450" stroke-width=".7"/><polygon data-crystal="6" points="190,78 190,78 190,78 190,78 190,78 190,78" fill="#677472" stroke="#405450" stroke-width=".7"/><polygon data-crystal="7" points="229,67 229,67 229,67 229,67" fill="#c5c4b9" stroke="#405450" stroke-width=".7"/><polygon data-crystal="8" points="18,107 18,107 18,107 18,107 18,107" fill="#dbe0d8" stroke="#405450" stroke-width=".7"/><polygon data-crystal="9" points="84,113 84,113 84,113 84,113 84,113 84,113" fill="#677472" stroke="#405450" stroke-width=".7"/><polygon data-crystal="10" points="148,109 148,109 148,109 148,109 148,109 148,109" fill="#c5c4b9" stroke="#405450" stroke-width=".7"/><polygon data-crystal="11" points="210,125 210,125 210,125 210,125 210,125 210,125" fill="#8a9290" stroke="#405450" stroke-width=".7"/><polygon data-crystal="12" points="40,167 40,167 40,167 40,167 40,167" fill="#677472" stroke="#405450" stroke-width=".7"/><polygon data-crystal="13" points="108,178 108,178 108,178 108,178 108,178" fill="#c5c4b9" stroke="#405450" stroke-width=".7"/><polygon data-crystal="14" points="168,167 168,167 168,167 168,167 168,167" fill="#8a9290" stroke="#405450" stroke-width=".7"/><polygon data-crystal="15" points="234,182 234,182 234,182 234,182" fill="#dbe0d8" stroke="#405450" stroke-width=".7"/></g><polygon class="tracked" fill="none" stroke="#fff1a0" stroke-width="3" points="124,58 124,58 124,58 124,58 124,58 124,58"/></g><rect width="240" height="200" rx="10" fill="none" stroke="#657b75" stroke-width="1.5"/></g><text class="sample-caption" x="150" y="337" text-anchor="middle" font-size="16" font-weight="600" fill="#34545d">まだ熱いマグマ</text></svg><p id="texture-fast" class="texture" hidden>斑状組織：斑晶 ＋ 石基</p></section><span hidden id="flash" aria-hidden="true"></span></div>
+<section class="story" aria-live="polite"><h2 id="explanation-title">同じマグマを、二つの冷やし方で</h2><p id="explanation-note">左は地下に残し、右は途中で地表へ出します。再生して、結晶が育つ様子を比べよう。</p></section>
+<div class="experiment-controls"><label for="eruption">右を地表へ出すタイミング</label><p class="caption">変更すると最初に戻ります。再生して、新しい条件を比べよう。</p><div class="setting"><span>すぐ</span><input disabled type="range" id="eruption" min="0" max="20" step="1" value="12" aria-label="右を地表に出すまでの待ち時間"><span>長く待つ</span></div><output id="timing-label" class="setting-output" for="eruption">途中で地表へ</output></div>
+<p class="model-note">時間を縮めた拡大模式図です。結晶の色は見分けるためのもので、鉱物名を表しません。</p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>冷える速さと、結晶が育つ時間</h3><p>マグマが冷える過程で、鉱物の結晶ができます。地下でゆっくり冷えると、結晶が育つ時間をとれます。地表や地表付近で急に冷えると、残ったマグマからできる部分は細かくなったり、ガラス質になったりします。</p><p>図の黄色い輪郭は、同じ一つの結晶を追うための印です。左右が地下にある間は同じように育ちますが、右は急に冷える段階になると、大きな結晶が育ちにくくなります。左はその後も成長を続けます。</p>
+<h3>先に大きくなった結晶は、どこへ？</h3><p>途中で地表へ出たとき、すでに育っていた結晶はその中に残ります。あとから固まる周囲の細かな部分が石基となり、大きな結晶の斑晶とともに斑状組織をつくります。大きな結晶と小さな粒が、同じ時点に同じ条件でできたとは限りません。</p><p>地下でゆっくり冷えて結晶が組み合わさった図は、深成岩にみられる等粒状組織を表します。等粒状は、すべての結晶の形や大きさが全く同じという意味ではありません。</p>
+<h3>すぐ地表へ出すと</h3><p>下のゲージを「すぐ」にして再生すると、大きな結晶が育つ前に冷やす例になります。火山岩がすべて、大きな斑晶を含むとは限りません。石基には微細な結晶やガラス質が含まれ、極めて急に冷えた場合には、結晶が育たずガラス質になることもあります。</p>
+<h3>この模型で省いたこと</h3><p>同じ組成を仮定し、冷却の履歴と組織の関係を取り出しています。実際の粒の大きさは、冷却速度のほか、組成、水分、結晶のできやすさなどにも関係します。この画面から実際の冷却時間や粒径を計算することはできません。</p><p>二次元の結晶領域を用いる単純な成長模型です。早くできた結晶が急冷後も保たれる点を示すため、右では大きな結晶の成長を急冷の切り替え時で止めています。実際の成長は完全にこの通りではありません。岩石の鉱物組成、結晶のできる温度や順序、沈降や再融解などは扱っていません。結晶の形も実際の鉱物の形を再現したものではありません。</p><p>小さな模様は石基を表し、拡大率や粒径は実寸ではありません。初期のオレンジは残った液体、固まった部分は灰色系です。再生は約21秒です。結晶が現れる前の区間は特に短くし、実際の時間は大幅に縮めています。条件を変えると最初からの別の試行になります。</p>
+<p>根拠：<a href="https://www.usgs.gov/faqs/what-are-igneous-rocks" target="_blank" rel="noopener noreferrer">USGS・What are igneous rocks?</a>、<a href="https://www.usgs.gov/media/images/components-igneous-rocks" target="_blank" rel="noopener noreferrer">USGS・Components of Igneous Rocks</a>、<a href="https://opentextbc.ca/physicalgeology2ed/chapter/3-3-crystallization-of-magma/" target="_blank" rel="noopener noreferrer">Steven Earle・Physical Geology 2e 3.3</a>、<a href="https://www.nps.gov/subjects/geology/igneous.htm" target="_blank" rel="noopener noreferrer">NPS・Igneous Rocks</a>。図・文章・操作は独自制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var d=(t,e=0,i=1)=>Math.min(i,Math.max(e,Number.isFinite(+t)?+t:0)),k=t=>(t=d(t),t*t*(3-2*t)),w=t=>Math.round(d(t,0,20)),g=(t,e,i)=>t+(e-t)*i;function L(t,e,i,n){let a=[];for(let s=0;s<t.length;s++){let o=t[s],c=t[(s+1)%t.length],p=o[0]*e+o[1]*i-n,h=c[0]*e+c[1]*i-n;if(p<=1e-8&&a.push(o),p<0&&h>0||p>0&&h<0){let x=p/(p-h);a.push([g(o[0],c[0],x),g(o[1],c[1],x)])}}return a}var q=[[25,20],[90,12],[163,26],[220,15],[52,62],[124,58],[190,78],[229,67],[18,107],[84,113],[148,109],[210,125],[40,167],[108,178],[168,167],[234,182]],C=q.map((t,e)=>{let i=[[0,0],[240,0],[240,200],[0,200]];for(let n=0;n<q.length;n++)if(e!==n){let a=q[n],s=a[0]-t[0],o=a[1]-t[1],c=(a[0]*a[0]+a[1]*a[1]-t[0]*t[0]-t[1]*t[1])/2;i=L(i,s,o,c)}return{seed:t,points:i,color:["#c5c4b9","#677472","#dbe0d8","#8a9290"][(e*7+Math.floor(e/4)*3)%4],delay:1+e%4*1.1}});function v(t,e){let{seed:i,points:n}=C[t];return n.map(a=>[g(i[0],a[0],d(e)),g(i[1],a[1],d(e))])}function D(t,e=12){let i=d(t,0,30),n=w(e),a=x=>C.map(y=>k((x-y.delay)/(30-y.delay))),s=a(i),o=a(Math.min(i,n)),c=k((i-n)/6),p=k((i-n)/2),h=Math.max(...o);return{time:i,eruption:n,slow:{scales:s,matrix:0,solid:k((i-27)/3),texture:i>=30?"equigranular":null},fast:{scales:o,matrix:c,ascent:p,solid:c,texture:c>=1?h>=.15?"porphyritic":"fine":null},phase:T(i,n)}}function T(t,e){let i=d(t,0,30),n=w(e);return i===0?"intro":i>=30?"finished":i<n?"growing":i<n+6?"erupting":"comparison"}function F(t,e){let i=d(t,0,30),a=(i<=6?i/4:1.5+(i-6)/1.25)+Math.max(0,Number.isFinite(e)?e:0);return d(a<=1.5?a*4:6+(a-1.5)*1.25,0,30)}function N(t,e,i){let n=o=>o.match(/[a-f0-9]{2}/gi).map(c=>parseInt(c,16)),a=n(t),s=n(e);return"#"+a.map((o,c)=>Math.round(g(o,s[c],d(i))).toString(16).padStart(2,"0")).join("")}var $=t=>t.map(e=>e.join(",")).join(" ");var r=t=>document.querySelector(t),l=0,u=12,f=!1,b=0,z=0,P="",M,H={slow:r("#slow-sample"),fast:r("#fast-sample")};function j(t){clearTimeout(M);let e=r("#flash");e.hidden=!1,e.dataset.kind=t,e.textContent=t==="play"?"\u25B6":"\u2161",e.style.animation="none",e.offsetWidth,e.style.animation="",M=setTimeout(()=>{e.hidden=!0},1e3)}function m(){let t=D(l,u);Object.assign(document.body.dataset,{time:l.toFixed(4),eruption:String(u),phase:t.phase,playing:String(f),matrix:t.fast.matrix.toFixed(4)}),r("#timeline").value=String(l),r("#timeline").setAttribute("aria-valuetext",t.phase==="intro"?"\u51B7\u3048\u59CB\u3081\u308B\u524D":t.phase==="finished"?"\u4E21\u65B9\u304C\u51B7\u3048\u7D42\u308F\u3063\u305F":"\u51B7\u5374\u306E\u9014\u4E2D"),r("#play").textContent=f?"\u2161 \u4E00\u6642\u505C\u6B62":l>=30?"\u25B6 \u3082\u3046\u4E00\u5EA6\u6BD4\u3079\u308B":"\u25B6 \u518D\u751F\u3057\u3066\u6BD4\u3079\u308B",r("#play").dataset.playing=String(f),r("#play").setAttribute("aria-pressed",String(f)),r("#eruption").value=String(u);let e=u===0?"\u3059\u3050\u5730\u8868\u3078":u<=6?"\u65E9\u3081\u306B\u5730\u8868\u3078":u<16?"\u9014\u4E2D\u3067\u5730\u8868\u3078":"\u9577\u304F\u5F85\u3063\u3066\u5730\u8868\u3078";r("#timing-label").textContent=e,r("#eruption").setAttribute("aria-valuetext",e);for(let n of["slow","fast"]){let a=H[n],s=t[n],o=n==="fast";a.querySelector(".melt").setAttribute("fill",N("#df7955","#7e8b85",s.solid)),a.querySelector(".matrix").setAttribute("opacity",String(s.matrix)),a.querySelectorAll("[data-crystal]").forEach((y,A)=>{y.setAttribute("points",$(v(A,s.scales[A]))),y.setAttribute("opacity",s.scales[A]>.004?"1":"0")});let c=a.querySelector(".tracked");c.setAttribute("points",$(v(5,s.scales[5]))),c.setAttribute("opacity",s.scales[5]>.025?"1":"0");let p=o?s.ascent:0;a.querySelector(".location").setAttribute("cy",String(55-43*p)),a.querySelector(".location").setAttribute("fill",N("#d96945","#647e83",s.solid)),a.querySelector(".route").setAttribute("opacity",String(o&&l>=u&&l>0?.7:0));let h=a.querySelector(".place");h.setAttribute("y",String(62-43*p)),h.textContent=s.solid===1?"\u56FA\u307E\u3063\u305F\u5CA9\u77F3":o&&p>0?"\u5730\u8868\u3078":"\u30DE\u30B0\u30DE";let x=s.texture==="equigranular"?"\u5927\u304D\u306A\u7D50\u6676\u304C\u7D44\u307F\u5408\u308F\u3055\u308B":s.texture==="porphyritic"?"\u5927\u304D\u306A\u7D50\u6676 \uFF0B \u7D30\u304B\u306A\u77F3\u57FA":s.texture==="fine"?"\u7D30\u304B\u306A\u7D44\u7E54\u3067\u56FA\u307E\u308B":l===0?"\u307E\u3060\u71B1\u3044\u30DE\u30B0\u30DE":o&&l>=u?"\u6B8B\u3063\u305F\u90E8\u5206\u304C\u6025\u306B\u51B7\u3048\u308B":"\u7D50\u6676\u304C\u80B2\u3063\u3066\u3044\u304F";a.querySelector(".sample-caption").textContent=x}r("#fast-location").textContent=t.fast.solid===1?"\u5730\u8868\u4ED8\u8FD1\u3067\u56FA\u307E\u3063\u305F":t.fast.ascent>=1?"\u5730\u8868\u4ED8\u8FD1\u3067\u6025\u306B\u51B7\u3048\u308B":l>u?"\u5730\u8868\u3078\u79FB\u52D5\u4E2D":"\u307E\u3060\u5730\u4E0B\u3067\u3086\u3063\u304F\u308A\u51B7\u3048\u308B",r("#fast-title").textContent=u===0?"\u53F3\uFF5C\u3059\u3050\u5730\u8868\u3078":"\u53F3\uFF5C\u9014\u4E2D\u3067\u5730\u8868\u3078";let i=t.phase+"|"+(t.fast.texture||"")+"|"+u;if(i!==P){P=i;let n,a;t.phase==="intro"?(n="\u540C\u3058\u30DE\u30B0\u30DE\u3092\u3001\u4E8C\u3064\u306E\u51B7\u3084\u3057\u65B9\u3067",a="\u5DE6\u306F\u5730\u4E0B\u306B\u6B8B\u3057\u3001\u53F3\u306F\u9014\u4E2D\u3067\u5730\u8868\u3078\u51FA\u3057\u307E\u3059\u3002\u518D\u751F\u3057\u3066\u3001\u7D50\u6676\u304C\u80B2\u3064\u69D8\u5B50\u3092\u6BD4\u3079\u3088\u3046\u3002",u===0&&(a="\u5DE6\u306F\u5730\u4E0B\u306B\u6B8B\u3057\u3001\u53F3\u306F\u3059\u3050\u5730\u8868\u3078\u51FA\u3057\u307E\u3059\u3002\u518D\u751F\u3057\u3066\u3001\u5927\u304D\u306A\u7D50\u6676\u304C\u80B2\u3064\u304B\u6BD4\u3079\u3088\u3046\u3002")):t.phase==="growing"?(n="\u307E\u3060\u3001\u3069\u3061\u3089\u3082\u5730\u4E0B",a="\u7D50\u6676\u304C\u5C11\u3057\u305A\u3064\u5927\u304D\u304F\u306A\u308A\u307E\u3059\u3002\u9EC4\u8272\u3044\u8F2A\u90ED\u306F\u3001\u540C\u3058\u4E00\u3064\u306E\u7D50\u6676\u3092\u8FFD\u3046\u305F\u3081\u306E\u76EE\u5370\u3067\u3059\u3002"):t.phase==="erupting"?(n="\u53F3\u3060\u3051\u3001\u5730\u8868\u3078",a=Math.max(...t.fast.scales)>=.15?"\u5148\u306B\u80B2\u3063\u305F\u7D50\u6676\u306F\u6B8B\u308A\u307E\u3059\u3002\u307E\u308F\u308A\u306E\u6B8B\u3063\u305F\u30DE\u30B0\u30DE\u306F\u6025\u306B\u51B7\u3048\u3001\u5927\u304D\u304F\u80B2\u3064\u6642\u9593\u304C\u5C11\u306A\u304F\u306A\u308A\u307E\u3059\u3002":"\u5927\u304D\u306A\u7D50\u6676\u304C\u80B2\u3064\u524D\u306B\u5730\u8868\u3078\u51FA\u307E\u3057\u305F\u3002\u6025\u306B\u51B7\u3048\u3066\u3001\u7D30\u304B\u306A\u90E8\u5206\u3067\u56FA\u307E\u3063\u3066\u3044\u304D\u307E\u3059\u3002"):t.phase==="comparison"?(n="\u53F3\u306F\u56FA\u307E\u308A\u3001\u5DE6\u306F\u307E\u3060\u80B2\u3064",a=t.fast.texture==="porphyritic"?"\u53F3\u306E\u5927\u304D\u306A\u7D50\u6676\u306F\u3001\u5730\u4E0B\u306B\u3044\u305F\u3068\u304D\u304B\u3089\u80B2\u3063\u3066\u3044\u305F\u3082\u306E\u3067\u3059\u3002\u305D\u306E\u307E\u308F\u308A\u304C\u7D30\u304B\u306A\u77F3\u57FA\u306B\u306A\u308A\u307E\u3057\u305F\u3002":"\u53F3\u306F\u3001\u306F\u3063\u304D\u308A\u3057\u305F\u5927\u304D\u306A\u7D50\u6676\u306E\u306A\u3044\u7D44\u7E54\u306B\u306A\u308A\u307E\u3057\u305F\u3002\u5DE6\u306E\u7D50\u6676\u306F\u307E\u3060\u80B2\u3063\u3066\u3044\u307E\u3059\u3002"):(n="\u51B7\u3048\u65B9\u306E\u5C65\u6B74\u304C\u3001\u5CA9\u77F3\u306E\u4E2D\u306B\u6B8B\u308B",a=t.fast.texture==="porphyritic"?"\u5DE6\u306F\u5927\u304D\u306A\u7D50\u6676\u304C\u7D44\u307F\u5408\u3046\u7B49\u7C92\u72B6\u7D44\u7E54\u3002\u53F3\u306F\u5927\u304D\u306A\u6591\u6676\u304C\u7D30\u304B\u306A\u77F3\u57FA\u306B\u57CB\u307E\u308B\u6591\u72B6\u7D44\u7E54\u3067\u3059\u3002":"\u3086\u3063\u304F\u308A\u51B7\u3048\u305F\u5DE6\u306F\u7B49\u7C92\u72B6\u7D44\u7E54\u3002\u65E9\u304F\u5730\u8868\u3078\u51FA\u305F\u53F3\u306B\u306F\u3001\u5927\u304D\u306A\u6591\u6676\u304C\u898B\u3089\u308C\u307E\u305B\u3093\u3002"),r("#explanation-title").textContent=n,r("#explanation-note").textContent=a}r("#texture-slow").hidden=l<30,r("#texture-fast").hidden=t.fast.solid<1,r("#texture-fast").textContent=t.fast.texture==="porphyritic"?"\u6591\u72B6\u7D44\u7E54\uFF1A\u6591\u6676 \uFF0B \u77F3\u57FA":"\u7D30\u304B\u306A\u7D44\u7E54\uFF08\u5927\u304D\u306A\u6591\u6676\u306A\u3057\uFF09"}function S(t=!1){f=!1,cancelAnimationFrame(b),b=0,t&&j("pause"),m()}function V(){l>=30&&(l=0),f=!0,z=performance.now(),j("play"),m();let t=e=>{f&&(l=F(l,Math.min(.1,(e-z)/1e3)),z=e,l>=30&&(f=!1,b=0),m(),f&&(b=requestAnimationFrame(t)))};b=requestAnimationFrame(t)}r("#play").addEventListener("click",()=>f?S(!0):V());r("#timeline").addEventListener("input",t=>{let e=+t.target.value;S(),l=e,m()});r("#eruption").addEventListener("input",t=>{let e=+t.target.value;S(),u=w(e),l=0,clearTimeout(M),r("#flash").hidden=!0,m()});r("#reset").addEventListener("click",()=>{S(),l=0,clearTimeout(M),r("#flash").hidden=!0,m()});document.addEventListener("visibilitychange",()=>{document.hidden&&S()});document.querySelectorAll("button,input").forEach(t=>{t.disabled=!1});m();})();
+</script>
+</body>
+</html>
