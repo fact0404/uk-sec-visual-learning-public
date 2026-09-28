@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>空気の上昇と雲のでき方</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell{max-width:1100px}.vl-stage{padding:20px}.toolbar{display:flex;gap:10px;align-items:center;width:100%;flex-wrap:wrap}.toolbar button{min-width:48px;min-height:48px}#play{background:#147550;color:white;min-width:160px}#play[data-playing=true]{background:#be3544}.height-control{flex:1;display:flex;align-items:center;gap:12px;min-width:180px;font-size:14px}.height-control input{width:100%;height:48px;touch-action:pan-y}.intro{font-size:15px;color:#4d6570;line-height:1.8;margin:0 0 18px}.intro b{color:#264f61;font-weight:600}.cloud-workspace{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(240px,1fr);gap:24px;align-items:center}.sky-wrap{position:relative;padding-bottom:32px}.sky-wrap svg{width:100%;height:auto;user-select:none}.sky-top,.sky-ground{position:absolute;left:15px;font-size:14px;z-index:1;color:#325c6a}.sky-top{top:12px}.sky-ground{bottom:45px;color:white}.sky-bottom-note{position:absolute;bottom:0;width:100%;text-align:center;font-size:13px;color:#526975}.sky-wrap #parcel{touch-action:none;cursor:grab;outline:none}.sky-wrap #parcel:focus-visible #air-ring{stroke:#065cde;stroke-width:4}.sky-wrap #parcel:active{cursor:grabbing}#base-label{position:absolute;left:12px;top:42%;font-size:13px;background:#eef7fad9;color:#325c6a;padding:2px 5px;border-radius:3px;pointer-events:none}.parcel-readings h2{font-size:15px;margin:0 0 20px;color:#335764}.reading{margin:0 0 18px}.reading>div:first-child{display:flex;justify-content:space-between;gap:10px;font-size:14px}.reading strong{font-weight:600;color:#245f71}.bar{height:8px;margin-top:9px;background:#e2ebeb;border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;width:100%;background:#4b7f95}.reading:nth-of-type(2) i{background:#699d8b}.reading:nth-of-type(3) i{background:#bf8053}.magnify{background:#f0f6f6;border:1px solid #d4e4e5;border-radius:12px;padding:12px;text-align:center}.magnify-label{font-size:13px;color:#537078}.magnify svg{width:100%;height:70px}.magnify p{font-size:14px;line-height:1.6;margin:0;color:#2d6678;min-height:45px}.story{border-top:1px solid #d7e2de;margin-top:22px;padding-top:18px;min-height:108px}.story h2{font-size:19px;margin:0 0 7px;color:#214f60}.story p{font-size:15px;line-height:1.8;margin:0;max-width:760px}.model-note{font-size:13px;color:#60777c;margin:15px 0 0}.compare{margin-top:18px;border-top:1px solid #d7e2de;font-size:14px}.compare summary{min-height:48px;cursor:pointer;padding:13px 0}.compare>div{display:flex;gap:8px}.compare button{flex:1}.compare button[aria-pressed=true]{box-shadow:inset 0 0 0 2px #2c7663;background:#e2f0e9}.compare button[aria-pressed=false]{background:white}.compare p{line-height:1.8;color:#566d75}#flash{position:absolute;left:50%;top:calc(50% - 16px);transform:translate(-50%,-50%);width:84px;height:84px;display:grid;place-items:center;border-radius:50%;background:#06854aeF;color:white;font-size:40px;pointer-events:none;animation:cloud-flash 1s linear forwards}#flash[data-kind=pause]{background:#e22d3def}@keyframes cloud-flash{to{opacity:0}}
+@media(max-width:700px){.cloud-workspace{grid-template-columns:1fr;gap:24px}.parcel-readings{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}.parcel-readings h2{grid-column:1/-1;margin-bottom:16px}.magnify{grid-column:2;grid-row:2/5;align-self:stretch;display:flex;flex-direction:column;justify-content:center}.reading{grid-column:1}.reading>div:first-child{flex-direction:column;gap:2px}.vl-stage{padding:15px}.sky-wrap{max-width:530px;width:100%;margin:auto}.story{min-height:142px}.height-control{flex-basis:100%}#base-label{font-size:12px}.sky-bottom-note{font-size:12px}.magnify{padding:9px}.magnify-label{font-size:12px}}
+
+#sky{touch-action:none}.height-control>span{white-space:nowrap}.sky-bottom-note{font-size:13px}#base-label{font-size:13px}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 18h13a4 4 0 0 0 0-8 6 6 0 0 0-11-1A4.5 4.5 0 0 0 5 18Z"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>空気の上昇と雲のでき方</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">空気の上昇と雲のでき方</h1><p class="vl-question">見えない水蒸気から、どうして白い雲ができる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button id="play" disabled aria-pressed="false">▶ 空気を上げる</button><button id="reset" disabled class="vl-secondary" aria-label="地上へ戻す">↺</button><label class="height-control" for="height"><span>高さ</span><input disabled id="height" type="range" min="0" max="1" step="0.001" value="0" aria-label="空気の高さ"></label></div></div>
+        <div class="vl-stage">
+<p class="intro">点線の丸は、同じ空気のかたまり。<b>丸の ↕ をつかんで、上へ動かそう。</b></p>
+<div class="cloud-workspace">
+ <div class="sky-wrap">
+  <span class="sky-top">上空</span><span class="sky-ground">地上</span>
+  <svg id="sky" viewBox="0 0 530 410" aria-label="空気のかたまりを上下に動かす模式図">
+   <defs><linearGradient id="sky-fill" x2="0" y2="1"><stop stop-color="#a4c9dd"/><stop offset="1" stop-color="#e9f4f1"/></linearGradient><clipPath id="parcel-clip"><circle id="clip-circle" cx="0" cy="0" r="46"/></clipPath></defs>
+   <rect width="530" height="410" rx="14" fill="url(#sky-fill)"/>
+   <path d="M0 374Q95 330 190 376Q350 336 530 374V410H0Z" fill="#7fa48d"/><path d="M0 389Q155 371 310 395Q420 366 530 389V410H0Z" fill="#628b76"/>
+   <path d="M265 322V100m-8 9 8-9 8 9" stroke="#4e8096" stroke-dasharray="4 7" fill="none"/>
+   <circle cx="265" cy="320" r="46" fill="none" stroke="#587c89" stroke-dasharray="2 5" opacity=".4"/>
+   <line id="cloud-base" x1="40" x2="490" y1="190" y2="190" stroke="#4b778d" stroke-dasharray="7 6" opacity=".6"/>
+   <g id="parcel" role="slider" tabindex="0" aria-label="空気の高さ" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" transform="translate(265 320)">
+    <circle id="air-fill" r="46" fill="#ffe1a9" fill-opacity=".45"/>
+    <g clip-path="url(#parcel-clip)" id="cloud-white" opacity="0"><ellipse cy="15" rx="82" ry="36" fill="#fff"/><circle cx="-35" cy="-8" r="29" fill="#fff"/><circle cx="4" cy="-27" r="40" fill="#fff"/><circle cx="44" cy="-3" r="32" fill="#fff"/></g>
+    <circle id="air-ring" r="46" fill="none" stroke="#366274" stroke-width="2" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/>
+    <circle id="hit" r="46" fill="transparent"/>
+    <g pointer-events="none" stroke="#224f65" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M0-21V21m-8-34 8-8 8 8m-16 26 8 8 8-8"/></g>
+   </g>
+  </svg>
+  <span id="base-label">雲が現れ始める高さ</span>
+  <span class="sky-bottom-note">点線は容器ではなく、空気の目印です</span>
+  <div id="flash" hidden aria-hidden="true"></div>
+ </div>
+ <section class="parcel-readings" aria-label="同じ空気の変化">
+  <h2>いま、この空気で</h2>
+  <div class="reading"><div><span>周りの気圧</span><strong id="pressure-note">地上の気圧</strong></div><div class="bar"><i id="pressure-bar"></i></div></div>
+  <div class="reading"><div><span>空気の体積</span><strong id="volume-note">初めの大きさ</strong></div><div class="bar"><i id="volume-bar"></i></div></div>
+  <div class="reading"><div><span>空気の温度</span><strong id="temperature-note">初めの温度</strong></div><div class="bar"><i id="temperature-bar"></i></div></div>
+  <div class="magnify"><span class="magnify-label">空気の中を、拡大すると</span><svg id="droplet-view" viewBox="0 0 220 70" aria-label="水滴はまだない"><g id="tiny-drops" fill="#2986a9"></g></svg><p id="water-note">水蒸気は見えない。水滴はまだない。</p></div>
+ </section>
+</div>
+<section class="story" aria-live="polite"><h2 id="story-title">透明な空気から、雲をつくろう</h2><p id="story-note">再生すると、この空気のかたまりが上昇します。</p></section>
+<p class="model-note">高さ・大きさ・棒の長さは、変化を強調した模式表現です。</p>
+<details class="compare"><summary>条件を比べる</summary><p>高さをそろえて、初めの水蒸気量を変えてみよう。</p><div role="group" aria-label="初めの水蒸気量"><button disabled data-moisture="normal" aria-pressed="true">基本の量</button><button disabled data-moisture="moist" aria-pressed="false">水蒸気が多い</button></div><p>初めの温度が同じなら、水蒸気が多い方が、少し冷えるだけで凝結し始めます。</p></details></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>追いかけているのは、同じ空気</h3><p>点線の丸は、空気のかたまりを追うための目印です。風船や容器の中ではありません。初めから水蒸気を含みますが、水蒸気そのものは見えません。</p><h3>上昇から雲へ</h3><p>上空ほど気圧が低く、上がった空気は膨張します。膨張すると温度が下がり、飽和に達すると水蒸気の一部が凝結して、小さな水滴になります。この教材の白い雲は水滴の集まりです。実際の雲には氷の粒を含むものもあります。</p><h3>丸を下げると</h3><p>下降する空気は周りの気圧が高くなると縮み、温度が上がります。水滴は蒸発し、やがて雲は消えます。この図では雨を降らせず、上げ下げする間に水を失わない場合を比べます。</p><h3>模式図の約束</h3><p>高さや丸の大きさ、棒の長さは変化をわかりやすく示したもので、実際の高度・体積・気圧・温度の値を計算していません。雲ができる高さも例です。雲粒は拡大して描き、雨粒の落下ではありません。周りの空気との混合や熱の出入り、凝結による熱の放出、氷、降水、空気が上昇し始める条件は省いています。</p><p><a href="https://fact0404.github.io/uk-sec-visual-learning-public/science-dew-point-preview-v0.2.0.html">湿度と露点の教材</a>は固定体積の容器を冷やします。ここでは空気自体が膨張するため、同じ1 m³の水蒸気量の計算をそのまま用いることはできません。</p><h3>出典・Markmapとの対応</h3><p><a href="https://www.data.jma.go.jp/fukuoka/yoho/tenki_hanasi.html" target="_blank" rel="noopener noreferrer">福岡管区気象台・天気のはなし</a>。上昇、気圧低下、膨張冷却、凝結の関係を確認しました。図と文章・操作は独自制作です。中2理科・地学「空気中の水の変化」の湿度と露点、雲のでき方に対応します（S46）。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var d=t=>Number.isNaN(t)?0:Math.max(0,Math.min(1,t)),S=t=>d((320-t)/210);function f(t,n="normal"){t=d(t);let a=n==="moist"?.38:.62;return{height:t,y:320-210*t,radius:46+34*t,pressure:1-.65*t,temperature:1-.72*t,onset:a,droplets:Math.max(0,(t-a)/(1-a)),phase:t<.02?"ground":t<=a?"cooling":"cloud"}}var E=(t,n)=>d(t+Math.max(0,Math.min(.1,n))/24);var e=t=>document.querySelector(t),r=0,m="normal",o=!1,g=0,y=0,i=null,k,c="up",L="";function l(){let t=f(r,m);Object.assign(document.body.dataset,{height:String(r),kind:m,phase:t.phase,playing:String(o),dragging:String(!!i)}),e("#height").value=String(r),e("#height").setAttribute("aria-valuetext",t.phase==="ground"?"\u5730\u4E0A":t.phase==="cloud"?"\u96F2\u306E\u3042\u308B\u9AD8\u3055":"\u51B7\u3048\u3066\u3044\u304F\u9014\u4E2D"),e("#parcel").setAttribute("transform",`translate(265 ${t.y})`),e("#parcel").setAttribute("aria-valuenow",String(Math.round(r*100))),e("#parcel").setAttribute("aria-valuetext",e("#height").getAttribute("aria-valuetext"));for(let u of["air-fill","air-ring","hit","clip-circle"])e("#"+u).setAttribute("r",String(t.radius));e("#cloud-white").setAttribute("opacity",String(Math.min(1,t.droplets*2)));let n=f(t.onset).y;e("#cloud-base").setAttribute("y1",String(n)),e("#cloud-base").setAttribute("y2",String(n)),e("#base-label").style.top=`calc((100% - 32px) * ${n/410} - 23px)`,e("#pressure-bar").style.width=t.pressure*100+"%",e("#volume-bar").style.width=(46+34*r)/80*100+"%",e("#temperature-bar").style.width=t.temperature*100+"%",e("#pressure-note").textContent=r<.02?"\u5730\u4E0A\u306E\u6C17\u5727":"\u5730\u4E0A\u3088\u308A\u4F4E\u3044",e("#volume-note").textContent=r<.02?"\u521D\u3081\u306E\u5927\u304D\u3055":"\u81A8\u3089\u3093\u3067\u3044\u308B",e("#temperature-note").textContent=r<.02?"\u521D\u3081\u306E\u6E29\u5EA6":"\u521D\u3081\u3088\u308A\u4F4E\u3044",e("#tiny-drops").innerHTML=Array.from({length:24},(u,h)=>{let A=Math.min(1,Math.max(0,t.droplets*24-h));return A>0?`<circle cx="${18+h%8*26}" cy="${16+Math.floor(h/8)*19}" r="${2.5*Math.sqrt(A)}"/>`:""}).join("");let a=t.droplets>0?"\u96F2\u306F\u3001\u5C0F\u3055\u306A\u6C34\u6EF4\u306E\u96C6\u307E\u308A\u3002":"\u6C34\u84B8\u6C17\u306F\u898B\u3048\u306A\u3044\u3002\u6C34\u6EF4\u306F\u307E\u3060\u306A\u3044\u3002";e("#water-note").textContent=a,e("#droplet-view").setAttribute("aria-label",a);let x=t.phase+"-"+c;if(x!==L){let u=t.phase==="ground"?["\u900F\u660E\u306A\u7A7A\u6C17\u304B\u3089\u3001\u96F2\u3092\u3064\u304F\u308D\u3046","\u518D\u751F\u3059\u308B\u3068\u3001\u3053\u306E\u7A7A\u6C17\u306E\u304B\u305F\u307E\u308A\u304C\u4E0A\u6607\u3057\u307E\u3059\u3002"]:c==="down"?["\u4E0B\u3052\u308B\u3068\u3001\u7A7A\u6C17\u306F\u7E2E\u3093\u3067\u6E29\u307E\u308B","\u6C34\u6EF4\u304C\u84B8\u767A\u3057\u3066\u6C34\u84B8\u6C17\u306B\u623B\u308B\u3068\u3001\u96F2\u304C\u6D88\u3048\u307E\u3059\u3002"]:t.phase==="cooling"?["\u4E0A\u304C\u308B \u2192 \u81A8\u3089\u3080 \u2192 \u51B7\u3048\u308B","\u4E0A\u7A7A\u307B\u3069\u5468\u308A\u306E\u6C17\u5727\u304C\u4F4E\u3044\u305F\u3081\u3001\u7A7A\u6C17\u306F\u81A8\u3089\u307F\u307E\u3059\u3002\u81A8\u3089\u3080\u3068\u3001\u5468\u308A\u3068\u71B1\u3092\u3084\u308A\u53D6\u308A\u3057\u306A\u304F\u3066\u3082\u51B7\u3048\u307E\u3059\u3002"]:["\u51B7\u3048\u3066\u3001\u6C34\u84B8\u6C17\u306E\u4E00\u90E8\u304C\u6C34\u6EF4\u306B","\u51B7\u3048\u3066\u98FD\u548C\u306B\u9054\u3059\u308B\u3068\u3001\u6C34\u84B8\u6C17\u306E\u4E00\u90E8\u304C\u51DD\u7D50\u3057\u3066\u96F2\u304C\u73FE\u308C\u307E\u3059\u3002\u4ECA\u5EA6\u306F\u3001\u4E38\u3092\u4E0B\u3078\u623B\u3057\u3066\u307F\u3088\u3046\u3002"];e("#story-title").textContent=u[0],e("#story-note").textContent=u[1],L=x}e("#play").textContent=o?"\u2161 \u4E00\u6642\u505C\u6B62":r===1?"\u25B6 \u3082\u3046\u4E00\u5EA6\u4E0A\u3052\u308B":"\u25B6 \u7A7A\u6C17\u3092\u4E0A\u3052\u308B",e("#play").dataset.playing=String(o),e("#play").setAttribute("aria-pressed",String(o)),document.querySelectorAll("[data-moisture]").forEach(u=>u.setAttribute("aria-pressed",String(u.dataset.moisture===m)))}function p(){o=!1,cancelAnimationFrame(g)}function v(t){p(),c=t<r?"down":"up",r=d(t),e("#flash").hidden=!0,l()}function M(t){clearTimeout(k);let n=e("#flash");n.dataset.kind=t,n.hidden=!1,n.textContent=t==="play"?"\u25B6":"\u2161",n.style.animation="none",n.offsetWidth,n.style.animation="",k=setTimeout(()=>n.hidden=!0,1e3)}function C(t){r=E(r,(t-y)/1e3),y=t,r>=1-1e-12&&(r=1,o=!1),l(),o&&(g=requestAnimationFrame(C))}e("#play").addEventListener("click",()=>{o?(p(),M("pause")):(r===1&&(r=0),c="up",o=!0,y=performance.now(),g=requestAnimationFrame(C),M("play")),l()});e("#reset").addEventListener("click",()=>v(0));e("#height").addEventListener("input",t=>v(+t.target.value));document.querySelectorAll("[data-moisture]").forEach(t=>t.addEventListener("click",()=>{p(),m=t.dataset.moisture,e("#flash").hidden=!0,l()}));var s=e("#parcel"),q=e("#sky");s.addEventListener("pointerdown",t=>{i!==null||t.button!==0||(t.preventDefault(),p(),i=t.pointerId,s.setPointerCapture(i),e("#flash").hidden=!0,l())});s.addEventListener("pointermove",t=>{if(t.pointerId!==i)return;let n=new DOMPoint(t.clientX,t.clientY).matrixTransform(q.getScreenCTM().inverse()),a=S(n.y);c=a<r?"down":"up",r=a,l()});var b=t=>{i===t.pointerId&&(i=null,l())};s.addEventListener("pointerup",b);s.addEventListener("pointercancel",b);s.addEventListener("lostpointercapture",b);s.addEventListener("keydown",t=>{let n;if(t.key==="ArrowUp"||t.key==="ArrowRight")n=r+.05;else if(t.key==="ArrowDown"||t.key==="ArrowLeft")n=r-.05;else if(t.key==="Home")n=0;else if(t.key==="End")n=1;else return;t.preventDefault(),v(n)});function w(){p(),i!==null&&(s.hasPointerCapture(i)&&s.releasePointerCapture(i),i=null),l()}window.addEventListener("blur",w);document.addEventListener("visibilitychange",()=>{document.hidden&&w()});window.addEventListener("resize",()=>{i!==null&&w()});document.querySelectorAll("button,input").forEach(t=>t.disabled=!1);l();})();
+</script>
+</body>
+</html>
