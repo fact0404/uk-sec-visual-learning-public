@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>受粉のあと、めしべの中で | 受粉・受精・種子</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1080px;
+}
+.vl-main {
+  padding-top: 20px;
+}
+.vl-title {
+  font-size: 28px;
+}
+.toolbar {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#play {
+  min-width: 140px;
+  background: #417856;
+  color: white;
+}
+#play[aria-pressed='true'] {
+  background: #b45045;
+}
+.timeline-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 150px;
+  font-size: 12px;
+  color: #67785d;
+}
+.timeline-wrap > span {
+  white-space: nowrap;
+}
+#timeline {
+  min-width: 0;
+  width: 100%;
+  touch-action: pan-y;
+}
+#reset {
+  margin-left: auto;
+}
+.toolbar #previous,
+.toolbar #next {
+  padding: 8px;
+  min-width: 48px;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding: 20px 24px;
+}
+.diagram-panel {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fbfcf6;
+}
+#flower {
+  width: 100%;
+  height: auto;
+}
+#flower text {
+  font-size: 28px;
+  font-family: inherit;
+  fill: #547153;
+}
+#labels path {
+  fill: none;
+  stroke: #95a68a;
+  stroke-width: 1.5;
+}
+#view-caption {
+  font-size: 28px;
+  fill: #738267 !important;
+}
+#pollen-handle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  min-width: 56px;
+  width: 56px;
+  height: 56px;
+  min-height: 56px;
+  padding: 0;
+  border: 2px dashed #c5a769;
+  border-radius: 50%;
+  background: transparent;
+  touch-action: none;
+  cursor: grab;
+  z-index: 2;
+}
+#pollen-handle:active {
+  cursor: grabbing;
+}
+#pollen-handle:focus-visible {
+  outline-offset: 2px;
+}
+.story {
+  min-width: 0;
+}
+#explanation-title {
+  font-size: 22px;
+  color: #345d42;
+  line-height: 1.6;
+  margin: 0 0 12px;
+  min-height: 3.2em;
+}
+#explanation-note {
+  font-size: 14px;
+  color: #62745a;
+  line-height: 1.9;
+  min-height: 5.7em;
+  margin: 0 0 16px;
+}
+.states {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.states span {
+  font-size: 13px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: #e9eddf;
+  color: #7b866c;
+}
+.states .done {
+  background: #ddebd1;
+  color: #41663c;
+  font-weight: 700;
+}
+.milestones {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.milestones li {
+  color: #7e8972;
+  font-size: 13px;
+  border: 1px solid #d9e1cf;
+  border-radius: 7px;
+  padding: 9px 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.milestones li span {
+  font-size: 11px;
+  opacity: 0.7;
+}
+.milestones .active {
+  border-color: #7e9f69;
+  color: #3a653d;
+  background: #edf4e5;
+}
+.model-note {
+  font-size: 12px;
+  color: #75816a;
+  line-height: 1.8;
+  padding: 12px 22px;
+  margin: 0;
+  border-top: 1px solid #dce3d3;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #00c451;
+  color: white;
+  pointer-events: none;
+  font-size: 38px;
+  z-index: 5;
+}
+#flash[data-playing='false'] {
+  background: #ec283a;
+}
+@media (min-width: 850px) {
+  .vl-kicker {
+    display: none;
+  }
+}
+@media (max-width: 650px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-title {
+    font-size: 24px;
+  }
+  .vl-controls {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fffefa;
+    border-radius: 12px 12px 0 0;
+    padding: 10px 12px;
+  }
+  .toolbar {
+    gap: 6px;
+  }
+  .toolbar button {
+    font-size: 13px;
+    padding-inline: 10px;
+  }
+  #play {
+    min-width: 128px;
+  }
+  .timeline-wrap {
+    order: 5;
+    flex-basis: 100%;
+  }
+  .workspace {
+    grid-template-columns: 1fr;
+    padding: 14px 12px;
+    gap: 10px;
+  }
+  .story {
+    order: -1;
+  }
+  #explanation-title {
+    font-size: 18px;
+    margin: 0 0 6px;
+    min-height: 0;
+  }
+  #explanation-note {
+    font-size: 13px;
+    min-height: 3.8em;
+    margin: 0 0 10px;
+  }
+  .states span {
+    font-size: 12px;
+    padding: 5px 9px;
+  }
+  .milestones {
+    margin-top: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+  }
+  .milestones li {
+    font-size: 11px;
+    display: block;
+    text-align: center;
+    padding: 7px 2px;
+  }
+  .milestones li span {
+    display: none;
+  }
+  .model-note {
+    padding-inline: 14px;
+  }
+  .diagram-panel {
+    width: 100%;
+    max-width: 540px;
+    margin: auto;
+  }
+  #pollen-handle {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 12v10m0-6q-9 1-8-6m8 6q9 1 8-6"/><circle cx="12" cy="7" r="3"/><path d="M9 7Q2 2 8 2q4-5 8 0 6 0-1 5M9 8q-6 6 1 5m5-5q6 6-1 5"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>受粉のあと、めしべの中で</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">受粉のあと、めしべの中で</h1><p class="vl-question">花粉が柱頭についた瞬間に、受精は終わっている？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="play" aria-pressed="false">▶ 動きを見る</button><button disabled id="previous" class="vl-secondary" aria-label="前の節目へ">◀</button><button disabled id="next" class="vl-secondary" aria-label="次の節目へ">▶</button><label class="timeline-wrap" for="timeline"><span>進み具合</span><input disabled id="timeline" type="range" min="0" max="30" step="0.01" value="0" aria-label="受粉から種子までを追う位置"></label><button disabled id="reset" class="vl-secondary">初めから</button></div></div>
+        <div class="vl-stage"><div class="workspace"><div class="diagram-panel"><svg id="flower" viewBox="0 0 600 480" role="img" aria-labelledby="flower-title"><title id="flower-title">被子植物のめしべを縦に切り、花粉から種子までの変化を追う模式図</title>
+<defs><radialGradient id="ovary-fill"><stop id="fruit-inner" offset="0" stop-color="#f6f8e7"/><stop id="fruit-outer" offset="1" stop-color="#d8e6bf"/></radialGradient></defs>
+<g id="zoom-layer">
+<path d="M300 400v44" stroke="#8eab6d" stroke-width="14" stroke-linecap="round"/>
+<g id="upper-pistil"><path d="M283 115C285 170 291 228 279 268L321 268C309 225 315 166 317 115" fill="#dce9c5" stroke="#8fad77" stroke-width="2"/>
+<path d="M263 110Q261 91 281 94Q299 84 317 94Q339 92 339 110Q303 128 263 110Z" fill="#abc98e" stroke="#829f6d" stroke-width="2"/></g>
+<ellipse id="ovary" cx="300" cy="340" rx="110" ry="80" fill="url(#ovary-fill)" stroke="#88a76d" stroke-width="3"/>
+<path d="M275 394q-12 6-15-6" fill="none" stroke="#acac7b" stroke-width="5"/>
+<ellipse id="ovule" cx="294" cy="350" rx="47" ry="54" fill="#f4e9b6" stroke="#c3b37a" stroke-width="2.5"/>
+<g id="egg"><ellipse cx="294" cy="354" rx="19" ry="22" fill="#edd4d4" stroke="#b78991" stroke-width="1.8"/><circle id="egg-nucleus" cx="296" cy="354" r="6" fill="#a66e83"/></g>
+<path id="tube" fill="none" stroke="#ba8a45" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<g id="sperm" hidden><circle r="7" fill="#aed7e1" stroke="#428b9f" stroke-width="1.4"/><circle r="3" fill="#35758c"/></g>
+<g id="embryo" opacity="0" fill="#b8a1c2" stroke="#806b92" stroke-width="1.8"><circle cx="287" cy="347" r="10"/><circle cx="301" cy="347" r="10"/><circle cx="287" cy="361" r="10"/><circle cx="301" cy="361" r="10"/></g>
+<g id="pollen" transform="translate(120 85)"><circle r="16" fill="#dcb668" stroke="#b68c43" stroke-width="2"/><circle cx="16" cy="0" r="3.5" fill="#dcb668"/><circle cx="11.313708498984761" cy="11.31370849898476" r="3.5" fill="#dcb668"/><circle cx="9.797174393178826e-16" cy="16" r="3.5" fill="#dcb668"/><circle cx="-11.31370849898476" cy="11.313708498984761" r="3.5" fill="#dcb668"/><circle cx="-16" cy="1.959434878635765e-15" r="3.5" fill="#dcb668"/><circle cx="-11.313708498984763" cy="-11.31370849898476" r="3.5" fill="#dcb668"/><circle cx="-2.9391523179536475e-15" cy="-16" r="3.5" fill="#dcb668"/><circle cx="11.313708498984758" cy="-11.313708498984763" r="3.5" fill="#dcb668"/><circle cx="-5" cy="-4" r="3" fill="#f7e4b0"/><circle cx="5" cy="5" r="2" fill="#c49446"/></g>
+<path id="drop-hint" d="M150 85Q210 55 260 87m-12-9 12 9-15 4" fill="none" stroke="#c9b279" stroke-width="2" stroke-dasharray="5 5"/>
+</g><g id="labels"><text x="120" y="48" text-anchor="middle">花粉</text><path d="M340 105H405"/><text x="420" y="114">柱頭</text><path d="M190 340H142"/><text x="130" y="349" text-anchor="end">子房</text><path d="M340 366L402 390"/><text x="420" y="400">胚珠</text></g>
+<text id="view-caption" x="300" y="468" text-anchor="middle">めしべを縦に切った模式図</text>
+</svg><button disabled id="pollen-handle" aria-label="花粉を柱頭へ運ぶ。Enterキーでも受粉できます。" style="left:20%;top:17.7083%"></button><span hidden id="flash" aria-hidden="true"></span></div>
+<section class="story"><div aria-live="polite"><h2 id="explanation-title">花粉を、めしべの先へ</h2><p id="explanation-note">花粉をつかんで柱頭へ運ぼう。再生ボタンでも進められます。</p></div><div class="states"><span id="pollinated-state">受粉：まだ</span><span id="fertilized-state">受精：まだ</span></div><ol class="milestones" aria-label="できごとの順番"><li class="active"><span>01</span>受粉</li><li><span>02</span>花粉管</li><li><span>03</span>受精</li><li><span>04</span>種子・果実</li></ol></section></div>
+<p class="model-note">被子植物のめしべと、一つの胚珠を取り出した模式図です。内部の変化を拡大し、時間を縮めて示しています。</p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>受粉と受精は、別のできごと</h3><p>被子植物では、花粉がめしべの柱頭につくことを受粉といいます。花粉から花粉管が伸び、精細胞がその中を通って胚珠へ届きます。胚珠の中の卵細胞の核と、精細胞の核が合わさるのが受精です。</p><p>画面の黄色い粒は花粉、小さな青い丸は精細胞、その中の濃い青は核です。卵細胞の中にも核があります。花粉そのものが卵細胞と合わさるのではありません。</p>
+<h3>どの部分が、何になる？</h3><p>受精でできた受精卵は分裂を重ねて胚になります。胚珠は種子に、子房は果実に育ちます。胚は種子の中にあり、やがて発芽したときの植物の体のもとになります。受精卵一つと、それを含む胚珠全体は区別して見てください。</p>
+<h3>この模型で扱う範囲</h3><p>受精可能な花粉がつき、正常に進む例です。実際には受粉しても受精しない場合や、十分に種子・果実が育たない場合があります。花によって胚珠の数や形、成長にかかる時間も異なります。</p><p>中学の学習で扱う、精細胞と卵細胞の核の合体を中心に示しています。被子植物では2つの精細胞がつくられ、もう一方は胚乳の形成につながります。ここでは卵細胞へ向かう一方だけを追い、重複受精の詳細や花粉内の細胞分裂を省いています。</p><p>花粉・花粉管・細胞・核の大きさは、通り道を追いやすくするため誇張しています。管の曲がり方や、胚珠内のほかの細胞、胚の詳しい発達段階は省略しました。胚は細胞の集まりとして簡略化し、子葉などの器官の形は描いていません。種子の周りの果実は子房から育つ例で、果実にはほかの花の部分が関わるものもあります。</p><p>再生すると約30秒で進みますが、実際のできごとが30秒で終わるという意味ではありません。ゲージと前後ボタンで、受粉・管の到着・受精・種子形成の節目を見直せます。</p>
+<p>根拠：<a href="https://openstax.org/books/biology-2e/pages/32-2-pollination-and-fertilization" target="_blank" rel="noopener noreferrer">OpenStax Biology 2e・32.2 Pollination and Fertilization</a>。文章・図・操作は独自制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var M=(e,t,l)=>Math.max(t,Math.min(l,Number.isFinite(e)?e:t)),x=(e,t,l)=>{let i=M((e-t)/(l-t),0,1);return i*i*(3-2*i)},C=[0,3,14,18,30],I=(e,t)=>M(e+Math.max(0,t),0,30),j=(e,t)=>t>0?C.find(l=>l>e+.001)??30:[...C].reverse().find(l=>l<e-.001)??0,H=[[[300,99],[300,160],[304,240],[304,270]],[[304,270],[295,286],[256,284],[260,307]],[[260,307],[263,316],[267,324],[270,330]]];function A(e){let t=M(e,0,1)*3,l=Math.min(2,Math.floor(t)),i=t-l,a=1-i,r=H[l];return{x:a*a*a*r[0][0]+3*a*a*i*r[1][0]+3*a*i*i*r[2][0]+i*i*i*r[3][0],y:a*a*a*r[0][1]+3*a*a*i*r[1][1]+3*a*i*i*r[2][1]+i*i*i*r[3][1]}}var q=e=>e.x>=250&&e.x<=350&&e.y>=65&&e.y<=120;function P(e){e=M(e,0,30);let t=x(e,0,3),l=x(e,5,12),i=x(e,7,14),a=x(e,14,18),r=x(e,20,30),f=x(e,10,13)*(1-x(e,20,25)),h=A(i),L=e===0?"before":e<3?"pollinating":e<5?"pollinated":e<12?"growing":e<14?"arriving":e<18?"fusing":e<=20?"fertilized":e<30?"developing":"seed";return{time:e,phase:L,pollinated:e>=3,fertilized:e>=18,pollen:{x:120+180*t,y:85-25*Math.sin(Math.PI*t)},tube:l,spermProgress:i,sperm:{x:h.x+(296-h.x)*a,y:h.y+(354-h.y)*a},spermVisible:e>=7&&e<18,fuse:a,growth:r,zoom:1+1.05*f,zoomP:f}}function F(e,t){return{x:(e.x-292)*t.zoom+292+8*t.zoomP,y:(e.y-345)*t.zoom+345-85*t.zoomP}}var n=e=>document.querySelector(e),o=0,m=!1,E,z,s=null,D,N={before:["\u82B1\u7C89\u3092\u3001\u3081\u3057\u3079\u306E\u5148\u3078","\u82B1\u7C89\u3092\u3064\u304B\u3093\u3067\u67F1\u982D\u3078\u904B\u307C\u3046\u3002\u518D\u751F\u30DC\u30BF\u30F3\u3067\u3082\u9032\u3081\u3089\u308C\u307E\u3059\u3002"],pollinating:["\u82B1\u7C89\u304C\u3001\u67F1\u982D\u3078\u5C4A\u304F","\u3053\u3053\u3067\u306F\u3001\u53D7\u7CBE\u3067\u304D\u308B\u82B1\u7C89\u304C\u3064\u304F\u5834\u5408\u3092\u898B\u3066\u3044\u307E\u3059\u3002"],pollinated:["\u67F1\u982D\u306B\u3064\u3044\u305F\u3002\u3053\u308C\u304C\u300C\u53D7\u7C89\u300D","\u307E\u3060\u3001\u53D7\u7CBE\u306F\u3057\u3066\u3044\u307E\u305B\u3093\u3002\u7D9A\u3051\u3066\u3001\u3081\u3057\u3079\u306E\u4E2D\u3092\u898B\u3066\u307F\u3088\u3046\u3002"],growing:["\u82B1\u7C89\u7BA1\u304C\u3001\u4E2D\u3078\u4F38\u3073\u308B","\u82B1\u7C89\u306F\u67F1\u982D\u306B\u6B8B\u308A\u3001\u82B1\u7C89\u7BA1\u304C\u80DA\u73E0\u3078\u4F38\u3073\u3066\u3044\u304D\u307E\u3059\u3002"],arriving:["\u82B1\u7C89\u7BA1\u3092\u901A\u3063\u3066\u3001\u7CBE\u7D30\u80DE\u304C\u5C4A\u304F","\u80DA\u73E0\u306E\u4E2D\u306B\u306F\u5375\u7D30\u80DE\u304C\u3042\u308A\u307E\u3059\u3002\u5C0F\u3055\u306A\u9752\u3044\u7CBE\u7D30\u80DE\u3092\u8FFD\u304A\u3046\u3002"],fusing:["\u7CBE\u7D30\u80DE\u306E\u6838\u304C\u3001\u5375\u7D30\u80DE\u306E\u6838\u3078","\u4E8C\u3064\u306E\u6838\u304C\u5408\u308F\u3055\u308B\u3068\u3053\u308D\u307E\u3067\u3001\u3086\u3063\u304F\u308A\u898B\u3066\u307F\u3088\u3046\u3002"],fertilized:["\u6838\u304C\u5408\u308F\u3055\u3063\u305F\u3002\u3053\u308C\u304C\u300C\u53D7\u7CBE\u300D","\u53D7\u7C89\u306E\u5F8C\u3001\u5185\u90E8\u3067\u8D77\u304D\u308B\u5225\u306E\u51FA\u6765\u4E8B\u3067\u3059\u3002\u53D7\u7CBE\u5375\u304C\u3067\u304D\u307E\u3057\u305F\u3002"],developing:["\u53D7\u7CBE\u5375\u306F\u80DA\u306B\u3002\u5468\u308A\u3082\u80B2\u3064","\u80DA\u73E0\u306F\u7A2E\u5B50\u306B\u3001\u5B50\u623F\u306F\u679C\u5B9F\u306B\u306A\u308A\u307E\u3059\u3002\u5143\u306E\u5834\u6240\u3068\u6BD4\u3079\u3088\u3046\u3002"],seed:["\u80DA\u73E0\u304B\u3089\u7A2E\u5B50\u3001\u5B50\u623F\u304B\u3089\u679C\u5B9F\u3078","\u7A2E\u5B50\u306E\u4E2D\u306B\u3042\u308B\u80DA\u306F\u3001\u53D7\u7CBE\u5375\u304B\u3089\u3067\u304D\u305F\u3082\u306E\u3067\u3059\u3002"]},w=(e,t)=>{n(e).textContent!==t&&(n(e).textContent=t)};function g(){m=!1,cancelAnimationFrame(E),z=void 0}function v(){clearTimeout(D),n("#flash").hidden=!0}function T(e){v();let t=n("#flash");t.hidden=!1,t.textContent=e?"\u25B6":"\u2161",t.dataset.playing=e,t.getAnimations().forEach(l=>l.cancel()),t.animate([{opacity:1},{opacity:0}],{duration:1e3,fill:"forwards"}),D=setTimeout(()=>t.hidden=!0,1e3)}function p(e,t,l,i,a,r="start"){let f=F(e,t),h=r==="end"?l+12:l-12;return'<path d="M'+f.x+" "+f.y+"L"+h+" "+(i-8)+'"/><text x="'+l+'" y="'+i+'" text-anchor="'+r+'">'+a+"</text>"}function d(){let e=P(o),t=s?s.point:e.pollen;Object.assign(document.body.dataset,{time:o,phase:e.phase,playing:m,pollinated:e.pollinated,fertilized:e.fertilized,growth:e.growth,zoom:e.zoom,dragging:!!s}),n("#zoom-layer").setAttribute("transform","translate("+(292*(1-e.zoom)+8*e.zoomP)+" "+(345*(1-e.zoom)-85*e.zoomP)+") scale("+e.zoom+")"),n("#upper-pistil").style.opacity=1-e.growth,n("#ovary").setAttribute("rx",110+18*e.growth),n("#ovary").setAttribute("ry",80+22*e.growth);for(let[c,y,V]of[["fruit-inner",[246,248,231],[207,220,151]],["fruit-outer",[216,230,191],[188,204,134]]])n("#"+c).setAttribute("stop-color","rgb("+y.map((k,B)=>Math.round(k+(V[B]-k)*e.growth)).join(",")+")");n("#ovule").setAttribute("rx",47+8*e.growth),n("#ovule").setAttribute("ry",54+4*e.growth),n("#ovule").style.fill="rgb("+Math.round(244-33*e.growth)+","+Math.round(233-56*e.growth)+","+Math.round(182-71*e.growth)+")",n("#egg").style.opacity=1-e.growth,n("#embryo").style.opacity=e.growth,n("#egg-nucleus").style.fill=e.fertilized?"#7474a0":"#a66e83";let l=Math.max(2,Math.ceil(e.tube*150)),i=Array.from({length:l},(c,y)=>A(e.tube*y/(l-1))).map((c,y)=>(y?"L":"M")+c.x+" "+c.y).join(" ");n("#tube").setAttribute("d",i),n("#tube").style.opacity=e.tube>0?1-e.growth:0,n("#sperm").toggleAttribute("hidden",!e.spermVisible),n("#sperm").setAttribute("transform","translate("+e.sperm.x+" "+e.sperm.y+")"),n("#sperm").style.opacity=e.fuse<.9?1:(1-e.fuse)*10,n("#pollen").setAttribute("transform","translate("+t.x+" "+t.y+")"),n("#pollen").style.opacity=1-e.growth,n("#drop-hint").toggleAttribute("hidden",o!==0||!!s);let a=n("#pollen-handle");a.hidden=o!==0,a.style.left=t.x/6+"%",a.style.top=t.y/4.8+"%";let r="";e.zoomP<.4?(o<3&&(r='<text x="'+t.x+'" y="'+Math.max(30,t.y-35)+'" text-anchor="middle">\u82B1\u7C89</text>'),e.growth<.7&&(r+=p({x:340,y:105},e,420,114,"\u67F1\u982D")),r+=p({x:190-18*e.growth,y:340},e,130,349,e.growth>.7?"\u679C\u5B9F":"\u5B50\u623F","end"),r+=p({x:341+8*e.growth,y:366},e,420,400,e.growth>.7?"\u7A2E\u5B50":"\u80DA\u73E0"),e.tube>0&&e.growth===0&&(r+=p({x:303,y:207},e,420,214,"\u82B1\u7C89\u7BA1")),e.growth>.7&&(r+=p({x:294,y:350},e,120,240,"\u80DA","end"))):(r+=p({x:337,y:371},e,495,390,"\u80DA\u73E0"),r+=p({x:e.phase==="fusing"?296:310,y:354},e,455,305,e.fertilized?"\u53D7\u7CBE\u5375":e.phase==="fusing"?"\u5375\u7D30\u80DE\u306E\u6838":"\u5375\u7D30\u80DE"),e.spermVisible?r+=p(e.sperm,e,180,175,e.fuse>0?"\u7CBE\u7D30\u80DE\u306E\u6838":"\u7CBE\u7D30\u80DE","end"):e.fertilized||(r+=p(A(e.tube),e,180,175,"\u82B1\u7C89\u7BA1","end"))),n("#labels").innerHTML=r,w("#view-caption",e.zoomP>.4?"\u80DA\u73E0\u306E\u4E2D\u3092\u62E1\u5927\u3057\u3066\u3044\u307E\u3059":e.growth>.7?"\u679C\u5B9F\u306E\u4E2D\u306B\u3001\u7A2E\u5B50\u304C\u3042\u308B":"\u3081\u3057\u3079\u3092\u7E26\u306B\u5207\u3063\u305F\u6A21\u5F0F\u56F3");let[f,h]=N[e.phase];w("#explanation-title",f),w("#explanation-note",h);for(let c of["pollinated","fertilized"])n("#"+c+"-state").classList.toggle("done",e[c]),w("#"+c+"-state",(c==="pollinated"?"\u53D7\u7C89":"\u53D7\u7CBE")+(e[c]?"\uFF1A\u6E08\u307F":"\uFF1A\u307E\u3060"));let L=o<5?0:o<14?1:o<20?2:3;document.querySelectorAll(".milestones li").forEach((c,y)=>c.classList.toggle("active",y===L)),n("#play").setAttribute("aria-pressed",m),w("#play",m?"\u2161 \u4E00\u6642\u505C\u6B62":o===30?"\u25B6 \u3082\u3046\u4E00\u5EA6":o===0?"\u25B6 \u52D5\u304D\u3092\u898B\u308B":"\u25B6 \u7D9A\u304D\u3092\u898B\u308B"),n("#previous").disabled=o===0,n("#next").disabled=o===30,n("#timeline").value=o,n("#timeline").setAttribute("aria-valuetext",f)}function S(e){m&&(o=I(o,z===void 0?0:Math.min(.1,(e-z)/1e3)),z=e,o===30&&(g(),v()),d(),m&&(E=requestAnimationFrame(S)))}function u(){if(!s)return;let e=s.id;s=null,n("#pollen-handle").hasPointerCapture(e)&&n("#pollen-handle").releasePointerCapture(e)}n("#play").addEventListener("click",()=>{u(),m?(g(),T(!1)):(o===30&&(o=0),m=!0,z=void 0,E=requestAnimationFrame(S),T(!0)),d()});for(let[e,t]of[["previous",-1],["next",1]])n("#"+e).addEventListener("click",()=>{u(),g(),v(),o=j(o,t),d()});n("#timeline").addEventListener("input",e=>{u(),g(),v(),o=P(+e.target.value).time,d()});n("#reset").addEventListener("click",()=>{u(),g(),v(),o=0,d()});var b=n("#pollen-handle");function O(e){let t=n("#flower").getBoundingClientRect();return{x:Math.max(25,Math.min(575,(e.clientX-t.x)/t.width*600)),y:Math.max(25,Math.min(440,(e.clientY-t.y)/t.height*480))}}b.addEventListener("pointerdown",e=>{s||!e.isPrimary||e.button!==0||o!==0||(e.preventDefault(),g(),v(),s={id:e.pointerId,point:P(0).pollen},b.setPointerCapture(e.pointerId),d())});b.addEventListener("pointermove",e=>{s?.id===e.pointerId&&(s.point=O(e),d())});b.addEventListener("pointerup",e=>{if(s?.id!==e.pointerId)return;let t=q(s.point);u(),t&&(o=3),d()});for(let e of["pointercancel","lostpointercapture"])b.addEventListener(e,t=>{s?.id===t.pointerId&&(u(),d())});b.addEventListener("keydown",e=>{(e.key==="Enter"||e.key===" ")&&(e.preventDefault(),u(),g(),o=3,d())});b.addEventListener("click",e=>{e.detail===0&&o===0&&(u(),o=3,d())});document.addEventListener("visibilitychange",()=>{document.hidden&&(u(),g(),v(),d())});window.addEventListener("resize",()=>{u(),d()});document.querySelectorAll("button,input").forEach(e=>e.disabled=!1);d();})();
+</script>
+</body>
+</html>
