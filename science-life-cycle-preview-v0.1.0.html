@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>製品の一生 | 使う回数と条件を比べる</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1140px;
+}
+.vl-title {
+  font-size: clamp(25px, 3.3vw, 34px);
+}
+.vl-controls {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 252, 252, 0.98);
+  backdrop-filter: blur(8px);
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.toolbar button {
+  min-height: 48px;
+}
+#play {
+  min-width: 208px;
+  background: #167454;
+  color: #fff;
+}
+#play[data-playing='true'] {
+  background: #bc3543;
+}
+.timeline-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 210px;
+  font-size: 13px;
+}
+.timeline-wrap input {
+  width: 100%;
+  height: 44px;
+  min-width: 60px;
+}
+.timeline-wrap span {
+  white-space: nowrap;
+}
+#progress {
+  min-width: 65px;
+  white-space: nowrap;
+  text-align: right;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.vl-stage {
+  padding: 20px;
+}
+.intro {
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 5px;
+  color: #44625b;
+}
+.assumption {
+  font-size: 12px;
+  color: #7b6c4a;
+  line-height: 1.8;
+  margin: 0 0 16px;
+}
+.metric-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 17px;
+}
+.vl-shell .metric-tabs button {
+  min-height: 44px;
+  background: #f4f7f2;
+  color: #345b4f;
+  border: 1px solid #c2d3c7;
+  padding: 9px 16px;
+}
+.vl-shell .metric-tabs button[aria-pressed='true'] {
+  background: #e0ebe1;
+  border-color: #52806b;
+  box-shadow: inset 0 0 0 1px #52806b;
+}
+.views {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.products,
+.graph-card {
+  min-width: 0;
+  border: 1px solid #cddbd4;
+  border-radius: 13px;
+  background: #f6f9f5;
+  color: #193b32;
+  overflow: hidden;
+}
+.graph-card {
+  background: #fffef9;
+}
+.views h2 {
+  font-size: 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 15px 16px;
+  flex-wrap: wrap;
+}
+.views h2 > span {
+  font-size: 12px;
+  color: #6b877c;
+}
+.product {
+  margin: 12px;
+  border-radius: 10px;
+  border: 1px solid #d3dfd4;
+  background: #fffffc;
+  padding: 12px;
+  color: var(--product);
+}
+.product-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.product-heading > svg {
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+}
+.product-heading h3 {
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0;
+}
+.cup-count {
+  font-size: 12px;
+  white-space: nowrap;
+  margin-left: auto;
+  color: #607367;
+  font-variant-numeric: tabular-nums;
+}
+.flow {
+  position: relative;
+  aspect-ratio: 360/140;
+  max-width: 300px;
+  margin: auto;
+}
+.flow > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.process {
+  position: absolute;
+  top: 7%;
+  font-size: 12px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: #51695e;
+}
+.at-make {
+  left: 16.667%;
+}
+.at-use {
+  left: 51.389%;
+}
+.at-end {
+  left: 87.22%;
+}
+.flow-note {
+  position: absolute;
+  top: 75%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: #6d7565;
+}
+.loop-note {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 72%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 12px;
+  color: #52786a;
+}
+.loop-note b {
+  font-weight: 600;
+}
+.replace-note {
+  position: absolute;
+  top: 49%;
+  left: 2%;
+  font-size: 12px;
+  color: #687364;
+  width: 40%;
+  line-height: 1.6;
+}
+.amount-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: 12px;
+  line-height: 1.3;
+}
+.value-caption {
+  margin-right: auto;
+}
+.amount-heading strong {
+  font-size: 25px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.value-unit {
+  font-size: 12px;
+}
+.amount-track {
+  height: 8px;
+  background: #e7ece4;
+  border-radius: 3px;
+  margin-top: 9px;
+  overflow: hidden;
+}
+.amount-track i {
+  display: block;
+  height: 100%;
+  background: var(--product);
+  border-radius: 3px;
+  transition: width 0.3s linear;
+}
+.product-note {
+  font-size: 13px;
+  color: #587367;
+  line-height: 1.85;
+  min-height: 0;
+  margin: 16px;
+}
+#axis-title {
+  font-size: 12px;
+  margin: 0 16px 13px;
+  line-height: 1.8;
+  color: #526c5f;
+}
+.graph-key {
+  display: flex;
+  gap: 18px;
+  margin: 0 16px 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.graph-key span {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.key {
+  width: 20px;
+  border-top: 3px solid;
+}
+.key.single {
+  border-color: #b57336;
+}
+.key.reuse {
+  border-color: #277b75;
+}
+.plot {
+  position: relative;
+  width: 100%;
+  touch-action: pan-y;
+  cursor: crosshair;
+}
+.plot svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.future {
+  opacity: 0.38;
+}
+.tick {
+  position: absolute;
+  font-size: 12px;
+  color: #6b8174;
+  line-height: 1;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+.tick.y {
+  left: 2%;
+  transform: translateY(-50%);
+}
+.tick.top {
+  top: 8.387%;
+}
+.tick.mid {
+  top: 47.742%;
+}
+.tick.bottom {
+  top: 87.097%;
+}
+.tick.x {
+  top: 92.5%;
+  transform: translateX(-50%);
+}
+.axis-label {
+  font-size: 12px;
+  text-align: center;
+  color: #597264;
+  margin: 5px 12px 12px;
+}
+.graph-hint {
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 12px 16px;
+  color: #698074;
+}
+.crossing {
+  border-top: 1px solid #d8e0d3;
+  padding-top: 14px;
+  margin: 16px;
+  font-size: 15px;
+  line-height: 1.85;
+  min-height: 78px;
+  color: #3b6657;
+}
+.story {
+  margin-top: 20px;
+  padding-top: 17px;
+  border-top: 1px solid #d7e1df;
+  min-height: 143px;
+}
+.story h2 {
+  font-size: 20px;
+  margin: 0 0 8px;
+  line-height: 1.6;
+}
+.story p {
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0;
+}
+.settings {
+  border: 1px solid #ccd9d0;
+  border-radius: 10px;
+  margin-top: 12px;
+}
+.settings summary {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+.settings summary:before {
+  content: '＋';
+  margin-right: 8px;
+}
+.settings[open] summary:before {
+  content: '−';
+}
+.settings-body {
+  padding: 0 16px 16px;
+  font-size: 14px;
+}
+.settings-body p {
+  line-height: 1.8;
+}
+.settings-body label {
+  display: grid;
+  grid-template-columns: 220px minmax(50px, 1fr) 108px;
+  gap: 12px;
+  align-items: center;
+  font-size: 13px;
+  min-height: 52px;
+}
+.settings-body input {
+  height: 44px;
+  width: 100%;
+  accent-color: #26745f;
+  min-width: 50px;
+}
+.settings-body output {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  font-size: 12px;
+}
+#default-settings {
+  min-height: 44px;
+}
+.model-note {
+  font-size: 12px;
+  color: #627975;
+  line-height: 1.8;
+  margin: 16px 0 0;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1;
+  background: #163c36e8;
+  padding: 15px 24px;
+  border-radius: 18px;
+  pointer-events: none;
+  animation: flash-out 1s ease-out forwards;
+  z-index: 5;
+}
+#flash[data-kind='play'] {
+  color: #00ff81;
+}
+#flash[data-kind='pause'] {
+  color: #ff324c;
+}
+#flash[hidden] {
+  display: none;
+}
+@keyframes flash-out {
+  0% {
+    opacity: 0.95;
+  }
+  15% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 740px) {
+  .views {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .product-note {
+    min-height: 0;
+  }
+  .product .flow {
+    max-width: 300px;
+  }
+  .story {
+    min-height: 180px;
+  }
+  .settings-body label {
+    grid-template-columns: minmax(50px, 1fr) 105px;
+    gap: 0 12px;
+    margin: 15px 0;
+  }
+  .settings-body label > span {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 480px) {
+  .vl-stage {
+    padding: 12px;
+  }
+  .vl-controls {
+    padding: 12px;
+  }
+  .toolbar {
+    gap: 8px;
+  }
+  #play {
+    min-width: 0;
+    flex: 1;
+    white-space: nowrap;
+    font-size: 13px;
+  }
+  .toolbar #reset {
+    font-size: 13px;
+    padding: 9px;
+  }
+  .timeline-wrap {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+  .intro {
+    font-size: 14px;
+  }
+  .views h2 {
+    margin: 14px 12px;
+    font-size: 15px;
+  }
+  .product {
+    margin: 10px;
+    padding: 10px;
+  }
+  .product-heading {
+    gap: 4px;
+  }
+  .product-heading h3 {
+    font-size: 15px;
+  }
+  .cup-count {
+    margin-left: 34px;
+    flex-basis: 100%;
+  }
+  .product-note {
+    margin: 13px;
+  }
+  .flow {
+    margin: 10px 0 7px;
+  }
+  .amount-heading strong {
+    font-size: 22px;
+  }
+  .story h2 {
+    font-size: 19px;
+  }
+  .metric-tabs button {
+    font-size: 13px;
+  }
+  .tick {
+    font-size: 12px;
+  }
+  .replace-note,
+  .loop-note {
+    font-size: 12px;
+  }
+  .settings-body {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .graph-key {
+    gap: 13px;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 5h10l-2 14H9ZM3 9a9 9 0 0 1 16-3m2 9a9 9 0 0 1-16 3M19 2v4h-4M5 22v-4h4"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>製品の一生</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">製品の一生</h1><p class="vl-question">同じ100人分を何度も使うと、材料やエネルギーの比較は変わる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="play" aria-pressed="false">▶ 使う回数を増やす</button><button disabled id="reset" class="vl-secondary">初めから</button><label class="timeline-wrap" for="timeline"><span>使用回数</span><input disabled id="timeline" type="range" min="1" max="30" step="1" value="1"><output id="progress" for="timeline">1 / 30回</output></label></div></div>
+        <div class="vl-stage"><p class="intro">同じ100人分で比べます。まず再生して、使う回数を増やしてみよう。</p>
+ <p class="assumption">架空のカップで比べる模型です。数値は教材の仮定です。</p>
+ <div class="metric-tabs" role="group" aria-label="比べる量"><button disabled data-metric="energy" aria-pressed="true">エネルギー</button><button disabled data-metric="material" aria-pressed="false">材料の量</button></div>
+ <div class="views"><section class="products"><h2><span>01</span> 同じ役割で比べる</h2>
+ <article class="product" style="--product:#b57336"><div class="product-heading"><svg width="32" height="32" viewBox="0 0 40 44" aria-hidden="true"><path d="M7 5h26l-4 32q-9 5-18 0Z" fill="#b5733622" stroke="#b57336" stroke-width="2.5"/><path d="M7 5q13 6 26 0M11 29h18" fill="none" stroke="#b57336" stroke-width="2"/></svg><h3>使い捨てる</h3><span id="cups-single" class="cup-count">作った数 100個</span></div><div class="flow"><svg viewBox="0 0 360 140" aria-hidden="true">
+ <path class="flow-line" d="M60 51H173M196 51H307" fill="none" stroke="#bccbc1" stroke-width="2"/>
+ 
+ <path d="M167 47l7 4-7 4m134-4 7 4-7 4" fill="none" stroke="#829b8e" stroke-width="2"/>
+ <g id="moving-single" transform="translate(185 51)"><path d="M-9-11H9L7 10Q0 14-7 10Z" fill="#b57336" stroke="white" stroke-width="2"/></g>
+ </svg>
+ <span class="process at-make">作る</span><span class="process at-use">使う</span><span class="process at-end">処分</span>
+ <span class="flow-note">毎回、新しいカップを使う</span>
+ </div><div class="amount-heading"><span class="value-caption">エネルギーの合計</span><strong id="value-single">800</strong><small class="value-unit">単位</small></div><div class="amount-track"><i id="amount-single" style="width:3.3333%"></i></div></article><article class="product" style="--product:#277b75"><div class="product-heading"><svg width="32" height="32" viewBox="0 0 40 44" aria-hidden="true"><path d="M7 5h26l-4 32q-9 5-18 0Z" fill="#277b7522" stroke="#277b75" stroke-width="2.5"/><path d="M7 5q13 6 26 0M11 29h18" fill="none" stroke="#277b75" stroke-width="2"/></svg><h3>再使用する</h3><span id="cups-reuse" class="cup-count">作った数 100個</span></div><div class="flow"><svg viewBox="0 0 360 140" aria-hidden="true">
+ <path class="flow-line" d="M60 51H173M196 51H307" fill="none" stroke="#bccbc1" stroke-width="2"/>
+ <path id="reuse-loop" d="M185 51H305Q328 51 328 74V73Q328 95 306 95H206Q185 95 185 74V51" fill="none" stroke="#9cbdb5" stroke-width="2" stroke-dasharray="5 4"/>
+ <path d="M167 47l7 4-7 4m134-4 7 4-7 4" fill="none" stroke="#829b8e" stroke-width="2"/>
+ <g id="moving-reuse" transform="translate(185 51)"><path d="M-9-11H9L7 10Q0 14-7 10Z" fill="#277b75" stroke="white" stroke-width="2"/></g>
+ </svg>
+ <span class="process at-make">作る</span><span class="process at-use">使う</span><span class="process at-end">洗う</span>
+ <span class="loop-note">運んで戻す <b id="returned-count">100</b>個</span><span id="replace-note" class="replace-note">次回の補充 0個</span>
+ </div><div class="amount-heading"><span class="value-caption">エネルギーの合計</span><strong id="value-reuse">4,200</strong><small class="value-unit">単位</small></div><div class="amount-track"><i id="amount-reuse" style="width:17.5%"></i></div></article>
+ <p id="product-note" class="product-note">再使用は初めに多くのエネルギーを使います。使い捨ては、使うたびに作り直します。</p></section>
+ <section class="graph-card"><h2><span>02</span> 回数と合計をつなぐ</h2><p id="axis-title">エネルギーの合計（千単位・仮の値）</p>
+ <div class="graph-key"><span><i class="key single"></i>使い捨て</span><span><i class="key reuse"></i>再使用</span></div>
+ <div id="plot" class="plot">
+ <svg viewBox="0 0 440 310" aria-hidden="true"><path d="M52 26V270H420M52 148H420M52 26H420" fill="none" stroke="#d4ded6" stroke-width="1"/>
+ <path id="future-single" d="M52,261.8666666666667L64.6896551724138,253.73333333333335L77.37931034482759,245.6L90.06896551724138,237.46666666666667L102.75862068965517,229.33333333333334L115.44827586206897,221.2L128.13793103448276,213.06666666666666L140.82758620689657,204.93333333333334L153.51724137931035,196.8L166.20689655172413,188.66666666666669L178.89655172413794,180.53333333333336L191.58620689655172,172.39999999999998L204.27586206896552,164.26666666666665L216.9655172413793,156.13333333333333L229.6551724137931,148L242.34482758620692,139.86666666666667L255.0344827586207,131.73333333333335L267.7241379310345,123.6L280.41379310344826,115.46666666666667L293.1034482758621,107.33333333333334L305.7931034482759,99.20000000000002L318.48275862068965,91.06666666666669L331.17241379310343,82.93333333333331L343.86206896551727,74.79999999999998L356.55172413793105,66.66666666666666L369.2413793103448,58.53333333333333L381.9310344827586,50.400000000000006L394.6206896551724,42.26666666666665L407.3103448275862,34.133333333333326L420,26" class="future" fill="none" stroke="#b57336" stroke-width="2" stroke-dasharray="4 5"/><path id="future-reuse" d="M52,227.3L64.6896551724138,225.26666666666668L77.37931034482759,223.23333333333332L90.06896551724138,221.2L102.75862068965517,219.16666666666666L115.44827586206897,217.13333333333333L128.13793103448276,215.1L140.82758620689657,213.06666666666666L153.51724137931035,211.03333333333333L166.20689655172413,209L178.89655172413794,206.96666666666667L191.58620689655172,204.93333333333334L204.27586206896552,202.89999999999998L216.9655172413793,200.86666666666667L229.6551724137931,198.83333333333331L242.34482758620692,196.8L255.0344827586207,194.76666666666665L267.7241379310345,192.73333333333335L280.41379310344826,190.7L293.1034482758621,188.66666666666669L305.7931034482759,186.63333333333333L318.48275862068965,184.60000000000002L331.17241379310343,182.56666666666666L343.86206896551727,180.53333333333336L356.55172413793105,178.5L369.2413793103448,176.46666666666664L381.9310344827586,174.43333333333334L394.6206896551724,172.39999999999998L407.3103448275862,170.36666666666667L420,168.33333333333331" class="future" fill="none" stroke="#277b75" stroke-width="2" stroke-dasharray="4 5"/>
+ <path id="curve-single" fill="none" stroke="#b57336" stroke-width="3"/><path id="curve-reuse" fill="none" stroke="#277b75" stroke-width="3"/>
+ <path id="cursor" d="M52 26V270" stroke="#94a69c" stroke-width="1"/>
+ <circle id="point-single" cx="52" cy="261.8666666666667" r="6" fill="#b57336" stroke="#fff" stroke-width="2"/><circle id="point-reuse" cx="52" cy="227.3" r="6" fill="#277b75" stroke="#fff" stroke-width="2"/>
+ </svg><span class="tick y top" id="y-max">24</span><span class="tick y mid" id="y-mid">12</span><span class="tick y bottom">0</span>
+ <span class="tick x" style="left:11.818181818181818%">1</span><span class="tick x" style="left:37.774294670846395%">10</span><span class="tick x" style="left:66.61442006269593%">20</span><span class="tick x" style="left:95.45454545454545%">30</span>
+ <div id="flash" hidden aria-hidden="true"></div></div>
+ <p class="axis-label">同じ100人分を使う回数</p><p class="graph-hint">点線は、この条件で先の回数まで計算した線です。グラフをタップして回数も選べます。</p>
+ <p id="crossing" class="crossing">この条件では、7回から再使用側が小さくなります。</p></section></div>
+ <div class="story" aria-live="polite"><h2 id="story-title">最初の一回では、再使用側の合計が大きい</h2><p id="story-note">同じ100人分でも、カップを作るときの量が違います。回数を増やすと、比較はどう変わるでしょうか。</p></div>
+ <details class="settings"><summary>条件を変える</summary><div class="settings-body"><p>一つだけ条件を変え、同じ回数で比べてみよう。再生は止まり、選んだ回数で計算し直します。</p>
+ <label for="returned"><span>毎回、使える状態で戻る数</span><input disabled id="returned" type="range" min="0" max="100" step="10" value="100"><output id="returned-value">100 / 100個</output></label>
+ <label for="wash"><span>1個を洗うエネルギー</span><input disabled id="wash" type="range" min="1" max="8" step="1" value="1"><output id="wash-value">1単位</output></label>
+ <label for="transport"><span>1個を運ぶエネルギー</span><input disabled id="transport" type="range" min="1" max="8" step="1" value="1"><output id="transport-value">1単位</output></label>
+ <p>洗浄・輸送は、再使用側の利用前に毎回100個分を数えます。新品の製造・最初の配送・最終処理は、作る個数に応じて加算します。</p><button disabled id="default-settings" class="vl-secondary">条件だけ元に戻す</button></div></details>
+ <p class="model-note">エネルギーと材料は、別の指標です。どちらか一つの量だけで、環境への影響全体や実際の製品の優劣は決められません。</p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>製品の一生で考える</h3><p>製品は、使っているときだけでなく、原料を得て作るとき、運ぶとき、洗うとき、最後に処理するときにも資源やエネルギーを使います。同じ役割を果たす製品を、同じ使用量・同じ範囲で比べることが大切です。</p><p>この教材では、同じ容量を入れられる架空のカップで、毎回100人分を用意します。数値は関係を考えるための仮定です。特定の商品や、現在の製品全般の調査結果を表していません。</p>
+<h3>比べる二つの量</h3><p>「材料の量」は、新しく作ったカップの重さの合計です。使い捨て1個を4g、再使用1個を20gと仮定しています。原料の採掘量や、製造工程全体で発生する廃棄物の量ではありません。材質による違いなども、この一つの数字だけでは評価できません。</p><p>「エネルギー」は、仮の共通単位で数えます。kJなどの実際の単位や、CO2の排出量ではありません。両者を足して、環境の良し悪しを一つの点数にすることもしません。グラフは読みやすくするため千単位・千gの目盛りで、カードの数値は単位・gで表示しています。</p>
+<h3>計算に使う仮の値</h3><p>使い捨ては、1個につき製造6・配送1・最終処理1で、合計8単位。使うたびに100個を作ります。</p><p>再使用は、新しい1個につき製造36・初回配送2・最終処理2で、合計40単位。これに、毎回100個分の洗浄と輸送を加えます。初期条件では、1個1回につき洗浄1・輸送1単位です。洗浄と輸送はそれぞれ1〜8単位に変えられます。新品を含め、利用前の洗浄・輸送を初回から数える仮定です。</p><p>最終処理の負担は、製品一生の比較に含めるため、新しく作る時点で将来分も数えています。その回で再使用カップを全部捨てるという意味ではありません。</p>
+<h3>戻らない分を補う</h3><p>100個のうち、使える状態で戻った分を次にも使います。例えば80個が戻るなら、次回までに20個を新しく作って100人分を揃えます。初回は100個、2回目までに120個、3回目までに140個を作る計算です。回収数を0〜100個で変えられます。これは再使用に戻る数で、材料に戻すリサイクル率ではありません。</p><p>回収・洗浄・輸送の条件は、選んだ値を全期間で一定とします。条件を変えたときは、その条件で最初から利用した場合に計算し直します。途中から条件が変化した履歴ではありません。「条件だけ元に戻す」は回数と指標を保ち、「初めから」はすべて初期条件へ戻します。</p>
+<h3>グラフとアニメーション</h3><p>実線と数値は、選んだ整数回までの累積量です。点線は同じ条件を続けたときの30回までの計算です。カップの動きは流れを示す模式的な演出で、実際の運搬速度や処理時間ではありません。準備の動きが一巡すると、使用回数を一つ増やします。</p><p>二つの線には同じ目盛りを使います。条件や指標を変えると全体が収まるよう目盛りを変えますが、使用回数を増やす間には変えません。「何回から」は再使用側が初めて小さくなる整数回です。同じ量の回は含めません。30回以内に逆転しない場合は、その範囲での結果として示します。</p>
+<h3>実際の調査から分かること</h3><p>環境省のリユース食器の資料では、製造から廃棄までを見る考え方と、調査条件による比較例が紹介されています。地球・人間環境フォーラムのオフィス利用の分析でも、洗浄や輸送の条件が結果を左右します。これらは比較方法と要因を考える根拠です。この教材の4g・20g・8単位・40単位などを、これらの調査から引用したわけではありません。</p><p>実際の判断では、材料、電力、輸送距離、衛生を保つ洗浄条件、壊れやすさ、廃棄方法などを調べる必要があります。洗浄を省くことを勧める教材ではありません。</p>
+<h3>根拠・出典</h3><p><a href="https://www.env.go.jp/recycle/report/h19-02/sec1_4.pdf" target="_blank" rel="noopener noreferrer">環境省・リユース食器の実践マニュアル（PDF、p13〜14）</a>、<a href="https://www.env.go.jp/recycle/info/reusecup/report/200808_meiji/03.pdf" target="_blank" rel="noopener noreferrer">環境省・神宮球場での調査資料編（PDF、資料6）</a>、<a href="https://www.gef.or.jp/globalnet202310/globalnet202310-4/" target="_blank" rel="noopener noreferrer">地球・人間環境フォーラム・洗浄と輸送を含むLCA分析</a>。図・文章・仮定を置いた操作模型は独自制作です。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var g=Object.freeze({returned:100,wash:1,transport:1});function $(t,e=g){if(!Number.isInteger(t)||t<1||t>30||!Number.isInteger(e.returned)||e.returned<0||e.returned>100||e.returned%10||!Number.isInteger(e.wash)||e.wash<1||e.wash>8||!Number.isInteger(e.transport)||e.transport<1||e.transport>8)throw Error("Invalid comparison settings");let r=100*t,a=100+(t-1)*(100-e.returned),u={cups:r,material:r*4,parts:{make:r*6,ship:r,wash:0,dispose:r}},s={cups:a,material:a*20,parts:{make:a*36,ship:a*2+100*t*e.transport,wash:100*t*e.wash,dispose:a*2}};for(let m of[u,s])m.energy=Object.values(m.parts).reduce((k,V)=>k+V);return{single:u,reuse:s}}function C(t,e,r=g){let a=$(t,r),u=a.reuse[e]-a.single[e];return u===0?"equal":u<0?"reuse":"single"}function q(t,e=g){for(let r=1;r<=30;r++)if(C(r,t,e)==="reuse")return r;return null}function I(t,e){return Math.min(30,t+Math.max(0,Math.min(.1,e))/1.2)}function M(t,e,r){return{x:52+(t-1)/29*368,y:270-e/r*244}}function S(t,e,r,a,u=30){return t.slice(0,u).map((s,m)=>{let k=M(m+1,s[e][r],a);return(m?"L":"M")+k.x+","+k.y}).join("")}var n=t=>document.querySelector(t),j=t=>Math.round(t).toLocaleString("ja-JP"),i={...g},l="energy",o=1,h=!1,x=0,A=0,L,y,p,E="",H="",d=null;function w(){y=Array.from({length:30},(t,e)=>$(e+1,i)),p=Math.ceil(Math.max(y[29].single[l],y[29].reuse[l])/1e3)*1e3,E=""}function v(){h=!1,cancelAnimationFrame(x),x=0}function b(){clearTimeout(L),n("#flash").hidden=!0}function P(t){clearTimeout(L);let e=n("#flash");e.hidden=!1,e.dataset.kind=t,e.textContent=t==="play"?"\u25B6":"\u2161",e.style.animation="none",e.offsetWidth,e.style.animation="",L=setTimeout(()=>e.hidden=!0,1e3)}function B(){let t=o-Math.floor(o);n("#moving-single").setAttribute("transform",`translate(${t?60+250*t:185} 51)`);let e=n("#reuse-loop"),r=e.getPointAtLength(e.getTotalLength()*t);n("#moving-reuse").setAttribute("transform",`translate(${r.x} ${r.y})`)}function f(){let t=Math.floor(o+1e-9),e=y[t-1];Object.assign(document.body.dataset,{time:String(o),round:String(t),metric:l,playing:String(h),returned:String(i.returned),wash:String(i.wash),transport:String(i.transport),max:String(p)}),n("#play").textContent=h?"\u2161 \u4E00\u6642\u505C\u6B62":o>=30?"\u25B6 \u3082\u3046\u4E00\u5EA6":"\u25B6 \u4F7F\u3046\u56DE\u6570\u3092\u5897\u3084\u3059",n("#play").dataset.playing=String(h),n("#play").setAttribute("aria-pressed",String(h)),n("#timeline").value=String(t),n("#timeline").setAttribute("aria-valuetext",t+"\u56DE\u4F7F\u7528"),n("#progress").textContent=t+" / 30\u56DE",document.querySelectorAll("button[data-metric]").forEach(a=>a.setAttribute("aria-pressed",String(a.dataset.metric===l)));let r=[t,l,i.returned,i.wash,i.transport].join("/");if(r!==E){E=r;for(let s of["single","reuse"]){n("#cups-"+s).textContent="\u4F5C\u3063\u305F\u6570 "+j(e[s].cups)+"\u500B",n("#value-"+s).textContent=j(e[s][l]),n("#amount-"+s).style.width=e[s][l]/p*100+"%",n("#curve-"+s).setAttribute("d",S(y,s,l,p,t)),n("#future-"+s).setAttribute("d",S(y,s,l,p));let m=M(t,e[s][l],p);n("#point-"+s).setAttribute("cx",String(m.x)),n("#point-"+s).setAttribute("cy",String(m.y))}n("#cursor").setAttribute("d",`M${M(t,0,p).x} 26V270`);let a=l==="material";n("#axis-title").textContent=a?"\u65B0\u3057\u304F\u4F5C\u308B\u30AB\u30C3\u30D7\u306E\u91CD\u3055\uFF08\u5343g\uFF09":"\u30A8\u30CD\u30EB\u30AE\u30FC\u306E\u5408\u8A08\uFF08\u5343\u5358\u4F4D\u30FB\u4EEE\u306E\u5024\uFF09",document.querySelectorAll(".value-caption").forEach(s=>s.textContent=a?"\u6750\u6599\u306E\u5408\u8A08":"\u30A8\u30CD\u30EB\u30AE\u30FC\u306E\u5408\u8A08"),document.querySelectorAll(".value-unit").forEach(s=>s.textContent=a?"g":"\u5358\u4F4D"),n("#y-max").textContent=String(p/1e3),n("#y-mid").textContent=String(p/2e3),n("#returned-count").textContent=String(i.returned),n("#replace-note").textContent="\u6B21\u56DE\u306E\u88DC\u5145 "+(100-i.returned)+"\u500B";for(let s of["returned","wash","transport"])n("#"+s).value=String(i[s]);n("#returned-value").textContent=i.returned+" / 100\u500B",n("#wash-value").textContent=i.wash+"\u5358\u4F4D",n("#transport-value").textContent=i.transport+"\u5358\u4F4D";let u=q(l,i);n("#crossing").textContent=u===null?"\u3053\u306E\u6761\u4EF6\u3067\u306F\u300130\u56DE\u306E\u7BC4\u56F2\u3067\u518D\u4F7F\u7528\u5074\u306F\u5C0F\u3055\u304F\u306A\u308A\u307E\u305B\u3093\u3002":"\u3053\u306E\u6761\u4EF6\u3067\u306F\u3001"+u+"\u56DE\u304B\u3089\u518D\u4F7F\u7528\u5074\u304C\u5C0F\u3055\u304F\u306A\u308A\u307E\u3059\u3002",n("#product-note").textContent=a?"\u3053\u3053\u3067\u6BD4\u3079\u308B\u6750\u6599\u306F\u3001\u65B0\u3057\u304F\u4F5C\u308B\u30AB\u30C3\u30D7\u306E\u91CD\u3055\u3067\u3059\u3002\u6D17\u6D44\u3084\u8F38\u9001\u306E\u30A8\u30CD\u30EB\u30AE\u30FC\u306F\u542B\u3081\u307E\u305B\u3093\u3002":i.returned<100?"\u6BCE\u56DE"+(100-i.returned)+"\u500B\u304C\u623B\u3089\u306A\u3044\u306E\u3067\u3001\u6B21\u56DE\u306E\u305F\u3081\u306B\u65B0\u3057\u304F\u4F5C\u308A\u307E\u3059\u3002\u88FD\u9020\u306E\u8CA0\u62C5\u3082\u7E70\u308A\u8FD4\u3057\u52A0\u308F\u308A\u307E\u3059\u3002":"\u518D\u4F7F\u7528\u306F\u521D\u3081\u306B\u591A\u304F\u306E\u30A8\u30CD\u30EB\u30AE\u30FC\u3092\u4F7F\u3044\u307E\u3059\u3002\u305D\u306E\u5F8C\u3082\u3001\u6D17\u6D44\u3068\u8F38\u9001\u306E\u5206\u306F\u6BCE\u56DE\u52A0\u308F\u308A\u307E\u3059\u3002"}if(r!==H){H=r;let a=C(t,l,i),u=l==="material"?"\u6750\u6599\u306E\u91CF":"\u30A8\u30CD\u30EB\u30AE\u30FC\u306E\u5408\u8A08";n("#story-title").textContent=a==="equal"?t+"\u56DE\u3067\u306F\u3001\u4E21\u65B9\u306E"+u+"\u304C\u540C\u3058":t+"\u56DE\u3067\u306F\u3001"+(a==="reuse"?"\u518D\u4F7F\u7528":"\u4F7F\u3044\u6368\u3066")+"\u5074\u306E"+u+"\u304C\u5C0F\u3055\u3044",n("#story-note").textContent=t===1?"\u6700\u521D\u306F\u540C\u3058100\u500B\u3092\u4F5C\u308A\u307E\u3059\u304C\u30011\u500B\u3092\u4F5C\u308B\u3068\u304D\u306E\u91CF\u304C\u9055\u3044\u307E\u3059\u3002\u56DE\u6570\u3092\u5897\u3084\u3059\u3068\u3001\u6BD4\u8F03\u306F\u3069\u3046\u5909\u308F\u308B\u3067\u3057\u3087\u3046\u304B\u3002":l==="material"?"\u4F7F\u3044\u6368\u3066\u306F\u6BCE\u56DE100\u500B\u3002\u518D\u4F7F\u7528\u306F\u623B\u3063\u305F\u5206\u3092\u4F7F\u3044\u7D9A\u3051\u3001\u623B\u3089\u306A\u304B\u3063\u305F\u5206\u3092\u88DC\u3044\u307E\u3059\u3002\u6D17\u6D44\u30FB\u8F38\u9001\u306E\u30A8\u30CD\u30EB\u30AE\u30FC\u3068\u306F\u5225\u306B\u8003\u3048\u3088\u3046\u3002":"\u4F5C\u308B\u3068\u304D\u3060\u3051\u3067\u306A\u304F\u3001\u4F7F\u3044\u7D9A\u3051\u308B\u305F\u3081\u306E\u6D17\u6D44\u3084\u8F38\u9001\u3082\u6570\u3048\u307E\u3059\u3002\u300C\u6761\u4EF6\u3092\u5909\u3048\u308B\u300D\u3067\u4E00\u3064\u5909\u3048\u3001\u540C\u3058\u56DE\u6570\u306E\u7D50\u679C\u3092\u6BD4\u3079\u3066\u307F\u3088\u3046\u3002"}B()}function F(t){o=I(o,(t-A)/1e3),A=t,o>=30&&(h=!1),f(),h?x=requestAnimationFrame(F):x=0}function N(){cancelAnimationFrame(x),A=performance.now(),x=requestAnimationFrame(F)}function T(t){v(),b(),o=Math.max(1,Math.min(30,Math.round(t))),f()}n("#play").addEventListener("click",()=>{h?(v(),P("pause")):(o>=30&&(o=1),h=!0,P("play"),N()),f()});n("#reset").addEventListener("click",()=>{v(),b(),o=1,i={...g},l="energy",w(),f()});n("#timeline").addEventListener("input",t=>T(+t.target.value));document.querySelectorAll("button[data-metric]").forEach(t=>t.addEventListener("click",()=>{v(),b(),o=Math.floor(o),l=t.dataset.metric,w(),f()}));for(let t of["returned","wash","transport"])n("#"+t).addEventListener("input",e=>{v(),b(),o=Math.floor(o),i[t]=+e.target.value,w(),f()});n("#default-settings").addEventListener("click",()=>{v(),b(),o=Math.floor(o),i={...g},w(),f()});var c=n("#plot");function O(t){let e=c.getBoundingClientRect(),r=(t-e.x)/e.width*440;T(1+(r-52)/368*29)}c.addEventListener("pointerdown",t=>{t.isPrimary&&t.button===0&&(d={id:t.pointerId,x:t.clientX,y:t.clientY,active:!1})});c.addEventListener("pointermove",t=>{if(!d||t.pointerId!==d.id)return;let e=Math.abs(t.clientX-d.x),r=Math.abs(t.clientY-d.y);if(!d.active&&r>7&&r>e){d=null;return}!d.active&&e>7&&(d.active=!0,c.setPointerCapture(t.pointerId)),d.active&&(t.preventDefault(),O(t.clientX))});c.addEventListener("pointerup",t=>{d&&t.pointerId===d.id&&(O(t.clientX),d=null,c.hasPointerCapture(t.pointerId)&&c.releasePointerCapture(t.pointerId))});c.addEventListener("pointercancel",()=>d=null);c.addEventListener("lostpointercapture",t=>{t.target===c&&(d=null)});document.addEventListener("visibilitychange",()=>{document.hidden&&(v(),b(),d=null,f())});document.querySelectorAll("button,input").forEach(t=>t.disabled=!1);w();f();})();
+</script>
+</body>
+</html>
