@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>だ液の働き、どう比べる？ | 対照実験</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1050px;
+}
+.vl-main {
+  padding-top: 20px;
+}
+.vl-title {
+  font-size: 28px;
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+#play {
+  background: #477453;
+  color: white;
+  min-width: 146px;
+}
+#play[aria-pressed='true'] {
+  background: #b45045;
+}
+#reset {
+  margin-left: auto;
+}
+.conditions {
+  padding: 18px 24px 8px;
+}
+.condition-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 100px minmax(0, 1fr);
+  gap: 7px 12px;
+  align-items: center;
+  max-width: 650px;
+  margin: auto;
+}
+.column-name {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 3px;
+}
+.column-name i,
+.figure-title i {
+  display: inline-grid;
+  place-items: center;
+  font-style: normal;
+  background: #e9eeea;
+  border-radius: 6px;
+  width: 25px;
+  height: 25px;
+  margin-right: 7px;
+}
+.fixed {
+  background: #eef2ed;
+  border: 1px solid #dde5dc;
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px;
+  font-size: 15px;
+  min-height: 46px;
+}
+.condition-grid select {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  border-radius: 8px;
+  border: 1px solid #b7cbb9;
+  padding: 6px 10px;
+  background: #fff;
+  color: #294533;
+  font-size: 15px;
+}
+.match {
+  text-align: center;
+  font-size: 12px;
+  color: #75866e;
+  line-height: 1.3;
+}
+.match-mark {
+  display: block;
+  font-size: 21px;
+  font-weight: 700;
+}
+.match[data-equal='false'] {
+  color: #976531;
+}
+.condition-foot {
+  max-width: 650px;
+  margin: 8px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: #667862;
+  font-size: 12px;
+}
+#align {
+  padding: 5px 12px;
+  min-height: 44px;
+  font-size: 12px;
+  background: transparent;
+  border-color: #d5dfd0;
+}
+.stage-head {
+  padding: 14px 24px 0;
+  border-top: 1px solid #e3e7de;
+  margin-top: 8px;
+  min-height: 95px;
+}
+#phase-title {
+  margin: 0;
+  font-size: 17px;
+  color: #365b43;
+}
+#phase-note {
+  font-size: 14px;
+  color: #67785e;
+  margin: 7px 0;
+  line-height: 1.7;
+}
+.figures {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 4px 30px 10px;
+}
+.figure-title {
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+  color: #5b725c;
+  font-weight: 600;
+}
+.vl-stage .tube-svg {
+  width: 100%;
+  height: auto;
+  max-width: 280px;
+  margin: auto;
+}
+.tube-svg text {
+  font-family: inherit;
+  font-size: 20px;
+  fill: #5c706b;
+}
+.tube-svg .unknown {
+  font-size: 36px;
+  fill: #71807a;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #00c451;
+  color: white;
+  pointer-events: none;
+  font-size: 38px;
+  z-index: 5;
+}
+#flash[data-playing='false'] {
+  background: #ec283a;
+}
+#progress {
+  display: block;
+  width: calc(100% - 48px);
+  margin: 0 24px;
+  height: 4px;
+  accent-color: #67926e;
+}
+.model-note {
+  margin: 10px 24px 16px;
+  color: #6b7a62;
+  font-size: 12px;
+  line-height: 1.7;
+}
+#prediction {
+  margin: 6px 24px 12px;
+  border-top: 1px solid #e3e7de;
+  color: #60785f;
+  font-size: 13px;
+}
+#prediction summary {
+  min-height: 44px;
+  cursor: pointer;
+  padding: 10px 0;
+}
+#prediction .choices {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 0;
+}
+#prediction label {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid #d5dfd0;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+#prediction input {
+  min-width: 22px;
+  min-height: 22px;
+  margin: 0;
+  accent-color: #507852;
+}
+#results {
+  padding: 12px 24px 22px;
+}
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.result-card {
+  border: 1px solid #dbe3d8;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.result-card > h3 {
+  font-size: 14px;
+  margin: 0;
+  padding: 10px 14px;
+  background: #eef3e9;
+}
+.test-result {
+  padding: 10px 14px;
+  display: grid;
+  gap: 3px;
+}
+.test-result + .test-result {
+  border-top: 1px solid #e1e6db;
+}
+.test-result span {
+  font-size: 12px;
+  color: #657261;
+}
+.test-result strong {
+  font-size: 16px;
+}
+.test-result small {
+  font-size: 12px;
+  color: #657261;
+}
+.starch {
+  color: #625391;
+}
+.sugar {
+  color: #a94f33;
+}
+.absent {
+  color: #957130;
+}
+.blue {
+  color: #377c99;
+}
+.unknown-result {
+  color: #65736b;
+}
+.conclusion {
+  background: #eef3e9;
+  border-left: 3px solid #88a574;
+  border-radius: 5px;
+  padding: 12px 16px;
+  margin-top: 16px;
+}
+.conclusion h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: #48603d;
+}
+.conclusion p {
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.9;
+  color: #55654c;
+}
+#uncertainty,
+#prediction-result {
+  font-size: 13px;
+  color: #64715a;
+  line-height: 1.8;
+  margin: 12px 0;
+}
+@media (min-width: 850px) {
+  .vl-kicker {
+    display: none;
+  }
+  .vl-stage .tube-svg {
+    max-width: 225px;
+  }
+  .stage-head {
+    min-height: 84px;
+  }
+  .figures {
+    gap: 36px;
+  }
+}
+@media (max-width: 600px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-title {
+    font-size: 24px;
+  }
+  .vl-controls {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fffefa;
+    border-radius: 12px 12px 0 0;
+  }
+  .toolbar {
+    gap: 6px;
+  }
+  .toolbar button {
+    flex: 1;
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+  #play {
+    min-width: 130px;
+  }
+  #reset {
+    margin-left: 0;
+  }
+  #edit {
+    flex-basis: 100%;
+  }
+  .conditions {
+    padding: 14px 10px 6px;
+  }
+  .condition-grid {
+    grid-template-columns: minmax(0, 1fr) 52px minmax(0, 1fr);
+    gap: 6px;
+  }
+  .fixed,
+  .condition-grid select {
+    font-size: 12px;
+    padding: 5px;
+    min-height: 48px;
+  }
+  .column-name {
+    font-size: 13px;
+  }
+  .column-name i {
+    margin-right: 3px;
+    width: 22px;
+    height: 22px;
+  }
+  .match {
+    font-size: 11px;
+  }
+  .condition-foot {
+    font-size: 12px;
+  }
+  .stage-head {
+    padding: 14px 14px 0;
+    min-height: 116px;
+  }
+  #phase-title {
+    font-size: 16px;
+  }
+  #phase-note {
+    font-size: 13px;
+  }
+  .figures {
+    grid-template-columns: 1fr;
+    padding: 4px 20px 10px;
+    gap: 18px;
+  }
+  .vl-stage .tube-svg {
+    max-width: 290px;
+  }
+  .figure-title {
+    text-align: left;
+  }
+  .figure-panel + .figure-panel {
+    border-top: 1px dashed #d5ddce;
+    padding-top: 15px;
+  }
+  #results {
+    padding: 10px 14px 18px;
+  }
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+  .model-note {
+    margin-inline: 14px;
+  }
+  #progress {
+    width: calc(100% - 28px);
+    margin-inline: 14px;
+  }
+  #prediction {
+    margin-inline: 14px;
+  }
+}
+
+#a-iodine,
+#b-iodine,
+#a-benedict,
+#b-benedict {
+  opacity: 0;
+}
+
+@media (min-width: 1000px) {
+  .lab-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+    padding: 16px 16px 8px;
+  }
+  .conditions {
+    padding: 8px 8px 4px;
+  }
+  .condition-grid {
+    grid-template-columns: minmax(0, 1fr) 66px minmax(0, 1fr);
+    gap: 6px 8px;
+  }
+  .fixed,
+  .condition-grid select {
+    font-size: 14px;
+  }
+  .condition-foot {
+    gap: 6px;
+  }
+  .observation-panel .stage-head {
+    margin: 0;
+    padding: 6px 12px 0;
+    border: 0;
+    min-height: 103px;
+  }
+  .observation-panel .figures {
+    padding: 4px 8px 10px;
+    gap: 8px;
+  }
+  .setup-panel #prediction {
+    margin: 8px;
+  }
+  .figure-title {
+    font-size: 13px;
+  }
+  .lab-layout + .model-note {
+    margin-top: 0;
+  }
+}
+.condition-grid select {
+  height: 48px;
+}
+
+/* The concrete experiment precedes optional condition editing. */
+.lab-layout {
+  display: block;
+  padding: 0;
+}
+#next-step {
+  background: #477453;
+  color: white;
+  min-height: 48px;
+}
+#play {
+  background: transparent;
+  color: #477453;
+  min-width: 130px;
+}
+#play[aria-pressed='true'] {
+  background: #b45045;
+  color: white;
+}
+.stage-head,
+.observation-panel .stage-head {
+  padding: 20px 24px 0;
+  min-height: 0;
+  border-top: 0;
+}
+#phase-title {
+  font-size: 21px;
+}
+#same-conditions {
+  margin: 12px 24px;
+  padding: 10px 14px;
+  color: #48624d;
+  background: #eef3e9;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 8px;
+}
+.figures,
+.observation-panel .figures {
+  gap: 24px;
+  padding: 12px 24px 18px;
+}
+.figure-panel {
+  padding: 14px 12px 0;
+  border: 1px solid #dae3d7;
+  border-radius: 12px;
+  background: #fbfcf8;
+}
+.figure-title {
+  font-size: 17px;
+  text-align: center;
+  color: #365b43;
+}
+.ingredients {
+  text-align: center;
+  font-size: 14px;
+  margin: 8px 0 0;
+  line-height: 1.8;
+}
+.ingredients strong {
+  display: block;
+  color: #375743;
+}
+.figure-condition {
+  text-align: center;
+  color: #66775f;
+  font-size: 13px;
+  margin: 4px 0 0;
+}
+.vl-stage .tube-svg {
+  display: block;
+  max-width: 300px;
+}
+.single-tubes .tube-svg {
+  max-width: 170px;
+}
+body[data-exploring='false'] .figure-condition {
+  display: none;
+}
+body[data-phase='prepare'] .tube-svg {
+  max-height: 225px;
+}
+.explore-actions {
+  padding: 0 24px 20px;
+  text-align: right;
+}
+@media (max-width: 600px) {
+  .toolbar #next-step {
+    flex: 1 1 100%;
+  }
+  .toolbar #previous-step,
+  .toolbar #reset {
+    flex: 1;
+    min-width: 62px;
+  }
+  .toolbar #play {
+    flex: 1.4;
+    min-width: 120px;
+  }
+  #phase-title {
+    font-size: 18px;
+  }
+  .stage-head,
+  .observation-panel .stage-head {
+    padding: 14px 14px 0;
+  }
+  #same-conditions {
+    margin: 10px 14px;
+    font-size: 12px;
+    padding: 8px;
+  }
+  .figures,
+  .observation-panel .figures {
+    gap: 12px;
+    padding: 8px 14px 14px;
+  }
+  .single-tubes .figures {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .figure-panel,
+  .figure-panel + .figure-panel {
+    padding: 12px 8px 0;
+    border: 1px solid #dae3d7;
+  }
+  .single-tubes .figure-panel {
+    padding: 10px 3px 0;
+  }
+  .figure-title {
+    font-size: 14px;
+  }
+  .single-tubes .ingredients {
+    font-size: 12px;
+  }
+  .single-tubes .ingredients strong {
+    font-size: 12px;
+  }
+  .single-tubes .tube-svg {
+    max-height: 195px;
+  }
+  .explore-actions {
+    padding-inline: 14px;
+  }
+}
+
+#same-conditions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+#same-conditions span {
+  white-space: nowrap;
+}
+#reset {
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .toolbar #previous-step {
+    min-width: 58px;
+  }
+  .toolbar #reset {
+    min-width: 78px;
+  }
+  .toolbar #play {
+    min-width: 110px;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h6M6 3v14a2 2 0 0 0 4 0V3M14 3h6m-5 0v14a2 2 0 0 0 4 0V3M6 12h4m5-3h4"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>だ液の働き、どう比べる？</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">だ液の働き、どう比べる？</h1><p class="vl-question">だ液を加えると、デンプンはどうなる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="next-step">① 同じ条件で温める</button><button disabled id="previous-step" class="vl-secondary" aria-label="前の手順に戻る">戻る</button><button disabled id="play" aria-pressed="false" class="vl-secondary">▶ 通して見る</button><button disabled id="skip" class="vl-secondary" hidden>結果を見る</button><button disabled id="edit" class="vl-secondary" hidden>条件を変える</button><button disabled id="reset" class="vl-secondary">初めから</button></div></div>
+        <div class="vl-stage"><div class="lab-layout"><div class="setup-panel" id="setup-panel" hidden><section class="conditions" aria-label="二つの試験管の条件"><div class="condition-grid">
+<p class="column-name"><i>A</i>基準</p><span></span><p class="column-name"><i>B</i>比べる相手</p>
+<div class="fixed">うすめただ液</div><div class="match" id="match-saliva" data-equal="false"><span>加える液</span><span class="match-mark">≠</span></div><select disabled id="b-saliva" aria-label="Bに加える液"><option value="false">水</option><option value="true">うすめただ液</option></select>
+<div class="fixed">約40℃</div><div class="match" id="match-temperature" data-equal="true"><span>温度</span><span class="match-mark">＝</span></div><select disabled id="b-temperature" aria-label="Bを置く温度"><option value="40">約40℃</option><option value="20">20℃</option></select>
+<div class="fixed">約10分</div><div class="match" id="match-minutes" data-equal="true"><span>待ち時間</span><span class="match-mark">＝</span></div><select disabled id="b-minutes" aria-label="Bの待ち時間"><option value="10">約10分</option><option value="0">温める前</option></select>
+</div><div class="condition-foot"><span>デンプン液・加える液の量は、AとBで同じ。</span><button disabled id="align">温度・時間をAと同じに</button></div></section>
+<details id="prediction"><summary>結果を予想する（任意）</summary><p>ヨウ素液を加えたとき、青紫色にならないのは？</p><div class="choices"><label><input disabled type="radio" name="prediction" value="Aだけ">Aだけ</label><label><input disabled type="radio" name="prediction" value="両方">両方</label><label><input disabled type="radio" name="prediction" value="まだわからない">まだわからない</label></div></details>
+</div><div class="observation-panel single-tubes"><div class="stage-head" aria-live="polite"><h2 id="phase-title">だ液を加えるA、水を加えるB</h2><p id="phase-note">同じデンプン液に、だ液か水を同じ量ずつ加えます。違うのは、加える液だけ。</p></div>
+<p id="same-conditions"><span>そろえる：デンプン液の量</span><span>約40℃・約10分</span></p><div class="figures"><section class="figure-panel"><h3 class="figure-title">A：だ液入り</h3><p class="ingredients">デンプン液<strong>＋ うすめただ液</strong></p><p class="figure-condition" id="a-condition">約40℃・約10分</p><svg class="tube-svg" id="figure-a" viewBox="0 0 320 285" role="img" aria-labelledby="title-a"><title id="title-a">試料Aを分けて調べる図</title>
+<g id="a-bath"><rect x="92" y="143" width="136" height="94" rx="12" fill="#e9f2f1"/><path d="M92 144v92h136v-92" fill="none" stroke="#bdd1cf" stroke-width="2"/><text x="160" y="267" text-anchor="middle">温める前</text></g>
+<g id="a-split-arrows" opacity="0" fill="none" stroke="#8aa39a" stroke-width="2"><path d="M160 12L100 34m0-9v9h9M160 12l60 22m-9 0h9v-9"/></g>
+<g id="a-original" class="tube" transform="translate(160 0)">
+<path class="liquid" d="M-23 121H23V193a23 23 0 0 1-46 0Z" fill="#dfeaec"/>
+<path class="glass" d="M-25 44V193a25 25 0 0 0 50 0V44M-29 44H29" fill="none" stroke="#789196" stroke-width="2.5"/>
+<g class="sediment" opacity="0" fill="#a9482e"><path d="M-20 205q20 20 40 0v2q-20 22-40 0Z"/><circle cx="-13" cy="201" r="3"/><circle cx="9" cy="208" r="3"/><circle cx="18" cy="198" r="2.5"/></g>
+<path class="drop" d="M0 19q-11 14 0 14t0-14" fill="#67acc3" opacity="0"/>
+<text class="unknown" x="0" y="165" text-anchor="middle" opacity="0">?</text>
+</g><g id="a-iodine" class="tube" transform="translate(160 0)">
+<path class="liquid" d="M-23 121H23V193a23 23 0 0 1-46 0Z" fill="#dfeaec"/>
+<path class="glass" d="M-25 44V193a25 25 0 0 0 50 0V44M-29 44H29" fill="none" stroke="#789196" stroke-width="2.5"/>
+<g class="sediment" opacity="0" fill="#a9482e"><path d="M-20 205q20 20 40 0v2q-20 22-40 0Z"/><circle cx="-13" cy="201" r="3"/><circle cx="9" cy="208" r="3"/><circle cx="18" cy="198" r="2.5"/></g>
+<path class="drop" d="M0 19q-11 14 0 14t0-14" fill="#bd8c3b" opacity="0"/>
+<text class="unknown" x="0" y="165" text-anchor="middle" opacity="0">?</text>
+</g><g id="a-benedict" class="tube" transform="translate(160 0)">
+<path class="liquid" d="M-23 121H23V193a23 23 0 0 1-46 0Z" fill="#dfeaec"/>
+<path class="glass" d="M-25 44V193a25 25 0 0 0 50 0V44M-29 44H29" fill="none" stroke="#789196" stroke-width="2.5"/>
+<g class="sediment" opacity="0" fill="#a9482e"><path d="M-20 205q20 20 40 0v2q-20 22-40 0Z"/><circle cx="-13" cy="201" r="3"/><circle cx="9" cy="208" r="3"/><circle cx="18" cy="198" r="2.5"/></g>
+<path class="drop" d="M0 19q-11 14 0 14t0-14" fill="#67acc3" opacity="0"/>
+<text class="unknown" x="0" y="165" text-anchor="middle" opacity="0">?</text>
+</g>
+<g class="heat" id="a-heat" opacity="0" fill="none" stroke="#be8153" stroke-width="2.4"><path d="M201 240q-5 6 0 12t0 12m19-24q-5 6 0 12t0 12m19-24q-5 6 0 12t0 12"/></g>
+<g id="a-test-labels" opacity="0"><text x="100" y="275" text-anchor="middle">デンプン用</text><text x="220" y="275" text-anchor="middle">麦芽糖など用</text></g>
+</svg></section><section class="figure-panel"><h3 class="figure-title" id="b-figure-title">B：水入り</h3><p class="ingredients">デンプン液<strong id="b-ingredient">＋ 同量の水</strong></p><p class="figure-condition" id="b-condition">約40℃・約10分</p><svg class="tube-svg" id="figure-b" viewBox="0 0 320 285" role="img" aria-labelledby="title-b"><title id="title-b">試料Bを分けて調べる図</title>
+<g id="b-bath"><rect x="92" y="143" width="136" height="94" rx="12" fill="#e9f2f1"/><path d="M92 144v92h136v-92" fill="none" stroke="#bdd1cf" stroke-width="2"/><text x="160" y="267" text-anchor="middle">温める前</text></g>
+<g id="b-split-arrows" opacity="0" fill="none" stroke="#8aa39a" stroke-width="2"><path d="M160 12L100 34m0-9v9h9M160 12l60 22m-9 0h9v-9"/></g>
+<g id="b-original" class="tube" transform="translate(160 0)">
+<path class="liquid" d="M-23 121H23V193a23 23 0 0 1-46 0Z" fill="#dfeaec"/>
+<path class="glass" d="M-25 44V193a25 25 0 0 0 50 0V44M-29 44H29" fill="none" stroke="#789196" stroke-width="2.5"/>
+<g class="sediment" opacity="0" fill="#a9482e"><path d="M-20 205q20 20 40 0v2q-20 22-40 0Z"/><circle cx="-13" cy="201" r="3"/><circle cx="9" cy="208" r="3"/><circle cx="18" cy="198" r="2.5"/></g>
+<path class="drop" d="M0 19q-11 14 0 14t0-14" fill="#67acc3" opacity="0"/>
+<text class="unknown" x="0" y="165" text-anchor="middle" opacity="0">?</text>
+</g><g id="b-iodine" class="tube" transform="translate(160 0)">
+<path class="liquid" d="M-23 121H23V193a23 23 0 0 1-46 0Z" fill="#dfeaec"/>
+<path class="glass" d="M-25 44V193a25 25 0 0 0 50 0V44M-29 44H29" fill="none" stroke="#789196" stroke-width="2.5"/>
+<g class="sediment" opacity="0" fill="#a9482e"><path d="M-20 205q20 20 40 0v2q-20 22-40 0Z"/><circle cx="-13" cy="201" r="3"/><circle cx="9" cy="208" r="3"/><circle cx="18" cy="198" r="2.5"/></g>
+<path class="drop" d="M0 19q-11 14 0 14t0-14" fill="#bd8c3b" opacity="0"/>
+<text class="unknown" x="0" y="165" text-anchor="middle" opacity="0">?</text>
+</g><g id="b-benedict" class="tube" transform="translate(160 0)">
+<path class="liquid" d="M-23 121H23V193a23 23 0 0 1-46 0Z" fill="#dfeaec"/>
+<path class="glass" d="M-25 44V193a25 25 0 0 0 50 0V44M-29 44H29" fill="none" stroke="#789196" stroke-width="2.5"/>
+<g class="sediment" opacity="0" fill="#a9482e"><path d="M-20 205q20 20 40 0v2q-20 22-40 0Z"/><circle cx="-13" cy="201" r="3"/><circle cx="9" cy="208" r="3"/><circle cx="18" cy="198" r="2.5"/></g>
+<path class="drop" d="M0 19q-11 14 0 14t0-14" fill="#67acc3" opacity="0"/>
+<text class="unknown" x="0" y="165" text-anchor="middle" opacity="0">?</text>
+</g>
+<g class="heat" id="b-heat" opacity="0" fill="none" stroke="#be8153" stroke-width="2.4"><path d="M201 240q-5 6 0 12t0 12m19-24q-5 6 0 12t0 12m19-24q-5 6 0 12t0 12"/></g>
+<g id="b-test-labels" opacity="0"><text x="100" y="275" text-anchor="middle">デンプン用</text><text x="220" y="275" text-anchor="middle">麦芽糖など用</text></g>
+</svg></section><span id="flash" hidden aria-hidden="true"></span></div>
+</div></div><progress id="progress" value="0" max="1" aria-label="実験の進み具合"></progress>
+<p class="model-note">標準的な結果の例です。画面の時間・色の濃さは実測値ではありません。</p>
+<section id="results" hidden aria-label="試薬の反応と比較から言えること"><div class="result-grid"><article class="result-card"><h3>A：だ液入り</h3><div id="result-a"></div></article><article class="result-card"><h3 id="b-result-title">B：水入り</h3><div id="result-b"></div></article></div><p id="uncertainty" hidden>20℃でも分解は進みますが、この時間でどの色になるかは、だ液の活性などによります。ここでは色を決めつけず、実測で確かめる条件として残しています。</p><p id="prediction-result" hidden></p><div class="conclusion"><h3 id="conclusion-title"></h3><p id="conclusion-note"></p></div></section><div class="explore-actions"><button disabled id="explore" class="vl-secondary">条件を変えて試す</button><button disabled id="guide" class="vl-secondary" hidden>実験の導入へ戻る</button></div></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>操作の進め方</h3><p>最初は「同じ条件で温める」から、図が変わる手順ごとに進めます。各手順の終わりで止まるので、AとBを比べてください。「戻る」で直前の手順へ、「通して見る」で続けて再生できます。「条件を変えて試す」でBの条件を選ぶ画面を開けます。</p><h3>なぜ水を加えた相手が必要？</h3><p>だ液を加えたAだけを見ても、水や温めたことが変化の原因だった可能性を切り分けられません。同じ量の水を加え、温度・待ち時間などをそろえたBと比べます。調べたい一つの条件だけを変えた比較を、対照実験といいます。</p><p>デンプン液の量と濃度、加える液の量、試薬の量・加熱の仕方もそろえる必要があります。この教材ではそれらを同じに固定し、加える液・温度・待ち時間に注目しています。Aを基準にし、Bの条件だけを変更できます。</p><h3>試料を分けて、別々に調べる</h3><p>温めた試料を二つに分け、一方にヨウ素液を加えてデンプンの反応を、もう一方にベネジクト液を加えて加熱し、麦芽糖などの反応を調べます。同じ試料に二つの試薬を順番に加えている図ではありません。</p><p>ヨウ素液で青紫色になることはデンプンが残る手がかりです。ベネジクト液はデンプンには反応せず、麦芽糖などがあると、加熱によって赤褐色の沈殿を生じます。反応がないときは青色のままです。</p><h3>デンプンは何に変わる？</h3><p>だ液のアミラーゼによりデンプンが分解され、麦芽糖などになります。この段階で、すべてがブドウ糖になるわけではありません。さらにほかの消化酵素の働きで分解が進みます。</p><h3>この図で表す範囲</h3><p>約40℃で約10分置いたAは、十分に分解が進んだ成功例として描いています。実際の反応はだ液の活性や濃度などで変わり、この時間で必ず同じ色になるとは限りません。20℃のだ液は、具体的な反応の色を計算せず「未測定」と表示します。これは分解が起こらないという意味ではありません。</p><p>「温める前」は反応の進みを省略した初期状態です。画面の再生時間は手順を追うための演出で、反応速度のグラフではありません。試薬の量・水分・試験管の大きさや色の濃さも模式的に表しています。実物の実験は授業の手順で行ってください。</p><p>根拠：<a href="https://r7-kagaku.gakuto-plus.jp/2-2/3-1/" target="_blank" rel="noopener noreferrer">学校図書・中学校理科2年「消化と吸収」</a>、<a href="https://practicalbiology.org/bio-molecules/factors-affecting-enzyme-activity/investigating-the-effect-of-ph-on-amylase-activity" target="_blank" rel="noopener noreferrer">Royal Society of Biology・アミラーゼ活性の実験</a>。図・操作・文章は独自制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var y=Object.freeze({saliva:!0,temperature:40,minutes:10}),u=12,L=e=>Math.max(0,Math.min(1,Number.isFinite(e)?e:0));function k(e={}){return{saliva:e.saliva===!0,temperature:e.temperature===20?20:40,minutes:e.minutes===0?0:10}}function M(e){let i=k(e),n=Object.keys(y).filter(a=>i[a]!==y[a]);return{different:n,kind:n.length===0?"same":n.length>1?"confounded":n[0]==="minutes"?"time":n[0]}}function q(e){let i=k(e);return!i.saliva||i.minutes===0?{starch:!0,sugar:!1}:i.temperature===20?{starch:null,sugar:null}:{starch:!1,sugar:!0}}function $(e){return e=Number.isFinite(e)?Math.max(0,Math.min(u,e)):0,{phase:e===0?"prepare":e<5?"wait":e<=7?"split":e<=9?"iodine":e<12?"heat":"result",split:L((e-5)/2),iodine:L((e-7)/1.3),benedict:L((e-9)/2.5),finished:e===u}}function R(e,i){return Math.min(u,Math.max(0,e)+Math.max(0,Number.isFinite(i)?i:0))}var O=Object.freeze([0,4,7,9,u]);function F(e,i){return i<0?[...O].reverse().find(n=>n<e-.001)??0:O.find(n=>n>e+.001)??u}var t=e=>document.querySelector(e),s=k({saliva:!1,temperature:40,minutes:10}),r=0,l=!1,x=u,o=!1,B,g,H,C={prepare:["\u3060\u6DB2\u3092\u52A0\u3048\u308BA\u3001\u6C34\u3092\u52A0\u3048\u308BB","\u540C\u3058\u30C7\u30F3\u30D7\u30F3\u6DB2\u306B\u3001\u3060\u6DB2\u304B\u6C34\u3092\u540C\u3058\u91CF\u305A\u3064\u52A0\u3048\u307E\u3059\u3002\u9055\u3046\u306E\u306F\u3001\u52A0\u3048\u308B\u6DB2\u3060\u3051\u3002"],wait:["\u540C\u3058\u6E29\u5EA6\u30FB\u540C\u3058\u6642\u9593\u3067\u6E29\u3081\u308B","A\u3082B\u3082\u3001\u7D0440\u2103\u306E\u6E6F\u306B\u7D0410\u5206\u3002\u6E29\u3081\u305F\u5F8C\u3001\u4E2D\u8EAB\u304C\u5909\u308F\u3063\u305F\u304B\u3092\u8ABF\u3079\u307E\u3059\u3002"],split:["A\u3082B\u3082\u3001\u305D\u308C\u305E\u308C\u4E8C\u3064\u306B\u5206\u3051\u308B","\u4E00\u65B9\u306F\u30C7\u30F3\u30D7\u30F3\u3001\u3082\u3046\u4E00\u65B9\u306F\u9EA6\u82BD\u7CD6\u306A\u3069\u3092\u8ABF\u3079\u308B\u305F\u3081\u3002\u540C\u3058\u8A66\u9A13\u7BA1\u306B\u4E8C\u3064\u306E\u8A66\u85AC\u3092\u6DF7\u305C\u307E\u305B\u3093\u3002"],iodine:["\u30E8\u30A6\u7D20\u6DB2\u3067\u3001\u30C7\u30F3\u30D7\u30F3\u3092\u8ABF\u3079\u308B","\u9752\u7D2B\u8272\u306A\u3089\u30C7\u30F3\u30D7\u30F3\u304C\u6B8B\u3063\u3066\u3044\u307E\u3059\u3002"],heat:["\u5225\u306E\u8A66\u6599\u306B\u30D9\u30CD\u30B8\u30AF\u30C8\u6DB2\u3092\u52A0\u3048\u3001\u52A0\u71B1","\u9EA6\u82BD\u7CD6\u306A\u3069\u304C\u3042\u308B\u3068\u3001\u8D64\u8910\u8272\u306E\u6C88\u6BBF\u304C\u3067\u304D\u307E\u3059\u3002"],result:["A\u3068B\u306E\u53CD\u5FDC\u3092\u3001\u898B\u6BD4\u3079\u3088\u3046","A\u3060\u3051\u3067\u30C7\u30F3\u30D7\u30F3\u306E\u53CD\u5FDC\u304C\u6D88\u3048\u3001\u9EA6\u82BD\u7CD6\u306A\u3069\u306E\u53CD\u5FDC\u304C\u73FE\u308C\u307E\u3057\u305F\u3002"]};function d(e,i){t(e).textContent!==i&&(t(e).textContent=i)}function h(){o=!1,cancelAnimationFrame(B),g=void 0}function b(){clearTimeout(H),t("#flash").hidden=!0}function j(e){b();let i=t("#flash");i.hidden=!1,i.textContent=e?"\u25B6":"\u2161",i.dataset.playing=e,i.getAnimations().forEach(n=>n.cancel()),i.animate([{opacity:1},{opacity:0}],{duration:1e3,fill:"forwards"}),H=setTimeout(()=>i.hidden=!0,1e3)}function G(){let e=M(s);return e.kind==="saliva"?["\u3060\u6DB2\u306E\u6709\u7121\u3060\u3051\u3092\u6BD4\u3079\u3089\u308C\u307E\u3059","A\u3067\u306F\u30C7\u30F3\u30D7\u30F3\u306E\u53CD\u5FDC\u304C\u6D88\u3048\u3001\u9EA6\u82BD\u7CD6\u306A\u3069\u306E\u53CD\u5FDC\u304C\u51FA\u307E\u3057\u305F\u3002\u6C34\u3092\u52A0\u3048\u305FB\u3068\u306E\u6BD4\u8F03\u304B\u3089\u3001\u3060\u6DB2\u306B\u3088\u308B\u5909\u5316\u3068\u8003\u3048\u3089\u308C\u307E\u3059\u3002"]:e.kind==="same"?["\u3060\u6DB2\u306E\u6709\u7121\u3092\u6BD4\u3079\u3066\u3044\u307E\u305B\u3093","A\u3082B\u3082\u3060\u6DB2\u5165\u308A\u3067\u3001\u6761\u4EF6\u304C\u540C\u3058\u3067\u3059\u3002\u6C34\u3092\u52A0\u3048\u305F\u76F8\u624B\u3092\u7528\u610F\u3059\u308B\u3068\u3001\u3060\u6DB2\u306E\u50CD\u304D\u3092\u6BD4\u3079\u3089\u308C\u307E\u3059\u3002"]:e.kind==="temperature"?["\u4ECA\u6BD4\u3079\u3066\u3044\u308B\u306E\u306F\u3001\u6E29\u5EA6\u3067\u3059","A\u3082B\u3082\u3060\u6DB2\u5165\u308A\u3067\u3059\u3002\u6E29\u5EA6\u306B\u3088\u308B\u9055\u3044\u3092\u8ABF\u3079\u308B\u7D44\u5408\u305B\u3067\u3001\u3060\u6DB2\u306E\u6709\u7121\u3092\u6BD4\u3079\u308B\u5BFE\u7167\u5B9F\u9A13\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u3002"]:e.kind==="time"?["\u4ECA\u6BD4\u3079\u3066\u3044\u308B\u306E\u306F\u3001\u5F85\u3061\u6642\u9593\u3067\u3059","A\u3082B\u3082\u3060\u6DB2\u5165\u308A\u3067\u3059\u3002\u6642\u9593\u306B\u3088\u308B\u9055\u3044\u3092\u8ABF\u3079\u308B\u7D44\u5408\u305B\u3067\u3001\u3060\u6DB2\u306E\u6709\u7121\u3092\u6BD4\u3079\u308B\u5BFE\u7167\u5B9F\u9A13\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u3002"]:["\u9055\u3046\u6761\u4EF6\u304C\u8907\u6570\u3042\u308A\u307E\u3059","\u6E29\u5EA6\u3084\u5F85\u3061\u6642\u9593\u3082\u9055\u3046\u305F\u3081\u3001\u3053\u306E\u6BD4\u8F03\u3060\u3051\u3067\u306F\u3001\u3060\u6DB2\u306E\u6709\u7121\u306B\u3088\u308B\u5DEE\u3068\u5207\u308A\u5206\u3051\u3089\u308C\u307E\u305B\u3093\u3002\u8ABF\u3079\u305F\u3044\u6761\u4EF6\u3092\u4E00\u3064\u3060\u3051\u5909\u3048\u307E\u3057\u3087\u3046\u3002"]}function z(e,i,n){let a=q(i),v=t("#"+e+"-bath");v.style.opacity=r===0?0:1-n.split,v.querySelector("text").textContent=i.minutes===0?"\u6E29\u3081\u308B\u524D":"\u7D04"+i.temperature+"\u2103",t("#figure-"+e).setAttribute("viewBox",n.split===0?"75 25 170 255":"0 0 320 285"),t("#"+e+"-split-arrows").style.opacity=n.split;let p=t("#"+e+"-original");p.style.opacity=1-n.split;for(let[S,I,E,f]of[["iodine",100,a.starch,n.iodine],["benedict",220,a.sugar,n.benedict]]){let m=t("#"+e+"-"+S);m.style.opacity=n.split,m.setAttribute("transform","translate("+(160+(I-160)*n.split)+" 0)"),m.querySelector(".liquid").setAttribute("d","M-23 169H23V193a23 23 0 0 1-46 0Z");let U=E===null?"#d3d9d8":S==="iodine"?E?"#5c5297":"#d6b25e":"#87bacc";m.querySelector(".liquid").setAttribute("fill",f>0?U:"#dfeaec"),m.querySelector(".liquid").style.opacity=.5+f*.5,m.querySelector(".sediment").setAttribute("opacity",S==="benedict"&&E===!0?f:0),m.querySelector(".unknown").setAttribute("opacity",E===null?f:0);let N=m.querySelector(".drop");N.setAttribute("opacity",f>0&&f<1?1:0),N.setAttribute("transform","translate(0 "+f*110+")")}t("#"+e+"-heat").style.opacity=n.phase==="heat"?.6+.4*Math.sin(r*4)**2:0,t("#"+e+"-test-labels").style.opacity=n.split;let T=t("#"+e+"-test-labels").querySelectorAll("text");T[0].textContent=n.iodine>0?"\u30E8\u30A6\u7D20\u6DB2":"\u30C7\u30F3\u30D7\u30F3\u7528",T[1].textContent=n.benedict>0?"\u30D9\u30CD\u30B8\u30AF\u30C8\u6DB2":"\u9EA6\u82BD\u7CD6\u306A\u3069\u7528"}function D(e){let i=q(e);return`<div class="test-result"><span>\u30E8\u30A6\u7D20\u6DB2</span><strong class="${i.starch===null?"unknown-result":i.starch?"starch":"absent"}">${i.starch===null?"\u8272\u306F\u672A\u6E2C\u5B9A":i.starch?"\u9752\u7D2B\u8272":"\u9EC4\u8910\u8272\u306E\u307E\u307E"}</strong><small>${i.starch===null?"\u6B8B\u308A\u65B9\u306F\u5B9F\u6E2C\u3067\u78BA\u8A8D":"\u30C7\u30F3\u30D7\u30F3\u306E\u53CD\u5FDC\uFF1A"+(i.starch?"\u3042\u308A":"\u306A\u3057")}</small></div><div class="test-result"><span>\u30D9\u30CD\u30B8\u30AF\u30C8\u6DB2\uFF0B\u52A0\u71B1</span><strong class="${i.sugar===null?"unknown-result":i.sugar?"sugar":"blue"}">${i.sugar===null?"\u8272\u306F\u672A\u6E2C\u5B9A":i.sugar?"\u8D64\u8910\u8272\u306E\u6C88\u6BBF":"\u9752\u8272\u306E\u307E\u307E"}</strong><small>${i.sugar===null?"\u3067\u304D\u65B9\u306F\u5B9F\u6E2C\u3067\u78BA\u8A8D":"\u9EA6\u82BD\u7CD6\u306A\u3069\u306E\u53CD\u5FDC\uFF1A"+(i.sugar?"\u3042\u308A":"\u306A\u3057")}</small></div>`}function c(){let e=$(r),i=M(s),n=o||r>0;Object.assign(document.body.dataset,{time:r,playing:o,phase:e.phase,kind:i.kind,exploring:l,saliva:s.saliva,temperature:s.temperature,minutes:s.minutes}),t("#play").textContent=o?"\u2161 \u4E00\u6642\u505C\u6B62":e.finished?"\u25B6 \u3082\u3046\u4E00\u5EA6\u898B\u308B":r===0?"\u25B6 \u901A\u3057\u3066\u898B\u308B":"\u25B6 \u7D9A\u304D\u3092\u898B\u308B",t("#play").setAttribute("aria-pressed",o),t("#skip").disabled=e.finished,t("#skip").hidden=!l,t("#edit").hidden=!l||!n,t("#explore").hidden=l,t("#guide").hidden=!l,t("#setup-panel").hidden=!l,t("#previous-step").disabled=r===0,t("#next-step").disabled=e.finished||o,d("#next-step",r<4?"\u2460 \u540C\u3058\u6761\u4EF6\u3067\u6E29\u3081\u308B":r<7?"\u2461 \u4E8C\u3064\u306B\u5206\u3051\u308B":r<9?"\u2462 \u30E8\u30A6\u7D20\u6DB2\u3092\u52A0\u3048\u308B":e.finished?"\u5B9F\u9A13\u3092\u898B\u7D42\u3048\u305F":"\u2463 \u30D9\u30CD\u30B8\u30AF\u30C8\u6DB2\u3067\u8ABF\u3079\u308B"),d("#b-ingredient",s.saliva?"\uFF0B \u3046\u3059\u3081\u305F\u3060\u6DB2":"\uFF0B \u540C\u91CF\u306E\u6C34"),d("#b-figure-title",s.saliva?"B\uFF1A\u3060\u6DB2\u5165\u308A":"B\uFF1A\u6C34\u5165\u308A"),d("#b-result-title",s.saliva?"B\uFF1A\u3060\u6DB2\u5165\u308A":"B\uFF1A\u6C34\u5165\u308A"),d("#a-condition","\u7D0440\u2103\u30FB\u7D0410\u5206"),d("#b-condition",s.minutes===0?"\u6E29\u3081\u308B\u524D":"\u7D04"+s.temperature+"\u2103\u30FB\u7D0410\u5206"),t("#same-conditions").hidden=l||e.split>0,t(".observation-panel").classList.toggle("single-tubes",e.split===0),t("#align").hidden=n;for(let a of["saliva","temperature","minutes"]){let v=t("#b-"+a);v.disabled=n;let p=!i.different.includes(a);t("#match-"+a).dataset.equal=p,t("#match-"+a+" .match-mark").textContent=p?"\uFF1D":"\u2260",t("#match-"+a).setAttribute("aria-label",p?"\u540C\u3058\u6761\u4EF6":"\u9055\u3046\u6761\u4EF6")}if(t("#prediction").hidden=n||!l,document.querySelectorAll("#prediction input").forEach(a=>a.disabled=n),d("#phase-title",l&&r===0?"A\u3092\u57FA\u6E96\u306B\u3001B\u306E\u6761\u4EF6\u3092\u6BD4\u3079\u308B":l&&e.phase==="wait"?"\u8A2D\u5B9A\u3057\u305F\u6761\u4EF6\u3067\u53CD\u5FDC\u3092\u9032\u3081\u308B":C[e.phase][0]),d("#phase-note",r===0?i.kind==="saliva"?C.prepare[1]:i.kind==="same"?"\u4E8C\u3064\u3068\u3082\u540C\u3058\u6761\u4EF6\u3067\u3059\u3002B\u3092\u5909\u3048\u308B\u3068\u6BD4\u3079\u65B9\u304C\u5909\u308F\u308A\u307E\u3059\u3002":"\u300C\u2260\u300D\u306E\u884C\u306B\u6CE8\u76EE\u3002\u4F55\u3092\u5909\u3048\u3001\u4F55\u3092\u305D\u308D\u3048\u3066\u3044\u307E\u3059\u304B\uFF1F":l&&e.phase==="wait"?"\u8A2D\u5B9A\u3057\u305F\u6E29\u5EA6\u3068\u5F85\u3061\u6642\u9593\u3067\u6BD4\u3079\u307E\u3059\u3002A\u3068B\u306E\u6761\u4EF6\u306F\u56F3\u306E\u4E0A\u306B\u8868\u793A\u3057\u3066\u3044\u307E\u3059\u3002":l&&e.finished?"\u7D50\u679C\u306E\u5DEE\u3068\u3001\u5909\u3048\u305F\u6761\u4EF6\u3092\u5408\u308F\u305B\u3066\u78BA\u304B\u3081\u3088\u3046\u3002":C[e.phase][1]),t("#progress").value=r/u,z("a",y,e),z("b",s,e),t("#results").hidden=!e.finished,e.finished){t("#result-a").innerHTML=D(y),t("#result-b").innerHTML=D(s);let[a,v]=G();d("#conclusion-title",a),d("#conclusion-note",v),t("#uncertainty").hidden=q(s).starch!==null;let p=t("#prediction input:checked");t("#prediction-result").hidden=!p,p&&d("#prediction-result","\u5B9F\u9A13\u524D\u306E\u4E88\u60F3\uFF1A"+p.value+"\u3002\u7D50\u679C\u3068\u6BD4\u3079\u3066\u307F\u3088\u3046\u3002")}}function w(e){o&&(r=Math.min(x,R(r,g===void 0?0:Math.min(.1,(e-g)/1e3))),g=e,r===x&&(h(),b()),c(),o&&(B=requestAnimationFrame(w)))}function A(){h(),b(),r=0,document.querySelectorAll("#prediction input").forEach(e=>e.checked=!1)}t("#play").addEventListener("click",()=>{o?(h(),j(!1)):(r===u&&(r=0),x=u,o=!0,g=void 0,B=requestAnimationFrame(w),j(!0)),c()});t("#next-step").addEventListener("click",()=>{h(),b(),x=F(r,1),o=!0,g=void 0,B=requestAnimationFrame(w),c()});t("#previous-step").addEventListener("click",()=>{h(),b(),r=F(r,-1),c()});function P(){l=!0,A(),c()}t("#explore").addEventListener("click",P);t("#guide").addEventListener("click",()=>t("#reset").click());t("#skip").addEventListener("click",()=>{h(),b(),r=u,c()});t("#edit").addEventListener("click",()=>{A(),c(),t("#b-saliva").focus({preventScroll:!0})});t("#align").addEventListener("click",()=>{s.temperature=40,s.minutes=10,t("#b-temperature").value="40",t("#b-minutes").value="10",A(),c()});t("#reset").addEventListener("click",()=>{l=!1,x=u,s=k({saliva:!1,temperature:40,minutes:10});for(let e of["saliva","temperature","minutes"])t("#b-"+e).value=String(s[e]);A(),t("#prediction").open=!1,c()});for(let e of["saliva","temperature","minutes"])t("#b-"+e).addEventListener("change",i=>{o||r>0||(s[e]=e==="saliva"?i.target.value==="true":+i.target.value,A(),c())});document.addEventListener("visibilitychange",()=>{document.hidden&&(h(),b(),c())});document.querySelectorAll("button,select,input").forEach(e=>e.disabled=!1);c();})();
+</script>
+</body>
+</html>
