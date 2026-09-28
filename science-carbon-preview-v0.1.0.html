@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>炭素の移動 | Cの行き先をたどる</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1140px;
+}
+.vl-title {
+  font-size: clamp(25px, 3.3vw, 34px);
+}
+.vl-controls {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 252, 252, 0.98);
+  backdrop-filter: blur(8px);
+}
+.toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.toolbar button {
+  min-height: 48px;
+}
+#play {
+  min-width: 174px;
+  background: #167454;
+  color: white;
+}
+#play[data-playing='true'] {
+  background: #bc3543;
+}
+.toolbar-hint {
+  font-size: 13px;
+  color: #546e65;
+  margin: 0 0 0 8px;
+}
+.vl-stage {
+  padding: 20px;
+}
+.intro {
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 18px;
+  color: #4c6660;
+}
+.views {
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.map-card,
+.action-card {
+  min-width: 0;
+  border: 1px solid #cddbd4;
+  border-radius: 13px;
+  overflow: hidden;
+  background: #f6f9f5;
+  color: #18332d;
+}
+.action-card {
+  background: #fffef9;
+  padding-bottom: 16px;
+}
+.views h2 {
+  font-size: 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 15px 16px;
+  flex-wrap: wrap;
+}
+.views h2 > span {
+  font-size: 12px;
+  color: #6b877c;
+}
+.tag-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  margin: 15px 8px;
+}
+.tag-status > b,
+.tag {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #f4c45e;
+  color: #503d16;
+  border: 1.5px solid #795912;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+}
+.tag[hidden] {
+  display: none;
+}
+.tag-status strong {
+  min-width: 52px;
+}
+.map {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 58px 40px;
+  padding: 16px 16px 40px;
+  position: relative;
+}
+#route-layer,
+#moving-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+#moving-layer {
+  z-index: 3;
+}
+.vl-shell .pool {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  min-height: 114px;
+  height: 114px;
+  background: #fffffc;
+  border: 1px solid #c3d3c7;
+  border-radius: 12px;
+  color: var(--pool);
+  padding: 9px 5px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.vl-shell .pool:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.vl-shell .pool[aria-pressed='true'] {
+  border: 2px solid var(--pool);
+  box-shadow: 0 0 0 3px #256b4a15;
+}
+.vl-shell .pool[data-destination='true'] {
+  background: #eef4ef;
+  border-style: dashed;
+  border-color: #7a9b83;
+}
+.pool-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.vl-shell .pool-name svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.pool-amount {
+  display: flex;
+  gap: 4px;
+  align-items: baseline;
+  line-height: 1.1;
+}
+.pool-amount strong {
+  font-size: 25px;
+  font-variant-numeric: tabular-nums;
+}
+.pool-amount small {
+  font-size: 12px;
+  color: #65786e;
+}
+.dock {
+  height: 22px;
+  width: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.map-hint {
+  font-size: 12px;
+  color: #65786e;
+  line-height: 1.8;
+  margin: 0 16px 18px;
+}
+.source-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 16px 8px;
+}
+.routes {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 0 16px;
+  min-height: 65px;
+}
+.vl-shell .routes button {
+  padding: 8px 10px;
+  min-height: 62px;
+  color: #345947;
+  background: #f7f8f1;
+  border: 1px solid #bdcdbf;
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.vl-shell .routes button[hidden] {
+  display: none;
+}
+.routes button strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+.routes button span {
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.vl-shell .routes button[aria-pressed='true'] {
+  background: #e0ede2;
+  border-color: #548067;
+  box-shadow: inset 0 0 0 1px #548067;
+}
+.vl-shell .routes button:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.amount-control {
+  margin: 17px 16px 9px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.amount-control input {
+  width: 100%;
+  min-width: 50px;
+  height: 44px;
+  accent-color: #297257;
+}
+.amount-control output {
+  min-width: 42px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.route-note {
+  font-size: 14px;
+  line-height: 1.8;
+  min-height: 76px;
+  margin: 0 16px 12px;
+}
+.slow-note {
+  margin: 0 16px 15px;
+  border-left: 3px solid #9a794c;
+  background: #f3eadc;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #6b5031;
+}
+.inventory {
+  margin: 0 16px;
+  padding-top: 12px;
+  border-top: 1px solid #dde4d7;
+}
+.inventory h3 {
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+.inventory-key {
+  font-size: 12px;
+  color: #68776e;
+  margin: 0 0 12px;
+  line-height: 1.7;
+}
+.inventory-row {
+  display: grid;
+  grid-template-columns: 65px minmax(0, 1fr) 23px;
+  gap: 9px;
+  align-items: center;
+  font-size: 12px;
+  height: 26px;
+}
+.inventory-row > strong {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+}
+.bar-track {
+  height: 10px;
+  background: #e7ece5;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar-track i {
+  display: block;
+  height: 100%;
+  background: var(--pool);
+  border-radius: 3px;
+}
+.total-line {
+  font-size: 13px;
+  text-align: center;
+  margin: 12px 0 0;
+  padding: 11px 0 0;
+  border-top: 1px solid #dde4d7;
+  font-variant-numeric: tabular-nums;
+}
+.total-line strong {
+  font-size: 18px;
+  color: #216a4e;
+}
+.story {
+  border-top: 1px solid #d7e1df;
+  padding-top: 17px;
+  margin-top: 20px;
+  min-height: 125px;
+}
+.story h2 {
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+.story p {
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0;
+}
+.model-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #627975;
+  margin: 14px 0 0;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1;
+  background: #163c36e8;
+  padding: 15px 24px;
+  border-radius: 18px;
+  pointer-events: none;
+  animation: flash-out 1s ease-out forwards;
+  z-index: 5;
+}
+#flash[data-kind='play'] {
+  color: #00ff81;
+}
+#flash[data-kind='pause'] {
+  color: #ff324c;
+}
+#flash[hidden] {
+  display: none;
+}
+@keyframes flash-out {
+  0% {
+    opacity: 0.95;
+  }
+  15% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 740px) {
+  .views {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .map {
+    max-width: 490px;
+    margin: auto;
+  }
+  .toolbar-hint {
+    flex-basis: 100%;
+    margin: 0;
+  }
+  .story {
+    min-height: 160px;
+  }
+  .route-note {
+    min-height: 0;
+  }
+}
+@media (max-width: 480px) {
+  .vl-stage {
+    padding: 12px;
+  }
+  .vl-controls {
+    padding: 12px;
+  }
+  .toolbar {
+    gap: 8px;
+  }
+  #play {
+    min-width: 0;
+    flex: 1;
+    white-space: nowrap;
+    font-size: 13px;
+  }
+  .toolbar #reset {
+    font-size: 13px;
+    padding: 9px;
+  }
+  .views {
+    gap: 14px;
+  }
+  .views h2 {
+    margin: 14px 12px;
+    font-size: 15px;
+  }
+  .intro {
+    font-size: 14px;
+  }
+  .story h2 {
+    font-size: 19px;
+  }
+  .pool-name {
+    font-size: 12px;
+    gap: 3px;
+  }
+  .vl-shell .pool-name svg {
+    width: 20px;
+    height: 20px;
+  }
+  .map {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .tag-status {
+    font-size: 12px;
+  }
+  .routes,
+  .source-title,
+  .amount-control,
+  .route-note,
+  .inventory,
+  .slow-note {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  .vl-shell .routes button {
+    padding: 8px;
+  }
+  .map-hint {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M19 8a8 8 0 0 0-14 0M5 16a8 8 0 0 0 14 0M19 3v5h-5M5 21v-5h5"/><path d="M15 9a4 4 0 1 0 0 6"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>炭素の移動</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">炭素の移動</h1><p class="vl-question">植物が取り入れた炭素は、その後どこへ移る？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="play" aria-pressed="false">▶ 炭素を移す</button><button disabled id="reset" class="vl-secondary">初めから</button><p class="toolbar-hint">場所 → 経路を選ぶ → 移動する</p></div></div>
+        <div class="vl-stage"><p class="intro">Cは炭素の印です。まず光合成で、大気から植物へ移してみよう。</p>
+ <div class="views"><section class="map-card"><h2><span>01</span> 炭素の行き先をたどる</h2><p class="tag-status"><b>C</b> 追っている炭素：<strong id="tag-place">大気</strong></p>
+ <div id="map" class="map">
+ <svg id="route-layer" aria-hidden="true"><path id="route-path" fill="none" stroke="#9bbcad" stroke-width="2.5" stroke-dasharray="5 5"/></svg>
+ <button disabled class="pool" data-pool="0" data-tagged="true" aria-pressed="true" style="--pool:#4e829f"><span class="pool-name"><svg viewBox="0 0 40 38" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 27h22a7 7 0 0 0 0-14A10 10 0 0 0 12 10a8 8 0 0 0-3 17Z"/></svg>大気</span><span class="pool-amount"><strong id="pool-count-0">10</strong><small>単位</small></span><span class="dock" data-dock="0"><b class="tag" >C</b></span></button><button disabled class="pool" data-pool="1" data-tagged="false" aria-pressed="false" style="--pool:#4c8053"><span class="pool-name"><svg viewBox="0 0 40 38" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 33V15m0 9C5 22 4 9 6 4c10 0 17 6 14 20Zm0-6C20 7 29 3 35 4c1 10-5 15-15 14Z"/></svg>植物</span><span class="pool-amount"><strong id="pool-count-1">8</strong><small>単位</small></span><span class="dock" data-dock="1"><b class="tag" hidden>C</b></span></button><button disabled class="pool" data-pool="3" data-tagged="false" aria-pressed="false" style="--pool:#8b6a4d"><span class="pool-name"><svg viewBox="0 0 40 38" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13q10-4 17 0t17 0M3 23h34M3 32h34m-26-5h1m10 0h2m9 0h1M18 3v10m0-7-5-3m5 8 7-6"/></svg>土壌</span><span class="pool-amount"><strong id="pool-count-3">10</strong><small>単位</small></span><span class="dock" data-dock="3"><b class="tag" hidden>C</b></span></button><button disabled class="pool" data-pool="2" data-tagged="false" aria-pressed="false" style="--pool:#b37939"><span class="pool-name"><svg viewBox="0 0 40 38" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="21" cy="24" rx="12" ry="8"/><circle cx="12" cy="17" r="6"/><path d="M9 12 7 3q6-3 7 9m1 0 3-10q7 0 2 13m-8 14-3 5m17-5 3 5"/><circle cx="10" cy="17" r="1"/></svg>動物</span><span class="pool-amount"><strong id="pool-count-2">4</strong><small>単位</small></span><span class="dock" data-dock="2"><b class="tag" hidden>C</b></span></button><button disabled class="pool" data-pool="4" data-tagged="false" aria-pressed="false" style="--pool:#337e87"><span class="pool-name"><svg viewBox="0 0 40 38" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12q5-7 11 0t12 0t11 0M3 22q5-7 11 0t12 0t11 0M3 32q5-7 11 0t12 0t11 0"/></svg>海水</span><span class="pool-amount"><strong id="pool-count-4">12</strong><small>単位</small></span><span class="dock" data-dock="4"><b class="tag" hidden>C</b></span></button><button disabled class="pool" data-pool="5" data-tagged="false" aria-pressed="false" style="--pool:#6c627c"><span class="pool-name"><svg viewBox="0 0 40 38" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 31-2-13 11-9 11 3 10 13-6 8Zm9-22 7 14 14 2M4 18l18 5 8 10m-8-10-8 9"/></svg>化石燃料</span><span class="pool-amount"><strong id="pool-count-5">4</strong><small>単位</small></span><span class="dock" data-dock="5"><b class="tag" hidden>C</b></span></button>
+ <svg id="moving-layer" aria-hidden="true"><g id="moving-particles"></g></svg><div id="flash" hidden aria-hidden="true"></div>
+ </div><p class="map-hint">場所をタップすると、そこからの経路を選べます。</p></section>
+ <section class="action-card"><h2><span>02</span> 次の移動を選ぶ</h2>
+ <p id="source-title" class="source-title">大気から</p><div id="routes" class="routes"><button disabled data-route="photo" aria-pressed="true" ><strong>光合成</strong><span>大気 → 植物</span></button><button disabled data-route="food" aria-pressed="false" hidden><strong>食べられる</strong><span>植物 → 動物</span></button><button disabled data-route="plant-resp" aria-pressed="false" hidden><strong>植物の呼吸</strong><span>植物 → 大気</span></button><button disabled data-route="plant-soil" aria-pressed="false" hidden><strong>枯れたもの</strong><span>植物 → 土壌</span></button><button disabled data-route="animal-resp" aria-pressed="false" hidden><strong>動物の呼吸</strong><span>動物 → 大気</span></button><button disabled data-route="animal-soil" aria-pressed="false" hidden><strong>排出物・死がい</strong><span>動物 → 土壌</span></button><button disabled data-route="decompose" aria-pressed="false" hidden><strong>分解</strong><span>土壌 → 大気</span></button><button disabled data-route="burial" aria-pressed="false" hidden><strong>長い時間の貯蔵</strong><span>土壌 → 化石燃料</span></button><button disabled data-route="burn" aria-pressed="false" hidden><strong>燃焼</strong><span>化石燃料 → 大気</span></button><button disabled data-route="dissolve" aria-pressed="false" ><strong>海に溶ける</strong><span>大気 → 海水</span></button><button disabled data-route="outgas" aria-pressed="false" hidden><strong>海から放出</strong><span>海水 → 大気</span></button></div>
+ <label class="amount-control" for="amount"><span>移す量</span><input disabled id="amount" type="range" min="1" max="8" step="1" value="1"><output id="amount-value">1単位</output></label>
+ <p id="route-note" class="route-note">光のエネルギーを使い、二酸化炭素の炭素が植物の有機物に入ります。</p><p id="slow-note" class="slow-note" hidden>非常に長い時間の過程です。画面の移動速度とは対応しません。</p>
+ <div class="inventory"><h3>各場所にある炭素</h3><p class="inventory-key">棒の長さは、合計48単位に対する量</p><div class="inventory-row" style="--pool:#4e829f"><span>大気</span><div class="bar-track"><i id="bar-0" style="width:20.833333333333336%"></i></div><strong id="store-0">10</strong></div><div class="inventory-row" style="--pool:#4c8053"><span>植物</span><div class="bar-track"><i id="bar-1" style="width:16.666666666666664%"></i></div><strong id="store-1">8</strong></div><div class="inventory-row" style="--pool:#b37939"><span>動物</span><div class="bar-track"><i id="bar-2" style="width:8.333333333333332%"></i></div><strong id="store-2">4</strong></div><div class="inventory-row" style="--pool:#8b6a4d"><span>土壌</span><div class="bar-track"><i id="bar-3" style="width:20.833333333333336%"></i></div><strong id="store-3">10</strong></div><div class="inventory-row" style="--pool:#337e87"><span>海水</span><div class="bar-track"><i id="bar-4" style="width:25%"></i></div><strong id="store-4">12</strong></div><div class="inventory-row" style="--pool:#6c627c"><span>化石燃料</span><div class="bar-track"><i id="bar-5" style="width:8.333333333333332%"></i></div><strong id="store-5">4</strong></div><div class="inventory-row" style="--pool:#c49839"><span>移動中</span><div class="bar-track"><i id="bar-6" style="width:0%"></i></div><strong id="store-6">0</strong></div><p class="total-line">各場所 <span id="stored-total">48</span> ＋ 移動中 <span id="transit-total">0</span> ＝ <strong>48</strong></p></div>
+ </section></div>
+ <div class="story" aria-live="polite"><h2 id="story-title">場所が変わっても、炭素はなくならない</h2><p id="story-note">追っているCは、今は大気にあります。移動を再生し、着いた場所から次の経路を選んでみよう。</p></div>
+ <p class="model-note">炭素を含む物質のうち、炭素だけを印と数で表しています。この模型の合計は48単位。実際の地球の割合や移動の速さとは異なります。</p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>Cの印が表しているもの</h3><p>Cは炭素の元素記号です。大気では主に二酸化炭素に、生物では有機物などに含まれています。ここでは物質のうち炭素だけに注目して、黄色のCを追っています。炭素の単体の粒が、そのまま空気中を飛んでいるという意味ではありません。</p>
+ <h3>光合成と呼吸・分解</h3><p>植物は光のエネルギーを使い、二酸化炭素と水から有機物をつくります。その有機物が食べられると、炭素も食べる動物へ移ります。植物も動物も呼吸をし、有機物に含まれる炭素の一部が二酸化炭素として大気へ戻ります。</p><p>枯れたもの、排出物、死がいに含まれる炭素は、土壌などへ移ります。菌類・細菌類などによる分解では、分解者の呼吸によって二酸化炭素として大気へ戻る炭素もあります。この模型の「土壌」は、落ち葉や死がい、分解者などをまとめた貯蔵場所です。</p>
+ <h3>海や地中にも貯蔵される</h3><p>大気の二酸化炭素が海水に溶けたり、海水から大気へ放出されたりします。どちらの向きにも移動がありますが、ここでは一つずつ経路を選んで見ています。</p><p>生物に由来するものの一部は、分解されずに埋もれ、非常に長い時間をかけて化石燃料になることがあります。全ての死がいが化石燃料になるわけではありません。この模型では途中の過程をまとめて、土壌から化石燃料への一本の経路にしています。燃焼すると、その炭素は二酸化炭素などとして大気へ移ります。</p>
+ <h3>合計と速さについて</h3><p>合計48単位の炭素を、6か所と「移動中」に分けています。出発した分を移動中に数え、到着すると行き先に加えます。場所ごとの量は変わりますが、移動中も含めた合計は48のままです。光合成で植物に加わる炭素は大気から来ます。光のエネルギーが、炭素の量として加わるわけではありません。</p><p>数や配分は操作のための仮の値です。現実の地球の炭素量や、その割合を示していません。移動する速さも、実際の速さや時間と対応させていません。岩石、火山、海の生物など、多くの貯蔵場所と経路を省いています。</p>
+ <h3>操作</h3><p>場所をタップし、経路と移す量を選んで「炭素を移す」を押します。黄色のCがある場所から移すと、Cも含めて移動します。到着後は、その場所が選ばれるので、次の経路を続けて選べます。途中で一時停止・再開でき、「初めから」で全てを元に戻せます。</p>
+ <h3>根拠・出典</h3><p><a href="https://oceanservice.noaa.gov/facts/carbon-cycle.html" target="_blank" rel="noopener noreferrer">NOAA・炭素循環</a>、<a href="https://science.nasa.gov/kids/earth/what-is-the-carbon-cycle/" target="_blank" rel="noopener noreferrer">NASA・炭素循環の解説</a>。炭素の移動、貯蔵、光合成・呼吸・分解・燃焼、海との交換を参照しました。図・文章・操作モデルは独自制作です。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var u=["\u5927\u6C17","\u690D\u7269","\u52D5\u7269","\u571F\u58CC","\u6D77\u6C34","\u5316\u77F3\u71C3\u6599"];var m=[{id:"photo",from:0,to:1,name:"\u5149\u5408\u6210",note:"\u5149\u306E\u30A8\u30CD\u30EB\u30AE\u30FC\u3092\u4F7F\u3044\u3001\u4E8C\u9178\u5316\u70AD\u7D20\u306E\u70AD\u7D20\u304C\u690D\u7269\u306E\u6709\u6A5F\u7269\u306B\u5165\u308A\u307E\u3059\u3002"},{id:"food",from:1,to:2,name:"\u98DF\u3079\u3089\u308C\u308B",note:"\u690D\u7269\u306E\u6709\u6A5F\u7269\u306B\u542B\u307E\u308C\u308B\u70AD\u7D20\u304C\u3001\u98DF\u3079\u305F\u52D5\u7269\u3078\u79FB\u308A\u307E\u3059\u3002"},{id:"plant-resp",from:1,to:0,name:"\u690D\u7269\u306E\u547C\u5438",note:"\u690D\u7269\u3082\u547C\u5438\u3057\u3001\u6709\u6A5F\u7269\u306E\u70AD\u7D20\u306E\u4E00\u90E8\u3092\u4E8C\u9178\u5316\u70AD\u7D20\u3068\u3057\u3066\u5927\u6C17\u3078\u623B\u3057\u307E\u3059\u3002"},{id:"plant-soil",from:1,to:3,name:"\u67AF\u308C\u305F\u3082\u306E",note:"\u67AF\u308C\u305F\u690D\u7269\u306B\u542B\u307E\u308C\u308B\u70AD\u7D20\u304C\u3001\u571F\u58CC\u306E\u6709\u6A5F\u7269\u3078\u79FB\u308A\u307E\u3059\u3002"},{id:"animal-resp",from:2,to:0,name:"\u52D5\u7269\u306E\u547C\u5438",note:"\u6709\u6A5F\u7269\u306B\u542B\u307E\u308C\u308B\u70AD\u7D20\u304C\u3001\u547C\u5438\u306B\u3088\u3063\u3066\u4E8C\u9178\u5316\u70AD\u7D20\u3068\u3057\u3066\u5927\u6C17\u3078\u623B\u308A\u307E\u3059\u3002"},{id:"animal-soil",from:2,to:3,name:"\u6392\u51FA\u7269\u30FB\u6B7B\u304C\u3044",note:"\u6392\u51FA\u7269\u3084\u6B7B\u304C\u3044\u306E\u6709\u6A5F\u7269\u306B\u542B\u307E\u308C\u308B\u70AD\u7D20\u304C\u3001\u571F\u58CC\u3078\u79FB\u308A\u307E\u3059\u3002"},{id:"decompose",from:3,to:0,name:"\u5206\u89E3",note:"\u5206\u89E3\u8005\u304C\u6709\u6A5F\u7269\u3092\u5229\u7528\u3057\u3001\u547C\u5438\u3067\u4E8C\u9178\u5316\u70AD\u7D20\u3092\u5927\u6C17\u3078\u623B\u3057\u307E\u3059\u3002"},{id:"burial",from:3,to:5,name:"\u9577\u3044\u6642\u9593\u306E\u8CAF\u8535",slow:!0,note:"\u5206\u89E3\u3055\u308C\u305A\u57CB\u3082\u308C\u305F\u4E00\u90E8\u304C\u3001\u975E\u5E38\u306B\u9577\u3044\u6642\u9593\u3092\u304B\u3051\u3066\u5316\u77F3\u71C3\u6599\u3068\u306A\u308B\u7D4C\u8DEF\u3092\u307E\u3068\u3081\u3066\u3044\u307E\u3059\u3002"},{id:"burn",from:5,to:0,name:"\u71C3\u713C",note:"\u71C3\u6599\u306B\u84C4\u3048\u3089\u308C\u3066\u3044\u305F\u70AD\u7D20\u304C\u3001\u71C3\u713C\u306B\u3088\u3063\u3066\u4E8C\u9178\u5316\u70AD\u7D20\u3068\u3057\u3066\u5927\u6C17\u3078\u79FB\u308A\u307E\u3059\u3002"},{id:"dissolve",from:0,to:4,name:"\u6D77\u306B\u6EB6\u3051\u308B",note:"\u5927\u6C17\u306E\u4E8C\u9178\u5316\u70AD\u7D20\u304C\u6D77\u6C34\u306B\u6EB6\u3051\u3001\u70AD\u7D20\u304C\u6D77\u6C34\u4E2D\u3078\u79FB\u308A\u307E\u3059\u3002"},{id:"outgas",from:4,to:0,name:"\u6D77\u304B\u3089\u653E\u51FA",note:"\u6D77\u6C34\u304B\u3089\u4E8C\u9178\u5316\u70AD\u7D20\u304C\u653E\u51FA\u3055\u308C\u3001\u70AD\u7D20\u304C\u5927\u6C17\u3078\u623B\u308A\u307E\u3059\u3002"}];function M(){let t=0;return{bins:[10,8,4,10,12,4].map(e=>Array.from({length:e},()=>t++)),flight:null,history:[]}}function R(t){return[...t.bins.map(e=>e.length),t.flight?.ids.length??0]}function T(t){return t.flight?.ids.includes(0)?"moving":t.bins.findIndex(e=>e.includes(0))}function j(t,e,n){let s=m.find(a=>a.id===e);if(!s||t.flight||!Number.isInteger(n)||n<1||n>8||n>t.bins[s.from].length)throw Error("Invalid carbon transfer");let i=t.bins[s.from],l=[...i.filter(a=>a===0),...i.filter(a=>a!==0)].slice(0,n);return{...t,bins:t.bins.map((a,r)=>r===s.from?a.filter(d=>!l.includes(d)):a.slice()),flight:{route:e,ids:l,progress:0}}}function N(t,e){if(!t.flight)return t;let n=Math.min(1,t.flight.progress+Math.max(0,Math.min(.1,e))/3);if(n<1-1e-9)return{...t,flight:{...t.flight,progress:n}};let s=m.find(i=>i.id===t.flight.route);return{bins:t.bins.map((i,l)=>l===s.to?[...i,...t.flight.ids]:i.slice()),flight:null,history:[...t.history,{route:s.id,amount:t.flight.ids.length,tagged:t.flight.ids.includes(0)}].slice(-12)}}function B(t,e=10){let n=t.filter((i,l)=>!l||Math.hypot(i.x-t[l-1].x,i.y-t[l-1].y)>.01),s=`M${n[0].x},${n[0].y}`;for(let i=1;i<n.length-1;i++){let l=n[i-1],a=n[i],r=n[i+1],d=Math.hypot(a.x-l.x,a.y-l.y),g=Math.hypot(r.x-a.x,r.y-a.y),$=Math.min(e,d/2,g/2),L={x:a.x+(l.x-a.x)*$/d,y:a.y+(l.y-a.y)*$/d},O={x:a.x+(r.x-a.x)*$/g,y:a.y+(r.y-a.y)*$/g};s+=`L${L.x},${L.y}Q${a.x},${a.y} ${O.x},${O.y}`}return s+`L${n.at(-1).x},${n.at(-1).y}`}var o=t=>document.querySelector(t),c=M(),f=0,y="photo",p=1,h=!1,v=0,C=0,S,k="",w=0,A=o("#route-path");function I(){return m.find(t=>t.id===y)}function P(){clearTimeout(S),o("#flash").hidden=!0}function F(t){clearTimeout(S);let e=o("#flash");e.hidden=!1,e.dataset.kind=t,e.textContent=t==="play"?"\u25B6":"\u2161",e.style.animation="none",e.offsetWidth,e.style.animation="",S=setTimeout(()=>e.hidden=!0,1e3)}function E(){h=!1,cancelAnimationFrame(v),v=0}function b(){let t=o("#map").getBoundingClientRect(),e=I(),n=a=>{let r=o('[data-pool="'+a+'"]').getBoundingClientRect(),d=o('[data-dock="'+a+'"]').getBoundingClientRect();return{x:d.x+d.width/2-t.x,y:d.y+d.height/2-t.y,under:r.bottom-t.top+20}},s=n(e.from),i=n(e.to),l=t.width/2;for(let a of["route-layer","moving-layer"])o("#"+a).setAttribute("viewBox",`0 0 ${t.width} ${t.height}`);A.setAttribute("d",B([{x:s.x,y:s.y},{x:s.x,y:s.under},{x:l,y:s.under},{x:l,y:i.under},{x:i.x,y:i.under},{x:i.x,y:i.y}])),w=A.getTotalLength(),Z()}function Z(){let t=c.flight;if(!t){o("#moving-particles").innerHTML="";return}let e=t.ids.length,n=t.progress,s=n*n*(3-2*n);o("#moving-particles").innerHTML=t.ids.map((i,l)=>({id:i,i:l})).sort((i,l)=>+(i.id===0)-+(l.id===0)).map(({id:i,i:l})=>{let a=e===1?0:(l/(e-1)-.5)*Math.min(.28,42/Math.max(w,1))*Math.sin(Math.PI*n),r=A.getPointAtLength(w*Math.max(0,Math.min(1,s+a)));return i===0?`<g transform="translate(${r.x},${r.y})"><circle r="10" fill="#f4c45e" stroke="#795912" stroke-width="1.5"/><text text-anchor="middle" dy="4" fill="#503d16" font-size="12" font-weight="800">C</text></g>`:`<circle cx="${r.x}" cy="${r.y}" r="5.5" fill="#459578" stroke="#fff" stroke-width="1.5"/>`}).join("")}function x(){let t=R(c),e=T(c),n=I(),s=!!c.flight,i=c.bins[f].length;Object.assign(document.body.dataset,{source:String(f),route:y,quantity:String(p),playing:String(h),flight:String(s),progress:String(c.flight?.progress??0),tag:String(e)}),o("#play").textContent=h?"\u2161 \u4E00\u6642\u505C\u6B62":s?"\u25B6 \u7D9A\u304D\u304B\u3089":"\u25B6 \u70AD\u7D20\u3092\u79FB\u3059",o("#play").disabled=!s&&!i,o("#play").dataset.playing=String(h),o("#play").setAttribute("aria-pressed",String(h)),o("#reset").disabled=!1,o("#source-title").textContent=u[f]+"\u304B\u3089",document.querySelectorAll("[data-pool]").forEach(r=>{let d=+r.dataset.pool;r.disabled=s,r.setAttribute("aria-pressed",String(d===f)),r.dataset.tagged=String(e===d),r.dataset.destination=String(d===n.to),r.querySelector(".tag").hidden=e!==d,o("#pool-count-"+d).textContent=String(t[d])}),document.querySelectorAll("button[data-route]").forEach(r=>{let d=m.find(g=>g.id===r.dataset.route);r.hidden=d.from!==f,r.disabled=s,r.setAttribute("aria-pressed",String(d.id===y))});let l=o("#amount");l.disabled=s||!i,l.max=String(Math.max(1,Math.min(8,i+(s?c.flight.ids.length:0)))),l.value=String(p),o("#amount-value").textContent=(s?c.flight.ids.length:i?p:0)+"\u5358\u4F4D",l.setAttribute("aria-valuetext",o("#amount-value").textContent),o("#route-note").textContent=n.note,o("#slow-note").hidden=!n.slow,o("#tag-place").textContent=e==="moving"?"\u79FB\u52D5\u4E2D":u[e],t.forEach((r,d)=>{o("#store-"+d).textContent=String(r),o("#bar-"+d).style.width=r/48*100+"%"}),o("#stored-total").textContent=String(48-t[6]),o("#transit-total").textContent=String(t[6]);let a=[y,s,h,i===0,c.history.length,e].join("/");if(a!==k)if(k=a,s)o("#story-title").textContent=`${u[n.from]} \u2192 ${u[n.to]}\u3078${c.flight.ids.length}\u5358\u4F4D${h?"\u79FB\u52D5\u4E2D":"\u30FB\u505C\u6B62\u4E2D"}`,o("#story-note").textContent="\u51FA\u767A\u3057\u305F\u5206\u306F\u300C\u79FB\u52D5\u4E2D\u300D\u306B\u6570\u3048\u307E\u3059\u3002\u5230\u7740\u3059\u308B\u3068\u3001\u884C\u304D\u5148\u306E\u91CF\u306B\u52A0\u308F\u308A\u307E\u3059\u3002\u5408\u8A08\u306F48\u306E\u307E\u307E\u3067\u3059\u3002";else if(!i)o("#story-title").textContent=u[f]+"\u306B\u306F\u3001\u4ECA\u306F\u70AD\u7D20\u304C\u3042\u308A\u307E\u305B\u3093",o("#story-note").textContent="\u5225\u306E\u5834\u6240\u3092\u9078\u3093\u3067\u79FB\u52D5\u3059\u308B\u304B\u3001\u3053\u3053\u3078\u70AD\u7D20\u304C\u5165\u308B\u7D4C\u8DEF\u3092\u305F\u3069\u3063\u3066\u307F\u3088\u3046\u3002";else if(c.history.length){let r=c.history.at(-1),d=m.find(g=>g.id===r.route);o("#story-title").textContent=`${u[d.to]}\u306B${r.amount}\u5358\u4F4D\u3001\u5230\u7740`,o("#story-note").textContent=`${r.tagged?"C\u3082\u4E00\u7DD2\u306B\u79FB\u308A\u307E\u3057\u305F\u3002":"C\u306F"+u[e]+"\u306B\u3042\u308A\u307E\u3059\u3002"} \u6B21\u306F\u300C${n.name}\u300D\u3067\u3001${u[n.to]}\u3078\u79FB\u305B\u307E\u3059\u3002`}else o("#story-title").textContent="\u5834\u6240\u304C\u5909\u308F\u3063\u3066\u3082\u3001\u70AD\u7D20\u306F\u306A\u304F\u306A\u3089\u306A\u3044",o("#story-note").textContent=`\u300C${n.name}\u300D\u3067\u3001${u[n.from]}\u304B\u3089${u[n.to]}\u3078\u3002\u9EC4\u8272\u306EC\u3092\u8FFD\u3063\u3066\u307F\u3088\u3046\u3002`;Z()}function q(t){f=t,y=m.find(e=>e.from===t).id,p=Math.max(1,Math.min(p,8,c.bins[t].length)),x(),b()}function U(t){let e=c.flight;c=N(c,(t-C)/1e3),C=t,e&&!c.flight&&(h=!1,e.ids.includes(0)?q(m.find(n=>n.id===e.route).to):p=Math.max(1,Math.min(p,c.bins[f].length))),x(),h?v=requestAnimationFrame(U):v=0}function z(){cancelAnimationFrame(v),C=performance.now(),v=requestAnimationFrame(U)}o("#play").addEventListener("click",()=>{h?(E(),F("pause")):(c.flight||(c=j(c,y,p),b()),h=!0,F("play"),z()),x()});o("#reset").addEventListener("click",()=>{E(),P(),c=M(),p=1,k="",q(0)});document.querySelectorAll("[data-pool]").forEach(t=>t.addEventListener("click",()=>{c.flight||q(+t.dataset.pool)}));document.querySelectorAll("button[data-route]").forEach(t=>t.addEventListener("click",()=>{c.flight||(y=t.dataset.route,x(),b())}));o("#amount").addEventListener("input",t=>{p=+t.target.value,x()});document.addEventListener("visibilitychange",()=>{document.hidden&&(E(),P(),x())});new ResizeObserver(b).observe(o("#map"));x();b();})();
+</script>
+</body>
+</html>
