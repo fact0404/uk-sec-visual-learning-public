@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>加熱曲線と蒸留 | 先と後で、同じ液体？</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1060px;
+}
+.vl-main {
+  padding-top: 16px;
+}
+.vl-title {
+  font-size: 28px;
+}
+.vl-controls {
+  padding: 12px 22px;
+}
+.toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+.toolbar #play {
+  min-width: 200px;
+  min-height: 48px;
+  background: #467d58;
+  color: white;
+}
+.toolbar #play[aria-pressed='true'] {
+  background: #b34742;
+}
+.toolbar #reset {
+  margin-left: auto;
+  min-height: 44px;
+}
+.guide {
+  padding: 16px 22px 8px;
+}
+.sample-title {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: #65816b;
+}
+.guide h2 {
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0;
+}
+.guide-note {
+  min-height: 3.5em;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 5px 0 0;
+  color: #526b5b;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 18px;
+  align-items: start;
+  padding: 0 20px 16px;
+}
+.apparatus-wrap {
+  position: relative;
+  min-width: 0;
+}
+.apparatus-wrap svg,
+#graph {
+  width: 100%;
+  display: block;
+}
+.apparatus-wrap svg text {
+  font-family: inherit;
+  font-size: 23px;
+  fill: #566d65;
+  paint-order: stroke;
+  stroke: #fffefa;
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+.operation[data-active='true'] {
+  fill: #287449;
+}
+.collect-label {
+  font-size: 21px !important;
+}
+.record-side {
+  min-width: 0;
+}
+#graph text {
+  font-family: inherit;
+  font-size: 20px;
+  fill: #52695d;
+}
+.curve-note {
+  font-size: 13px;
+  min-height: 3.5em;
+  line-height: 1.7;
+  margin: 0 8px 10px;
+}
+.samples {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+.sample-card {
+  background: #f2f3ed;
+  border: 1px solid #dee4d9;
+  border-radius: 12px;
+  padding: 12px;
+  min-height: 140px;
+}
+.sample-card[data-ready='true'] {
+  background: #edf4e9;
+  border-color: #adc4a9;
+}
+.sample-card h3 {
+  font-size: 14px;
+  margin: 0 0 7px;
+  color: #577a5c;
+}
+.sample-card p {
+  font-size: 13px;
+  line-height: 1.75;
+  margin: 0;
+}
+#component-legend {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 6px 0;
+  color: #718070;
+}
+.ethanol {
+  color: #a45626;
+}
+.water {
+  color: #326d9a;
+}
+.model-note {
+  font-size: 12px;
+  color: #718070;
+  margin: 4px 22px 14px;
+  line-height: 1.7;
+}
+.review-controls {
+  padding: 12px 22px;
+  border-top: 1px solid #e0e7db;
+}
+.review-controls label {
+  display: block;
+  font-size: 13px;
+}
+.review-controls input {
+  width: 100%;
+  min-height: 44px;
+  accent-color: #577d62;
+  touch-action: pan-y;
+}
+.jumps {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.jumps button {
+  min-height: 44px;
+  font-size: 13px;
+}
+.comparison {
+  padding: 0 22px 16px;
+}
+.comparison summary {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+.comparison-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.comparison button {
+  min-height: 44px;
+}
+.vl-stage button[aria-pressed='true'] {
+  box-shadow: inset 0 0 0 2px #7a997c;
+}
+.comparison p {
+  font-size: 13px;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  color: #fff;
+  font-size: 32px;
+  pointer-events: none;
+  background: #009f3a;
+}
+#flash[data-playing='false'] {
+  background: #ee2939;
+}
+.announcement {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 699px) {
+  .workspace {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .apparatus-wrap {
+    max-width: 550px;
+    margin: auto;
+    width: 100%;
+  }
+  .record-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .curve-note {
+    grid-column: 1;
+  }
+  .samples {
+    grid-column: 2;
+    grid-row: 1/3;
+    grid-template-columns: 1fr;
+  }
+  .sample-card {
+    min-height: 90px;
+  }
+  #graph text {
+    font-size: 22px;
+  }
+}
+@media (max-width: 520px) {
+  .vl-shell {
+    padding: 0 12px;
+  }
+  .vl-title {
+    font-size: 25px;
+  }
+  .vl-context {
+    display: none;
+  }
+  .vl-main {
+    padding-top: 12px;
+  }
+  .vl-controls {
+    padding: 10px;
+  }
+  .toolbar #play {
+    min-width: 172px;
+    font-size: 14px;
+    padding-inline: 12px;
+  }
+  .toolbar #reset {
+    padding-inline: 8px;
+    font-size: 12px;
+  }
+  .guide {
+    padding: 13px 14px 6px;
+  }
+  .guide h2 {
+    font-size: 16px;
+  }
+  .guide-note {
+    font-size: 13px;
+    min-height: 5em;
+  }
+  .sample-title {
+    font-size: 12px;
+  }
+  .workspace {
+    padding: 0 8px 12px;
+  }
+  .apparatus-wrap svg text {
+    font-size: 24px;
+  }
+  .collect-label {
+    font-size: 24px !important;
+  }
+  .record-side {
+    display: block;
+  }
+  .samples {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sample-card {
+    padding: 10px;
+    min-height: 154px;
+  }
+  .curve-note {
+    min-height: 3.5em;
+  }
+  .model-note {
+    margin-inline: 14px;
+  }
+  .review-controls,
+  .comparison {
+    padding-inline: 14px;
+  }
+  .jumps {
+    gap: 6px;
+  }
+  .jumps button {
+    font-size: 12px;
+    padding-inline: 10px;
+  }
+}
+@media (min-width: 800px) and (max-height: 820px) {
+  .vl-kicker {
+    display: none;
+  }
+  .vl-main {
+    padding-top: 8px;
+  }
+  .vl-header {
+    padding-block: 9px;
+  }
+  .vl-heading {
+    margin-bottom: 12px;
+  }
+  .guide {
+    padding-top: 12px;
+  }
+  .guide-note {
+    min-height: 3.4em;
+  }
+  .sample-card {
+    min-height: 132px;
+  }
+  .workspace {
+    padding-bottom: 10px;
+  }
+  .vl-details {
+    margin-top: 12px;
+  }
+}
+
+@media (min-width: 700px) {
+  #graph {
+    height: 205px;
+  }
+  .sample-card {
+    min-height: 130px;
+  }
+  .curve-note {
+    min-height: 2.5em;
+    margin-bottom: 8px;
+  }
+}
+
+/* Composition and temperature stay visible for direct comparison. */
+.guide-note {
+  min-height: 0;
+}
+.record-side {
+  display: block;
+}
+.samples {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.sample-card {
+  min-height: 0;
+  padding: 12px 8px;
+  text-align: center;
+}
+.sample-card h3 {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.sample-card p {
+  font-size: 12px;
+  margin-top: 12px;
+  line-height: 1.8;
+}
+.composition-dots {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  max-width: 88px;
+  margin: auto;
+}
+.composition-dots i {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #dce2df;
+}
+.composition-dots [data-component='ethanol'] {
+  background: #bc6a35;
+}
+.composition-dots [data-component='water'] {
+  background: #477fb4;
+}
+.comparison-title {
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 8px 0 14px;
+}
+.composition-note {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #718070;
+  margin: 12px 0;
+}
+.curve-panel {
+  margin-top: 14px;
+  border-top: 1px solid #dce3dc;
+}
+.curve-panel h2 {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 14px 0 8px;
+  color: #526b5b;
+}
+#component-legend {
+  text-align: center;
+  font-size: 13px;
+  margin: 12px 0 4px;
+}
+@media (max-width: 699px) {
+  .record-side {
+    display: block;
+  }
+  .samples {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .guide-note {
+    min-height: 0;
+  }
+  .workspace {
+    gap: 0;
+  }
+  .composition-dots {
+    gap: 5px;
+  }
+  .sample-card {
+    padding: 10px 7px;
+  }
+  .comparison-title {
+    font-size: 16px;
+    margin-top: 12px;
+  }
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h6M7 3v8l-4 7q-1 3 3 3h6q4 0 3-3l-4-7V3m0 4 9 5v5"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>加熱曲線と蒸留</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">加熱曲線と蒸留</h1><p class="vl-question">先に集まる液体は、もとの液体と同じ？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button id="play" disabled aria-pressed="false">▶ 加熱してみる</button><button id="reset" disabled class="vl-secondary">戻す</button></div></div>
+        <div class="vl-stage"><div class="guide"><p id="sample-title" class="sample-title">水とエタノールの混合液</p><h2 id="guide-title">温める → 冷やす → 集める。</h2><p id="guide-note" class="guide-note">オレンジはエタノール。どこに多く集まる？</p></div>
+<div class="workspace"><div><div class="apparatus-wrap"><div id="apparatus-host"><svg id="apparatus" viewBox="0 0 480 345" role="img" aria-label="液体を温め、出た気体を冷やして先と後の受器へ集める模式図">
+<defs><clipPath id="flask-clip"><path d="M98 84h44v66a59 59 0 1 1-44 0Z"/></clipPath></defs>
+<text x="118" y="31" text-anchor="middle" class="operation" data-active="true">① 温める</text><text x="315" y="31" text-anchor="middle" class="operation" data-active="false">② 冷やす</text>
+<rect x="58" y="198" width="125" height="90" fill="#e1ecee" clip-path="url(#flask-clip)"/><g clip-path="url(#flask-clip)"><circle class="flask-component" data-component="ethanol" cx="95" cy="206" r="4.5" fill="#bc6a35" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="107.5" cy="206" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="120" cy="206" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="ethanol" cx="132.5" cy="206" r="4.5" fill="#bc6a35" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="145" cy="206" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="95" cy="217.33333333333334" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="ethanol" cx="107.5" cy="217.33333333333334" r="4.5" fill="#bc6a35" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="120" cy="217.33333333333334" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="132.5" cy="217.33333333333334" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="ethanol" cx="145" cy="217.33333333333334" r="4.5" fill="#bc6a35" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="95" cy="228.66666666666666" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="107.5" cy="228.66666666666666" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="ethanol" cx="120" cy="228.66666666666666" r="4.5" fill="#bc6a35" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="132.5" cy="228.66666666666666" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="145" cy="228.66666666666666" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="95" cy="240" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="107.5" cy="240" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="120" cy="240" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="132.5" cy="240" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="flask-component" data-component="water" cx="145" cy="240" r="4.5" fill="#477fb4" stroke="#fff" stroke-width="1"/></g>
+<path d="M98 84h44v66a59 59 0 1 1-44 0Z" fill="none" stroke="#647e86" stroke-width="3"/>
+<path d="M98 85h44" stroke="#89957e" stroke-width="8"/><path d="M121 100V51" stroke="#a9b8b6" stroke-width="5"/><path id="thermometer" d="M121 100V96" stroke="#bc6a35" stroke-width="3"/><circle cx="121" cy="100" r="4" fill="#bc6a35"/>
+<path d="M136 100 354 172v35" stroke="#7694a3" stroke-width="13" fill="none" stroke-linejoin="round"/><path d="M136 100 354 172v35" stroke="#fff" stroke-width="8" fill="none" stroke-linejoin="round"/>
+<path d="m218 105 97 32-12 36-97-32Z" fill="#bce4e7" stroke="#82b8be" stroke-width="2" opacity=".75"/><path d="m206 141-14 10m123-14 14-11" fill="none" stroke="#82b8be" stroke-width="5"/>
+<text x="277" y="85" text-anchor="middle" class="vapor-label"></text>
+
+<g transform="translate(0 0)"><g><defs><clipPath id="cup-354"><path d="M334 294H374V289q-20 13-40 0Z"/></clipPath></defs><path d="M332 213v76q22 15 44 0v-76" fill="none" stroke="#647e86" stroke-width="2.5"/><g opacity="0"><path d="M334 294H374V289q-20 13-40 0Z" fill="#e1ecee"/><g clip-path="url(#cup-354)"><circle class="cup-component" data-component="water" cx="342" cy="284" r="5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="cup-component" data-component="ethanol" cx="354" cy="284" r="5" fill="#bc6a35" stroke="#fff" stroke-width="1"/><circle class="cup-component" data-component="water" cx="366" cy="284" r="5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="cup-component" data-component="ethanol" cx="348" cy="270" r="5" fill="#bc6a35" stroke="#fff" stroke-width="1"/><circle class="cup-component" data-component="ethanol" cx="360" cy="270" r="5" fill="#bc6a35" stroke="#fff" stroke-width="1"/></g></g><text x="354" y="331" text-anchor="middle">先</text></g><g><defs><clipPath id="cup-432"><path d="M412 294H452V289q-20 13-40 0Z"/></clipPath></defs><path d="M410 213v76q22 15 44 0v-76" fill="none" stroke="#647e86" stroke-width="2.5"/><g opacity="0"><path d="M412 294H452V289q-20 13-40 0Z" fill="#e1ecee"/><g clip-path="url(#cup-432)"><circle class="cup-component" data-component="water" cx="420" cy="284" r="5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="cup-component" data-component="water" cx="432" cy="284" r="5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="cup-component" data-component="water" cx="444" cy="284" r="5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="cup-component" data-component="water" cx="426" cy="270" r="5" fill="#477fb4" stroke="#fff" stroke-width="1"/><circle class="cup-component" data-component="ethanol" cx="438" cy="270" r="5" fill="#bc6a35" stroke="#fff" stroke-width="1"/></g></g><text x="432" y="331" text-anchor="middle">後</text></g></g>
+<rect x="66" y="279" width="108" height="24" rx="6" fill="#8b9696"/><path d="m85 291 12-5 12 10 12-10 12 10 12-5" fill="none" stroke="#fff" stroke-width="2"/>
+<text x="118" y="331" text-anchor="middle">電熱器</text><text x="291" y="201" text-anchor="end" class="collect-label">③ 集める</text></svg></div><span id="flash" aria-hidden="true" hidden></span></div><p id="component-legend"><span class="ethanol">● エタノール</span>　<span class="water">● 水</span></p></div><div class="record-side"><h2 class="comparison-title">混ざり方を比べる</h2><div class="samples"><article id="original-card" class="sample-card" data-ready="true"><h3>元の液</h3><div id="original-dots"><div class="composition-dots" role="img" aria-label="水の割合が高い模型"><i data-component="ethanol"></i><i data-component="water"></i><i data-component="water"></i><i data-component="ethanol"></i><i data-component="water"></i><i data-component="water"></i><i data-component="ethanol"></i><i data-component="water"></i><i data-component="water"></i><i data-component="ethanol"></i><i data-component="water"></i><i data-component="water"></i><i data-component="ethanol"></i><i data-component="water"></i><i data-component="water"></i><i data-component="water"></i><i data-component="water"></i><i data-component="water"></i><i data-component="water"></i><i data-component="water"></i></div></div><p id="original-result">水が多い</p></article><article id="first-card" class="sample-card"><h3>先の液</h3><div id="first-dots"><div class="composition-dots" role="img" aria-label="まだ採取していない"><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i></div></div><p id="first-result">採取前</p></article><article id="later-card" class="sample-card"><h3>後の液</h3><div id="later-dots"><div class="composition-dots" role="img" aria-label="まだ採取していない"><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i><i data-component="pending"></i></div></div><p id="later-result">採取前</p></article></div><p id="composition-note" class="composition-note">同じ大きさで、色の割合を比較しています。</p><section class="curve-panel" aria-labelledby="curve-title"><h2 id="curve-title">温度の変化</h2><div id="graph-host"><svg id="graph" viewBox="0 0 400 260" role="img" aria-label="この混合液は採取が進む間も温度が上がる。温度と加熱の進みの模式図">
+<text x="12" y="23">温度（模式図）</text>
+<path d="M62 38v167h307" fill="none" stroke="#9aa99e" stroke-width="1.5"/>
+<path d="M62 53h294M62 83h294" stroke="#dce3dc" stroke-dasharray="4 5"/><text x="4" y="60">100</text><text x="15" y="91">80</text><text x="21" y="130">℃</text>
+
+
+<polyline id="temperature-path" points="62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173 62,173" fill="none" stroke="#587e65" stroke-width="3.5" stroke-linejoin="round"/>
+<circle id="temperature-point" cx="62" cy="173" r="6" fill="#587e65"/>
+<text x="68" y="234">初め</text><text x="225" y="234">加熱の進み →</text>
+</svg></div><p id="curve-note" class="curve-note">加熱すると、温度が上がる。</p></section></div></div>
+<p class="model-note">色の割合や温度・時間は、説明用の模型です。</p>
+<div id="review-controls" class="review-controls" hidden><label for="progress">加熱の進みを戻して見直す</label><input id="progress" disabled type="range" min="0" max="1" step="0.001" value="0"><div class="jumps"><button disabled data-jump="0">初め</button><button disabled data-jump="0.625">先を集めたところ</button><button disabled data-jump="1">後も集めたところ</button></div></div>
+<details id="comparison" class="comparison" hidden><summary>＋ 純粋な水と比べる</summary><div class="comparison-buttons"><button disabled data-kind="mixture">水とエタノール</button><button disabled data-kind="water">純粋な水</button></div><p>切り替えると加熱の初めに戻ります。</p></details><p id="announcement" class="announcement" aria-live="polite"></p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><p>液体を温め、出てきた気体を冷やして液体として集める方法を「蒸留」といいます。この教材の水が多い混合液では、先に集めた液体は元よりエタノールの割合が高く、後になるほど水の割合が高くなります。エタノールは水より沸点が低く、気体になりやすいためです。この説明用の試料では、先の液に水よりエタノールが多く含まれます。先も後も両方の成分を含みます。純粋なエタノールだけが取り出せる図ではありません。</p><p>純粋な水は約1気圧で沸騰している間、約100℃でほぼ一定です。混合液の曲線は、約80℃付近から約95℃付近へ上がる傾向を示す説明用の図です。初めの加熱を約1.6秒に縮めて見せています。秒数・瞬間の温度・濃度・採取量を求める実験計算ではありません。ほかの濃度の混合液、共沸、圧力の変化には一般化できません。</p><p>装置と成分の印は独自の模式図です。色は成分を区別するための印です。比較図では同じ20個の印を使い、先の液でエタノールの割合が高く、後では下がる関係を示しています。色の割合は説明用に設定したもので、特定の試料の濃度を予測したものではありません。液体中の二つの色は混ざっていて、二層に分かれているわけではありません。冷却部は水で冷やす様子を簡略化しています。実験は先生の指示に従い、装置や加熱方法を確認して行います。</p><p>根拠：<a href="https://area18.smp.ne.jp/area/card/20800/iHTGGJ/M?S=laogmf0lcqg0k" target="_blank" rel="noopener noreferrer">啓林館：水とエタノールの混合物</a>、<a href="https://ise-rika.cf.ocha.ac.jp/wp/wp-content/uploads/2022/04/distillation.pdf" target="_blank" rel="noopener noreferrer">お茶の水女子大学：混合物の蒸留</a>。温度の参考値はこれらの説明に基づき、曲線と時間進行は教材用に作成しています。</p><button id="reset-all" disabled class="vl-secondary">混合液の初めから見直す</button></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var I=Object.freeze([0,.625,1]);function h(t){if(typeof t!="number"||!Number.isFinite(t))throw new TypeError("Finite progress required");return Math.min(1,Math.max(0,t))}function V(t){if(!["mixture","water"].includes(t))throw new TypeError("Unknown sample")}function L(t,e){V(e),t=h(t);let r=e==="water"?100:80;return t<=.25?20+(r-20)*t/.25:r+(e==="water"?0:15*(t-.25)/.75)}function A(t,e){t=h(t),V(e);let r=h((t-.25)/.375),o=h((t-.625)/.375);return{q:t,kind:e,phase:t<.25?"warming":t<=.625?"first":"later",temperature:L(t,e),first:r,later:o,flaskRemaining:1-.25*(r+o),components:e==="mixture"?["ethanol","water"]:["water"]}}function W(t,e){if(t=h(t),typeof e!="number"||!Number.isFinite(e)||e<0)throw new TypeError("Nonnegative seconds required");let r=t<.625?.625:1,o=t<=.25?t*6.4:1.6+(t-.25)*32,l=o+e,s=Math.min(r,l<=1.6?l/6.4:.25+(l-1.6)/32);return{q:s,stop:s===r}}function S(t,e){let r=A(t,e),o=e==="mixture"?.25:0,l=e==="mixture"?.6:0,s=e==="mixture"?.2:0,c=.25*r.first,m=.25*r.later,g=c*l,M=m*s,y=o-g-M;return{original:o,first:l,later:s,remaining:y/r.flaskRemaining,vapor:t<=.625?l:s,firstE:g,laterE:M,remainingE:y,firstW:c-g,laterW:m-M,remainingW:r.flaskRemaining-y}}var P={ethanol:"#bc6a35",water:"#477fb4"};function E(t,e,r){let o=Math.round(e*r);return(e===20?t*7%20<o:Math.floor((t+1)*o/e)>Math.floor(t*o/e))?"ethanol":"water"}function F(t,e=!0){return`<div class="composition-dots" role="img" aria-label="${e?t===0?"\u6C34\u3060\u3051":t>.25?"\u30A8\u30BF\u30CE\u30FC\u30EB\u306E\u5272\u5408\u304C\u9AD8\u3044\u6A21\u578B":"\u6C34\u306E\u5272\u5408\u304C\u9AD8\u3044\u6A21\u578B":"\u307E\u3060\u63A1\u53D6\u3057\u3066\u3044\u306A\u3044"}">${Array.from({length:20},(r,o)=>`<i data-component="${e?E(o,20,t):"pending"}"></i>`).join("")}</div>`}function B(t,e){let r=A(t,e),o=S(t,e),l=t<=.625?0:Math.min(1,(t-.625)/.045)*-78,s=t>.25&&t<1?Array.from({length:10},(d,p)=>{let f=((t-.25)*6+p/10)%1,k=136+212*f,$=99+69*f,w=E(p,10,o.vapor);return`<circle class="vapor-component" data-component="${w}" cx="${k}" cy="${$}" r="5" fill="${P[w]}" stroke="white" stroke-width="1"/>`}).join(""):"",c=Math.round(20*r.flaskRemaining),m=Math.ceil(c/5),g=263-r.flaskRemaining*65,M=Array.from({length:c},(d,p)=>{let f=E(p,c,o.remaining),k=Math.floor(p/5),$=Math.min(5,c-k*5),w=120+(p%5-($-1)/2)*12.5,N=g+8+k*Math.max(9.5,(42*r.flaskRemaining-8)/Math.max(1,m-1));return`<circle class="flask-component" data-component="${f}" cx="${w}" cy="${N}" r="4.5" fill="${P[f]}" stroke="#fff" stroke-width="1"/>`}).join(""),y=(d,p,f,k)=>{let $=`M${d-20} ${294-p*48}H${d+20}V289q-20 13-40 0Z`,w=Array.from({length:5},(N,b)=>{let Z=E(b,5,k);return`<circle class="cup-component" data-component="${Z}" cx="${d+(b<3?(b-1)*12:(b-3)*12-6)}" cy="${284-Math.floor(b/3)*14}" r="5" fill="${P[Z]}" stroke="#fff" stroke-width="1"/>`}).join("");return`<g><defs><clipPath id="cup-${d}"><path d="${$}"/></clipPath></defs><path d="M${d-22} 213v76q22 15 44 0v-76" fill="none" stroke="#647e86" stroke-width="2.5"/><g opacity="${p>0?1:0}"><path d="${$}" fill="#e1ecee"/><g clip-path="url(#cup-${d})">${w}</g></g><text x="${d}" y="331" text-anchor="middle">${f}</text></g>`},D=E(Math.floor(t*80)%10,10,o.vapor);return`<svg id="apparatus" viewBox="0 0 480 345" role="img" aria-label="\u6DB2\u4F53\u3092\u6E29\u3081\u3001\u51FA\u305F\u6C17\u4F53\u3092\u51B7\u3084\u3057\u3066\u5148\u3068\u5F8C\u306E\u53D7\u5668\u3078\u96C6\u3081\u308B\u6A21\u5F0F\u56F3">
+<defs><clipPath id="flask-clip"><path d="M98 84h44v66a59 59 0 1 1-44 0Z"/></clipPath></defs>
+<text x="118" y="31" text-anchor="middle" class="operation" data-active="${t<.25}">\u2460 \u6E29\u3081\u308B</text><text x="315" y="31" text-anchor="middle" class="operation" data-active="${t>=.25&&t<1}">\u2461 \u51B7\u3084\u3059</text>
+<rect x="58" y="${g}" width="125" height="90" fill="#e1ecee" clip-path="url(#flask-clip)"/><g clip-path="url(#flask-clip)">${M}</g>
+<path d="M98 84h44v66a59 59 0 1 1-44 0Z" fill="none" stroke="#647e86" stroke-width="3"/>
+<path d="M98 85h44" stroke="#89957e" stroke-width="8"/><path d="M121 100V51" stroke="#a9b8b6" stroke-width="5"/><path id="thermometer" d="M121 100V${96-Math.min(1,t/.25)*38}" stroke="#bc6a35" stroke-width="3"/><circle cx="121" cy="100" r="4" fill="#bc6a35"/>
+<path d="M136 100 354 172v35" stroke="#7694a3" stroke-width="13" fill="none" stroke-linejoin="round"/><path d="M136 100 354 172v35" stroke="#fff" stroke-width="8" fill="none" stroke-linejoin="round"/>
+<path d="m218 105 97 32-12 36-97-32Z" fill="#bce4e7" stroke="#82b8be" stroke-width="2" opacity=".75"/><path d="m206 141-14 10m123-14 14-11" fill="none" stroke="#82b8be" stroke-width="5"/>
+${s}<text x="277" y="85" text-anchor="middle" class="vapor-label">${t>.25?"\u6C17\u4F53 \u2192 \u6DB2\u4F53":""}</text>
+${t>.25&&t<1?`<path class="collected-drop" data-component="${D}" d="M354 ${208+t*22%1*32}q-7 10 0 11q7-1 0-11" fill="${P[D]}"/>`:""}
+<g transform="translate(${l} 0)">${y(354,r.first,"\u5148",o.first)+y(432,r.later,"\u5F8C",o.later)}</g>
+<rect x="66" y="279" width="108" height="24" rx="6" fill="${t>0&&t<1?"#c67848":"#8b9696"}"/><path d="m85 291 12-5 12 10 12-10 12 10 12-5" fill="none" stroke="#fff" stroke-width="2"/>
+<text x="118" y="331" text-anchor="middle">\u96FB\u71B1\u5668</text><text x="291" y="201" text-anchor="end" class="collect-label">\u2462 \u96C6\u3081\u308B</text></svg>`}function z(t,e){let r=s=>203-s*1.5,o=s=>62+s*294,l=Array.from({length:101},(s,c)=>{let m=t*c/100;return[o(m),r(L(m,e))].join(",")}).join(" ");return`<svg id="graph" viewBox="0 0 400 260" role="img" aria-label="${e==="water"?"\u7D14\u7C8B\u306A\u6C34\u306F\u6CB8\u9A30\u4E2D\u307B\u307C\u4E00\u5B9A\u306E\u6E29\u5EA6":"\u3053\u306E\u6DF7\u5408\u6DB2\u306F\u63A1\u53D6\u304C\u9032\u3080\u9593\u3082\u6E29\u5EA6\u304C\u4E0A\u304C\u308B"}\u3002\u6E29\u5EA6\u3068\u52A0\u71B1\u306E\u9032\u307F\u306E\u6A21\u5F0F\u56F3">
+<text x="12" y="23">\u6E29\u5EA6\uFF08\u6A21\u5F0F\u56F3\uFF09</text>
+<path d="M62 38v167h307" fill="none" stroke="#9aa99e" stroke-width="1.5"/>
+<path d="M62 53h294M62 83h294" stroke="#dce3dc" stroke-dasharray="4 5"/><text x="4" y="60">100</text><text x="15" y="91">80</text><text x="21" y="130">\u2103</text>
+${t>.25?`<rect x="${o(.25)}" y="40" width="${Math.max(0,o(Math.min(t,.625))-o(.25))}" height="163" fill="#bbcfbf" opacity=".12"/>`:""}
+${t>.625?`<rect x="${o(.625)}" y="40" width="${o(t)-o(.625)}" height="163" fill="#8dadbb" opacity=".12"/>`:""}
+<polyline id="temperature-path" points="${l}" fill="none" stroke="#587e65" stroke-width="3.5" stroke-linejoin="round"/>
+<circle id="temperature-point" cx="${o(t)}" cy="${r(L(t,e))}" r="6" fill="#587e65"/>
+<text x="68" y="234">\u521D\u3081</text><text x="225" y="234">\u52A0\u71B1\u306E\u9032\u307F \u2192</text>
+</svg>`}var n=t=>document.querySelector(t),a=0,i="mixture",u=!1,C=!1,R=0,j,H;function O(t){clearTimeout(H);let e=n("#flash");e.hidden=!1,e.textContent=t?"\u25B6":"\u2161",e.dataset.playing=t,e.getAnimations().forEach(r=>r.cancel()),matchMedia("(prefers-reduced-motion: reduce)").matches||e.animate([{opacity:1},{opacity:0}],{duration:1e3,fill:"forwards"}),H=setTimeout(()=>{e.hidden=!0},1e3)}function v(){u=!1,cancelAnimationFrame(R),j=void 0}function T(){clearTimeout(H),n("#flash").hidden=!0}function x(){let t=A(a,i);document.body.dataset.q=a,document.body.dataset.kind=i,document.body.dataset.playing=u,document.body.dataset.unlocked=C,n("#apparatus-host").innerHTML=B(a,i),n("#graph-host").innerHTML=z(a,i),n("#original-result").textContent=i==="mixture"?"\u6C34\u304C\u591A\u3044":"\u6C34\u3060\u3051";let e=S(a,i);n("#original-dots").innerHTML=F(e.original),n("#first-dots").innerHTML=F(e.first,a>.25),n("#later-dots").innerHTML=F(e.later,a>.625),n("#play").setAttribute("aria-pressed",u),n("#play").textContent=u?"\u2161 \u4E00\u6642\u505C\u6B62":a===0?"\u25B6 \u52A0\u71B1\u3057\u3066\u307F\u308B":a===1?"\u25B6 \u3082\u3046\u4E00\u5EA6\u898B\u308B":a===.625?"\u25B6 \u5F8C\u306E\u6DB2\u4F53\u3082\u96C6\u3081\u308B":"\u25B6 \u7D9A\u3051\u308B",n("#sample-title").textContent=i==="mixture"?"\u6C34\u3068\u30A8\u30BF\u30CE\u30FC\u30EB\u306E\u6DF7\u5408\u6DB2":"\u7D14\u7C8B\u306A\u6C34",n("#guide-title").textContent=a===0?"\u6E29\u3081\u308B \u2192 \u51B7\u3084\u3059 \u2192 \u96C6\u3081\u308B\u3002":t.phase==="warming"?"\u6E29\u5EA6\u304C\u4E0A\u304C\u308B\u3002\u3082\u3046\u3059\u3050\u6C17\u4F53\u304C\u51FA\u307E\u3059\u3002":a===.625?"\u5148\u306E\u6DB2\u3092\u3001\u5143\u306E\u6DB2\u3068\u6BD4\u3079\u3088\u3046\u3002":a===1?"\u5148\u3068\u5F8C\u306E\u3001\u8272\u306E\u5272\u5408\u3092\u6BD4\u3079\u3088\u3046\u3002":t.phase==="first"?"\u30AA\u30EC\u30F3\u30B8\u306E\u591A\u3044\u6C17\u4F53\u3092\u3001\u51B7\u3084\u3057\u3066\u96C6\u3081\u308B\u3002":"\u53D7\u5668\u3092\u66FF\u3048\u3066\u3001\u5F8C\u306E\u6DB2\u3092\u96C6\u3081\u308B\u3002",n("#guide-note").textContent=i==="water"?"\u6C17\u4F53\u3082\u3001\u96C6\u3081\u305F\u6DB2\u4F53\u3082\u6C34\u3067\u3059\u3002":a<=.25?"\u30AA\u30EC\u30F3\u30B8\u306F\u30A8\u30BF\u30CE\u30FC\u30EB\u3002\u3069\u3053\u306B\u591A\u304F\u96C6\u307E\u308B\uFF1F":a<=.625?"\u5148\u306E\u6DB2\u306F\u3001\u5143\u3088\u308A\u30A8\u30BF\u30CE\u30FC\u30EB\u306E\u5272\u5408\u304C\u9AD8\u3044\u3002":"\u5F8C\u306E\u6DB2\u306F\u3001\u5148\u3088\u308A\u6C34\u306E\u5272\u5408\u304C\u9AD8\u3044\u3002",i==="water"&&(n("#guide-title").textContent=a<.25?"\u6C34\u3060\u3051\u306E\u3068\u304D\u3068\u6BD4\u3079\u3088\u3046\u3002":a===1?"\u5148\u3082\u5F8C\u3082\u3001\u9752\u3044\u6C34\u3060\u3051\u3002":"\u6C34\u3092\u6C17\u4F53\u306B\u3057\u3001\u51B7\u3084\u3057\u3066\u6C34\u306B\u623B\u3059\u3002"),n("#first-card").dataset.ready=a>=.625,n("#later-card").dataset.ready=a===1,n("#first-result").textContent=a>.25?i==="mixture"?"\u30A8\u30BF\u30CE\u30FC\u30EB\u304C\u591A\u3044":"\u6C34\u304C\u96C6\u307E\u308B":"\u63A1\u53D6\u524D",n("#later-result").textContent=a>.625?i==="mixture"?"\u30A8\u30BF\u30CE\u30FC\u30EB\u3082\u6DF7\u3056\u308B":"\u6C34\u304C\u96C6\u307E\u308B":"\u63A1\u53D6\u524D",n("#composition-note").textContent=i==="water"?"\u9752\u3044\u7C92\u306F\u3001\u6C34\u3092\u8868\u3057\u3066\u3044\u307E\u3059\u3002":a>.25?"\u30A8\u30BF\u30CE\u30FC\u30EB\u306F\u6C34\u3088\u308A\u6CB8\u70B9\u304C\u4F4E\u304F\u3001\u6C17\u4F53\u306B\u306A\u308A\u3084\u3059\u3044\u305F\u3081\u3067\u3059\u3002":"\u540C\u3058\u5927\u304D\u3055\u3067\u3001\u8272\u306E\u5272\u5408\u3092\u6BD4\u8F03\u3057\u3066\u3044\u307E\u3059\u3002",n("#curve-note").textContent=a<=.25?"\u52A0\u71B1\u3059\u308B\u3068\u3001\u6E29\u5EA6\u304C\u4E0A\u304C\u308B\u3002":i==="water"?"\u6CB8\u9A30\u4E2D\u306F\u3001\u307B\u307C\u540C\u3058\u6E29\u5EA6\u3002":"\u96C6\u307E\u308B\u6DB2\u4F53\u304C\u5909\u308F\u308B\u9593\u3082\u3001\u6E29\u5EA6\u306F\u4E0A\u304C\u308B\u3002",n("#review-controls").hidden=!C,n("#progress").value=String(a),n("#progress").setAttribute("aria-valuetext",a<=.25?"\u52A0\u71B1\u306E\u521D\u3081":a<=.625?"\u5148\u306E\u6DB2\u4F53\u3092\u96C6\u3081\u308B":"\u5F8C\u306E\u6DB2\u4F53\u3092\u96C6\u3081\u308B"),n("#comparison").hidden=!C,n("#component-legend").hidden=i!=="mixture",document.querySelectorAll("[data-kind]").forEach(r=>r.setAttribute("aria-pressed",r.dataset.kind===i)),document.querySelectorAll("[data-jump]").forEach(r=>r.setAttribute("aria-pressed",+r.dataset.jump===a))}function U(t){if(!u)return;let e=j===void 0?0:Math.min((t-j)/1e3,.1);j=t;let r=W(a,e);a=r.q,r.stop&&(v(),C=!0,T(),n("#announcement").textContent=a===.625?"\u5148\u306E\u63A1\u53D6\u304C\u7D42\u308F\u308A\u3001\u4E00\u6642\u505C\u6B62\u3057\u307E\u3057\u305F\u3002":"\u5F8C\u306E\u63A1\u53D6\u3082\u7D42\u308F\u308A\u307E\u3057\u305F\u3002"),x(),u&&(R=requestAnimationFrame(U))}function G(){u?(v(),O(!1)):(a===1&&(a=0),u=!0,j=void 0,O(!0),R=requestAnimationFrame(U)),x()}n("#play").addEventListener("click",G);function _(t){v(),T(),a=h(t),x()}n("#progress").addEventListener("input",t=>_(+t.target.value));document.querySelectorAll("[data-jump]").forEach(t=>t.addEventListener("click",()=>_(+t.dataset.jump)));document.querySelectorAll("[data-kind]").forEach(t=>t.addEventListener("click",()=>{v(),T(),i=t.dataset.kind,a=0,x()}));n("#reset").addEventListener("click",()=>_(0));n("#reset-all").addEventListener("click",()=>{v(),T(),a=0,i="mixture",C=!1,n("#comparison").open=!1,x()});document.addEventListener("visibilitychange",()=>{document.hidden&&(v(),T(),x())});document.querySelectorAll("button,input").forEach(t=>t.disabled=!1);x();})();
+</script>
+</body>
+</html>
