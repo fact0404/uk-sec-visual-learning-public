@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>電離と水溶液の電流 | 食塩と砂糖を比べる</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1020px;
+}
+.vl-title {
+  font-size: 28px;
+}
+.vl-main {
+  padding-top: 18px;
+}
+.vl-controls {
+  padding: 14px 20px;
+}
+.toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.kind-controls {
+  display: flex;
+  gap: 6px;
+}
+.toolbar button {
+  min-height: 48px;
+  font-size: 14px;
+}
+.kind-controls button[aria-pressed='true'] {
+  box-shadow: inset 0 0 0 2px #809986;
+}
+#play {
+  min-width: 175px;
+  background: #487958;
+  color: #fff;
+}
+#play[aria-pressed='true'] {
+  background: #b14c43;
+}
+#reset {
+  margin-left: auto;
+}
+.guide {
+  padding: 18px 22px 4px;
+}
+.guide h2 {
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0;
+}
+.guide p {
+  font-size: 14px;
+  color: #62766c;
+  line-height: 1.7;
+  min-height: 3.4em;
+  margin: 6px 0;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: 22px;
+  padding: 0 22px 14px;
+}
+.illustration {
+  position: relative;
+  min-width: 0;
+  max-width: 560px;
+  margin: auto;
+  width: 100%;
+}
+#apparatus {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+#apparatus text {
+  font-family: inherit;
+  font-size: 21px;
+  fill: #405d55;
+}
+#apparatus .charge {
+  font-size: 21px;
+  fill: white;
+}
+#apparatus .pole {
+  font-size: 25px;
+}
+#apparatus .wire-caption {
+  font-size: 20px;
+}
+.readout {
+  padding: 18px 16px;
+  background: #f0f4ed;
+  border-radius: 15px;
+  text-align: center;
+  min-width: 0;
+}
+#meter-label {
+  font-size: 14px;
+  margin: 0;
+  color: #536a5e;
+}
+#meter {
+  width: 100%;
+  max-width: 210px;
+  display: block;
+  margin: auto;
+}
+#meter text {
+  font-family: inherit;
+  font-size: 20px;
+  fill: #5a6e60;
+}
+#meter-result {
+  font-size: 20px;
+  min-height: 1.7em;
+  margin: 4px 0 12px;
+  font-weight: 650;
+  color: #3f6755;
+}
+.meter-note {
+  font-size: 12px;
+  color: #687967;
+  line-height: 1.7;
+  margin: 4px 0;
+}
+.legend {
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 4px 22px 12px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.legend > span {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+.dot {
+  font-style: normal;
+  line-height: 1;
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+.positive {
+  background: #e38b54;
+}
+.negative {
+  background: #5e9eae;
+}
+.neutral {
+  background: #958ab2;
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 16px 12px;
+}
+.actions button {
+  min-height: 48px;
+  font-size: 14px;
+}
+.progress-wrap {
+  margin: 0 22px;
+}
+#progress {
+  width: 100%;
+  height: 5px;
+  display: block;
+  border: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  accent-color: #668d70;
+}
+#pulse-note {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #667762;
+  padding: 0 22px;
+  margin: 10px 0 16px;
+  min-height: 3.4em;
+}
+.results {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 12px 18px;
+  border-top: 1px solid #dae3d6;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.results span {
+  display: inline-block;
+  margin-left: 10px;
+}
+.results strong {
+  font-weight: 500;
+  color: #496655;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 30px;
+  background: #00a540;
+  color: white;
+  pointer-events: none;
+}
+#flash[data-playing='false'] {
+  background: #ec283a;
+}
+.announcement {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 699px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-context {
+    display: none;
+  }
+  .vl-title {
+    font-size: 25px;
+  }
+  .vl-controls {
+    padding: 10px;
+  }
+  .toolbar {
+    gap: 7px;
+  }
+  .toolbar button {
+    font-size: 13px;
+    min-height: 46px;
+    padding-inline: 13px;
+  }
+  #play {
+    min-width: 158px;
+  }
+  #reset {
+    margin-left: 0;
+  }
+  .workspace {
+    grid-template-columns: 1fr;
+    padding: 0 10px 12px;
+    gap: 16px;
+  }
+  .guide {
+    padding: 14px 14px 0;
+  }
+  .guide h2 {
+    font-size: 16px;
+  }
+  .guide p {
+    font-size: 13px;
+    min-height: 5.1em;
+  }
+  .readout {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    padding: 10px 12px;
+    column-gap: 12px;
+    align-items: center;
+  }
+  #meter-host {
+    grid-column: 1;
+    grid-row: 1 / 4;
+  }
+  #meter-label,
+  #meter-result,
+  .meter-note {
+    grid-column: 2;
+    margin: 0;
+  }
+  #meter-result {
+    font-size: 17px;
+  }
+  #meter text {
+    font-size: 26px;
+  }
+  .legend {
+    padding-inline: 12px;
+    gap: 6px 14px;
+    font-size: 13px;
+  }
+  .actions {
+    gap: 8px;
+  }
+  .actions button {
+    font-size: 13px;
+  }
+  #pulse-note {
+    padding-inline: 14px;
+  }
+  .results {
+    gap: 6px 16px;
+  }
+  #apparatus .wire-caption {
+    font-size: 20px;
+  }
+}
+@media (min-width: 700px) and (max-height: 820px) {
+  .vl-header {
+    padding-block: 9px;
+  }
+  .vl-kicker {
+    display: none;
+  }
+  .vl-main {
+    padding-top: 8px;
+  }
+  .vl-heading {
+    margin-bottom: 12px;
+  }
+  .guide {
+    padding-top: 12px;
+  }
+  .guide p {
+    min-height: 0;
+  }
+  .workspace {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.85fr);
+    gap: 26px;
+    padding-bottom: 0;
+  }
+  .illustration {
+    max-width: 405px;
+  }
+  .legend {
+    padding-block: 2px 8px;
+  }
+  .readout {
+    padding: 10px 12px;
+  }
+  #pulse-note {
+    min-height: 0;
+    margin-block: 6px 12px;
+  }
+}
+
+#charge-route {
+  margin: 4px 22px 16px;
+  background: #f5f0de;
+  border-radius: 12px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.carrier {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  align-items: center;
+  gap: 4px 8px;
+  font-size: 14px;
+}
+.carrier > span:last-child {
+  grid-column: 2;
+}
+.electron-icon {
+  width: 12px;
+  height: 12px;
+  background: #cba849;
+  border-radius: 50%;
+  grid-row: 1 / 3;
+}
+.ion-icon {
+  color: #43899c;
+  font-size: 18px;
+  font-weight: 700;
+  grid-row: 1 / 3;
+}
+#route-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+#charge-route[data-conducting='false'] {
+  background: #eeebf2;
+}
+#reaction-explanation {
+  margin: 0 22px 18px;
+}
+#reaction-explanation h2 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.8;
+}
+.reaction-condition {
+  margin: 4px 0 10px;
+  font-size: 12px;
+  color: #62766c;
+  line-height: 1.7;
+}
+#reaction-zoom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.reaction-card {
+  border: 1px solid #d2ddd5;
+  border-radius: 12px;
+  padding: 12px;
+}
+.reaction-card h3 {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 8px;
+}
+.reaction-card svg {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+}
+.reaction-card svg text {
+  font-size: 16px;
+  font-family: inherit;
+  fill: #405d55;
+}
+.reaction-card svg text[fill='white'] {
+  fill: white;
+}
+#timeline-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #62766c;
+  margin: 0 22px 10px;
+}
+#timeline {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  touch-action: pan-y;
+  accent-color: #668d70;
+}
+@media (max-width: 699px) {
+  #charge-route,
+  #reaction-explanation,
+  #timeline-row {
+    margin-inline: 14px;
+  }
+  #reaction-zoom {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .carrier {
+    font-size: 13px;
+    grid-template-columns: 24px 1fr;
+    gap: 4px;
+  }
+  #route-note {
+    font-size: 13px;
+  }
+  .guide p {
+    min-height: 0;
+  }
+}
+
+.reaction-identity {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: center;
+  color: #405d55;
+}
+.reaction-card .ion-charge {
+  font-size: 20px;
+  fill: #745d8c;
+}
+.reaction-card .atom-label {
+  font-size: 16px;
+}
+#apparatus .water-name {
+  font-size: 20px;
+  fill: #405d55;
+}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3v12a4 4 0 0 0 8 0V3M3 3h12M5 10h8"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>電離と水溶液の電流</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">電離と水溶液の電流</h1><p class="vl-question">砂糖も食塩も溶ける。電流の流れ方も同じ？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><div class="kind-controls" role="group" aria-label="溶かす物質"><button disabled data-kind="salt" aria-pressed="true">食塩</button><button disabled data-kind="sugar" aria-pressed="false">砂糖</button></div><button id="play" disabled aria-pressed="false">▶ 溶かす</button><button id="reset" disabled class="vl-secondary">初めから</button></div></div>
+        <div class="vl-stage"><div class="guide"><h2 id="guide-title">食塩を入れました。まずは溶かそう。</h2><p id="guide-note">＋と−は、電気を帯びた粒子の印です。</p></div><div class="workspace"><div class="illustration"><div id="diagram"><svg viewBox="0 0 420 365" id="apparatus" role="img" aria-label="食塩を溶かした水の粒子と回路"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10" fill="#647d78"/></marker></defs><path d="M165 55H75V242M255 55H345V242" stroke="#70828d" stroke-width="5" fill="none"/><rect x="165" y="23" width="90" height="63" rx="12" fill="#e9eeeb" stroke="#a9bcb0"/><text x="210" y="48" text-anchor="middle">電源</text><text x="210" y="72" text-anchor="middle">OFF</text><text class="pole" x="141" y="61" text-anchor="middle">＋</text><text class="pole" x="279" y="61" text-anchor="middle">−</text><circle cx="75" cy="102" r="21" fill="#fffef9" stroke="#70828d" stroke-width="2"/><text x="75" y="110" text-anchor="middle">A</text><text x="147" y="123" class="wire-caption">金属の中：電子</text><path d="M49 157V321Q49 332 62 332H358Q371 332 371 321V157" fill="none" stroke="#8daebb" stroke-width="3"/><rect x="52" y="165" width="316" height="164" rx="8" fill="#e4f3f2"/><path d="M53 165h314" stroke="#bfdedc"/><rect x="69" y="148" width="12" height="112" rx="4" fill="#79858d"/><rect x="339" y="148" width="12" height="112" rx="4" fill="#79858d"/><text class="pole electrode-sign" x="75" y="146" text-anchor="middle">＋</text><text class="pole electrode-sign" x="345" y="146" text-anchor="middle">−</text>
+<g class="particle" data-charge="1" opacity="1" transform="translate(169 230)"><circle r="13" fill="#e38b54" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">＋</text></g><g class="particle" data-charge="-1" opacity="1" transform="translate(196 230)"><circle r="13" fill="#5e9eae" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">−</text></g><g class="particle" data-charge="1" opacity="1" transform="translate(223 230)"><circle r="13" fill="#e38b54" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">＋</text></g><g class="particle" data-charge="-1" opacity="1" transform="translate(250 230)"><circle r="13" fill="#5e9eae" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">−</text></g><g class="particle" data-charge="-1" opacity="1" transform="translate(169 259)"><circle r="13" fill="#5e9eae" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">−</text></g><g class="particle" data-charge="1" opacity="1" transform="translate(196 259)"><circle r="13" fill="#e38b54" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">＋</text></g><g class="particle" data-charge="-1" opacity="1" transform="translate(223 259)"><circle r="13" fill="#5e9eae" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">−</text></g><g class="particle" data-charge="1" opacity="1" transform="translate(250 259)"><circle r="13" fill="#e38b54" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">＋</text></g><g class="particle" data-charge="1" opacity="1" transform="translate(169 288)"><circle r="13" fill="#e38b54" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">＋</text></g><g class="particle" data-charge="-1" opacity="1" transform="translate(196 288)"><circle r="13" fill="#5e9eae" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">−</text></g><g class="particle" data-charge="1" opacity="1" transform="translate(223 288)"><circle r="13" fill="#e38b54" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">＋</text></g><g class="particle" data-charge="-1" opacity="1" transform="translate(250 288)"><circle r="13" fill="#5e9eae" stroke="#fffef9" stroke-width="1.5"/><text class="charge" x="0" y="7" text-anchor="middle">−</text></g>
+<text x="210" y="354" text-anchor="middle" class="solution-name">水＋食塩</text></svg></div><span id="flash" hidden aria-hidden="true"></span></div><div class="readout"><p id="meter-label">電流計</p><div id="meter-host"><svg viewBox="0 0 200 135" id="meter" role="img" aria-label="電流計の定性的な表示"><path d="M38 103A65 60 0 0 1 162 103" fill="none" stroke="#a6b7ad" stroke-width="3"/><text x="100" y="27" text-anchor="middle">0</text><text x="29" y="116" text-anchor="middle">−</text><text x="173" y="116" text-anchor="middle">＋</text><path id="needle" d="M100 110L100 52" stroke="#bb7945" stroke-width="4" stroke-linecap="round"/><circle cx="100" cy="110" r="5" fill="#bb7945"/></svg></div><p id="meter-result">電圧をかける前</p><p class="meter-note">針は検出と向きの模型です。<br>電流の大きさの数値は示しません。</p></div></div>
+<div id="charge-route" hidden><div class="carrier"><span class="electron-icon"></span><b>金属の中</b><span>電子が動く</span></div><div class="carrier"><span class="ion-icon">＋ −</span><b>水溶液の中</b><span>イオンが動く</span></div><p id="route-note"></p></div><div id="reaction-explanation" hidden><h2>電極の表面で、電子を受け渡す</h2><p class="reaction-condition">同じ原子を追おう。濃い食塩水・炭素電極の反応を1組、拡大しています。</p><div id="reaction-zoom"></div></div><div class="legend" id="salt-legend"><span><i class="dot positive" aria-hidden="true">＋</i>ナトリウムイオン</span><span><i class="dot negative" aria-hidden="true">−</i>塩化物イオン</span><span id="oh-legend" hidden><i class="dot neutral" aria-hidden="true">−</i>水酸化物イオン</span></div><div class="legend" id="sugar-legend" hidden><span><i class="dot neutral" aria-hidden="true"></i>砂糖の分子（電気を帯びていない）</span></div><div class="actions"><button id="reverse" disabled class="vl-secondary" hidden>極を逆にして見直す</button><button id="compare" disabled hidden>砂糖でも比べる</button></div><label id="timeline-row" hidden for="timeline">同じ極で見直す<input id="timeline" disabled type="range" min="0" max="12" step="0.01" value="0" aria-label="反応の進み具合"></label><div class="progress-wrap"><progress id="progress" value="0" max="1" aria-label="今の観察の進み具合"></progress></div><p id="pulse-note">粒の動きと電極の反応は連動します。</p><div id="results" class="results" hidden><div>食塩水<span><strong id="result-salt">未観察</strong></span></div><div>砂糖水<span><strong id="result-sugar">未観察</strong></span></div></div><p id="announce" class="announcement" aria-live="polite"></p></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>溶けることと、電離すること</h3><p>食塩の結晶にも、もともとナトリウムイオンと塩化物イオンが並んでいます。水に溶けると、陽イオンと陰イオンが離れ、水中を移動できるようになります。このように水に溶けてイオンに分かれることが電離です。電圧をかけて初めてイオンができるのではありません。</p><p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">N</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><mo>⟶</mo><msup><mrow><mi mathvariant="normal">N</mi><mi mathvariant="normal">a</mi></mrow><mo lspace="0em" rspace="0em">+</mo></msup><mo>+</mo><msup><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><mo lspace="0em" rspace="0em">−</mo></msup></mrow><annotation encoding="application/x-tex">\mathrm{NaCl}\longrightarrow\mathrm{Na}^{+}+\mathrm{Cl}^{-}</annotation></semantics></math></span></p><p>砂糖は分子のまま水中に広がります。水に溶けても、砂糖の分子はイオンに分かれません。もとの水に比べて電流の流れやすさがほとんど変わらないため、ここでは「ほぼ流れない」と示しています。</p><h3>電気を運ぶ粒子</h3><p>金属の導線や電極では電子が、水溶液中では陽イオンと陰イオンが電気を運びます。陽イオンは−極の方へ、陰イオンは＋極の方へ移動します。導線の電子が、そのまま液体全体を渡るわけではありません。</p><p>電極の表面では、水溶液側の物質と電極の間で電子が受け渡されます。濃い食塩水と炭素電極の例では、＋極で塩化物イオンが電子を出し、−極で水が電子を受け取ります。ナトリウムイオンが金属ナトリウムになるわけではありません。薄い食塩水では＋極で酸素が発生する反応なども関わります。</p><p>＋極：<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mn>2</mn><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><mo lspace="0em" rspace="0em">−</mo></msup><mo>⟶</mo><msub><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">l</mi></mrow><mn>2</mn></msub><mo>+</mo><mn>2</mn><msup><mi mathvariant="normal">e</mi><mo lspace="0em" rspace="0em">−</mo></msup></mrow><annotation encoding="application/x-tex">\mathrm{2Cl}^{-}\longrightarrow\mathrm{Cl}_{2}+2\mathrm{e}^{-}</annotation></semantics></math></span></p><p>−極：<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mi mathvariant="normal">H</mi><mn>2</mn></msub><mi mathvariant="normal">O</mi><mo>+</mo><mn>2</mn><msup><mi mathvariant="normal">e</mi><mo lspace="0em" rspace="0em">−</mo></msup><mo>⟶</mo><msub><mi mathvariant="normal">H</mi><mn>2</mn></msub><mo>+</mo><mn>2</mn><msup><mrow><mi mathvariant="normal">O</mi><mi mathvariant="normal">H</mi></mrow><mo lspace="0em" rspace="0em">−</mo></msup></mrow><annotation encoding="application/x-tex">2\mathrm{H}_{2}\mathrm{O}+2\mathrm{e}^{-}\longrightarrow\mathrm{H}_{2}+2\mathrm{OH}^{-}</annotation></semantics></math></span></p><h3>この模型で省いていること</h3><p>主図は2個の塩化物イオンを大きく動かして、電極への到達と電子の受け渡しを示します。水の反応からは水素と水酸化物イオンができます。主図と拡大図は同じ代表的な反応を違う縮尺で示すため、粒子数を足し合わせません。下の図ではClが塩素原子、Oが酸素原子、Hが水素原子です。丸を消さずに組み替えることで、反応前後の原子の対応を追えます。電荷の印のフェードは受け渡しの演出で、中間的な電荷を計算する表示ではありません。水自身の微弱な電離、粒子の細かな熱運動も省略しています。水中の粒子は電圧がなくても動いています。ここで見る矢印と移動は、電圧をかけたときの平均的な移動方向です。色・大きさ・速さ・表示する粒子数は模式的で、濃度や電流の量を計算する模型ではありません。</p><p>12秒の観察が終わると電源を切り、針の結果を残します。極を逆にすると観察の初めに戻り、逆の向きの変化を最初から追います。食塩水の電流が自然にすぐ止まるという意味ではありません。実験の手順を指示する教材ではありません。</p><p>参考：<a href="https://www.horiba.com/jpn/water-quality/support/electrochemistry/the-story-of-ion/what-are-ions/" target="_blank" rel="noopener noreferrer">HORIBA「イオンとは」</a>、<a href="https://www.shinko-keirinwebshop.com/shinko/2021jrhigh/pitatreanswer/%E4%B8%AD%E3%81%B4%E3%81%9F%E3%83%88%E3%83%AC%E7%90%86%E7%A7%91%E5%95%93%E6%9E%97%EF%BC%93%E5%B9%B4%E8%A7%A3%E7%AD%94.pdf" target="_blank" rel="noopener noreferrer">新興出版社啓林館・理科3年の解説</a>。<a href="https://books.rsc.org/books/edited-volume/789/chapter/525233/Introduction-to-Electrolysis-Electrolysers-and" target="_blank" rel="noopener noreferrer">英国王立化学会・食塩水の電極反応</a>。文章・図・操作は独自に制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{function M(t,e,r){if(typeof t!="number"||!Number.isFinite(t)||t<e||t>r)throw new RangeError("Invalid model value")}function D(t){if(!["salt","sugar"].includes(t))throw new RangeError("Invalid solute")}function T(t,e){return D(t),M(e,0,1),t==="salt"&&e===1}function B(t,e,r=0){D(t),M(e,0,1),M(r,-12,12);let n=e*e*(3-2*e);return Array.from({length:t==="salt"?12:6},(l,u)=>{let h=u%(t==="salt"?4:3),a=Math.floor(u/(t==="salt"?4:3)),i=t==="salt"?(h+a)%2===0?1:-1:0,d=t==="salt"?[169+27*h,230+29*a]:[180+36*h,244+36*a],m=t==="salt"?[115+61*h+(a-1)*3,184+50*a+h%2*7]:[124+84*h+9*a,190+90*a+h%2*8];return{id:u,charge:i,radius:t==="salt"?13:16,x:d[0]+(m[0]-d[0])*n+i*r*n,y:d[1]+(m[1]-d[1])*n}})}function V(t,e,r){if(M(t.elapsed,0,12),M(t.offset,-12,12),M(r,0,1e6),e!==1&&e!==-1)throw new RangeError("Invalid polarity");let n=Math.min(r,12-t.elapsed);return{elapsed:t.elapsed+n,offset:Math.max(-12,Math.min(12,t.offset+2*e*n))}}function U(t,e,r){if(!["left","right"].includes(t)||![1,-1].includes(e))throw new RangeError("Invalid lead");M(r,0,1);let n=(e===1?r:1-r)*277;return t==="left"?n<=187?{x:75,y:242-n}:{x:75+n-187,y:55}:n<=90?{x:255+n,y:55}:{x:345,y:55+n-90}}var N=t=>{let e=Math.max(0,Math.min(1,t));return e*e*(3-2*e)},g=(t,e,r)=>({x:t.x+(e.x-t.x)*r,y:t.y+(e.y-t.y)*r}),s=(t,e)=>({x:t,y:e});function O(t){if(typeof t!="number"||!Number.isFinite(t)||t<0||t>12)throw new RangeError("Invalid observation time");return{approach:N(t/4),transfer:N((t-4)/3),depart:N((t-7)/5)}}function F(t,e,r,n,l){return g(g(g(t,e,l.approach),r,l.transfer),n,l.depart)}function z(t){let e=O(t);return[0,1].map(r=>({id:"cl-"+r,element:"Cl",...F(s(166+50*r,65+44*r),s(85,75+42*r),s(135+24*r,84),s(170+24*r,55),e)}))}function Q(t){let e=O(t);return[0,1].flatMap(r=>{let n=s(150+61*r,75+42*r),l=s(93,72+52*r),u=s(r===0?150:203,118),h=s(126+77*r,122),a=e.transfer,i=1-(1-a)**3,d=g(g(g(n,l,e.approach),s(u.x,l.y),i),h,e.depart);d.y=g(g(n,l,e.approach),u,a).y+(h.y-u.y)*e.depart;let m=s(l.x-18,l.y+16),x=r===0?[s(75,30),s(173,30),s(173,53)]:[s(75,75),s(120,55),s(153,53)],L=k=>(1-a)**3*m[k]+3*(1-a)**2*a*x[0][k]+3*(1-a)*a**2*x[1][k]+a**3*x[2][k],v=g(s(n.x-18,n.y+16),m,e.approach),I=g(a>0?s(L("x"),L("y")):v,s(r===0?175:155,51),e.depart);return[{id:"o-"+r,element:"O",...d},{id:"h-stay-"+r,element:"H",x:d.x+18,y:d.y+16},{id:"h-leave-"+r,element:"H",...I}]})}function Z(t,e){if(![1,-1].includes(e))throw new RangeError("Invalid polarity");let r=O(t),n=a=>s(e===1?a.x:420-a.x,a.y),l=[0,1].map(a=>F(s(173+6*a,191+100*a),s(e===1?94:326,198+48*a),n(s(112+20*a,209)),n(s(130+20*a,178)),r)),u=[0,1].map(a=>F(n(s(259+18*a,207+45*a)),n(s(326,198+48*a)),n(s(287+24*a,235+29*a)),n(s(265+33*a,233+41*a)),r)),h=u.map((a,i)=>g(a,n(s(282+14*i,185-8*r.depart)),r.transfer));return{...r,chloride:l,water:u,hydrogen:h}}function W(t,e,r,n,l,u){let h=t==="salt"&&e===1,a=B(t,e,r).filter(x=>!h||![1,9].includes(x.id)),i=u&&T(t,e),d=n===1?"\uFF0B":"\u2212",m=n===1?"\u2212":"\uFF0B";return`<svg viewBox="0 0 420 365" id="apparatus" role="img" aria-label="${t==="salt"?"\u98DF\u5869":"\u7802\u7CD6"}\u3092\u6EB6\u304B\u3057\u305F\u6C34\u306E\u7C92\u5B50\u3068\u56DE\u8DEF"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10" fill="#647d78"/></marker></defs><path d="M165 55H75V242M255 55H345V242" stroke="#70828d" stroke-width="5" fill="none"/><rect x="165" y="23" width="90" height="63" rx="12" fill="${u?"#daeacb":"#e9eeeb"}" stroke="#a9bcb0"/><text x="210" y="48" text-anchor="middle">\u96FB\u6E90</text><text x="210" y="72" text-anchor="middle">${u?"ON":"OFF"}</text><text class="pole" x="141" y="61" text-anchor="middle">${d}</text><text class="pole" x="279" y="61" text-anchor="middle">${m}</text><circle cx="75" cy="102" r="21" fill="#fffef9" stroke="#70828d" stroke-width="2"/><text x="75" y="110" text-anchor="middle">A</text><text x="147" y="123" class="wire-caption">\u91D1\u5C5E\u306E\u4E2D\uFF1A\u96FB\u5B50</text><path d="M49 157V321Q49 332 62 332H358Q371 332 371 321V157" fill="none" stroke="#8daebb" stroke-width="3"/><rect x="52" y="165" width="316" height="164" rx="8" fill="#e4f3f2"/><path d="M53 165h314" stroke="#bfdedc"/><rect x="69" y="148" width="12" height="112" rx="4" fill="#79858d"/><rect x="339" y="148" width="12" height="112" rx="4" fill="#79858d"/>${i?'<rect class="electrode-reaction" x="62" y="170" width="26" height="92" rx="10" fill="none" stroke="#cba849" stroke-width="3"/><rect class="electrode-reaction" x="332" y="170" width="26" height="92" rx="10" fill="none" stroke="#cba849" stroke-width="3"/>':""}<text class="pole electrode-sign" x="75" y="146" text-anchor="middle">${d}</text><text class="pole electrode-sign" x="345" y="146" text-anchor="middle">${m}</text>
+${a.map(x=>`<g class="particle" data-charge="${x.charge}" opacity="${h?.2:1}" transform="translate(${x.x} ${x.y})">${i?`<path class="drift" d="M0 0h${x.charge*n*36}" stroke="#647d78" stroke-width="2" opacity=".6" marker-end="url(#arrow)"/>`:""}<circle r="${x.radius}" fill="${x.charge>0?"#e38b54":x.charge<0?"#5e9eae":"#958ab2"}" stroke="#fffef9" stroke-width="1.5"/>${x.charge?`<text class="charge" x="0" y="7" text-anchor="middle">${x.charge>0?"\uFF0B":"\u2212"}</text>`:""}</g>`).join("")}
+${i?Array.from({length:4},(x,L)=>{let v=(l*.16+L/4)%1,I=U("left",n,v),k=U("right",n,v);return`<g class="electrons" opacity=".25" fill="#cba849" stroke="#fff" stroke-width="1"><circle cx="${I.x}" cy="${I.y}" r="4.5"/><circle cx="${k.x}" cy="${k.y}" r="4.5"/></g>`}).join(""):""}${h?K(l,n):""}<text x="210" y="354" text-anchor="middle" class="solution-name">${e<1?t==="salt"?"\u6C34\uFF0B\u98DF\u5869":"\u6C34\uFF0B\u7802\u7CD6":t==="salt"?"\u98DF\u5869\u6C34":"\u7802\u7CD6\u6C34"}</text></svg>`}function X(t,e){let r=t?e*.7:0,n=100+Math.sin(r)*58,l=110-Math.cos(r)*58;return`<svg viewBox="0 0 200 135" id="meter" role="img" aria-label="\u96FB\u6D41\u8A08\u306E\u5B9A\u6027\u7684\u306A\u8868\u793A"><path d="M38 103A65 60 0 0 1 162 103" fill="none" stroke="#a6b7ad" stroke-width="3"/><text x="100" y="27" text-anchor="middle">0</text><text x="29" y="116" text-anchor="middle">\u2212</text><text x="173" y="116" text-anchor="middle">\uFF0B</text><path id="needle" d="M100 110L${n} ${l}" stroke="#bb7945" stroke-width="4" stroke-linecap="round"/><circle cx="100" cy="110" r="5" fill="#bb7945"/></svg>`}function R(t,e,r=1,n="bond"){return`<line data-bond="${n}" x1="${t.x}" y1="${t.y}" x2="${e.x}" y2="${e.y}" stroke="#758b8c" stroke-width="3" opacity="${r}"/>`}function K(t,e){let r=Z(t,e),n=r.transfer,l=(d,m,x)=>[0,1].map(L=>{let v=U(d,e,Math.max(0,Math.min(1,m+L*.025)));return`<circle class="transfer-electron" cx="${v.x}" cy="${v.y}" r="6" fill="#edc449" stroke="#fff" opacity="${x}"/>`}).join(""),u=e===1?"left":"right",h=e===1?"right":"left",a=r.approach,i=Math.max(0,Math.min(1,(t-4)/8));return`<g id="tracked-reaction">${R(r.chloride[0],r.chloride[1],n,"chlorine")}
+ ${r.chloride.map((d,m)=>`<g class="tracked-cl" data-atom-id="main-cl-${m}" transform="translate(${d.x} ${d.y})"><circle r="13" fill="#5e9eae" stroke="#fff" stroke-width="2"/><text class="charge" y="7" text-anchor="middle" opacity="${1-n}">\u2212</text></g>`).join("")}
+ ${r.water.map((d,m)=>`<g class="tracked-water" data-water-id="${m}" transform="translate(${d.x} ${d.y})"><circle r="13" fill="rgb(${Math.round(255+-106*n)},${Math.round(255+-117*n)},${Math.round(255+-77*n)})" stroke="#83a5b2" stroke-width="2"/><text class="water-name" y="7" text-anchor="middle" opacity="${1-n}">\u6C34</text><text class="charge" y="7" text-anchor="middle" opacity="${n}">\u2212</text></g>`).join("")}
+ ${R(r.hydrogen[0],r.hydrogen[1],n,"hydrogen")}${r.hydrogen.map((d,m)=>`<circle class="hydrogen-atom" data-atom-id="main-h-${m}" cx="${d.x}" cy="${d.y}" r="5" fill="#fff" stroke="#83a5b2" opacity="${n}"/>`).join("")}
+ </g>${l(u,i,n)}${l(h,a,1-n)}`}function tt(t,e){let r=O(e),n=t?z(e):Q(e),l=r.transfer,u=[0,1].map(i=>{let d=75+i*42,m=t?Math.max(0,Math.min(1,(e-4)/8)):r.approach,x=t?d+(38+i*14-d)*m:30+i*14+(d-30-i*14)*m;return`<circle class="reaction-electron" data-electron-id="${i}" cx="52" cy="${x}" r="5" fill="#edc449" stroke="#fff" opacity="${t?l:1-l}"/>`}).join(""),h=t?R(n[0],n[1],l,"chlorine"):[0,1].map(i=>R(n[i*3],n[i*3+1],1,"hydroxide-"+i)+R(n[i*3],n[i*3+2],1-l,"water-"+i)).join("")+R(n[2],n[5],l,"hydrogen"),a=n.map(i=>`<g class="reaction-atom" data-atom-id="${i.id}" data-element="${i.element}" transform="translate(${i.x} ${i.y})"><circle r="${i.element==="H"?10:i.element==="O"?12:14}" fill="${i.element==="H"?"#fff":i.element==="O"?"#cd7868":"#5e9eae"}" stroke="${i.element==="H"?"#83a5b2":"#fff"}" stroke-width="1.5"/><text class="atom-label" y="6" text-anchor="middle" fill="${i.element==="H"?"#425e56":"white"}">${i.element}</text>${i.element==="Cl"?`<text class="ion-charge" x="17" y="-9" opacity="${1-l}">\u2212</text>`:i.element==="O"?`<text class="ion-charge" x="26" y="-10" opacity="${l}">\u2212</text>`:""}</g>`).join("");return`<svg class="reaction-svg" viewBox="0 0 260 165" role="img" aria-label="${t?"\u540C\u3058\u5869\u7D20\u539F\u5B50\u3092\u8FFD\u3046\uFF1A\u5869\u5316\u7269\u30A4\u30AA\u30F32\u500B\u304B\u3089\u5869\u7D20\u5206\u5B50\u3078":"\u540C\u3058\u6C34\u7D20\u3068\u9178\u7D20\u306E\u539F\u5B50\u3092\u8FFD\u3046\uFF1A\u6C34\u304B\u3089\u6C34\u7D20\u5206\u5B50\u3068\u6C34\u9178\u5316\u7269\u30A4\u30AA\u30F3\u3078"}"><rect x="70" y="22" width="184" height="137" rx="8" fill="#e4f3f2"/><rect x="35" y="22" width="30" height="137" rx="6" fill="#81949b"/><text x="50" y="17" text-anchor="middle">\u96FB\u6975</text><text x="170" y="17" text-anchor="middle">\u6C34\u6EB6\u6DB2</text><path d="M52 ${t?125:32}v${t?-90:90}" stroke="#bfa043" stroke-width="2"/><path d="${t?"M46 44l6 -9 6 9":"M46 113l6 9 6 -9"}" fill="none" stroke="#bfa043" stroke-width="2"/>
+ ${h}${a}${u}
+
+ ${t?"":`<text class="hydrogen-name" x="172" y="34" text-anchor="middle" opacity="${l}">\u6C34\u7D20\u5206\u5B50</text>`}
+ </svg>`}function Y(t,e){return[t===1,t!==1].map((r,n)=>`<section class="reaction-card" data-anode="${r}"><h3>${n===0?"\u5DE6":"\u53F3"}\u306E${r?"\uFF0B":"\u2212"}\u6975\uFF1A\u96FB\u5B50\u3092${r?"\u51FA\u3059":"\u53D7\u3051\u53D6\u308B"}</h3>${tt(r,e)}<p class="reaction-identity">${r?"\u5869\u5316\u7269\u30A4\u30AA\u30F3 \u2192 \u5869\u7D20\u5206\u5B50":"\u6C34 \u2192 \u6C34\u7D20\u5206\u5B50 \uFF0B \u6C34\u9178\u5316\u7269\u30A4\u30AA\u30F3"}</p></section>`).join("")}var o=t=>document.querySelector(t),$="salt",y=0,f=0,b=0,w=1,c="solid",p=!1,_,j,P,A={salt:null,sugar:null};function E(){p=!1,cancelAnimationFrame(_),j=void 0}function S(){clearTimeout(P),o("#flash").hidden=!0}function G(t){clearTimeout(P);let e=o("#flash");e.hidden=!1,e.textContent=t?"\u25B6":"\u2161",e.dataset.playing=t,e.getAnimations().forEach(r=>r.cancel()),matchMedia("(prefers-reduced-motion: reduce)").matches||e.animate([{opacity:1},{opacity:0}],{duration:1e3,fill:"forwards"}),P=setTimeout(()=>e.hidden=!0,1e3)}function q(t){E(),S(),$=t,y=0,f=0,b=0,w=1,c="solid",C()}function C(){let t=$==="salt",e=c==="pulse",r=e,n=(e||c==="done")&&T($,y);Object.assign(document.body.dataset,{kind:$,d:y,elapsed:f,offset:b,polarity:w,phase:c,playing:p}),o("#diagram").innerHTML=W($,y,b,w,f,r),o("#meter-host").innerHTML=X(n,w),o("#charge-route").hidden=!(e||c==="done"),o("#reaction-explanation").hidden=!(t&&(e||c==="done")),o("#reaction-zoom").innerHTML=Y(w,f),o("#charge-route").dataset.conducting=t,o("#route-note").textContent=t?"\u96FB\u6975\u306E\u53CD\u5FDC\u3067\u96FB\u5B50\u3092\u53D7\u3051\u6E21\u3057\u3001\u96FB\u6C17\u306E\u6D41\u308C\u304C\u3064\u306A\u304C\u308A\u307E\u3059\u3002":"\u7802\u7CD6\u306F\u30A4\u30AA\u30F3\u306B\u5206\u304B\u308C\u306A\u3044\u306E\u3067\u3001\u6C34\u4E2D\u306E\u904B\u3073\u624B\u304C\u5897\u3048\u307E\u305B\u3093\u3002",o("#timeline-row").hidden=y!==1,o("#timeline").value=f,o("#meter-label").textContent=c==="done"?"\u89B3\u5BDF\u306E\u7D50\u679C":"\u96FB\u6D41\u8A08",o("#meter-result").textContent=c==="done"?t?"\u96FB\u6D41\u3092\u691C\u51FA":"\u307B\u307C\u6D41\u308C\u306A\u3044":e?t?"\u96FB\u6D41\u304C\u6D41\u308C\u308B":"\u307B\u307C\u6D41\u308C\u306A\u3044":"\u96FB\u5727\u3092\u304B\u3051\u308B\u524D",o("#guide-title").textContent=c==="solid"?t?"\u98DF\u5869\u3092\u5165\u308C\u307E\u3057\u305F\u3002\u307E\u305A\u306F\u6EB6\u304B\u305D\u3046\u3002":"\u7802\u7CD6\u3082\u6C34\u306B\u6EB6\u304B\u3057\u3066\u6BD4\u3079\u3088\u3046\u3002":c==="dissolving"?"\u56FA\u307E\u308A\u304C\u307B\u3069\u3051\u3001\u6C34\u4E2D\u306B\u5E83\u304C\u308A\u307E\u3059\u3002":c==="ready"?"\u6EB6\u3051\u307E\u3057\u305F\u3002\u96FB\u5727\u3092\u304B\u3051\u308B\u3068\uFF1F":t?"\u96FB\u6D41\u306F\u3001\u96FB\u6C17\u3092\u5E2F\u3073\u305F\u7C92\u5B50\u306E\u6D41\u308C\u3002":"\u7802\u7CD6\u306E\u5206\u5B50\u306F\u3001\u96FB\u6C17\u3092\u5E2F\u3073\u3066\u3044\u307E\u305B\u3093\u3002",o("#guide-note").textContent=c==="solid"?t?"\uFF0B\u3068\u2212\u306F\u3001\u96FB\u6C17\u3092\u5E2F\u3073\u305F\u7C92\u5B50\u306E\u5370\u3067\u3059\u3002":"\u98DF\u5869\u3068\u9055\u3044\u3001\u7802\u7CD6\u306E\u5206\u5B50\u306B\u306F\uFF0B\u30FB\u2212\u306E\u5370\u304C\u3042\u308A\u307E\u305B\u3093\u3002":c==="dissolving"||c==="ready"?t?"\u7D50\u6676\u306B\u3042\u3063\u305F\u967D\u30A4\u30AA\u30F3\u3068\u9670\u30A4\u30AA\u30F3\u304C\u3001\u96E2\u308C\u3066\u5E83\u304C\u308A\u307E\u3059\u3002":"\u7802\u7CD6\u306F\u5206\u5B50\u306E\u307E\u307E\u5E83\u304C\u308A\u3001\u30A4\u30AA\u30F3\u306B\u5206\u304B\u308C\u307E\u305B\u3093\u3002":t?"\u9EC4\u8272\u3044\u96FB\u5B50\u306F\u91D1\u5C5E\u306E\u4E2D\u3002\u6C34\u4E2D\u306F\uFF0B\u304C\u2212\u6975\u3078\u3001\u2212\u304C\uFF0B\u6975\u3078\u52D5\u3044\u3066\u96FB\u6C17\u3092\u904B\u3073\u307E\u3059\u3002":"\u6EB6\u3051\u3066\u3044\u3066\u3082\u3001\u96FB\u6C17\u3092\u904B\u3076\u30A4\u30AA\u30F3\u304C\u5897\u3048\u3066\u3044\u307E\u305B\u3093\u3002",t&&(e||c==="done")&&(o("#guide-title").textContent=f<4?"\u6C34\u4E2D\u306E\u30A4\u30AA\u30F3\u304C\u3001\u96FB\u6C17\u3092\u904B\u3076\u3002":f<7?"\u96FB\u6975\u3067\u3001\u96FB\u5B50\u3092\u53D7\u3051\u6E21\u3059\u3002":"\u96FB\u5B50\u306F\u91D1\u5C5E\u306E\u4E2D\u3001\u30A4\u30AA\u30F3\u306F\u6C34\u306E\u4E2D\u3002",o("#guide-note").textContent=f<4?"\u9752\u3044\u5869\u5316\u7269\u30A4\u30AA\u30F3\u3092\u3001\uFF0B\u6975\u306E\u8868\u9762\u307E\u3067\u8FFD\u304A\u3046\u3002":f<7?"\uFF0B\u6975\u3067\u306F\u96FB\u5B50\u3092\u51FA\u3057\u3001\u2212\u6975\u3067\u306F\u6C34\u304C\u96FB\u5B50\u3092\u53D7\u3051\u53D6\u308A\u307E\u3059\u3002":"\u6C34\u4E2D\u3092\u96FB\u5B50\u304C\u6E21\u308B\u306E\u3067\u306F\u306A\u304F\u3001\u96FB\u6C17\u3092\u5E2F\u3073\u305F\u30A4\u30AA\u30F3\u304C\u52D5\u304D\u307E\u3059\u3002"),o("#pulse-note").textContent=c==="done"?"\u7D50\u679C\u3092\u6BD4\u3079\u308B\u305F\u3081\u3001\u89B3\u5BDF\u3092\u3044\u3063\u305F\u3093\u6B62\u3081\u307E\u3057\u305F\u3002":e&&!p?"\u89B3\u5BDF\u3092\u4E00\u6642\u505C\u6B62\u3057\u3066\u3044\u307E\u3059\u3002":"1\u7D44\u306E\u5909\u5316\u3092\u3086\u3063\u304F\u308A\u89B3\u5BDF\u3002\u5B9F\u969B\u306F\u3001\u5404\u6240\u3067\u540C\u6642\u306B\u9032\u307F\u307E\u3059\u3002",o("#play").setAttribute("aria-pressed",p),o("#play").textContent=p?"\u2161 \u4E00\u6642\u505C\u6B62":c==="solid"?"\u25B6 \u6EB6\u304B\u3059":c==="dissolving"||c==="pulse"?"\u25B6 \u7D9A\u3051\u308B":c==="ready"?"\u25B6 \u96FB\u5727\u3092\u304B\u3051\u308B":"\u25B6 \u3082\u3046\u4E00\u5EA6\u89B3\u5BDF",o("#reverse").hidden=y!==1,o("#reverse").textContent="\u6975\u3092\u9006\u306B\u3057\u3066\u898B\u76F4\u3059",o("#compare").hidden=c!=="done",o("#compare").textContent=t?"\u7802\u7CD6\u3067\u3082\u6BD4\u3079\u308B":"\u98DF\u5869\u3067\u3082\u6BD4\u3079\u308B",o("#salt-legend").hidden=!t,o("#oh-legend").hidden=!(t&&f>4),o("#sugar-legend").hidden=t,o("#results").hidden=A.salt===null&&A.sugar===null,o("#result-salt").textContent=A.salt===null?"\u672A\u89B3\u5BDF":"\u96FB\u6D41\u3092\u691C\u51FA",o("#result-sugar").textContent=A.sugar===null?"\u672A\u89B3\u5BDF":"\u307B\u307C\u6D41\u308C\u306A\u3044",document.querySelectorAll("button[data-kind]").forEach(l=>l.setAttribute("aria-pressed",l.dataset.kind===$)),o("#progress").value=c==="dissolving"?y:c==="ready"?1:c==="pulse"||c==="done"?f/12:0}function J(t){if(!p)return;let e=j===void 0?0:Math.min((t-j)/1e3,.1);j=t,c==="dissolving"?(y=Math.min(1,y+e/3.2),y===1&&(c="ready",E(),S(),o("#announce").textContent="\u6EB6\u3051\u307E\u3057\u305F\u3002\u6B21\u306F\u96FB\u5727\u3092\u304B\u3051\u3066\u307F\u307E\u3057\u3087\u3046\u3002")):({elapsed:f,offset:b}=V({elapsed:f,offset:b},w,e),f===12&&(c="done",A[$]=T($,y),E(),S(),o("#announce").textContent=$==="salt"?"\u98DF\u5869\u6C34\u3067\u96FB\u6D41\u3092\u691C\u51FA\u3057\u307E\u3057\u305F\u3002":"\u7802\u7CD6\u6C34\u306F\u307B\u307C\u6D41\u308C\u307E\u305B\u3093\u3067\u3057\u305F\u3002")),C(),p&&(_=requestAnimationFrame(J))}function et(){p=!0,j=void 0,G(!0),_=requestAnimationFrame(J)}o("#play").addEventListener("click",()=>{p?(E(),G(!1)):(c==="solid"?c="dissolving":c==="ready"?(c="pulse",f=0):c==="done"&&(c="pulse",f=0,b=0),et()),C()});o("#reset").addEventListener("click",()=>{A.salt=null,A.sugar=null,q("salt")});document.querySelectorAll("button[data-kind]").forEach(t=>t.addEventListener("click",()=>q(t.dataset.kind)));o("#compare").addEventListener("click",()=>q($==="salt"?"sugar":"salt"));o("#reverse").addEventListener("click",()=>{E(),S(),w*=-1,c="ready",f=0,b=0,o("#announce").textContent="\u6975\u3092\u9006\u306B\u3057\u307E\u3057\u305F\u3002\u6700\u521D\u304B\u3089\u5909\u5316\u3092\u8FFD\u3044\u307E\u3059\u3002",C()});o("#timeline").addEventListener("input",t=>{E(),S(),f=Number(t.target.value),b=Math.max(-12,Math.min(12,2*w*f)),c=f===12?"done":"pulse",C()});o("#timeline").disabled=!1;o("#timeline").max=12;document.addEventListener("visibilitychange",()=>{document.hidden&&(E(),S(),C())});document.querySelectorAll("button").forEach(t=>t.disabled=!1);C();})();
+</script>
+</body>
+</html>
