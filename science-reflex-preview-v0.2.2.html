@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>手が動くまでの通り道 | 反射と意識した反応</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+.vl-shell {
+  max-width: 1080px;
+}
+.vl-main {
+  padding-top: 20px;
+}
+.vl-title {
+  font-size: 28px;
+}
+.toolbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#play {
+  background: #477453;
+  color: white;
+  min-width: 140px;
+}
+#play[aria-pressed='true'] {
+  background: #b45045;
+}
+#reset {
+  margin-left: auto;
+}
+.timeline-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 180px;
+  font-size: 12px;
+  color: #667966;
+}
+#timeline {
+  width: 100%;
+  min-width: 0;
+  touch-action: pan-y;
+}
+.example-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 16px 22px 0;
+  flex-wrap: wrap;
+}
+.example-tabs button {
+  background: transparent;
+  color: #65785d;
+}
+.example-tabs button[aria-pressed='true'] {
+  background: #e5eedb;
+  border-color: #7d9769;
+  color: #3a633c;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 22px;
+  padding: 14px 22px 12px;
+}
+.circuit-panel {
+  position: relative;
+  min-width: 0;
+}
+#circuit {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#circuit text {
+  font-size: 26px;
+  font-family: inherit;
+  fill: #526950;
+}
+#circuit .node text {
+  font-size: 30px;
+  fill: #37523c;
+}
+.node rect {
+  fill: #eef3e8;
+  stroke: #c8d6be;
+  stroke-width: 2;
+}
+.node.lit rect {
+  fill: #dae9cd;
+  stroke: #93ad76;
+  stroke-width: 3;
+}
+.base {
+  fill: none;
+  stroke: #c1d6dc;
+  stroke-width: 3;
+}
+.base.motor,
+.base.down {
+  stroke: #decbb0;
+}
+.trail {
+  fill: none;
+  stroke: #3989a9;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.trail.motor,
+.trail.down {
+  stroke: #bd8134;
+}
+.pulse {
+  fill: #1e8aac;
+  stroke: white;
+  stroke-width: 2;
+}
+.pulse.motor,
+.pulse.down {
+  fill: #c9862d;
+}
+#circuit .blue-label {
+  fill: #3a819c;
+}
+#circuit .orange-label {
+  fill: #a87335;
+}
+#flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #00c451;
+  color: white;
+  pointer-events: none;
+  font-size: 38px;
+  z-index: 5;
+}
+#flash[data-playing='false'] {
+  background: #ec283a;
+}
+.story-panel {
+  background: #f0f4e9;
+  border-radius: 14px;
+  padding: 16px;
+  min-width: 0;
+}
+#example-title {
+  font-size: 13px;
+  color: #6d7d64;
+  margin: 0 0 12px;
+}
+#explanation-title {
+  font-size: 19px;
+  color: #385b40;
+  margin: 0 0 8px;
+  line-height: 1.6;
+  min-height: 3.2em;
+}
+#explanation-note {
+  font-size: 14px;
+  color: #62745a;
+  line-height: 1.8;
+  margin: 0;
+  min-height: 5.4em;
+}
+#hand-diagram {
+  width: 100%;
+  height: auto;
+}
+#response-note {
+  margin: 0;
+  font-size: 12px;
+  color: #6e7e63;
+}
+.states {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.states span {
+  font-size: 12px;
+  padding: 5px 8px;
+  background: #e5ecdc;
+  color: #839177;
+  border-radius: 6px;
+}
+.states .arrived {
+  background: #dce9ce;
+  color: #3f6338;
+}
+.legend {
+  padding: 10px 22px;
+  border-top: 1px solid #dce3d5;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #687b62;
+}
+.key {
+  display: inline-block;
+  width: 22px;
+  height: 3px;
+  margin-right: 6px;
+  vertical-align: middle;
+  background: #3885a8;
+}
+.key.motor-key {
+  background: #b77e35;
+}
+.model-note {
+  font-size: 12px;
+  color: #6c7d62;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0 22px 14px;
+}
+#builder {
+  padding: 0 22px;
+  border-top: 1px solid #dce3d5;
+  color: #61765c;
+  font-size: 14px;
+}
+#builder summary {
+  cursor: pointer;
+  min-height: 48px;
+  padding: 12px 0;
+}
+#route-name {
+  font-size: 14px;
+  margin: 5px 0;
+}
+#assembled {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 12px 0;
+}
+#assembled li {
+  border: 1px solid #c9d6bd;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: #f4f6ee;
+}
+#assembled li + li::before {
+  content: '→';
+  margin-right: 10px;
+  color: #7d966b;
+}
+#choices {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#choices button,
+#undo {
+  min-height: 44px;
+  padding: 8px 14px;
+}
+#build-note {
+  min-height: 3.6em;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 12px 0;
+}
+#undo {
+  margin-bottom: 14px;
+  background: transparent;
+}
+@media (min-width: 850px) {
+  .vl-kicker {
+    display: none;
+  }
+}
+@media (max-width: 650px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-title {
+    font-size: 24px;
+  }
+  .vl-controls {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fffefa;
+    border-radius: 12px 12px 0 0;
+  }
+  .toolbar {
+    gap: 6px;
+  }
+  .toolbar button {
+    padding-inline: 12px;
+    font-size: 13px;
+  }
+  .timeline-wrap {
+    flex-basis: 100%;
+    order: 5;
+  }
+  .workspace {
+    grid-template-columns: 1fr;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .example-tabs {
+    padding: 12px 12px 0;
+    gap: 6px;
+  }
+  .example-tabs button {
+    flex: 1;
+    font-size: 13px;
+    padding: 7px 10px;
+  }
+  .story-panel {
+    padding: 14px;
+  }
+  #explanation-title {
+    font-size: 17px;
+    min-height: 0;
+  }
+  #explanation-note {
+    min-height: 0;
+  }
+  #hand-diagram {
+    max-width: 390px;
+    margin: auto;
+  }
+  .legend {
+    padding-inline: 12px;
+  }
+  .model-note {
+    padding-inline: 12px;
+  }
+  #builder {
+    padding-inline: 12px;
+  }
+  #previous,
+  #next {
+    min-width: 48px;
+  }
+}
+
+.timeline-wrap > span {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media (min-width: 850px) {
+  #explanation-note {
+    min-height: 3.6em;
+  }
+}
+
+#hand-diagram text { font-size: 30px; font-family: inherit; fill: #435d45; }
+#hand-diagram #contact-state { font-size: 30px; }
+#hand-diagram { display: block; overflow: hidden; margin-block: 6px; }
+@media (max-width: 650px) { .story-panel { order: -1; } }
+
+#brain-feeling text{fill:#a53a24;font-size:34px;font-weight:800}
+</style>
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="5" r="3"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/><path d="M12 8v6m-6 3v-3h12v3"/></svg><span>理科を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">理科</span><span>手が動くまでの通り道</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">理科</p><h1 class="vl-title">手が動くまでの通り道</h1><p class="vl-question">手を動かす指令は、どこを通って届く？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="toolbar"><button disabled id="play" aria-pressed="false">▶ 刺激を送る</button><button disabled id="previous" class="vl-secondary" aria-label="前の節目へ">◀</button><button disabled id="next" class="vl-secondary" aria-label="次の節目へ">▶</button><label class="timeline-wrap" for="timeline"><span>進み具合</span><input disabled id="timeline" type="range" min="0" max="8" step="0.01" value="0" aria-label="信号を追う位置"></label><button disabled id="reset" class="vl-secondary">初めから</button></div></div>
+        <div class="vl-stage"><div class="example-tabs" role="group" aria-label="比べる反応の例"><button disabled data-mode="reflex" aria-pressed="true">熱いものにふれる<br>反射の例</button><button disabled data-mode="voluntary" aria-pressed="false">皮ふへの合図<br>意識した反応の例</button></div><div class="workspace"><div class="circuit-panel"><svg id="circuit" viewBox="0 0 560 360" role="img" aria-labelledby="circuit-title"><title id="circuit-title">皮ふから脊髄・脳へ伝わる情報と、筋肉へ向かう指令の模式図</title><defs><marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10" fill="#3885a8"/></marker><marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10" fill="#b77e35"/></marker></defs>
+<g id="route-sensory"><path class="base sensory" d="M145 285L223 285" marker-end="url(#arrow-blue)"/><path id="trail-sensory" class="trail sensory" d="M145 285L223 285" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><circle id="pulse-sensory" r="7" cx="145" cy="285" class="pulse sensory" opacity="0"/></g><g id="route-up"><path class="base up" d="M258 248L258 109" marker-end="url(#arrow-blue)"/><path id="trail-up" class="trail up" d="M258 248L258 109" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><circle id="pulse-up" r="7" cx="258" cy="248" class="pulse up" opacity="0"/></g><g id="route-down" hidden><path class="base down" d="M302 109L302 248" marker-end="url(#arrow-orange)"/><path id="trail-down" class="trail down" d="M302 109L302 248" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><circle id="pulse-down" r="7" cx="302" cy="109" class="pulse down" opacity="0"/></g><g id="route-motor"><path class="base motor" d="M337 285L409 285" marker-end="url(#arrow-orange)"/><path id="trail-motor" class="trail motor" d="M337 285L409 285" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><circle id="pulse-motor" r="7" cx="337" cy="285" class="pulse motor" opacity="0"/></g>
+<g id="skin-node" class="node"><rect x="15" y="251" width="130" height="68" rx="16"/><text x="80" y="295" text-anchor="middle">皮ふ</text></g>
+<g id="spinal-node" class="node"><rect x="223" y="248" width="114" height="78" rx="18"/><text x="280" y="295" text-anchor="middle">脊髄</text></g>
+<g id="brain-node" class="node"><rect x="223" y="35" width="114" height="74" rx="22"/><text x="280" y="82" text-anchor="middle">脳</text></g>
+<g id="brain-feeling" hidden><path d="M370 25H535Q549 25 549 39V87Q549 101 535 101H370Q356 101 356 87V83L339 77L356 65V39Q356 25 370 25Z" fill="#fff0bf" stroke="#c45532" stroke-width="4"/><text x="453" y="75" text-anchor="middle" fill="#a53a24" font-size="34" font-weight="800">あつい！！</text></g>
+<g id="muscle-node" class="node"><rect x="409" y="251" width="136" height="68" rx="16"/><text x="477" y="295" text-anchor="middle">筋肉</text></g>
+<text x="180" y="225" text-anchor="middle" class="blue-label">感覚神経</text><text x="385" y="225" text-anchor="middle" class="orange-label">運動神経</text>
+<text x="234" y="179" text-anchor="end" class="blue-label">情報</text><text hidden id="down-label" x="330" y="179" class="orange-label">指令</text>
+</svg><span id="flash" hidden aria-hidden="true"></span></div><section class="story-panel"><p id="example-title">熱いものから手を引く</p><div aria-live="polite"><h2 id="explanation-title">熱いやかんに指先がふれた</h2><p id="explanation-note">青い点は、ふれた皮ふからの情報。再生して、手が離れるまでを追おう。</p></div><svg id="hand-diagram" viewBox="0 0 560 310" role="img" aria-labelledby="hand-title"><title id="hand-title">指先が熱いやかんにふれ、筋肉に指令が届くと手を引く図</title>
+<text id="contact-state" x="280" y="38" text-anchor="middle">指先がふれたところが「皮ふ」</text>
+<g id="hot-object"><path d="M108 142C88 77 116 63 150 63C187 63 213 84 194 142" fill="none" stroke="#465958" stroke-width="12" stroke-linecap="round"/>
+<path d="M104 179L80 158L70 131L49 136L60 175Q71 199 103 207" fill="#c6d3cf" stroke="#657d78" stroke-width="3" stroke-linejoin="round"/><ellipse cx="59" cy="133" rx="11" ry="4" fill="#657d78" transform="rotate(-12 59 133)"/>
+<path d="M111 141C96 149 77 204 91 236Q148 266 210 239C225 220 221 178 202 152Q165 132 111 141Z" fill="#d6e0dc" stroke="#657d78" stroke-width="3"/>
+<path d="M107 168Q94 205 106 229" fill="none" stroke="#f7faf7" stroke-width="7" stroke-linecap="round"/>
+<ellipse cx="152" cy="140" rx="45" ry="9" fill="#bccac4" stroke="#657d78" stroke-width="3"/><path d="M146 129v8h13v-8" fill="#465958"/><ellipse cx="152" cy="126" rx="12" ry="6" fill="#465958"/>
+<path d="M46 119q-9-10 0-21m18 16q-9-10 0-21" fill="none" stroke="#9aada6" stroke-width="3" stroke-linecap="round"/><text x="150" y="293" text-anchor="middle">熱いやかん</text></g>
+<g id="touch-object" hidden><path d="M202 170V252" stroke="#b99b6f" stroke-width="9" stroke-linecap="round"/><ellipse cx="202" cy="163" rx="18" ry="15" fill="#fafaf4" stroke="#779ca1" stroke-width="3"/><text x="160" y="293" text-anchor="middle">綿棒</text></g>
+<g id="hand"><path d="M536 112H392C373 102 355 101 338 108L300 134H217C207 134 201 139 201 146C201 153 207 158 217 158H301L277 169Q268 174 272 182Q277 191 287 186L312 174L299 195Q295 203 302 208Q310 214 317 205L334 185L326 211Q323 220 332 225Q341 230 349 221L373 197Q392 188 422 186H536Z" fill="#efd3bb" stroke="#a57a60" stroke-width="3" stroke-linejoin="round"/>
+<path d="M349 139Q330 128 318 142L302 160Q297 167 304 173Q311 179 318 171L341 153" fill="#efd3bb" stroke="#a57a60" stroke-width="3" stroke-linecap="round"/>
+<path d="M209 141h15q5 0 5 6v6h-20" fill="#f8e6d4" stroke="#c7977c" stroke-width="1.3"/>
+<path d="M243 139q-3 8 0 16m31-16q-3 8 0 16" fill="none" stroke="#c79a80" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M467 110H536V189H461Z" fill="#7d9eae" stroke="#527788" stroke-width="3"/><path d="M465 113l-5 73" stroke="#d3e0e3" stroke-width="7"/>
+<circle id="contact-point" cx="202" cy="152" r="7" fill="#3485a3" stroke="#fff" stroke-width="2"/></g>
+<circle id="stimulus" cx="202" cy="152" r="22" fill="#dd704e" opacity="0"/>
+<path id="move-arrow" d="M322 258q44-4 76-35m-19 2 19-2-3 20" fill="none" stroke="#bd8134" stroke-width="4" stroke-linecap="round" opacity="0"/>
+</svg><p id="response-note">再生すると、信号と手が動きます。</p><div class="states"><span id="brain-state">脳へ：情報を追跡</span><span id="muscle-state">筋肉へ：指令を追跡</span></div></section></div><div class="legend"><span><i class="key"></i>刺激の情報</span><span><i class="key motor-key"></i>筋肉へ向かう指令</span></div><p class="model-note">経路をゆっくり追う模式図です。線の長さ・動く速さは、実際の距離や反応時間ではありません。</p><details id="builder"><summary>経路をつないでみる（任意）</summary><h3 id="route-name">この脊髄反射の指令の経路</h3><ol id="assembled"><li>皮ふ</li></ol><div id="choices" role="group" aria-label="次につながる場所・神経"><button disabled data-place="sensory">感覚神経</button><button disabled data-place="spinal">脊髄</button><button disabled data-place="brain">脳</button><button disabled data-place="motor">運動神経</button><button disabled data-place="muscle">筋肉</button></div><p id="build-note" aria-live="polite">図を見ながら、次につながる場所・神経を選ぼう。</p><button disabled id="undo" class="vl-secondary">一つ戻す</button></details></div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>脊髄（せきずい）でつながる反射</h3><p>熱いものにふれて手を引く反応では、皮ふからの情報を受けた脊髄の回路が筋肉への指令につながります。脳で「手を引こう」と判断するのを待たずに起こる、脊髄反射の一例です。</p><p>そのときも刺激の情報は脳へ伝わります。「脳の判断を待たない」ことと「脳へ情報が届かない」ことは違います。図では筋肉への指令と脳への情報が並行して進むことを示しています。</p><h3>合図を感じて、自分で動かす場合</h3><p>もう一つの例は、皮ふへの合図を感じてから、自分で手を動かすと決める反応です。情報は脊髄から脳へ伝わり、運動の指令は脳から脊髄へ下って、運動神経を通り筋肉へ届きます。青とオレンジは別の経路です。感覚神経を逆向きに戻って筋肉へ行くのではありません。</p><p>皮ふへの刺激を使って、二つの経路を比べています。目や耳の情報も最初に脊髄を通る、という意味ではありません。</p><h3>この図で省いていること</h3><p>実際には多数の神経細胞が情報を受け渡し、脳での処理も一つの点で終わりません。脊髄の介在ニューロン、拮抗する筋肉の調節、神経線維の交差などを省略し、主要な通り道を示しています。解剖学的な縮尺や正確な位置を描いた図ではありません。</p><p>点と手の動きは、経路と反応のつながりを見るために遅くした演出です。画面の秒数や線の長さから実際の神経の速さを計算したり、すべての刺激で同じ順序・時間差になると読んだりしないでください。脳へ情報が届く間も手の動きが続く場面があります。</p><p>反射には脊髄以外を中枢とするものもあります。また、脳からの働きかけによって脊髄反射が調節されることもあります。ここでは、その調節を省いた手を引く反射に絞っています。</p><p>根拠：<a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/14-3-motor-responses" target="_blank" rel="noopener noreferrer">OpenStax Anatomy and Physiology 2e・14.3</a>、<a href="https://nba.uth.tmc.edu/neuroscience/m/s3/chapter02.html" target="_blank" rel="noopener noreferrer">UTHealth・Neuroscience Online「脊髄反射と下降性経路」</a>。文章・図・操作は独自制作。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var g={reflex:["sensory","spinal","motor","muscle"],voluntary:["sensory","spinal","brain","spinal","motor","muscle"]},O={reflex:[0,3,5,8],voluntary:[0,3,5,6,8,10,12]},S={sensory:[[145,285],[223,285]],up:[[258,248],[258,109]],down:[[302,109],[302,248]],motor:[[337,285],[409,285]]},v=e=>e==="voluntary"?"voluntary":"reflex",x=(e,t,a)=>Math.max(0,Math.min(1,(e-t)/(a-t))),d=e=>v(e)==="reflex"?8:12;function E(e,t){e=v(e),t=Math.max(0,Math.min(d(e),Number.isFinite(t)?t:0));let a=x(t,0,3),o=x(t,3,e==="reflex"?7:5),s=e==="reflex"?0:x(t,6,8),b=x(t,e==="reflex"?3:8,e==="reflex"?5:10),A=x(t,e==="reflex"?5:10,e==="reflex"?7.5:11.5);return{time:t,sensory:a,up:o,down:s,motor:b,movement:A,brain:o===1,muscle:b===1}}function k(e,t,a){return Math.min(d(e),Math.max(0,t)+Math.max(0,Number.isFinite(a)?a:0))}function M(e,t,a){let o=O[v(e)];return a<0?[...o].reverse().find(s=>s<t-1e-6)??0:o.find(s=>s>t+1e-6)??d(e)}function q(e,t,a){let o=g[v(e)],s=t.every((A,j)=>A===o[j]),b=s&&t.length<o.length&&a===o[t.length];return{steps:b?[...t,a]:[...t],accepted:b}}function w(e,t){let[a,o]=S[e]??S.sensory,s=x(Number.isFinite(t)?t:0,0,1);return{x:a[0]+(o[0]-a[0])*s,y:a[1]+(o[1]-a[1])*s}}var n=e=>document.querySelector(e),F={sensory:"\u611F\u899A\u795E\u7D4C",spinal:"\u810A\u9AC4",brain:"\u8133",motor:"\u904B\u52D5\u795E\u7D4C",muscle:"\u7B4B\u8089"},i="reflex",r=0,c=!1,L,h,T,u=[];function m(){c=!1,cancelAnimationFrame(L),h=void 0}function p(){clearTimeout(T),n("#flash").hidden=!0}function C(e){p();let t=n("#flash");t.hidden=!1,t.textContent=e?"\u25B6":"\u2161",t.dataset.playing=e,t.getAnimations().forEach(a=>a.cancel()),t.animate([{opacity:1},{opacity:0}],{duration:1e3,fill:"forwards"}),T=setTimeout(()=>t.hidden=!0,1e3)}function l(e,t){n(e).textContent!==t&&(n(e).textContent=t)}function R(){return r===0?i==="reflex"?["\u71B1\u3044\u3084\u304B\u3093\u306B\u6307\u5148\u304C\u3075\u308C\u305F","\u9752\u3044\u70B9\u306F\u3001\u3075\u308C\u305F\u76AE\u3075\u304B\u3089\u306E\u60C5\u5831\u3002\u518D\u751F\u3057\u3066\u3001\u624B\u304C\u96E2\u308C\u308B\u307E\u3067\u3092\u8FFD\u304A\u3046\u3002"]:["\u76AE\u3075\u3078\u306E\u5408\u56F3\u3067\u3001\u624B\u3092\u52D5\u304B\u3059","\u7DBF\u68D2\u304C\u6307\u5148\u306B\u3075\u308C\u305F\u5408\u56F3\u3067\u3001\u81EA\u5206\u3067\u624B\u3092\u4E0A\u3052\u308B\u5834\u5408\u3092\u6BD4\u3079\u3088\u3046\u3002"]:r<3?["\u76AE\u3075\u304B\u3089\u3001\u810A\u9AC4\u3078","\u611F\u899A\u795E\u7D4C\u3092\u901A\u3063\u3066\u3001\u523A\u6FC0\u306E\u60C5\u5831\u304C\u4F1D\u308F\u308A\u307E\u3059\u3002"]:i==="reflex"?r<5?["\u810A\u9AC4\u304B\u3089\u7B4B\u8089\u3078\u3002\u60C5\u5831\u306F\u8133\u3078\u3082","\u30AA\u30EC\u30F3\u30B8\u306F\u7B4B\u8089\u3078\u3001\u9752\u306F\u8133\u3078\u3002\u4E8C\u3064\u3092\u540C\u6642\u306B\u8FFD\u3063\u3066\u307F\u3088\u3046\u3002"]:r<7?["\u8133\u306E\u5224\u65AD\u3092\u5F85\u305F\u305A\u306B\u3001\u624B\u304C\u52D5\u304F","\u810A\u9AC4\u3067\u3064\u306A\u304C\u3063\u305F\u6307\u4EE4\u304C\u7B4B\u8089\u306B\u5C4A\u304D\u3001\u624B\u304C\u96E2\u308C\u307E\u3059\u3002"]:["\u53CD\u5C04\u306E\u3068\u304D\u3082\u3001\u8133\u3078\u4F1D\u308F\u308B","\u624B\u3092\u5F15\u304F\u6307\u4EE4\u306F\u810A\u9AC4\u3067\u3064\u306A\u304C\u308A\u3001\u523A\u6FC0\u306E\u60C5\u5831\u306F\u8133\u306B\u3082\u5C4A\u304D\u307E\u3059\u3002"]:r<5?["\u810A\u9AC4\u304B\u3089\u3001\u8133\u3078","\u76AE\u3075\u304B\u3089\u306E\u60C5\u5831\u304C\u8133\u3078\u4F1D\u308F\u308A\u307E\u3059\u3002"]:r<6?["\u8133\u3067\u5408\u56F3\u3092\u53D7\u3051\u53D6\u308A\u3001\u52D5\u4F5C\u3092\u6C7A\u3081\u308B","\u3053\u3053\u3067\u306F\u3001\u5408\u56F3\u3092\u611F\u3058\u3066\u624B\u3092\u52D5\u304B\u3059\u3068\u6C7A\u3081\u308B\u5834\u5408\u3067\u3059\u3002"]:r<8?["\u8133\u304B\u3089\u3001\u810A\u9AC4\u3078\u6307\u4EE4\u304C\u623B\u308B","\u4E0A\u308B\u60C5\u5831\u3068\u306F\u5225\u306E\u7D4C\u8DEF\u3092\u901A\u3063\u3066\u3001\u904B\u52D5\u306E\u6307\u4EE4\u304C\u4E0B\u308A\u307E\u3059\u3002"]:r<10?["\u904B\u52D5\u795E\u7D4C\u304B\u3089\u3001\u7B4B\u8089\u3078","\u8133\u304B\u3089\u306E\u6307\u4EE4\u304C\u3001\u810A\u9AC4\u3092\u901A\u3063\u3066\u7B4B\u8089\u306B\u5C4A\u304D\u307E\u3059\u3002"]:["\u7B4B\u8089\u306B\u6307\u4EE4\u304C\u5C4A\u304D\u3001\u624B\u304C\u52D5\u304F","\u8133\u3067\u306E\u5224\u65AD\u3092\u7D4C\u3066\u52D5\u304F\u3001\u610F\u8B58\u3057\u305F\u53CD\u5FDC\u306E\u4F8B\u3067\u3059\u3002"]}function f(){let e=E(i,r);n("#brain-feeling").toggleAttribute("hidden",i!=="reflex"||!e.brain),Object.assign(document.body.dataset,{...e,mode:i,playing:c}),document.querySelectorAll("button[data-mode]").forEach(o=>o.setAttribute("aria-pressed",o.dataset.mode===i)),n("#route-down").toggleAttribute("hidden",i==="reflex"),n("#down-label").toggleAttribute("hidden",i==="reflex"),n("#hot-object").toggleAttribute("hidden",i!=="reflex"),n("#touch-object").toggleAttribute("hidden",i==="reflex");for(let o of["sensory","up","down","motor"]){let s=w(o,e[o]);n("#pulse-"+o).setAttribute("cx",s.x),n("#pulse-"+o).setAttribute("cy",s.y),n("#pulse-"+o).setAttribute("opacity",e[o]>0&&e[o]<1?1:0),n("#trail-"+o).style.strokeDashoffset=1-e[o]}for(let[o,s]of[["skin",r>0],["spinal",e.sensory===1],["brain",e.brain],["muscle",e.muscle]])n("#"+o+"-node").classList.toggle("lit",s);n("#hand").setAttribute("transform","translate("+(i==="reflex"?72*e.movement:0)+" "+-44*e.movement+")"),n("#move-arrow").setAttribute("opacity",e.movement),l("#contact-state",e.movement>0?"\u7B4B\u8089\u304C\u52D5\u304B\u3057\u3066\u3001\u624B\u304C\u96E2\u308C\u308B":r===0?"\u3075\u308C\u305F\u6307\u5148\u304B\u3089\u3001\u60C5\u5831\u304C\u4F1D\u308F\u308B":"\u6307\u4EE4\u304C\u5C4A\u304F\u307E\u3067\u3001\u624B\u306F\u52D5\u304B\u306A\u3044"),l("#hand-title",i==="reflex"?"\u6307\u5148\u304C\u71B1\u3044\u3084\u304B\u3093\u306B\u3075\u308C\u3001\u7B4B\u8089\u306B\u6307\u4EE4\u304C\u5C4A\u304F\u3068\u624B\u3092\u5F15\u304F\u56F3":"\u7DBF\u68D2\u304C\u6307\u5148\u306B\u3075\u308C\u305F\u5408\u56F3\u3092\u611F\u3058\u3001\u8133\u306E\u5224\u65AD\u3092\u7D4C\u3066\u624B\u3092\u4E0A\u3052\u308B\u56F3"),n("#stimulus").setAttribute("opacity",r>0&&r<1?.5*(1-r):0);let[t,a]=R();l("#explanation-title",t),l("#explanation-note",a),l("#example-title",i==="reflex"?"\u71B1\u3044\u3082\u306E\u304B\u3089\u624B\u3092\u5F15\u304F":"\u5408\u56F3\u3092\u611F\u3058\u3066\u624B\u3092\u52D5\u304B\u3059"),l("#response-note",e.muscle?"\u7B4B\u8089\u306B\u6307\u4EE4\u304C\u5C4A\u304D\u3001\u624B\u304C\u3084\u304B\u3093\u304B\u3089\u96E2\u308C\u307E\u3059\u3002".replace("\u3084\u304B\u3093\u304B\u3089",i==="reflex"?"\u3084\u304B\u3093\u304B\u3089":"\u7DBF\u68D2\u304B\u3089"):r===0?"\u518D\u751F\u3059\u308B\u3068\u3001\u4FE1\u53F7\u3068\u624B\u304C\u52D5\u304D\u307E\u3059\u3002":e.motor>0||e.down>0?"\u7B4B\u8089\u3078\u3001\u6307\u4EE4\u304C\u5411\u304B\u3063\u3066\u3044\u307E\u3059\u3002":"\u523A\u6FC0\u306E\u60C5\u5831\u304C\u4F1D\u308F\u3063\u3066\u3044\u307E\u3059\u3002"),n("#brain-state").classList.toggle("arrived",e.brain),l("#brain-state",e.brain?"\u8133\u3078\uFF1A\u60C5\u5831\u304C\u5C4A\u3044\u305F":"\u8133\u3078\uFF1A\u60C5\u5831\u3092\u8FFD\u8DE1"),n("#muscle-state").classList.toggle("arrived",e.muscle),l("#muscle-state",e.muscle?"\u7B4B\u8089\u3078\uFF1A\u6307\u4EE4\u304C\u5C4A\u3044\u305F":"\u7B4B\u8089\u3078\uFF1A\u6307\u4EE4\u3092\u8FFD\u8DE1"),n("#play").setAttribute("aria-pressed",c),n("#play").textContent=c?"\u2161 \u4E00\u6642\u505C\u6B62":r===d(i)?"\u25B6 \u3082\u3046\u4E00\u5EA6":r===0?"\u25B6 \u523A\u6FC0\u3092\u9001\u308B":"\u25B6 \u7D9A\u304D\u3092\u898B\u308B",n("#previous").disabled=r===0,n("#next").disabled=r===d(i),n("#timeline").max=d(i),n("#timeline").value=r,n("#route-name").textContent=i==="reflex"?"\u3053\u306E\u810A\u9AC4\u53CD\u5C04\u306E\u6307\u4EE4\u306E\u7D4C\u8DEF":"\u3053\u306E\u610F\u8B58\u3057\u305F\u53CD\u5FDC\u306E\u7D4C\u8DEF"}function y(){n("#assembled").innerHTML="<li>\u76AE\u3075</li>"+u.map(t=>"<li>"+F[t]+"</li>").join("");let e=u.length===g[i].length;n("#choices").hidden=e,n("#undo").disabled=u.length===0,l("#build-note",e?i==="reflex"?"\u3064\u306A\u304C\u308A\u307E\u3057\u305F\u3002\u3053\u308C\u3068\u4E26\u884C\u3057\u3066\u3001\u60C5\u5831\u306F\u8133\u3078\u3082\u4F1D\u308F\u308A\u307E\u3059\u3002":"\u3064\u306A\u304C\u308A\u307E\u3057\u305F\u3002\u8133\u3078\u4E0A\u3063\u305F\u60C5\u5831\u304B\u3089\u3001\u810A\u9AC4\u3078\u623B\u308B\u6307\u4EE4\u3092\u8FFD\u3048\u307E\u3059\u3002":"\u56F3\u3092\u898B\u306A\u304C\u3089\u3001\u6B21\u306B\u3064\u306A\u304C\u308B\u5834\u6240\u30FB\u795E\u7D4C\u3092\u9078\u307C\u3046\u3002")}function N(e){c&&(r=k(i,r,h===void 0?0:Math.min(.1,(e-h)/1e3)),h=e,r===d(i)&&(m(),p()),f(),c&&(L=requestAnimationFrame(N)))}n("#play").addEventListener("click",()=>{c?(m(),C(!1)):(r===d(i)&&(r=0),c=!0,h=void 0,L=requestAnimationFrame(N),C(!0)),f()});for(let[e,t]of[["previous",-1],["next",1]])n("#"+e).addEventListener("click",()=>{m(),p(),r=M(i,r,t),f()});n("#timeline").addEventListener("input",e=>{m(),p(),r=E(i,+e.target.value).time,f()});for(let e of document.querySelectorAll("button[data-mode]"))e.addEventListener("click",()=>{m(),p(),i=e.dataset.mode,r=0,u=[],f(),y()});for(let e of document.querySelectorAll("button[data-place]"))e.addEventListener("click",()=>{let t=q(i,u,e.dataset.place);u=t.steps,t.accepted?y():l("#build-note","\u56F3\u306E\u77E2\u5370\u3092\u305F\u3069\u3063\u3066\u307F\u3088\u3046\u3002\u6B21\u306F\u300C"+F[g[i][u.length]]+"\u300D\u306B\u3064\u306A\u304C\u308A\u307E\u3059\u3002")});n("#undo").addEventListener("click",()=>{u=u.slice(0,-1),y()});n("#reset").addEventListener("click",()=>{m(),p(),r=0,i="reflex",u=[],n("#builder").open=!1,f(),y()});document.addEventListener("visibilitychange",()=>{document.hidden&&(m(),p(),f())});document.querySelectorAll("button,input").forEach(e=>e.disabled=!1);f();y();})();
+</script>
+</body>
+</html>
