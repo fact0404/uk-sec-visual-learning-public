@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Did と動詞の原形 | 英語を、比べて見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.dq-toolbar{display:flex;align-items:center;gap:10px;width:100%;max-width:820px;margin:auto}.dq-toolbar button{min-width:0;flex:1;padding:10px 14px}
+.dq-lesson{max-width:880px;margin:auto;padding:20px 26px}.dq-intro{font-size:14px;line-height:1.9;color:var(--muted);margin:0 0 18px}.dq-intro strong{color:var(--ink)}
+.dq-original{border:1px solid var(--line);border-radius:10px;background:#f5f8f5;padding:14px 18px}.dq-original h2,.dq-work h2{font-size:12px;font-weight:500;color:var(--muted);margin:0 0 6px}.dq-original p[lang=en]{font:650 clamp(20px,2.5vw,27px)/1.65 Arial,sans-serif;margin:0}.dq-ja{font-size:13px;color:var(--muted);line-height:1.8;margin:4px 0 0}
+.dq-work{padding-top:20px}.dq-work h2{min-height:22px;margin:0 0 10px}.dq-token-row{display:flex;align-items:center;flex-wrap:wrap;gap:7px;position:relative;min-height:88px}
+.dq-token{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:10px 10px;min-height:77px;border:1px solid #d5dfdd;border-bottom-width:3px;border-radius:8px;background:#f5f7f5;color:#43564c;min-width:0}
+.dq-token strong{font:650 clamp(21px,2.7vw,27px)/1.2 Arial,sans-serif;white-space:nowrap}.dq-role{font-size:12px;line-height:1.3;white-space:nowrap}.dq-token.subject{color:#1356a0;background:#edf5ff;border-color:#bed3ed}.dq-token.verb{color:#a63822;background:#fff0e9;border-color:#efc2b2}.dq-token.aux{color:#6740a7;background:#f3edff;border-color:#d4c4f0}.dq-token.time{color:#75520e;background:#fff8df;border-color:#dfd1a6}.dq-token.punctuation{padding:0;border:0;min-height:0;background:transparent;color:var(--ink)}
+.dq-result-translation{min-height:26px;margin-top:10px}.dq-route{font-size:14px;line-height:1.8;margin:8px 0 0;color:var(--muted);min-height:28px}.dq-time-note{font-size:13px;line-height:1.8;color:#70520f;background:#fff9e8;border-left:3px solid #cfb575;padding:10px 12px;margin:18px 0 0}.dq-time-note>span:first-child{font-family:Arial,sans-serif;font-weight:700}.dq-time-note>span:last-child{color:var(--muted)}
+.dq-takeaway{font-size:15px;line-height:1.9;margin:12px 0 0;padding:12px 14px;background:#edf5ef;border-radius:8px;min-height:53px}.dq-explore{border-top:1px solid var(--line);padding-top:18px;margin-top:20px}.dq-explore h2{font-size:16px;margin:0 0 5px}.dq-explore p{font-size:13px;line-height:1.8;color:var(--muted);margin:0}.dq-examples{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 8px}.dq-examples button[aria-pressed=true]{background:#e5f1e9;border-color:#367b64;color:#205941;box-shadow:inset 0 0 0 1px #367b64}
+.dq-motion{display:flex;align-items:center;gap:10px;min-height:48px;cursor:pointer}.dq-motion input{width:22px;height:22px;accent-color:var(--accent);flex-shrink:0}.dq-related{display:flex;flex-wrap:wrap;gap:8px 18px}.dq-related a{min-height:44px;display:inline-flex;align-items:center;color:#235f51}
+@media(max-width:760px){.vl-controls{position:sticky;top:0;z-index:2;background:var(--surface)}.dq-lesson{padding:18px}.dq-token-row{min-height:170px;align-content:center}}
+@media(max-width:480px){.dq-lesson{padding:16px 12px}.dq-toolbar{gap:8px}.dq-toolbar button{padding:10px 8px;font-size:13px}.dq-original{padding:12px}.dq-original p[lang=en]{font-size:21px}.dq-token{padding:9px 7px}.dq-token strong{font-size:19px}.dq-token-row{gap:6px}.dq-takeaway{font-size:14px}.dq-examples button{flex:1;min-width:0;padding:10px 8px;font-size:13px}.dq-time-note>span:last-child{display:block}}
+@media(max-width:380px){.dq-token{padding-inline:6px}.dq-token strong{font-size:17px}.dq-role{font-size:12px}.dq-token-row{gap:5px}}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM13 7a3 3 0 0 1 3-3h5v14h-5a3 3 0 0 0-3 3M6 8h3M6 12h3M16 8h2M16 12h2"/></svg><span>英語を、比べて見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>Did と動詞の原形</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">Did と動詞の原形</h1><p class="vl-question">過去のことをたずねると、動詞はどうなる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"><div class="dq-toolbar"><button id="transform">疑問文にする</button><button id="reset" class="vl-secondary" disabled>もとの文へ</button></div></div>
+        <div class="vl-stage"><div id="did-lesson" class="dq-lesson" data-mode="statement" data-example="0" aria-busy="false">
+  <p class="dq-intro">昨日の出来事を「〜しましたか」とたずねよう。<br><strong>動詞の形</strong>を見てから、上のボタンを押してね。</p>
+  <section class="dq-original" aria-labelledby="original-title">
+    <h2 id="original-title">もとの文：昨日のこと</h2>
+    <p lang="en" id="original-sentence">He played soccer yesterday.</p>
+    <p class="dq-ja" id="original-translation">彼は昨日サッカーをしました。</p>
+  </section>
+  <section class="dq-work" aria-labelledby="row-label">
+    <h2 id="row-label">もとの並び</h2>
+    <div class="dq-token-row" id="sentence-row" role="group" aria-label="He played soccer yesterday."><span class="dq-token subject" id="token-subject" aria-hidden="true"><span class="dq-role">主語</span><strong lang="en">He</strong></span><span class="dq-token verb" id="token-verb" aria-hidden="true"><span class="dq-role">過去形</span><strong lang="en">played</strong></span><span class="dq-token rest" id="token-rest" aria-hidden="true"><span class="dq-role">後ろのことば</span><strong lang="en">soccer</strong></span><span class="dq-token time" id="token-time" aria-hidden="true"><span class="dq-role">昨日</span><strong lang="en">yesterday</strong></span><span class="dq-token punctuation" id="token-punctuation" aria-hidden="true"><strong lang="en">.</strong></span></div>
+    <p class="dq-ja dq-result-translation" id="result-translation"></p>
+    <p class="dq-route" id="route"><strong lang="en">played</strong> は、どう変わるかな？</p>
+  </section>
+  <p class="dq-time-note"><span lang="en">yesterday</span> = 昨日 <span>― たずねるときも、昨日の話</span></p>
+  <p class="dq-takeaway" id="takeaway" aria-live="polite">もとの文を残して、形の変化を見よう。</p>
+  <section class="dq-explore" id="explore" aria-labelledby="explore-title" hidden>
+    <h2 id="explore-title">別の動詞でも確かめよう</h2>
+    <p>動詞がどう変わるか予想してから、疑問文にしてみよう。</p>
+    <div class="dq-examples" role="group" aria-label="例文を選ぶ">
+      <button class="vl-secondary" data-example="0" aria-pressed="true">played：サッカー</button>
+      <button class="vl-secondary" data-example="1" aria-pressed="false">went：学校へ</button>
+    </div>
+    <p class="dq-example-note" id="example-note">最初の例をもう一度見てもOK。</p>
+  </section>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>原形になっても、過去の質問</h3><p>一般動詞で過去のことをたずねるときは、Didを主語の前に置き、動詞を原形にします。Didが過去を示すので、後ろの動詞をもう一度過去形にしません。原形のplayやgoになっても、文全体が現在の話に変わるわけではありません。</p><p>playedの原形はplay。wentの原形はgoです。不規則な変化もあるので、原形にすることは、いつも語尾のedを外すこととは限りません。この教材ではyesterday（昨日）を残して、たずねる内容が昨日の出来事のままだと確かめます。</p><h3>この教材の範囲</h3><p>過去の一般動詞の文を、Didで始める疑問文へ変えています。否定文、be動詞のwas/were、疑問詞、短い答え方は別に学びます。Heは文の途中ではheと小文字で書きます。</p><h3>動きの見方</h3><p>もとの文は上に残ります。「完成形で止める」は、正しい疑問文を表示して動きを止めます。「もとの文へ」は選択中の例を戻します。別の例を選ぶと、その元の文から見直せます。カードの動きは形の対応を比べるための自作表現です。</p><label class="dq-motion"><input id="reduce-motion" type="checkbox">動きを減らす（完成形をすぐ表示）</label><p>この設定は初期オフです。途中でオンにすると正しい完成形で止まります。</p><h3>関連する教材</h3><p class="dq-related"><a href="./english-be-general-question-preview-v0.1.0.html">be動詞と一般動詞の疑問文</a><a href="./english-question-preview-v0.5.0.html">Does と動詞の原形</a></p><h3>出典</h3><p>2つの例文・図・操作は本教材用の自作です。文法事項は <a href="https://learnenglishkids.britishcouncil.org/grammar-vocabulary/grammar-practice/past-simple-questions" target="_blank" rel="noopener noreferrer">British Council：Past simple – questions</a> で確認しています。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var h=Object.freeze([Object.freeze({subject:"He",questionSubject:"he",past:"played",base:"play",rest:"soccer",time:"yesterday",originalTranslation:"\u5F7C\u306F\u6628\u65E5\u30B5\u30C3\u30AB\u30FC\u3092\u3057\u307E\u3057\u305F\u3002",questionTranslation:"\u5F7C\u306F\u6628\u65E5\u30B5\u30C3\u30AB\u30FC\u3092\u3057\u307E\u3057\u305F\u304B\u3002"}),Object.freeze({subject:"He",questionSubject:"he",past:"went",base:"go",rest:"to school",time:"yesterday",originalTranslation:"\u5F7C\u306F\u6628\u65E5\u5B66\u6821\u3078\u884C\u304D\u307E\u3057\u305F\u3002",questionTranslation:"\u5F7C\u306F\u6628\u65E5\u5B66\u6821\u3078\u884C\u304D\u307E\u3057\u305F\u304B\u3002"})]);function x(n,a=!1){if(!Number.isInteger(n)||!h[n])throw new RangeError("Unknown example");if(typeof a!="boolean")throw new TypeError("Question state must be boolean");let e=h[n],o=(s,C,E,k=s)=>({key:s,word:C,role:E,kind:k}),i=[o("subject",a?e.questionSubject:e.subject,"\u4E3B\u8A9E"),o("verb",a?e.base:e.past,a?"\u539F\u5F62":"\u904E\u53BB\u5F62"),o("rest",e.rest,"\u5F8C\u308D\u306E\u3053\u3068\u3070"),o("time",e.time,"\u6628\u65E5"),o("punctuation",a?"?":".","")];return a&&i.unshift(o("aux","Did","\u904E\u53BB\u3092\u793A\u3059")),{...e,original:`${e.subject} ${e.past} ${e.rest} ${e.time}.`,sentence:i.slice(0,-1).map(s=>s.word).join(" ")+i.at(-1).word,tokens:i,translation:a?e.questionTranslation:e.originalTranslation,pastCarrier:a?"Did":e.past,timeMeaning:"past"}}var t=n=>document.getElementById(n),c=0,m=!1,r="statement",w=!1,p=0,d=[];function u(n){m=n;let a=x(c,n);t("original-sentence").textContent=a.original,t("original-translation").textContent=a.originalTranslation,t("sentence-row").replaceChildren(...a.tokens.map(e=>{let o=document.createElement("span");if(o.className=`dq-token ${e.kind}`,o.id=`token-${e.key}`,o.setAttribute("aria-hidden","true"),e.role){let s=document.createElement("span");s.className="dq-role",s.textContent=e.role,o.append(s)}let i=document.createElement("strong");return i.lang="en",i.textContent=e.word,o.append(i),o})),t("sentence-row").setAttribute("aria-label",a.sentence),t("row-label").textContent=n?"\u7591\u554F\u6587":"\u3082\u3068\u306E\u4E26\u3073",t("result-translation").textContent=n?a.translation:"",t("route").textContent=n?`Did \u3092\u52A0\u3048\u308B\u3068\u3001${a.past} \u306F\u539F\u5F62\u306E ${a.base} \u306B\u3002`:`${a.past} \u306F\u3001\u3069\u3046\u5909\u308F\u308B\u304B\u306A\uFF1F`,t("takeaway").textContent=n?"Did \u304C\u904E\u53BB\u3092\u793A\u3059\u3002\u52D5\u8A5E\u304C\u539F\u5F62\u3067\u3082\u3001\u6628\u65E5\u306E\u3053\u3068\u3092\u305F\u305A\u306D\u3066\u3044\u308B\u3002":"\u3082\u3068\u306E\u6587\u3092\u6B8B\u3057\u3066\u3001\u5F62\u306E\u5909\u5316\u3092\u898B\u3088\u3046\u3002",t("example-note").textContent=c===1?"went \u306E\u539F\u5F62\u306F go\u3002\u8A9E\u5C3E\u3092\u5916\u3059\u3060\u3051\u3067\u306F\u306A\u3044\u306D\u3002":"\u6700\u521D\u306E\u4F8B\u3092\u3082\u3046\u4E00\u5EA6\u898B\u3066\u3082OK\u3002",document.querySelectorAll("button[data-example]").forEach(e=>e.setAttribute("aria-pressed",String(Number(e.dataset.example)===c)))}function f(){t("did-lesson").dataset.mode=r,t("did-lesson").dataset.example=String(c),t("did-lesson").setAttribute("aria-busy",String(r==="changing")),t("transform").textContent=r==="changing"?"\u5B8C\u6210\u5F62\u3067\u6B62\u3081\u308B":m?"\u3082\u3046\u4E00\u5EA6\u898B\u308B":"\u7591\u554F\u6587\u306B\u3059\u308B",t("transform").classList.toggle("is-playing",r==="changing"),t("reset").disabled=r==="statement",t("explore").hidden=!w,r==="changing"&&(t("row-label").textContent="\u5F62\u3092\u5909\u3048\u3066\u3044\u308B\u9014\u4E2D \u2192 \u7591\u554F\u6587")}function g(){p++;for(let n of d)n.cancel();d=[]}function l(){g(),r="question",w=!0,m=!0,t("row-label").textContent="\u7591\u554F\u6587",f()}function y(){g(),r="statement",u(!1),f()}function j(){if(r==="changing"){l();return}g(),m&&u(!1);let n=new Map([...document.querySelectorAll(".dq-token")].map(e=>[e.id,e.getBoundingClientRect()]));if(u(!0),r="changing",f(),t("reduce-motion").checked){l();return}let a=p;for(let e of document.querySelectorAll(".dq-token")){let o=n.get(e.id),i=e.getBoundingClientRect(),s=o?{transform:`translate(${o.x-i.x}px,${o.y-i.y}px)`,opacity:1}:{transform:"translate(0,-24px)",opacity:0};d.push(e.animate([s,{transform:"translate(0,0)",opacity:1}],{duration:1200,easing:"ease-in-out"}))}Promise.allSettled(d.map(e=>e.finished)).then(()=>{a===p&&l()})}t("transform").addEventListener("click",j);t("reset").addEventListener("click",y);document.querySelectorAll("button[data-example]").forEach(n=>n.addEventListener("click",()=>{c=Number(n.dataset.example),y()}));t("reduce-motion").checked=!1;t("reduce-motion").addEventListener("change",()=>{t("reduce-motion").checked&&r==="changing"&&l()});function b(){r==="changing"&&l()}document.addEventListener("visibilitychange",()=>{document.hidden&&b()});window.addEventListener("pagehide",b);window.addEventListener("resize",b);u(!1);f();})();
+</script>
+</body>
+</html>
