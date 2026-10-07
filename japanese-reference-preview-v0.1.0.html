@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>指示先の置換 | 国語を、つなげて読む</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+/* Shared shell stays unchanged. This lesson places the range choice beside its result. */
+.vl-controls:empty{display:none}
+.jr-reading{max-width:820px;margin:auto;padding:22px 28px 24px}
+.jr-intro{font-size:15px;color:var(--muted);line-height:1.85;margin:0 0 18px}.jr-intro strong{color:var(--ink);font-weight:600}
+.jr-source h2,.jr-result h2{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 10px}
+.jr-passage{font-size:clamp(18px,2.2vw,22px);line-height:1.9;line-break:strict;overflow-wrap:anywhere}
+.jr-passage p{margin:0}.jr-passage p+p{margin-top:8px}
+.jr-selected{color:#22533d;background:#dceedd;border-bottom:2px solid #80a98d;padding:1px 2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.jr-target{background:#f0e9fb;border-bottom:2px dashed #9b7cc2;color:#5b3e7f;padding:1px 2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.jr-key{display:flex;gap:8px 18px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin:13px 0 0}.jr-key span{display:flex;align-items:center;gap:6px}.jr-key i{display:inline-block;width:16px;height:12px}.jr-key-selected{background:#dceedd;border-bottom:2px solid #80a98d}.jr-key-target{background:#f0e9fb;border-bottom:2px dashed #9b7cc2}
+.jr-operation{border-top:1px solid var(--line);padding-top:17px;margin-top:18px}.jr-operation>span{font-size:13px;color:var(--muted);display:block;margin-bottom:9px}
+.jr-ranges{display:flex;gap:8px;flex-wrap:wrap}.jr-ranges button{flex:1;min-height:48px;min-width:0;padding:10px 12px;background:transparent;color:var(--muted);border-color:var(--line)}.jr-ranges button[aria-pressed=true]{border-color:#367b64;background:#e5f1e9;color:#205941;box-shadow:inset 0 0 0 1px #367b64;font-weight:650}
+.jr-result{border:1px solid var(--line);border-radius:10px;background:#f7faf5;padding:16px 18px;margin-top:16px}.jr-result h2{color:#31614c;display:flex;align-items:center;gap:7px}.jr-result h2 span{font-size:20px;font-weight:400;line-height:1}
+.jr-result-copy{font-size:clamp(18px,2.2vw,22px);line-height:1.9;min-height:3.8em;margin:0;line-break:strict;overflow-wrap:anywhere}
+.jr-observe{font-size:13px;color:var(--muted);line-height:1.8;border-top:1px solid var(--line);margin:13px 0 0;padding-top:11px}.jr-observe br{display:none}.jr-observe br::after{content:' '}
+.jr-hints li{margin:8px 0}.jr-hints{padding-left:1.4em}
+@media(max-width:620px){.jr-reading{padding:16px}.jr-intro{font-size:14px;margin-bottom:15px}.jr-passage,.jr-result-copy{font-size:18px;line-height:1.8}.jr-result-copy{min-height:5.4em}.jr-result{padding:13px 12px;margin-top:12px}.jr-operation{padding-top:13px;margin-top:15px}.jr-key{gap:5px 12px}.jr-ranges button{padding:10px 5px;font-size:13px}.jr-observe br{display:block}.jr-observe{margin-top:10px;padding-top:9px}.jr-passage p+p{margin-top:6px}}
+@media(max-width:360px){.jr-reading{padding:14px 12px}.jr-ranges{gap:5px}.jr-key{font-size:11px}.jr-passage,.jr-result-copy{font-size:17px}.jr-intro{font-size:13px}}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h7a3 3 0 0 1 2 1 3 3 0 0 1 2-1h7v15h-7a3 3 0 0 0-2 1 3 3 0 0 0-2-1H3zM12 5v15M6 8h3M6 12h3M15 8h3M15 12h3"/></svg><span>国語を、つなげて読む</span></span>
+      <p class="vl-context"><span class="vl-subject">国語</span><span>指示先の置換</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">国語</p><h1 class="vl-title">指示先の置換</h1><p class="vl-question">「この案」には、どこまで入れる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div class="jr-reading" id="reference-lesson" data-selected="0">
+  <p class="jr-intro">「この案」が何を指すか、<strong>前の文の言葉を入れて</strong>確かめよう。</p>
+  <section class="jr-source" aria-labelledby="source-title">
+    <h2 id="source-title">もとの文章</h2>
+    <div class="jr-passage">
+      <p id="source-first"><span id="source-before">雨の日に体育館を開放するという</span><mark class="jr-selected" id="source-selected">案</mark><span id="source-after">が出た。</span></p>
+      <p id="source-second"><span class="jr-target" id="reference-target">この案</span>なら、休み時間にも体を動かせる。</p>
+    </div>
+    <p class="jr-key"><span><i class="jr-key-selected" aria-hidden="true"></i>選んだ範囲</span><span><i class="jr-key-target" aria-hidden="true"></i>置きかえる指示語</span></p>
+  </section>
+  <div class="jr-operation">
+    <span id="range-title">入れる範囲を変える</span>
+    <div class="jr-ranges" role="group" aria-labelledby="range-title"><button data-range="0" aria-pressed="true" aria-label="案だけ：案">案だけ</button><button data-range="1" aria-pressed="false" aria-label="内容まで：雨の日に体育館を開放するという案">内容まで</button><button data-range="2" aria-pressed="false" aria-label="「が」まで：雨の日に体育館を開放するという案が">「が」まで</button></div>
+  </div>
+  <section class="jr-result" aria-labelledby="result-title">
+    <h2 id="result-title"><span aria-hidden="true">↓</span> 試しに入れた文</h2>
+    <p class="jr-result-copy" id="result-copy" aria-live="polite" aria-atomic="true"><mark class="jr-selected" id="result-selected">案</mark><span id="result-suffix">なら、休み時間にも体を動かせる。</span></p>
+    <p class="jr-observe">何をする案か伝わる？<br>「なら」につながる？</p>
+  </section>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>読み比べのヒント</h3><p>指示語は、一語だけでなく内容のまとまりを指すことがあります。候補を実際に入れ、意味が通るか、後ろの語につながるかを確かめます。</p><ul class="jr-hints"><li>「案」だけでも文はつながります。何をする案かは、前の文を読んで補っています。</li><li>「雨の日に体育館を開放するという案」まで入れると、何をする案かがこの文にも表れます。長く選べばいつもよい、ということではありません。</li><li>「が」まで入れると「案がなら」となります。内容だけでなく、どこで区切るかも確かめましょう。</li></ul><p>この画面は候補を読み比べる実験です。選んだ文字をそのまま入れているため、「試しに入れた文」がいつも自然な文になるとは限りません。もとの文章は変わりません。</p><h3>教材について</h3><p>文章・図・操作はこの教材のために自作しました。教科書や入試問題の転載ではありません。指示語の内容を確かめる最初の例として使い、別の文章では前後の内容に合わせて考えます。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var c="\u96E8\u306E\u65E5\u306B\u4F53\u80B2\u9928\u3092\u958B\u653E\u3059\u308B\u3068\u3044\u3046\u6848\u304C\u51FA\u305F\u3002";var a="\u306A\u3089\u3001\u4F11\u307F\u6642\u9593\u306B\u3082\u4F53\u3092\u52D5\u304B\u305B\u308B\u3002",s=Object.freeze([Object.freeze({label:"\u6848\u3060\u3051",text:"\u6848"}),Object.freeze({label:"\u5185\u5BB9\u307E\u3067",text:"\u96E8\u306E\u65E5\u306B\u4F53\u80B2\u9928\u3092\u958B\u653E\u3059\u308B\u3068\u3044\u3046\u6848"}),Object.freeze({label:"\u300C\u304C\u300D\u307E\u3067",text:"\u96E8\u306E\u65E5\u306B\u4F53\u80B2\u9928\u3092\u958B\u653E\u3059\u308B\u3068\u3044\u3046\u6848\u304C"})]);function l(e){if(!Number.isInteger(e)||e<0||e>=s.length)throw new RangeError("Unknown reference range");let{label:r,text:t}=s[e],o=c.indexOf(t);return{index:e,label:r,selected:t,before:c.slice(0,o),after:c.slice(o+t.length),original:c,originalSecond:"\u3053\u306E\u6848"+a,target:"\u3053\u306E\u6848",suffix:a,result:t+a}}var n=e=>document.getElementById(e);function f(e){let r=l(e);n("source-before").textContent=r.before,n("source-selected").textContent=r.selected,n("source-after").textContent=r.after,n("result-selected").textContent=r.selected,n("reference-lesson").dataset.selected=String(e),document.querySelectorAll("[data-range]").forEach(t=>t.setAttribute("aria-pressed",String(Number(t.dataset.range)===e)))}document.querySelectorAll("[data-range]").forEach(e=>e.addEventListener("click",()=>f(Number(e.dataset.range))));})();
+</script>
+</body>
+</html>
