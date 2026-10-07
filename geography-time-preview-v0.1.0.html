@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>経度と時差 | 社会を、動かして考える</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-controls:empty{display:none}
+.gt-lesson{--gt-b:#a54e23;--gt-b-pale:#fff0e2;padding:22px clamp(12px,3vw,32px);max-width:920px;margin:auto}
+.gt-intro{font-size:15px;line-height:1.8;margin:0 0 18px;color:var(--muted)}.gt-intro strong{color:var(--ink)}
+.gt-instant{margin:0;text-align:center;font-size:14px;font-weight:700}.gt-instant span{white-space:nowrap;font-weight:400;color:var(--muted)}
+.gt-clocks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px auto 18px;max-width:550px}
+.gt-clock{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;background:#f4f8f5;min-width:0}.gt-clock.gt-b{background:var(--gt-b-pale);border-color:#d8b398}
+.gt-clock h2{font-size:13px;font-weight:400;margin:0 0 6px;line-height:1.6}.gt-clock h2 b{color:var(--accent);font-size:15px;margin-right:4px}.gt-b h2 b{color:var(--gt-b)}.gt-clock h2 span{display:block;font-size:14px;font-weight:700}
+.gt-clock svg{width:68px;height:68px;margin:auto}.gt-dial{fill:#fff;stroke:#c8d3cc;stroke-width:1.5}.gt-face-label{font-size:10px;text-anchor:middle;fill:#52675c}.gt-hour{stroke:var(--accent);stroke-width:4;stroke-linecap:round}.gt-b .gt-hour{stroke:var(--gt-b)}.gt-minute{stroke:#53675e;stroke-width:2;stroke-linecap:round}
+.gt-clock-time{font-size:28px;line-height:1.4;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums;margin:4px 0 0}.gt-b .gt-clock-time{color:var(--gt-b)}
+.gt-turn{text-align:center;font-size:14px;margin:0 0 8px;font-weight:700}.gt-turn span{padding-inline:10px;color:var(--muted)}
+.gt-rotation{display:flex;justify-content:space-between;margin:0 12px;font-size:12px;color:var(--muted)}
+.gt-track{height:149px;position:relative;margin:0 12px;user-select:none;-webkit-user-select:none}
+.gt-sectors{display:grid;grid-template-columns:repeat(24,minmax(0,1fr));height:40px;position:absolute;left:0;right:0;top:30px;border:1px solid #9caea3;border-radius:3px;overflow:hidden}
+.gt-sector{border-right:1px solid #9caea3;background:#eaf0eb}.gt-sector:nth-child(even){background:#fff}.gt-sector:last-child{border-right:0}.gt-sector.gt-outside{background:repeating-linear-gradient(135deg,#e9ece9 0 3px,#fafbf9 3px 6px)}
+.gt-distance{position:absolute;top:30px;height:40px;left:50%;width:0;background:#e5a06877;pointer-events:none;border-block:2px solid var(--gt-b)}
+.gt-reference{position:absolute;left:50%;top:0;transform:translateX(-50%);color:var(--accent);font-size:17px;font-weight:700}
+.gt-zero{position:absolute;left:50%;top:25px;height:48px;border-left:2px solid var(--accent);pointer-events:none}
+.gt-ticks{position:absolute;top:75px;inset-inline:0;font-size:12px;color:var(--muted)}.gt-ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}.gt-ticks span:nth-child(1){left:8.3333%}.gt-ticks span:nth-child(2){left:50%}.gt-ticks span:nth-child(3){left:91.6667%}
+.gt-handle{position:absolute;top:100px;left:50%;width:52px;height:44px;border-radius:12px;border:2px solid var(--gt-b);background:var(--gt-b-pale);color:var(--gt-b);display:grid;place-items:center;transform:translateX(-50%);font-weight:700;cursor:ew-resize;touch-action:none;outline-offset:4px}
+.gt-handle::before{content:"";position:absolute;bottom:100%;height:33px;border-left:2px solid var(--gt-b)}.gt-handle:focus-visible{outline:3px solid #266fb0}.gt-handle[data-dragging=true]{background:#ffd7b8}
+.gt-step-key{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--muted);margin:7px 0 0}.gt-step-key i{display:block;width:20px;height:20px;background:var(--gt-b-pale);border:1px solid var(--gt-b)}
+.gt-operation{margin-top:17px;text-align:center}.gt-operation p{font-size:13px;margin:0 0 7px}.gt-operation p span{color:var(--muted);white-space:nowrap}.gt-move-buttons{display:flex;justify-content:center;gap:12px}.gt-move-buttons button{flex:1;max-width:200px}
+.gt-observation{margin:14px 0;background:#f4f7f3;border-left:3px solid var(--gt-b);padding:10px 12px;min-height:48px;font-size:14px;font-weight:600}
+.gt-player{display:flex;gap:10px;flex-wrap:wrap}.gt-player button{flex:1}.gt-guidance{margin:9px 0 0;font-size:12px;line-height:1.8;color:var(--muted);min-height:22px}.gt-model-note{font-size:12px;line-height:1.8;color:var(--muted);margin:15px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.gt-sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:480px){.gt-lesson{padding:16px 12px}.gt-intro{font-size:14px;margin-bottom:14px}.gt-instant{font-size:13px}.gt-clocks{gap:8px;margin-bottom:16px}.gt-clock{padding:8px 4px}.gt-clock h2{font-size:12px}.gt-player{gap:8px}.gt-player button{padding:10px 12px;font-size:13px}.gt-turn{font-size:13px}.gt-turn span{padding-inline:5px}.gt-observation{font-size:13px}.gt-move-buttons{gap:8px}.gt-move-buttons button{padding:8px;font-size:13px}}
+
+.gt-why{font-size:12px;color:var(--muted);margin:-6px 0 15px;line-height:1.8}
+.gt-ticks{z-index:1;pointer-events:none}.gt-ticks span{background:var(--surface);padding-inline:2px}
+
+.gt-guidance{margin-bottom:14px}.gt-motion-choice{display:flex;align-items:center;gap:10px;min-height:48px;cursor:pointer}.gt-motion-choice input{width:22px;height:22px;flex-shrink:0;accent-color:var(--accent)}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6h14M5 18h14"/></svg><span>社会を、動かして考える</span></span>
+      <p class="vl-context"><span class="vl-subject">社会・地理</span><span>経度と時差</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">社会・地理</p><h1 class="vl-title">経度と時差</h1><p class="vl-question">東の場所では、時計はどうなる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div class="gt-lesson" id="time-lesson" data-longitude="0" data-playing="false">
+  <p class="gt-intro">地球1周を開いた、経度の帯です。<br><strong>Bを置く場所</strong>を変えて、二つの時計を比べよう。</p>
+  <div class="gt-player"><button id="demo-play">見本を見る</button><button class="vl-secondary" id="reset">はじめに戻す</button></div>
+  <p class="gt-guidance" id="guidance">Bを東へ1区切り動かす見本です。直接動かしてもOK。</p>
+  <p class="gt-instant">同じ瞬間を比べる <span>— Aは12時に固定</span></p>
+  <div class="gt-clocks">
+    <section class="gt-clock gt-a" aria-labelledby="a-title">
+      <h2 id="a-title"><b>A</b> 基準の場所 <span>0°</span></h2>
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="gt-dial" cx="40" cy="40" r="37"/><g class="gt-face-label"><text x="40" y="15">12</text><text x="67" y="44">3</text><text x="40" y="72">6</text><text x="13" y="44">9</text></g><line class="gt-minute"  x1="40" y1="40" x2="40" y2="18"/><line class="gt-hour"  x1="40" y1="40" x2="40" y2="24"/><circle cx="40" cy="40" r="3" fill="#53675e"/></svg>
+      <p class="gt-clock-time">12:00</p>
+    </section>
+    <section class="gt-clock gt-b" aria-labelledby="b-title">
+      <h2 id="b-title"><b>B</b> 比べる場所 <span id="b-longitude">0°</span></h2>
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="gt-dial" cx="40" cy="40" r="37"/><g class="gt-face-label"><text x="40" y="15">12</text><text x="67" y="44">3</text><text x="40" y="72">6</text><text x="13" y="44">9</text></g><line class="gt-minute" id="b-minute" x1="40" y1="40" x2="40" y2="18"/><line class="gt-hour" id="b-hour" x1="40" y1="40" x2="40" y2="24"/><circle cx="40" cy="40" r="3" fill="#53675e"/></svg>
+      <p class="gt-clock-time" id="b-time">12:00</p>
+    </section>
+  </div>
+  <div class="gt-diagram">
+    <p class="gt-turn">1周 360° <span>↔</span> 1日 約24時間</p>
+    <p class="gt-rotation"><span>西</span><span>地球の回る向き →</span><span>東</span></p>
+    <div class="gt-track" id="longitude-track">
+      <div class="gt-reference" aria-hidden="true">A</div>
+      <div class="gt-sectors" aria-label="1周を24等分した経度の帯"><span class="gt-sector gt-outside" aria-hidden="true"></span><span class="gt-sector gt-outside" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector" aria-hidden="true"></span><span class="gt-sector gt-outside" aria-hidden="true"></span><span class="gt-sector gt-outside" aria-hidden="true"></span></div>
+      <div class="gt-distance" id="longitude-distance" aria-hidden="true"></div>
+      <div class="gt-zero" aria-hidden="true"></div>
+      <div class="gt-ticks" aria-hidden="true"><span>西経150°</span><span>0°</span><span>東経150°</span></div>
+      <div class="gt-handle" id="longitude-handle" tabindex="0" role="slider" aria-label="Bの経度" aria-valuemin="-150" aria-valuemax="150" aria-valuenow="0" aria-valuetext="0度、12時、Aと同じ" aria-orientation="horizontal" aria-describedby="move-help"><span aria-hidden="true">↔ B</span></div>
+    </div>
+    <p class="gt-step-key"><i aria-hidden="true"></i><span>1区切り：15° ↔ 1時間</span></p>
+  </div>
+  <div class="gt-operation">
+    <p id="move-help">Bのつまみを左右へ動かす <span>（15°ずつ）</span></p>
+    <div class="gt-move-buttons"><button class="vl-secondary" id="move-west">← 西へ15°</button><button class="vl-secondary" id="move-east">東へ15° →</button></div>
+  </div>
+  <p class="gt-observation" id="observation">AとBは同じ場所。時計も同じ12時。</p>
+  <p class="gt-why">地球が西から東へ回るので、東は先に正午を迎えます。</p>
+  <p class="gt-model-note">経度で比べる模型です。国・地域の実際の時計は、共通の「標準時」で決まります。</p>
+  <p class="gt-sr-only" id="announcement" aria-live="polite" aria-atomic="true"></p>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>なぜ、東の時計が進む？</h3><p>地球は西から東へ回るため、東の地点は先に正午を迎えます。Aが正午のとき、東のBはもう正午を過ぎています。ここでは同じ瞬間の二つの場所を比べています。Bを動かしても、時間を進めているわけではありません。</p><h3>1区切りが15°・1時間になる理由</h3><p>地球が約24時間で1回自転するとして、その1周を24個の区切りに分けました。360° ÷ 24 = 15°。帯の1区切りが15°に当たり、時計では1時間分です。Bを3区切り動かすと、経度は45°、時計は3時間分ちがいます。</p><h3>この模型と実際の時計</h3><p>この教材は、経度に合わせて時刻を比べる簡略化した模型です。Aを0°・12時に固定し、Bを西経150°〜東経150°で動かすので、表示は同じ日の02時〜22時に収まります。帯の斜線の部分は動かせない範囲です。</p><p>実際には、国・地域が決めた共通の「標準時」を使います。場所の経度だけで、その国や町の時計は決められません。図の区切りは国境や時刻帯の境界ではありません。日付変更線と日をまたぐ計算は、この教材では扱いません。</p><p>太陽が実際に南中する時刻は場所や日付で変わり、いつも時計の12時ちょうどになるわけではありません。</p><h3>操作のヒント</h3><p>Bのつまみは左右にドラッグできます。キーボードでは矢印キーで15°ずつ、Home / Endで両端へ移ります。見本の途中でもBを動かせます。「見本を停止」は最も近い15°の目盛りで止まります。「はじめに戻す」は二つの時計を0°・12時へそろえます。</p><label class="gt-motion-choice"><input type="checkbox" id="reduce-motion">見本の動きを省いて、結果だけ表示する</label><p>初期はオフです。見本の途中でオンにすると、東15°・13時の結果へそろえます。端末の設定だけで教材の動きを省略することはありません。</p><h3>確かめよう</h3><p>Bを西経30°から東経15°へ動かすと、時計は何時間分ちがう？ 帯の区切りを数えて説明してみよう。</p><h3>出典</h3><p>図・時計・操作はこの教材のために自作しました。経度と時刻の関係、模型の範囲は次の国立天文台の資料で確認しています。</p><ul><li><a href="https://www.nao.ac.jp/faq/a0108.html" target="_blank" rel="noopener noreferrer">太陽の南中時刻はどうすればわかる？</a></li><li><a href="https://eco2.mtk.nao.ac.jp/koyomi/wiki/C9B8BDE0BBFE.html" target="_blank" rel="noopener noreferrer">暦Wiki：標準時</a></li></ul></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var y=Object.freeze(Array.from({length:24},(e,t)=>Object.freeze({from:-180+t*15,to:-180+(t+1)*15}))),E=2600;function p(e){if(typeof e!="number"||!Number.isFinite(e))throw new RangeError("A finite number is required")}function h(e){return p(e),Math.max(-150,Math.min(150,Math.round(e/15)*15))||0}function A(e){if(p(e),!Number.isInteger(e)||Math.abs(e)>150)throw new RangeError("Longitude must be an integer from -150 to 150");let t=e*(60/15),s=720+t,f=Math.floor(s/60),m=s%60;return{longitude:e,longitudeLabel:e===0?"0\xB0":`${e<0?"\u897F\u7D4C":"\u6771\u7D4C"}${Math.abs(e)}\xB0`,referenceClock:"12:00",differenceMinutes:t,clock:`${String(f).padStart(2,"0")}:${String(m).padStart(2,"0")}`,hourAngle:s/2,minuteAngle:m*6,position:(e+180)/360*100}}function $(e){p(e);let t=Math.max(0,Math.min(1,(e-400)/1800));return Math.round(15*t*t*(3-2*t))}var n=e=>document.getElementById(e),x=n("time-lesson"),r=n("longitude-handle"),i=0,a=!1,g=0,R=0,o=null;function b(e){if(e.longitude===0)return"A\u3068B\u306F\u540C\u3058\u5834\u6240\u3002\u6642\u8A08\u3082\u540C\u305812\u6642\u3002";let t=Math.abs(e.differenceMinutes),s=Math.floor(t/60),f=t%60,m=(s?`${s}\u6642\u9593`:"")+(f?`${f}\u5206`:"");return`B\u306FA\u3088\u308A${e.longitude>0?"\u6771":"\u897F"}\u3002\u6642\u8A08\u306F${m}${e.longitude>0?"\u9032\u3093\u3067\u3044\u308B":"\u9045\u308C\u3066\u3044\u308B"}\u3002`}function d(e=!1){let t=A(i);x.dataset.longitude=String(i),x.dataset.playing=String(a),n("b-longitude").textContent=t.longitudeLabel,n("b-time").textContent=t.clock,n("b-hour").setAttribute("transform",`rotate(${t.hourAngle} 40 40)`),n("b-minute").setAttribute("transform",`rotate(${t.minuteAngle} 40 40)`),r.style.left=`${t.position}%`,r.setAttribute("aria-valuenow",String(i)),r.setAttribute("aria-valuetext",`${t.longitudeLabel}\u3001${t.clock}\u3001${b(t)}`);let s=n("longitude-distance");s.style.left=`${Math.min(50,t.position)}%`,s.style.width=`${Math.abs(t.position-50)}%`,n("observation").textContent=b(t),n("move-west").disabled=i<=-150,n("move-east").disabled=i>=150,n("demo-play").textContent=a?"\u898B\u672C\u3092\u505C\u6B62":"\u898B\u672C\u3092\u898B\u308B",n("demo-play").classList.toggle("is-playing",a),e&&(n("announcement").textContent=`B\u306F${t.longitudeLabel}\u3001${t.clock}\u3002${b(t)}`)}function u(){o!==null&&r.hasPointerCapture(o)&&r.releasePointerCapture(o),o=null,r.dataset.dragging="false"}function c(){a&&(cancelAnimationFrame(g),a=!1,i=h(i),n("guidance").textContent="\u898B\u672C\u3092\u505C\u6B62\u3057\u307E\u3057\u305F\u3002B\u309215\xB0\u306E\u76EE\u76DB\u308A\u306B\u305D\u308D\u3048\u307E\u3057\u305F\u3002",d(!0))}function l(e){c(),i=h(e),n("guidance").textContent="\u540C\u3058\u77AC\u9593\u306E\u6BD4\u8F03\u3067\u3059\u3002B\u306E\u5834\u6240\u3092\u5909\u3048\u3066\u3082\u3001A\u306F12\u6642\u306E\u307E\u307E\u3002",d(!0)}function L(e){if(!a)return;let t=e-R;if(i=$(t),d(),t>=E){a=!1,i=15,n("guidance").textContent="B\u3092\u6771\u30781\u533A\u5207\u308A\u52D5\u304B\u3059\u3068\u3001\u6642\u8A08\u306F1\u6642\u9593\u5148\u3002\u540C\u3058\u77AC\u9593\u306E\u6BD4\u8F03\u3067\u3059\u3002",d(!0);return}g=requestAnimationFrame(L)}n("demo-play").addEventListener("click",()=>{if(a){c();return}u(),i=0,a=!0,R=performance.now(),n("guidance").textContent="B\u306E\u5834\u6240\u3060\u3051\u3092\u3001\u6771\u30781\u533A\u5207\u308A\u52D5\u304B\u3057\u3066\u3044\u307E\u3059\u3002A\u306E12\u6642\u306F\u56FA\u5B9A\u3002",d(),n("reduce-motion").checked?M():g=requestAnimationFrame(L)});function M(){cancelAnimationFrame(g),L(R+E),n("guidance").textContent="\u52D5\u304D\u3092\u7701\u3044\u3066\u3001B\u304C\u677115\xB0\u30FB13\u6642\u306E\u7D50\u679C\u3092\u8868\u793A\u3057\u3066\u3044\u307E\u3059\u3002"}n("reduce-motion").addEventListener("change",()=>{n("reduce-motion").checked&&a&&M()});n("reset").addEventListener("click",()=>{c(),u(),i=0,n("guidance").textContent="B\u3092\u6771\u30781\u533A\u5207\u308A\u52D5\u304B\u3059\u898B\u672C\u3067\u3059\u3002\u76F4\u63A5\u52D5\u304B\u3057\u3066\u3082OK\u3002",d(!0)});n("move-west").addEventListener("click",()=>l(i-15));n("move-east").addEventListener("click",()=>l(i+15));function v(e){let t=n("longitude-track").getBoundingClientRect();return(e.clientX-t.left)/t.width*360-180}r.addEventListener("pointerdown",e=>{!e.isPrimary||e.button!==0||(e.preventDefault(),c(),o=e.pointerId,r.setPointerCapture(o),r.dataset.dragging="true",r.focus({preventScroll:!0}))});r.addEventListener("pointermove",e=>{e.pointerId===o&&l(v(e))});r.addEventListener("pointerup",e=>{e.pointerId===o&&(l(v(e)),u())});r.addEventListener("pointercancel",e=>{e.pointerId===o&&(u(),d(!0))});r.addEventListener("lostpointercapture",()=>{o=null,r.dataset.dragging="false"});r.addEventListener("keydown",e=>{let t={ArrowLeft:i-15,ArrowDown:i-15,ArrowRight:i+15,ArrowUp:i+15,Home:-150,End:150};Object.hasOwn(t,e.key)&&(e.preventDefault(),l(t[e.key]))});function w(){c(),u()}document.addEventListener("visibilitychange",()=>{document.hidden&&w()});window.addEventListener("pagehide",w);window.addEventListener("blur",w);window.addEventListener("resize",u);d();})();
+</script>
+</body>
+</html>
