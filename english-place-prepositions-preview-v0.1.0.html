@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>on / under | ボールの場所と文</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-shell{max-width:920px}.vl-controls:empty{display:none}.pp-lesson{padding:22px}.pp-intro{font-size:15px;line-height:1.85;margin:0 0 14px;color:var(--muted)}.pp-intro strong{color:var(--ink)}.pp-observation{max-width:640px;margin:auto}.pp-world{position:relative;width:100%;aspect-ratio:600/390;background:#f7f8f3;border-radius:12px;overflow:hidden;isolation:isolate;touch-action:pan-y}.pp-world>svg{width:100%;height:100%;display:block}.pp-floor{stroke:#bdc9be;stroke-width:3;fill:none}.pp-legs{stroke:#9a7655;stroke-width:23;stroke-linecap:round}.pp-apron{stroke:#af8963;stroke-width:25}.pp-top-edge{stroke:#785e43;stroke-width:2}.pp-zone{fill:#ecf2e780;stroke:#8ea995;stroke-width:2.5;stroke-dasharray:8 6}.pp-zone.is-candidate{fill:#dceede80;stroke:#40735d;stroke-width:4;stroke-dasharray:none}.pp-ball{position:absolute;width:16.6666667%;aspect-ratio:1;left:50%;top:29.4871795%;transform:translate(-50%,-50%);touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;border-radius:50%;z-index:2}.pp-ball svg{display:block;width:100%;height:100%;pointer-events:none}.pp-ball:focus-visible{outline:3px solid #1c7260;outline-offset:5px}.pp-lesson[data-phase=dragging] .pp-ball{opacity:.66;cursor:grabbing}.pp-sentence{position:relative;height:136px;display:grid;place-items:center;text-align:center;padding:12px 8px;border-bottom:1px solid var(--line)}.pp-english{font:600 clamp(22px,3.5vw,30px)/1.65 Arial,sans-serif;margin:0;color:var(--ink)}.pp-english strong{display:inline-block;background:#fff0c7;color:#875016;border-bottom:3px solid #c28a3d;border-radius:5px;padding:0 7px}.pp-japanese{font-size:14px;line-height:1.8;color:var(--muted);margin:7px 0 0}.pp-pending{font-size:17px;margin:0;color:var(--muted);line-height:1.8}.pp-pending span{display:block;font-size:13px}.pp-status{min-height:44px;font-size:13px;color:var(--muted);line-height:1.8;display:flex;align-items:center;justify-content:center;text-align:center;margin:10px 0}.pp-support{display:flex;gap:10px;justify-content:center}.pp-support button{min-width:136px}.pp-support button[aria-pressed=true]{background:#e5f1e9;border-color:#75a28b;color:#245b45}.pp-keyboard{font-size:12px;color:var(--muted);text-align:center;margin:10px 0 0}.pp-lesson[data-phase=dragging] .pp-support button[aria-pressed=true]{background:transparent;color:var(--muted);border-color:var(--line)}
+@media(max-width:620px){.pp-lesson{padding:14px}.pp-intro{font-size:14px;line-height:1.8}.pp-sentence{height:148px;padding-inline:5px}.pp-support button{min-width:0;flex:1;padding-inline:10px}.pp-japanese{font-size:13px}.pp-english{font-size:23px}.pp-status{margin:6px 0}}
+@media(max-width:350px){.pp-lesson{padding:10px}.pp-english{font-size:22px}.pp-intro{font-size:13px}.pp-sentence{padding-inline:0}.pp-pending{font-size:16px}}
+/* Keep the relation and its sentence together on a landscape tablet. */
+@media(min-width:761px) and (max-height:900px){.pp-world{max-width:max(276px,calc((100svh - 480px)*1.5384615));margin-inline:auto}}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 12h18M5 12v9M19 12v9"/><circle cx="12" cy="7" r="4"/></svg><span>英語を、動かして考える</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>位置を表す on / under</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">位置を表す on / under</h1><p class="vl-question">ボールの場所が変わると、どのことばが変わる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><section id="pp-lesson" class="pp-lesson" data-position="on" data-phase="settled">
+ <p class="pp-intro">ボールをつかんで、<strong>テーブルの下の枠</strong>へ動かして離そう。<br>文のどこが変わる？</p>
+ <div class="pp-observation">
+  <div class="pp-world" id="pp-world" role="group" aria-label="ボールと同じテーブルを横から見る図">
+   <svg viewBox="0 0 600 390" aria-hidden="true">
+    <defs><linearGradient id="pp-wood" x2="0" y2="1"><stop stop-color="#c49b74"/><stop offset="1" stop-color="#b3855e"/></linearGradient></defs>
+    <path d="M50 340H550" class="pp-floor"/>
+    <path d="M130 181V337M470 181V337" class="pp-legs"/>
+    <path d="M130 192H470" class="pp-apron"/>
+    <rect x="90" y="165" width="420" height="22" rx="5" fill="url(#pp-wood)" stroke="#72543d" stroke-width="3"/>
+    <path d="M95 165H505" class="pp-top-edge"/>
+    <circle id="pp-zone-on" class="pp-zone" cx="300" cy="115" r="60"/>
+    <circle id="pp-zone-under" class="pp-zone" cx="300" cy="290" r="60"/>
+   </svg>
+   <div id="pp-ball" class="pp-ball" tabindex="0" role="slider" aria-label="ボールの置き場所" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="1" aria-valuenow="1" aria-valuetext="天板の上。The ball is on the table." aria-describedby="pp-keyboard-help">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="pp-ball-fill" cx=".35" cy=".25" r=".8"><stop stop-color="#f8b46d"/><stop offset="1" stop-color="#d87536"/></radialGradient></defs><circle cx="50" cy="50" r="48.5" fill="url(#pp-ball-fill)" stroke="#924620" stroke-width="3"/><path d="M9 24C48 50 51 74 49 98M15 83C47 56 72 47 98 47" stroke="#a94f24" fill="none" stroke-width="2.5"/><ellipse cx="32" cy="22" rx="15" ry="6" fill="#ffe7bb" opacity=".65" transform="rotate(-26 32 22)"/></svg>
+   </div>
+  </div>
+  <div id="pp-sentence" class="pp-sentence" aria-live="polite" aria-atomic="true">
+   <div id="pp-committed"><p class="pp-english" lang="en">The ball is <strong id="pp-preposition">on</strong> the table.</p><p id="pp-japanese" class="pp-japanese">ボールはテーブルの上にあります。</p></div>
+   <p id="pp-pending" class="pp-pending" hidden>置く場所を選んでいます。<span>枠の中で、指を離そう。</span></p>
+  </div>
+ </div>
+ <p class="pp-status" id="pp-status">二つの枠に置いて、比べられます。</p>
+ <div class="pp-support" role="group" aria-label="ドラッグの代わりに場所を選ぶ"><button class="vl-secondary" data-place="on" aria-pressed="true">天板に置く</button><button class="vl-secondary" data-place="under" aria-pressed="false">下に置く</button></div>
+ <p id="pp-keyboard-help" class="pp-keyboard">キーでも動かせます：↑ 天板 ／ ↓ 下</p>
+</section>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>同じテーブルを基準に比べる</h3><p><span lang="en">on</span> のこの例では、ボールは天板に接して載っています。<span lang="en">under</span> の例では、ボールはテーブルの下にあります。どちらも同じテーブルを基準にしています。場所を変えると、文の <span lang="en">on / under</span> だけが変わります。</p><p><span lang="en">on</span> はいつも「上」とだけ訳す語ではなく、壁などに接している場合にも使います。この教材では天板に接して載る例だけを比べます。<span lang="en">under</span> は下の位置関係を表し、床に触れることが意味の条件ではありません。床上のボールは、下の位置を読みやすくする一例です。</p><h3>置き場所の選び方</h3><p>二つの枠は、この教材でボールを置ける場所です。枠外を英語の不正解として扱っているわけではありません。枠外で離したり、操作を取り消したりすると前の位置へ戻ります。動かしている途中は位置を選んでいるため、完成した英文を表示しません。図と文は、枠の中で離したときにそろいます。</p><p>ドラッグが難しいときは、図の下の「天板に置く」「下に置く」ボタンで同じ位置を選べます。ボールにTabで移動し、↑またはHomeで天板、↓またはEndで下、Escでドラッグを取り消せます。ボール以外の場所ではページを縦にスクロールできます。画面回転や別の画面への移動でドラッグは取り消します。</p><p>この教材は、置かれた場所と文の対応を比べます。指で動かす途中の経路や、移動を表す英語は扱いません。自動再生はありません。</p><h3>出典・制作</h3><p>例文・テーブルとボールの図・操作は自作です。位置の前置詞の用法は <a href="https://learnenglishkids.britishcouncil.org/grammar-vocabulary/grammar-practice/prepositions-place" target="_blank" rel="noopener noreferrer">British Council：Prepositions of place</a> を参照しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var p=Object.freeze({width:600,height:390,radius:50,dropRadius:60,tableTop:165,floor:340,legLeft:130,legRight:470}),c=Object.freeze({on:Object.freeze({x:300,y:115}),under:Object.freeze({x:300,y:290})});function l(t){if(!Object.hasOwn(c,t))throw new RangeError("Choose on or under");return t}function g(t){if(!t||typeof t.x!="number"||typeof t.y!="number"||!Number.isFinite(t.x)||!Number.isFinite(t.y))throw new RangeError("Finite point required");return{x:t.x,y:t.y}}function f(t){return l(t),{phase:"settled",position:t,point:{...c[t]},preposition:t,sentence:`The ball is ${t} the table.`,translation:`\u30DC\u30FC\u30EB\u306F\u30C6\u30FC\u30D6\u30EB\u306E${t==="on"?"\u4E0A":"\u4E0B"}\u306B\u3042\u308A\u307E\u3059\u3002`}}function y(t){let e=g(t);return Object.keys(c).find(d=>Math.hypot(e.x-c[d].x,e.y-c[d].y)<=p.dropRadius)??null}function b(t){return l(t),{phase:"dragging",committed:t,point:{...c[t]},candidate:t,sentence:null}}function h(t){if(!t||t.phase!=="dragging")throw new TypeError("Active drag required");l(t.committed),g(t.point)}function m(t,e){h(t);let d=g(e);return{...t,point:d,candidate:y(d),sentence:null}}function E(t){return h(t),f(y(t.point)??t.committed)}function C(t){return h(t),f(t.committed)}var s=t=>document.getElementById(t),x=s("pp-lesson"),$=s("pp-world"),o=s("pp-ball"),i=f("on"),n=null,r=null;function u(){let t=!!n,e=t?n.point:i.point;x.dataset.phase=t?"dragging":"settled",x.dataset.position=i.position,x.dataset.candidate=n?.candidate??"",o.style.left=`${Math.max(p.radius,Math.min(p.width-p.radius,e.x))/p.width*100}%`,o.style.top=`${Math.max(p.radius,Math.min(p.height-p.radius,e.y))/p.height*100}%`,s("pp-committed").hidden=t,s("pp-pending").hidden=!t,s("pp-preposition").textContent=i.preposition,s("pp-japanese").textContent=i.translation,o.setAttribute("aria-valuenow",i.position==="on"?"1":"0"),o.setAttribute("aria-valuetext",t?"\u7F6E\u304F\u5834\u6240\u3092\u9078\u3093\u3067\u3044\u307E\u3059\u3002":`${i.position==="on"?"\u5929\u677F\u306E\u4E0A":"\u30C6\u30FC\u30D6\u30EB\u306E\u4E0B"}\u3002${i.sentence}`);for(let d of["on","under"])s("pp-zone-"+d).classList.toggle("is-candidate",t&&n.candidate===d),document.querySelector(`button[data-place="${d}"]`).setAttribute("aria-pressed",String(!t&&i.position===d))}function D(){let t=r?.id;r=null,n=null,t!==void 0&&o.hasPointerCapture(t)&&o.releasePointerCapture(t)}function a(t="\u524D\u306E\u5834\u6240\u306B\u623B\u3057\u307E\u3057\u305F\u3002"){n&&(i=C(n),D(),u(),s("pp-status").textContent=t)}function L(t){n&&a(),i=f(t),u(),s("pp-status").textContent=t==="on"?"\u5929\u677F\u306B\u63A5\u3057\u3066\u8F09\u3063\u3066\u3044\u307E\u3059\u3002":"\u540C\u3058\u30C6\u30FC\u30D6\u30EB\u306E\u4E0B\u306B\u3042\u308A\u307E\u3059\u3002"}function w(t){let e=$.getBoundingClientRect();return{x:(t.clientX-e.left)*p.width/e.width,y:(t.clientY-e.top)*p.height/e.height}}o.addEventListener("pointerdown",t=>{if(r||!t.isPrimary||t.button!==0)return;t.preventDefault(),o.focus({preventScroll:!0});let e=w(t);r={id:t.pointerId,offsetX:e.x-i.point.x,offsetY:e.y-i.point.y},n=b(i.position),o.setPointerCapture(t.pointerId),s("pp-status").textContent="\u4E8C\u3064\u306E\u67A0\u304C\u3001\u3053\u306E\u56F3\u3067\u7F6E\u3051\u308B\u5834\u6240\u3067\u3059\u3002",u()});o.addEventListener("pointermove",t=>{if(!r||t.pointerId!==r.id)return;let e=w(t);n=m(n,{x:e.x-r.offsetX,y:e.y-r.offsetY}),u()});o.addEventListener("pointerup",t=>{if(!r||t.pointerId!==r.id)return;let e=w(t);n=m(n,{x:e.x-r.offsetX,y:e.y-r.offsetY});let d=n.candidate;i=E(n),D(),u(),s("pp-status").textContent=d?i.position==="on"?"\u5929\u677F\u306B\u63A5\u3057\u3066\u8F09\u3063\u3066\u3044\u307E\u3059\u3002":"\u540C\u3058\u30C6\u30FC\u30D6\u30EB\u306E\u4E0B\u306B\u3042\u308A\u307E\u3059\u3002":"\u67A0\u306E\u5916\u3067\u96E2\u3057\u305F\u306E\u3067\u3001\u524D\u306E\u5834\u6240\u306B\u623B\u3057\u307E\u3057\u305F\u3002"});for(let t of["pointercancel","lostpointercapture"])o.addEventListener(t,e=>{r?.id===e.pointerId&&a()});o.addEventListener("keydown",t=>{if(t.key==="Escape"){n&&(t.preventDefault(),a());return}let e={ArrowUp:"on",Home:"on",ArrowDown:"under",End:"under"}[t.key];e&&(t.preventDefault(),L(e))});for(let t of document.querySelectorAll("button[data-place]"))t.addEventListener("click",()=>L(t.dataset.place));window.addEventListener("resize",()=>a());window.addEventListener("pagehide",()=>a());window.addEventListener("blur",()=>a());document.addEventListener("visibilitychange",()=>{document.hidden&&a()});u();})();
+</script>
+</body>
+</html>
