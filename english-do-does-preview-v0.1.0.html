@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>主語で変わる Do / Does | 英語を、比べて見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-controls:empty {
+  display: none;
+}
+.dd-lesson {
+  max-width: 760px;
+  margin: auto;
+  padding: 20px 26px;
+  --dd-word: clamp(20px, 3.8vw, 30px);
+}
+.dd-intro {
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0 0 14px;
+  color: #58665d;
+}
+.dd-intro strong {
+  color: #263832;
+}
+.dd-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0 0 16px;
+}
+.dd-choices button {
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  color: #285f85;
+  border-color: #b4c9db;
+}
+.dd-choices strong {
+  font:
+    700 24px/1.2 Arial,
+    sans-serif;
+}
+.dd-choices span {
+  font-size: 13px;
+}
+.dd-choices button[aria-pressed='true'] {
+  background: #eaf4fc;
+  border-color: #3374a8;
+  box-shadow: inset 0 0 0 1px #3374a8;
+}
+.dd-before {
+  padding: 10px 14px;
+  border: 1px solid #dbe4dd;
+  border-radius: 8px;
+  background: #f7f9f7;
+}
+.dd-before p {
+  margin: 0;
+}
+.dd-before p:first-child {
+  font-size: 12px;
+  color: #627168;
+}
+.dd-before p[lang='en'] {
+  font:
+    600 19px/1.65 Arial,
+    sans-serif;
+  color: #43544a;
+}
+.dd-work {
+  margin-top: 15px;
+}
+.dd-phase {
+  font-size: 12px;
+  min-height: 21px;
+  margin: 0;
+  color: #6b5a76;
+}
+.dd-sentence {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 134px;
+  font:
+    600 var(--dd-word)/1.3 Arial,
+    sans-serif;
+  white-space: nowrap;
+}
+.dd-pair-slot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 calc(var(--dd-word)*5.75);
+  height: 134px;
+}
+.dd-pair {
+  grid-area: 1/1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  will-change: transform, opacity;
+}
+.dd-pair strong {
+  font: inherit;
+  padding: 8px 6px;
+  border-bottom: 3px solid;
+  border-radius: 6px;
+  display: inline-block;
+}
+.dd-aux {
+  color: #73449c;
+  background: #f4ecfa;
+  border-color: #be9bd8;
+}
+.dd-subject {
+  color: #215e96;
+  background: #edf5fc;
+  border-color: #99b9d9;
+}
+.dd-new {
+  opacity: 0;
+  pointer-events: none;
+}
+.dd-verb {
+  font: inherit;
+  padding: 8px 6px;
+  background: #edf6ee;
+  color: #255e3e;
+  border-bottom: 3px solid #9abd9e;
+  border-radius: 6px;
+}
+.dd-rest {
+  color: #415348;
+}
+.dd-translation {
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 48px;
+  margin: 0 0 8px;
+}
+.dd-notice {
+  min-height: 66px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #355b45;
+  padding: 10px 12px;
+  border-left: 3px solid #91b99e;
+  background: #f1f7f2;
+  margin: 0;
+}
+.dd-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+.dd-tools button {
+  font-size: 13px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 8px;
+}
+.dd-motion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  cursor: pointer;
+}
+.dd-motion input {
+  width: 22px;
+  height: 22px;
+  accent-color: #25654c;
+  flex: none;
+}
+.dd-related {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: #235e4d;
+}
+@media (max-width: 620px) {
+  .dd-lesson {
+    padding: 16px 12px;
+  }
+  .dd-choices {
+    margin-bottom: 12px;
+  }
+  .dd-before {
+    padding: 8px 12px;
+  }
+  .dd-work {
+    margin-top: 12px;
+  }
+  .dd-tools {
+    gap: 8px;
+  }
+  .dd-intro {
+    font-size: 13px;
+  }
+  .dd-notice {
+    font-size: 13px;
+  }
+  .dd-sentence {
+    gap: 5px;
+  }
+  .dd-choices button {
+    min-height: 56px;
+    gap: 8px;
+  }
+}
+@media (max-width: 360px) {
+  .dd-lesson {
+    padding: 14px 10px;
+  }
+  .dd-before p[lang='en'] {
+    font-size: 18px;
+  }
+  .dd-choices strong {
+    font-size: 22px;
+  }
+  .dd-translation {
+    font-size: 13px;
+  }
+  .dd-notice {
+    padding: 8px;
+  }
+  .dd-sentence {
+    gap: 4px;
+  }
+}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM13 7a3 3 0 0 1 3-3h5v14h-5a3 3 0 0 0-3 3M6 8h3M6 12h3M16 8h2M16 12h2"/></svg><span>英語を、比べて見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>主語で変わる Do / Does</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">主語で変わる Do / Does</h1><p class="vl-question">だれのことを聞くかで、先頭はどう変わる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div
+  class="dd-lesson"
+  id="dd-lesson"
+  data-phase="idle"
+  data-subject="you"
+  data-target="you"
+>
+  <p class="dd-intro">
+    ふだん、サッカーをするか聞く文です。<br /><strong
+      >まず、主語を You から He に替えてみよう。</strong
+    >
+  </p>
+  <div class="dd-choices" role="group" aria-label="だれのことを聞く？">
+    <button type="button" data-subject="you" aria-pressed="true">
+      <strong lang="en">You</strong><span>あなた</span>
+    </button>
+    <button type="button" data-subject="he" aria-pressed="false">
+      <strong lang="en">He</strong><span>彼</span>
+    </button>
+  </div>
+  <div class="dd-before">
+    <p id="before-label">切り替える前</p>
+    <p id="before-sentence" lang="en">Do you play soccer?</p>
+  </div>
+  <div class="dd-work" id="dd-work">
+    <p class="dd-phase" id="phase-label">いまの質問</p>
+    <div
+      class="dd-sentence"
+      id="sentence-row"
+      role="img"
+      aria-label="Do you play soccer?"
+    >
+      <span class="dd-pair-slot" aria-hidden="true">
+        <span class="dd-pair" id="old-pair"
+          ><strong class="dd-aux" id="old-aux" lang="en">Do</strong
+          ><strong class="dd-subject" id="old-subject" lang="en"
+            >you</strong
+          ></span
+        >
+        <span class="dd-pair dd-new" id="new-pair"
+          ><strong class="dd-aux" id="new-aux" lang="en">Does</strong
+          ><strong class="dd-subject" id="new-subject" lang="en"
+            >he</strong
+          ></span
+        >
+      </span>
+      <strong class="dd-verb" id="verb" lang="en" aria-hidden="true"
+        >play</strong
+      >
+      <span class="dd-rest" id="rest" lang="en" aria-hidden="true"
+        >soccer?</span
+      >
+    </div>
+    <p class="dd-translation" id="translation" aria-live="polite">
+      あなたはサッカーをしますか。
+    </p>
+    <p class="dd-notice" id="takeaway">
+      主語を替えると、先頭の語も変わるかな？
+    </p>
+  </div>
+  <div class="dd-tools">
+    <button type="button" id="replay" class="vl-secondary" disabled>
+      もう一度見る</button
+    ><button type="button" id="reset" class="vl-secondary" disabled>
+      はじめに戻す
+    </button>
+  </div>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>主語に合う、先頭の語</h3><p>ここでは、ふだんサッカーをするか聞いています。主語がyouならDo、heならDoesで始めます。後ろはどちらも動詞の原形playです。heを選んでも、この疑問文ではplaysにしません。</p><h3>同じ内容を、だれについて聞く？</h3><p>Do you play soccer? は「あなたはサッカーをしますか」。Does he play soccer? は「彼はサッカーをしますか」。聞いている人が主語とは限りません。heの文は、彼について相手にたずねています。</p><h3>見直し方</h3><p>You / Heを選ぶと、先頭の語と主語が一緒に替わります。切り替える前の文は上に残ります。「完成形で止める」や同じ選択の再押下で、正しい完成文へ進めます。「もう一度見る」は直前の変化を再生します。「はじめに戻す」は最初のDo youの質問へ戻します。</p><label class="dd-motion"><input id="reduce-motion" type="checkbox">動きを減らす（完成形をすぐ表示）</label><h3>この教材の範囲</h3><p>youとheの現在形の疑問を比べます。他の主語、be動詞の文、過去のDid、答え方は別の範囲です。肯定文から原形にする過程は、<a class="dd-related" href="./english-question-preview-v0.6.0.html">Doesと動詞の原形</a>で見られます。</p><h3>出典</h3><p>例文と操作は自作です。文法は<a href="https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2/present-simple" target="_blank" rel="noopener noreferrer">British Council：Present simple</a>で確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var b=Object.freeze({you:Object.freeze({subject:"you",aux:"Do",verb:"play",rest:"soccer?",translation:"\u3042\u306A\u305F\u306F\u30B5\u30C3\u30AB\u30FC\u3092\u3057\u307E\u3059\u304B\u3002"}),he:Object.freeze({subject:"he",aux:"Does",verb:"play",rest:"soccer?",translation:"\u5F7C\u306F\u30B5\u30C3\u30AB\u30FC\u3092\u3057\u307E\u3059\u304B\u3002"})});function u(e){if(typeof e!="string"||!Object.hasOwn(b,e))throw new RangeError("Unsupported subject");let t=b[e];return{...t,sentence:t.aux+" "+t.subject+" "+t.verb+" "+t.rest}}function h(){return{subject:"you",target:"you",previous:null,phase:"idle",runId:0}}var g=(e,t,i)=>({...e,subject:t,target:i,phase:"changing",runId:e.runId+1}),y=e=>({...e,previous:e.subject,subject:e.target,phase:"idle"});function j(e,t){switch(t.type){case"select":return u(t.subject),e.phase==="changing"?t.subject===e.target?y(e):{...e,target:e.subject,phase:"idle",runId:e.runId+1}:t.subject===e.subject?e:g(e,e.subject,t.subject);case"finish":return e.phase==="changing"&&t.runId===e.runId?y(e):e;case"reset":return{...h(),runId:e.runId+1};case"replay":return e.phase==="idle"&&e.previous?g(e,e.previous,e.subject):e;default:throw new RangeError("Unsupported action")}}function m(e){let t="running",i,c=new Promise(s=>{i=s});function o(s){t==="finished"||t==="cancelled"||(t=s,i(s))}return Promise.all(e.map(s=>s.finished)).then(()=>o("finished"),()=>o("cancelled")),{get status(){return t},finished:c,pause(){t==="running"&&(e.forEach(s=>s.pause()),t="paused")},resume(){t==="paused"&&(e.forEach(s=>s.play()),t="running")},finish(){["running","paused"].includes(t)&&(e.forEach(s=>s.finish()),o("finished"))},cancel(){["running","paused"].includes(t)&&(o("cancelled"),e.forEach(s=>s.cancel()))}}}var r=e=>document.getElementById(e),d=r("dd-lesson"),w=2600,n=h(),f=null,l=[];function v(){f?.cancel(),f=null,l.forEach(e=>e.cancel()),l=[]}function x(){let e=u(n.subject),t=u(n.target),i=n.phase==="changing",c=u(i?n.subject:n.previous||n.subject);d.dataset.phase=n.phase,d.dataset.subject=n.subject,d.dataset.target=n.target,d.setAttribute("aria-busy",String(i)),r("before-sentence").textContent=c.sentence,r("old-aux").textContent=e.aux,r("old-subject").textContent=e.subject,r("new-aux").textContent=t.aux,r("new-subject").textContent=t.subject,r("sentence-row").setAttribute("aria-label",i?"\u5148\u982D\u306E\u8A9E\u3068\u4E3B\u8A9E\u3092\u5165\u308C\u66FF\u3048\u3066\u3044\u307E\u3059\u3002\u5B8C\u6210\u5F62\u3067\u6B62\u3081\u308B\u3068\u8CEA\u554F\u3092\u78BA\u8A8D\u3067\u304D\u307E\u3059\u3002":e.sentence),r("phase-label").textContent=i?"\u5148\u982D\u306E\u8A9E\u3068\u4E3B\u8A9E\u3092\u5165\u308C\u66FF\u3048\u4E2D":"\u3044\u307E\u306E\u8CEA\u554F",r("translation").textContent=i?"\u805E\u304F\u5BFE\u8C61\u3092\u300C"+(n.target==="he"?"\u5F7C":"\u3042\u306A\u305F")+"\u300D\u3078\u66FF\u3048\u3066\u3044\u307E\u3059\u3002":e.translation,r("takeaway").textContent=i?"play \u306F\u52D5\u304B\u3055\u305A\u306B\u30012\u3064\u306E\u8A9E\u3092\u898B\u3088\u3046\u3002":n.previous?"you \u306B\u306F Do\u3001he \u306B\u306F Does\u3002\u5F8C\u308D\u306F\u3001\u3069\u3061\u3089\u3082 play\u3002":"\u4E3B\u8A9E\u3092\u66FF\u3048\u308B\u3068\u3001\u5148\u982D\u306E\u8A9E\u3082\u5909\u308F\u308B\u304B\u306A\uFF1F",document.querySelectorAll("button[data-subject]").forEach(o=>o.setAttribute("aria-pressed",String(o.dataset.subject===n.target))),r("replay").textContent=i?"\u5B8C\u6210\u5F62\u3067\u6B62\u3081\u308B":"\u3082\u3046\u4E00\u5EA6\u898B\u308B",r("replay").disabled=!i&&!n.previous,r("reset").disabled=!i&&n.subject==="you"&&!n.previous}function I(){let e=r("subject-controls")||document.querySelector(".dd-choices"),t=document.querySelector(".dd-tools"),i=e.getBoundingClientRect(),c=t.getBoundingClientRect();(i.top<12||c.bottom>innerHeight-12)&&window.scrollBy({top:i.top-20,behavior:"instant"})}function E(){let e={duration:w,easing:"linear",fill:"both"},t=n.runId;l=[r("old-pair").animate([{offset:0,opacity:1,transform:"translateY(0)"},{offset:.3,opacity:1,transform:"translateY(0)"},{offset:.5,opacity:1,transform:"translateY(-34px)"},{offset:.65,opacity:0,transform:"translateY(-42px)"},{offset:1,opacity:0,transform:"translateY(-42px)"}],e),r("new-pair").animate([{offset:0,opacity:0,transform:"translateY(36px)"},{offset:.5,opacity:0,transform:"translateY(36px)"},{offset:.65,opacity:1,transform:"translateY(36px)"},{offset:.9,opacity:1,transform:"translateY(0)"},{offset:1,opacity:1,transform:"translateY(0)"}],e)],f=m(l),f.finished.then(i=>{i==="finished"&&a({type:"finish",runId:t})})}function a(e){let t=j(n,e);if(t!==n&&(v(),n=t,x(),n.phase==="changing")){if(I(),r("reduce-motion").checked){a({type:"finish",runId:n.runId});return}E()}}document.querySelectorAll("button[data-subject]").forEach(e=>e.addEventListener("click",()=>a({type:"select",subject:e.dataset.subject})));r("replay").addEventListener("click",()=>a(n.phase==="changing"?{type:"finish",runId:n.runId}:{type:"replay"}));r("reset").addEventListener("click",()=>a({type:"reset"}));r("reduce-motion").checked=!1;function p(){n.phase==="changing"&&a({type:"finish",runId:n.runId})}r("reduce-motion").addEventListener("change",()=>{r("reduce-motion").checked&&p()});document.addEventListener("visibilitychange",()=>{document.hidden&&p()});window.addEventListener("pagehide",p);window.addEventListener("resize",p);x();})();
+</script>
+</body>
+</html>
