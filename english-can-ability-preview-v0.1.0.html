@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>canと動詞の原形 | 英語を、動かして見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-shell {
+  max-width: 960px;
+}
+.vl-controls:empty {
+  display: none;
+}
+.vl-title {
+  font-size: clamp(25px, 3vw, 34px);
+}
+.ca-lesson {
+  padding: 18px;
+  --ability: #286954;
+  --water: #386a87;
+}
+.ca-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  position: sticky;
+  top: 8px;
+  z-index: 5;
+  background: #fffefaf5;
+  padding: 4px 0;
+}
+.ca-toolbar button {
+  min-height: 48px;
+}
+.ca-toolbar #reset {
+  background: transparent;
+  color: #60756e;
+  border-color: #d4ded8;
+}
+.ca-intro {
+  margin: 12px 0 16px;
+  font-size: 14px;
+  color: #566963;
+}
+.ca-intro strong {
+  display: block;
+  color: #283d38;
+  font-weight: 600;
+}
+.ca-ability {
+  position: relative;
+  padding: 12px 18px;
+  background: #edf6ef;
+  border: 1px solid #bfdbcc;
+  border-radius: 12px;
+}
+.ca-eyebrow {
+  font-size: 12px;
+  font-weight: 650;
+  color: #486b59;
+  margin: 0 0 6px;
+  letter-spacing: 0.05em;
+}
+.ca-eyebrow > span {
+  border-radius: 50%;
+  border: 1px solid #82ae92;
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  font-size: 11px;
+}
+.ca-sentence {
+  font:
+    500 clamp(32px, 4vw, 40px)/1.5 ui-rounded,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  letter-spacing: -0.025em;
+  margin: 0;
+  color: #263d3b;
+}
+.ca-word-pair {
+  display: inline-block;
+  color: var(--ability);
+  font-weight: 750;
+  border-bottom: 3px solid #75aa89;
+  white-space: nowrap;
+}
+.ca-meaning {
+  font-size: 13px;
+  margin: 6px 0 0;
+  color: #48645b;
+}
+.ca-form {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  font-size: 12px;
+  color: #587066;
+  margin: 0;
+}
+.ca-stage {
+  height: 300px;
+  position: relative;
+  background: #f5efdf;
+  overflow: hidden;
+  border: 1px solid #ded6c3;
+  border-radius: 12px;
+  margin: 12px 0;
+  touch-action: pan-y;
+  isolation: isolate;
+}
+.ca-rest-zone {
+  position: absolute;
+  left: 3%;
+  top: 14%;
+  width: 26%;
+  height: 70%;
+  border: 2px dashed #c0b798;
+  border-radius: 14px;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.ca-pool-zone {
+  position: absolute;
+  left: 36%;
+  top: 12%;
+  width: 59%;
+  height: 74%;
+  border: 7px solid #c2dad7;
+  border-radius: 12px;
+  background: linear-gradient(150deg, #d0eef0, #aadbe8);
+  box-shadow:
+    inset 3px 3px 6px #426f8520,
+    0 0 0 2px #f9fcf3;
+  transition: border-color 0.2s;
+}
+.ca-zone-label {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  white-space: nowrap;
+  color: #6a604a;
+  font-weight: 600;
+  background: #f5efdfd9;
+  padding-inline: 5px;
+  border-radius: 4px;
+  z-index: 1;
+}
+.ca-pool-zone .ca-zone-label {
+  color: #416877;
+  background: #d4eff2dc;
+}
+.ca-rest-zone.is-candidate {
+  background: #e1ecd2;
+  border-color: #5c8e6b;
+}
+.ca-pool-zone.is-candidate {
+  border-color: #5b9a8a;
+}
+.ca-lane {
+  position: absolute;
+  top: 67%;
+  left: 6%;
+  right: 6%;
+  border-top: 2px dashed #75b6cc;
+  opacity: 0.7;
+}
+.ca-water-line {
+  position: absolute;
+  height: 10px;
+  width: 33px;
+  border-top: 2px solid #effcfd;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+.ca-water-line.one {
+  top: 25%;
+  left: 20%;
+}
+.ca-water-line.two {
+  top: 44%;
+  left: 76%;
+  width: 20px;
+}
+.ca-water-line.three {
+  top: 82%;
+  left: 35%;
+  width: 42px;
+}
+.ca-chair {
+  position: absolute;
+  width: 80px;
+  height: 102px;
+  left: 17%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.ca-direction {
+  position: absolute;
+  top: 24%;
+  left: 14%;
+  width: 47%;
+  color: #886e3e;
+  pointer-events: none;
+  z-index: 2;
+  text-align: center;
+}
+.ca-direction > span {
+  font-size: 13px;
+  background: #fff9e6;
+  padding: 3px 7px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px #89734010;
+}
+.ca-direction svg {
+  width: 100%;
+  height: 30px;
+}
+.ca-actor {
+  position: absolute;
+  left: 17%;
+  top: 50%;
+  width: 100px;
+  height: 112px;
+  transform: translate(-50%, -50%);
+  touch-action: none;
+  cursor: grab;
+  outline: none;
+  border: 2px solid #2f7a65a8;
+  border-radius: 22px;
+  background: #fffcf35c;
+  z-index: 3;
+  box-shadow: 0 2px 7px #304a3c15;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.ca-actor svg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.ca-actor:focus-visible {
+  outline: 3px solid #28709b;
+  outline-offset: 3px;
+}
+.ca-actor:hover {
+  border-color: #247454;
+  background: #fffdf48c;
+}
+.ca-lesson[data-phase='dragging'] .ca-actor {
+  cursor: grabbing;
+  border-style: dashed;
+  background: #ffffff80;
+  box-shadow: 0 6px 14px #28513f2c;
+}
+.ca-lesson[data-location='pool'] .ca-actor {
+  background: #e9fbfc39;
+  border-color: #428393a8;
+}
+.ca-now {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  border-radius: 6px;
+  background: #fffdf0ed;
+  padding: 3px 10px;
+  max-width: 95%;
+  width: max-content;
+  font-size: 13px;
+  color: #4d666b;
+  text-align: center;
+  z-index: 4;
+}
+.ca-place-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.ca-place-buttons button {
+  min-height: 44px;
+  background: #fffdfa;
+  border-color: #c9d6ce;
+  color: #536b60;
+}
+.ca-place-buttons button[aria-pressed='true'] {
+  background: #e7f1e9;
+  border-color: #74a486;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px #74a486;
+}
+.ca-takeaway {
+  border-left: 3px solid #b6d2bc;
+  padding: 4px 0 4px 12px;
+  color: #49625b;
+  font-size: 14px;
+  margin: 14px 0 0;
+  min-height: 52px;
+}
+.ca-takeaway strong {
+  display: block;
+  font-weight: 650;
+  color: #2c4d3e;
+}
+.ca-feedback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 4;
+}
+.ca-feedback > span {
+  font-size: 40px;
+  background: #ffffffdf;
+  color: #00b760;
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  animation: ca-flash 1s forwards;
+}
+.ca-feedback.is-paused > span {
+  color: #f33f4c;
+}
+@keyframes ca-flash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.ca-motion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+.ca-motion input {
+  width: 20px;
+  height: 20px;
+}
+@media (max-width: 620px) {
+  .ca-lesson {
+    padding: 12px;
+  }
+  .ca-toolbar {
+    top: 0;
+  }
+  .ca-toolbar button {
+    font-size: 13px;
+    padding: 9px 12px;
+  }
+  .ca-toolbar #reset span {
+    display: none;
+  }
+  .ca-toolbar #reset {
+    min-width: 48px;
+  }
+  .ca-intro {
+    font-size: 13px;
+    margin: 10px 0 12px;
+  }
+  .ca-ability {
+    padding: 10px 12px;
+  }
+  .ca-form {
+    position: static;
+    margin: 6px 0 0;
+    font-size: 12px;
+  }
+  .ca-sentence {
+    font-size: 33px;
+  }
+  .ca-stage {
+    height: 264px;
+  }
+  .ca-actor {
+    width: 76px;
+    height: 94px;
+    border-radius: 18px;
+  }
+  .ca-chair {
+    width: 66px;
+    height: 86px;
+  }
+  .ca-zone-label {
+    font-size: 12px;
+    top: 8px;
+  }
+  .ca-pool-zone {
+    border-width: 5px;
+  }
+  .ca-direction {
+    left: 15%;
+    width: 55%;
+    top: 23%;
+  }
+  .ca-direction > span {
+    font-size: 12px;
+  }
+  .ca-now {
+    font-size: 12px;
+    bottom: 7px;
+  }
+  .ca-place-buttons button {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  .ca-takeaway {
+    font-size: 13px;
+    min-height: 52px;
+  }
+  .vl-main {
+    padding-top: 20px;
+  }
+  .vl-header {
+    padding-block: 12px;
+    min-height: 50px;
+  }
+  .vl-heading {
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 360px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-context {
+    display: none;
+  }
+  .vl-title {
+    font-size: 25px;
+  }
+  .ca-lesson {
+    padding: 10px;
+  }
+  .ca-actor {
+    width: 66px;
+    height: 84px;
+  }
+  .ca-chair {
+    width: 59px;
+    height: 78px;
+  }
+  .ca-stage {
+    height: 256px;
+  }
+  .ca-zone-label {
+    font-size: 12px;
+  }
+  .ca-ability {
+    padding: 10px 12px;
+  }
+  .ca-sentence {
+    font-size: 32px;
+  }
+  .ca-intro strong {
+    font-size: 12px;
+  }
+  .ca-direction {
+    width: 59%;
+    left: 12%;
+  }
+  .ca-takeaway {
+    min-height: 58px;
+  }
+}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 18q3-3 6 0t6 0 6 0M3 22q3-3 6 0t6 0 6 0m-13-7 4-8 6 5m-6-5 4-4"/><circle cx="18" cy="5" r="2"/></svg><span>英語を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>canと動詞の原形</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">canと動詞の原形</h1><p class="vl-question">休んでいても、「泳げる」は変わる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div class="ca-lesson" id="ca-lesson" data-location="rest" data-phase="idle">
+  <div class="ca-toolbar" id="ca-toolbar">
+    <button type="button" id="play" disabled>
+      <span id="play-symbol" aria-hidden="true">▶</span
+      ><span id="play-label">泳ぐ動きを再生</span>
+    </button>
+    <button type="button" id="reset" class="vl-secondary" disabled>
+      ↺ <span>はじめに戻す</span>
+    </button>
+  </div>
+  <p class="ca-intro">
+    この彼は、ひとりで泳げる人です。<strong id="intro-hint"
+      >彼をつかんで、水の中へ動かしてみよう。</strong
+    >
+  </p>
+  <div class="ca-ability" id="ability-card">
+    <p class="ca-eyebrow"><span aria-hidden="true">✓</span> 彼にできること</p>
+    <p class="ca-sentence" lang="en" id="ability-sentence">
+      He <strong class="ca-word-pair"><span>can</span> <span>swim</span></strong
+      >.
+    </p>
+    <p class="ca-meaning">彼は泳ぐことができます。</p>
+    <p class="ca-form"><span lang="en">can</span> ＋ 動詞の原形</p>
+  </div>
+  <div class="ca-stage" id="world">
+    <div class="ca-rest-zone" id="zone-rest">
+      <span class="ca-zone-label">休憩場所</span>
+    </div>
+    <div class="ca-pool-zone" id="zone-pool">
+      <span class="ca-zone-label">水の中</span><i class="ca-lane"></i
+      ><i class="ca-water-line one"></i><i class="ca-water-line two"></i
+      ><i class="ca-water-line three"></i>
+    </div>
+    <svg class="ca-chair" viewBox="0 0 100 110" aria-hidden="true">
+      <path
+        d="M18 18 35 78h49M30 78 21 101m51-22 12 22"
+        fill="none"
+        stroke="#a48961"
+        stroke-width="6"
+        stroke-linecap="round"
+      />
+      <path
+        d="m23 24 19 54h36"
+        fill="none"
+        stroke="#e3cba0"
+        stroke-width="14"
+        stroke-linecap="round"
+      />
+    </svg>
+    <div class="ca-direction" id="drag-hint" aria-hidden="true">
+      <span>つかんで移動</span
+      ><svg viewBox="0 0 150 35">
+        <path
+          d="M4 24Q60 0 137 23m-13-13 14 13-19 5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <div
+      id="actor"
+      class="ca-actor"
+      role="slider"
+      tabindex="0"
+      aria-label="泳げる彼の場所。左右の矢印キーでも動かせます"
+      aria-valuemin="0"
+      aria-valuemax="1"
+      aria-valuenow="0"
+      aria-valuetext="休憩場所"
+      aria-orientation="horizontal"
+    >
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <g id="rest-pose">
+          <ellipse cx="60" cy="110" rx="30" ry="5" fill="#78664718" />
+          <path
+            d="m48 68 34 7-2 32h15m-34-32-25 4 4 28H26"
+            stroke="#374e65"
+            stroke-width="10"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <path d="m43 36 22-2 11 40H42Z" fill="#3189b5" />
+          <circle cx="55" cy="22" r="15" fill="#e8bc98" />
+          <path d="M40 21q1-20 18-15 14 3 12 14l-14-6-16 7" fill="#2c4652" />
+          <path
+            d="m43 43-9 23 23 11m9-35 14 20 8-5"
+            stroke="#e8bc98"
+            stroke-width="8"
+            fill="none"
+            stroke-linecap="round"
+          />
+        </g>
+        <g id="swim-pose" opacity="0">
+          <path
+            d="M10 88q15-9 29 0t28 0 28 0 20 0"
+            fill="none"
+            stroke="#ecfcff"
+            stroke-width="5"
+          />
+          <g id="swim-legs">
+            <path
+              d="m41 69-28 6m30-2-26 10"
+              stroke="#e8bc98"
+              stroke-width="8"
+              stroke-linecap="round"
+            />
+          </g>
+          <path d="m40 62 34-7 15 17-46 12Z" fill="#3189b5" />
+          <circle cx="88" cy="54" r="14" fill="#e8bc98" />
+          <path d="M75 51q4-19 19-12 12 6 7 17L90 46Z" fill="#2c4652" />
+          <path
+            d="m75 70 22 9 15-10"
+            stroke="#e8bc98"
+            stroke-width="7"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <path
+            id="swim-arm"
+            d="m62 62 3-22 24-8"
+            stroke="#e8bc98"
+            stroke-width="8"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <path
+            d="M11 90q15-9 29 0t28 0 28 0 20 0"
+            fill="none"
+            stroke="#c5eef5"
+            stroke-width="4"
+          />
+        </g>
+      </svg>
+    </div>
+    <p class="ca-now" id="current-caption">今：休憩中</p>
+    <div class="ca-feedback" id="feedback" aria-hidden="true"></div>
+  </div>
+  <div class="ca-place-buttons" role="group" aria-label="彼の場所を選ぶ">
+    <button type="button" data-place="rest" aria-pressed="true">
+      <span aria-hidden="true">←</span> 休憩する
+    </button>
+    <button type="button" data-place="pool" aria-pressed="false">
+      水の中へ <span aria-hidden="true">→</span>
+    </button>
+  </div>
+  <p class="ca-takeaway" id="takeaway" aria-live="polite">
+    泳いでいるときと、休んでいるとき。<strong>文は変わるかな？</strong>
+  </p>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>できる力を表すcan</h3><p>この教材では、彼はひとりで泳げる人という設定です。He can swim. は、その能力を伝えています。今まさに泳いでいるかどうかを述べる文ではありません。水の中にいる間も、休憩している間も、この設定での泳げる力は変わりません。</p><h3>canと原形を一組で読む</h3><p>canの後ろは動詞の原形です。この例はHeが主語でも can swim とし、swimsにはしません。canは「できる」、swimは「泳ぐ」という意味を持ち、二語で「泳ぐことができる」を表します。</p><h3>休憩と、映像の一時停止</h3><p>「休憩する」は人物をプールの外へ移し、休んでいる場面へ替える操作です。「映像を一時停止」は泳いでいる場面を静止するだけです。人物の行動が終わった意味にはしません。</p><h3>動かし方</h3><p>人物をつかんで、水の中か左の休憩場所で指を離します。二つの場所の外で離すと、前の場所へ戻ります。下のボタンや、人物を選んで左右の矢印キーでも同じ操作ができます。人物以外を触ると、ページを縦にスクロールできます。</p><label class="ca-motion"><input id="reduce-motion" type="checkbox">動きを減らす（静止図で場所を比べる）</label><h3>今回の範囲</h3><p>canの一般的な能力と、can＋動詞の原形を扱います。許可・可能性、can'tや疑問文、could・be able to、すべての助動詞は含みません。図は意味を比べるための模式図で、泳ぎ方の手順は示していません。</p><h3>出典</h3><p>例文・図は自作です。文法はBritish Councilの<a href="https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/ability" target="_blank" rel="noopener noreferrer">Ability</a>、<a href="https://www.britishcouncil.in/blog/how-to-use-can" target="_blank" rel="noopener noreferrer">How to use the verb can</a>を確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var H=["rest","pool"];function M(n){if(!H.includes(n))throw new RangeError("Unknown location");return n}function m(n){if(!n||!Number.isFinite(n.x)||!Number.isFinite(n.y))throw new RangeError("Finite point required");return{x:Math.max(0,Math.min(100,n.x)),y:Math.max(0,Math.min(100,n.y))}}function s(n){return M(n),{x:n==="rest"?17:68,y:50}}function A(n){let e=m(n);return e.y<17||e.y>84?null:e.x>=3&&e.x<=29?"rest":e.x>=39&&e.x<=94?"pool":null}function k(){return{location:"rest",target:"rest",phase:"idle",point:s("rest"),candidate:null,playing:!1,nextPlaying:!1,priorPlaying:!1,seenSwimming:!1,runId:0}}function b(n,e,o){return{...n,target:e,phase:"moving",playing:!1,nextPlaying:o,candidate:null,runId:n.runId+1}}function F(n,e){switch(e.type){case"place":return M(e.location),n.phase==="idle"&&n.location===e.location?n:b({...n,point:e.point?m(e.point):n.point},e.location,e.location==="pool");case"begin":return{...n,phase:"dragging",point:m(e.point),candidate:A(e.point),priorPlaying:n.playing,playing:!1,runId:n.runId+1};case"move":return n.phase!=="dragging"?n:{...n,point:m(e.point),candidate:A(e.point)};case"drop":{if(n.phase!=="dragging")return n;let o=n.candidate??n.location;return b(n,o,o===n.location?n.priorPlaying:o==="pool")}case"cancel":return n.phase!=="dragging"?n:b(n,n.location,n.priorPlaying);case"finish":return n.phase!=="moving"||e.runId!==n.runId?n:{...n,location:n.target,phase:"idle",point:s(n.target),playing:n.nextPlaying,seenSwimming:n.seenSwimming||n.target==="pool"};case"toggle":return n.phase!=="idle"||n.location!=="pool"?n:{...n,playing:!n.playing};case"reset":return{...k(),runId:n.runId+1};default:return n}}function R(n){let e=n/1500;return{x:68+10*Math.sin(e/2),y:50+2*Math.sin(e),stroke:Math.sin(e*2)*26,kick:Math.sin(e*3)*14}}var i=n=>document.getElementById(n),u=i("ca-lesson"),q=i("world"),l=i("actor"),t=k(),p=s("rest"),h=0,f=p,I=0,L=0,w=0,a=null,g=0,y=0,$=n=>n*n*(3-2*n);function d(n,e=h){p={...n},h=e,l.style.left=n.x+"%",l.style.top=n.y+"%",i("rest-pose").style.opacity=1-e,i("swim-pose").style.opacity=e}function E(){u.dataset.location=t.location,u.dataset.phase=t.phase,u.dataset.playing=String(t.playing),u.dataset.target=t.target;let n=t.phase==="idle",e=i("reduce-motion").checked;i("play").disabled=!n||t.location==="rest"||e,i("play-label").textContent=e?"\u9759\u6B62\u56F3\u3067\u8868\u793A\u4E2D":t.playing?"\u6620\u50CF\u3092\u4E00\u6642\u505C\u6B62":"\u6CF3\u3050\u52D5\u304D\u3092\u518D\u751F",i("play-symbol").textContent=t.playing&&!e?"\u2161":"\u25B6",i("play").classList.toggle("is-playing",t.playing&&!e),i("reset").disabled=n&&t.location==="rest"&&!t.seenSwimming,i("drag-hint").hidden=t.seenSwimming||!n,i("intro-hint").textContent=t.seenSwimming?"\u5F7C\u3092\u3001\u6C34\u306E\u4E2D\u3068\u4F11\u61A9\u5834\u6240\u306E\u9593\u3067\u52D5\u304B\u3057\u3066\u307F\u3088\u3046\u3002":"\u5F7C\u3092\u3064\u304B\u3093\u3067\u3001\u6C34\u306E\u4E2D\u3078\u52D5\u304B\u3057\u3066\u307F\u3088\u3046\u3002",i("current-caption").textContent=n?t.location==="rest"?"\u4ECA\uFF1A\u4F11\u61A9\u4E2D":e?"\u6CF3\u3044\u3067\u3044\u308B\u59FF\uFF08\u9759\u6B62\u56F3\uFF09":t.playing?"\u4ECA\uFF1A\u6CF3\u3044\u3067\u3044\u308B\u3068\u3053\u308D":"\u4ECA\uFF1A\u6CF3\u3044\u3067\u3044\u308B\u3068\u3053\u308D\uFF08\u6620\u50CF\u505C\u6B62\uFF09":t.phase==="dragging"?"\u6307\u3092\u96E2\u3059\u5834\u6240\u3092\u9078\u3093\u3067\u3044\u307E\u3059":"\u5834\u6240\u3092\u79FB\u3057\u3066\u3044\u307E\u3059",l.setAttribute("aria-valuenow",t.location==="rest"?"0":"1"),l.setAttribute("aria-valuetext",n?t.location==="rest"?"\u4F11\u61A9\u5834\u6240\u3002\u4ECA\u306F\u4F11\u3093\u3067\u3044\u307E\u3059\u304C\u3001\u6CF3\u3050\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002":"\u6C34\u306E\u4E2D\u3002\u6CF3\u3050\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002":"\u5834\u6240\u3092\u79FB\u3057\u3066\u3044\u307E\u3059");for(let o of["rest","pool"])i("zone-"+o).classList.toggle("is-candidate",t.phase==="dragging"&&t.candidate===o),document.querySelector(`[data-place="${o}"]`).setAttribute("aria-pressed",String(n&&t.location===o));i("takeaway").innerHTML=n?t.seenSwimming?t.location==="pool"?"\u4ECA\u306F\u6CF3\u3044\u3067\u3044\u308B\u3068\u3053\u308D\u3002<strong>\u4F11\u61A9\u5834\u6240\u3078\u623B\u3059\u3068\u3001\u3069\u3046\u306A\u308B\uFF1F</strong>":"\u4ECA\u306F\u4F11\u61A9\u4E2D\u3067\u3082\u3001\u6CF3\u3050\u529B\u306F\u5909\u308F\u308A\u307E\u305B\u3093\u3002<strong>can swim \u306F\u3001\u305D\u306E\u300C\u3067\u304D\u308B\u529B\u300D\u3092\u4F1D\u3048\u307E\u3059\u3002</strong>":"\u6CF3\u3044\u3067\u3044\u308B\u3068\u304D\u3068\u3001\u4F11\u3093\u3067\u3044\u308B\u3068\u304D\u3002<strong>\u6587\u306F\u5909\u308F\u308B\u304B\u306A\uFF1F</strong>":"\u5F7C\u3092\u52D5\u304B\u3057\u3066\u3082\u3001<strong>can swim \u306F\u305D\u306E\u307E\u307E\u3002</strong>"}function T(){let n=a?.id;a=null,n!==void 0&&l.hasPointerCapture(n)&&l.releasePointerCapture(n)}function B(){let n=u.getBoundingClientRect().top,e=i("ca-toolbar").getBoundingClientRect(),o=i("ability-card").getBoundingClientRect(),c=q.getBoundingClientRect();(o.top<e.bottom-1||c.bottom>innerHeight-12)&&window.scrollBy({top:n-12,behavior:"instant"})}function r(n){n.type==="place"&&(n={...n,point:p});let e=F(t,n);if(e!==t){if(f={...p},I=h,t=e,["place","drop","cancel","reset"].includes(n.type)&&T(),t.phase==="moving"&&(L=0,i("reduce-motion").checked)){r({type:"finish",runId:t.runId}),(n.type==="place"||n.type==="drop")&&B();return}t.phase==="dragging"&&d(t.point,h),n.type==="reset"&&(w=0,d(s("rest"),0),i("feedback").replaceChildren()),n.type==="finish"&&(w=0,d(t.point,t.location==="pool"?1:0)),E(),(n.type==="place"||n.type==="drop")&&B()}}function S(n){let e=q.getBoundingClientRect();return{x:(n.clientX-e.left)/e.width*100,y:(n.clientY-e.top)/e.height*100}}l.addEventListener("pointerdown",n=>{if(a||!n.isPrimary||n.button!==0)return;n.preventDefault(),l.focus({preventScroll:!0});let e=S(n);a={id:n.pointerId,offsetX:e.x-p.x,offsetY:e.y-p.y},l.setPointerCapture(n.pointerId),r({type:"begin",point:p})});l.addEventListener("pointermove",n=>{if(!a||a.id!==n.pointerId)return;let e=S(n);r({type:"move",point:{x:e.x-a.offsetX,y:e.y-a.offsetY}})});l.addEventListener("pointerup",n=>{if(!a||a.id!==n.pointerId)return;let e=S(n);r({type:"move",point:{x:e.x-a.offsetX,y:e.y-a.offsetY}}),r({type:"drop"})});for(let n of["pointercancel","lostpointercapture"])l.addEventListener(n,e=>{a?.id===e.pointerId&&r({type:"cancel"})});l.addEventListener("keydown",n=>{if(n.key==="Escape"&&t.phase==="dragging"){n.preventDefault(),r({type:"cancel"});return}let e={ArrowLeft:"rest",Home:"rest",ArrowRight:"pool",End:"pool"}[n.key];e&&(n.preventDefault(),r({type:"place",location:e}))});for(let n of document.querySelectorAll("[data-place]"))n.addEventListener("click",()=>r({type:"place",location:n.dataset.place}));i("play").addEventListener("click",()=>{r({type:"toggle"}),i("feedback").classList.toggle("is-paused",!t.playing),i("feedback").innerHTML=`<span>${t.playing?"\u25B6":"\u2161"}</span>`});i("reset").addEventListener("click",()=>r({type:"reset"}));i("reduce-motion").addEventListener("change",()=>{t.phase==="moving"&&i("reduce-motion").checked&&r({type:"finish",runId:t.runId}),E()});function x(){t.phase==="dragging"&&r({type:"cancel"})}window.addEventListener("resize",x);window.addEventListener("blur",x);document.addEventListener("visibilitychange",()=>{y=0,document.hidden&&(x(),t.phase==="idle"&&t.playing&&r({type:"toggle"}))});function P(n){let e=y?Math.min(n-y,60):0;if(y=n,t.phase==="moving"){L+=e;let o=Math.min(L/650,1),c=$(o),C=s(t.target);d({x:f.x+(C.x-f.x)*c,y:f.y+(C.y-f.y)*c},I+((t.target==="pool"?1:0)-I)*c),o===1&&r({type:"finish",runId:t.runId})}else if(t.phase==="idle"&&t.location==="pool"&&t.playing&&!i("reduce-motion").checked){w+=e;let o=R(w);d(o,1),i("swim-arm").setAttribute("transform",`rotate(${o.stroke} 62 62)`),i("swim-legs").setAttribute("transform",`rotate(${o.kick} 41 69)`)}g=requestAnimationFrame(P)}window.addEventListener("pagehide",()=>{x(),cancelAnimationFrame(g),g=0});window.addEventListener("pageshow",()=>{g||(y=0,g=requestAnimationFrame(P))});E();d(p,0);g=requestAnimationFrame(P);})();
+</script>
+</body>
+</html>
