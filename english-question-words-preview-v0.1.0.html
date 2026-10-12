@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What と Where | 英語を、比べて見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-controls:empty {
+  display: none;
+}
+.qw-lesson {
+  --qw-color: #775397;
+  --qw-soft: #f2ebf7;
+  max-width: 710px;
+  margin: auto;
+  padding: 18px 26px;
+}
+.qw-lesson[data-mode='where'] {
+  --qw-color: #286b58;
+  --qw-soft: #e9f3ee;
+}
+.qw-intro {
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 0 0 12px;
+  color: #57675d;
+  min-height: 46px;
+}
+.qw-intro strong {
+  color: #334b3e;
+}
+.qw-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.qw-choices button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 52px;
+  background: #fff;
+  color: #526356;
+  border: 1px solid #cbd5cc;
+}
+.qw-choices strong {
+  font:
+    700 22px/1.2 Arial,
+    sans-serif;
+}
+.qw-choices span {
+  font-size: 14px;
+}
+.qw-choices button[aria-pressed='true'] {
+  background: var(--qw-soft);
+  color: var(--qw-color);
+  border: 2px solid var(--qw-color);
+}
+.qw-question {
+  text-align: center;
+  padding: 12px 0 4px;
+}
+.qw-question p {
+  margin: 0;
+}
+.qw-question p[lang='en'] {
+  font:
+    600 clamp(25px, 5vw, 32px)/1.3 Arial,
+    sans-serif;
+}
+.qw-question strong {
+  color: var(--qw-color);
+  border-bottom: 3px solid var(--qw-color);
+}
+#question-ja {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #66716a;
+}
+.qw-scene {
+  position: relative;
+  margin: 0 auto;
+  max-width: 600px;
+  isolation: isolate;
+  touch-action: pan-y;
+}
+.qw-scene svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.qw-reveal {
+  position: absolute;
+  left: 62.5%;
+  top: 33.2%;
+  transform: translate(-50%, -50%);
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  padding: 3px !important;
+  background: var(--qw-soft) !important;
+  color: var(--qw-color) !important;
+  border: 2px dashed var(--qw-color) !important;
+  box-shadow: 0 0 0 5px #ffffffbe;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.qw-mark {
+  font:
+    700 36px/1.1 Arial,
+    sans-serif;
+}
+.qw-reveal span:last-child {
+  font-size: 12px;
+  white-space: nowrap;
+}
+.qw-lesson[data-mode='where'] .qw-reveal {
+  left: 30%;
+  top: 52%;
+  width: 116px;
+  height: 92px;
+  border-radius: 18px;
+}
+.qw-lesson[data-mode='what'][data-place='under'] .qw-reveal {
+  top: 78.2%;
+}
+.qw-reveal:focus-visible {
+  outline: 3px solid #152f28;
+  outline-offset: 6px;
+}
+.qw-answer {
+  position: relative;
+  text-align: center;
+  border: 1px solid #d7dfd8;
+  border-radius: 12px;
+  background: #fff;
+  min-height: 102px;
+  padding: 8px 6px;
+}
+.qw-answer-caption {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #64746a;
+  margin: 0 0 4px;
+}
+.qw-answer-sentence {
+  font:
+    600 clamp(19px, 4vw, 27px)/1.4 Arial,
+    sans-serif;
+  margin: 0;
+  white-space: nowrap;
+}
+.qw-answer-sentence strong {
+  font: inherit;
+  color: var(--qw-color);
+  background: var(--qw-soft);
+  border-bottom: 3px solid var(--qw-color);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+#answer-ja {
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 5px 0 0;
+  color: #4b6254;
+}
+.qw-answer-hint {
+  position: absolute;
+  inset: 43px 0 auto;
+  font-size: 14px;
+  color: #6b786e;
+  margin: 0;
+}
+.qw-connection {
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 45px;
+  padding: 10px 0 0;
+  margin: 0;
+  color: #405d4b;
+}
+.qw-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 6px 0 10px;
+}
+.qw-tools button {
+  min-height: 44px;
+  min-width: 0;
+  font-size: 13px;
+  padding: 8px 5px;
+}
+.qw-previous {
+  border-top: 1px solid #d9e0da;
+  padding-top: 10px;
+  font-size: 12px;
+  line-height: 1.65;
+  color: #66746b;
+  min-height: 47px;
+}
+.qw-previous b {
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  color: #3b5548;
+}
+.qw-move {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 8px;
+  font-size: 13px;
+}
+.qw-move[hidden] {
+  display: none;
+}
+.qw-motion {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 48px;
+}
+.qw-motion input {
+  width: 22px;
+  height: 22px;
+  accent-color: #286b58;
+}
+.qw-lesson[data-phase='hidden'] #answer-sentence,
+.qw-lesson[data-phase='hidden'] #answer-ja {
+  visibility: hidden;
+}
+.qw-lesson[data-phase='shown'] #answer-hint {
+  display: none;
+}
+.qw-lesson[data-phase='shown'] .qw-reveal {
+  visibility: hidden;
+}
+.qw-lesson[data-mode='what'] #place-mask,
+.qw-lesson[data-mode='what'] #place-ring,
+.qw-lesson[data-mode='where'] #object-ring {
+  display: none;
+}
+.qw-lesson[data-mode='what'][data-phase='hidden'] #ball,
+.qw-lesson[data-mode='where'][data-phase='hidden'] #context {
+  opacity: 0;
+}
+.qw-lesson[data-phase='hidden'] #answer-ring {
+  opacity: 0;
+}
+.qw-lesson[data-phase='shown'] #place-mask {
+  display: none;
+}
+@media (max-width: 620px) {
+  .qw-lesson {
+    padding: 14px 12px;
+  }
+  .qw-intro {
+    font-size: 13px;
+    min-height: 44px;
+  }
+  .qw-reveal {
+    width: 74px;
+    height: 74px;
+  }
+  .qw-mark {
+    font-size: 30px;
+  }
+  .qw-lesson[data-mode='where'] .qw-reveal {
+    width: 96px;
+    height: 74px;
+  }
+  .qw-answer {
+    min-height: 94px;
+  }
+  .qw-connection {
+    font-size: 13px;
+    min-height: 47px;
+  }
+  .qw-tools {
+    gap: 8px;
+  }
+  .qw-scene svg text {
+    font-size: 19px;
+  }
+}
+@media (max-width: 360px) {
+  .qw-lesson {
+    padding: 12px 9px;
+  }
+  .qw-choices button {
+    gap: 9px;
+    min-height: 50px;
+  }
+  .qw-choices strong {
+    font-size: 20px;
+  }
+  .qw-question {
+    padding-top: 10px;
+  }
+  .qw-reveal {
+    width: 65px;
+    height: 65px;
+  }
+  .qw-lesson[data-mode='where'] .qw-reveal {
+    width: 92px;
+    height: 66px;
+  }
+  .qw-reveal span:last-child {
+    font-size: 11px;
+  }
+  .qw-answer-sentence {
+    font-size: 18px;
+  }
+  .qw-previous {
+    min-height: 61px;
+  }
+}
+
+.qw-choices button {
+  padding: 8px 6px;
+}
+.qw-choices span {
+  white-space: nowrap;
+}
+.qw-choices strong {
+  flex-shrink: 0;
+}
+@media (max-width: 620px) {
+  #it-pointer text {
+    font-size: 26px;
+  }
+}
+
+.qw-lesson[data-mode='what']:not([data-phase='shown']) #it-pointer {
+  visibility: hidden;
+}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM13 7a3 3 0 0 1 3-3h5v14h-5a3 3 0 0 0-3 3M6 8h3M6 12h3M16 8h2M16 12h2"/></svg><span>英語を、比べて見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>What と Where</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">What と Where</h1><p class="vl-question">「何？」と「どこ？」では、答えがどう変わる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div class="qw-lesson" id="qw-lesson" data-mode="what" data-phase="hidden">
+  <p class="qw-intro" id="intro">
+    テーブルの上に、何かがあります。<br /><strong
+      >図の「？」をタップして、答えを見よう。</strong
+    >
+  </p>
+  <div class="qw-choices" role="group" aria-label="何をたずねる？">
+    <button type="button" data-mode="what" aria-pressed="true">
+      <strong lang="en">What</strong><span>何？</span>
+    </button>
+    <button type="button" data-mode="where" aria-pressed="false">
+      <strong lang="en">Where</strong><span>どこ？</span>
+    </button>
+  </div>
+  <div class="qw-question">
+    <p lang="en" id="question">
+      <strong id="question-word">What</strong> is it?
+    </p>
+    <p id="question-ja">それは何ですか。</p>
+  </div>
+  <div class="qw-scene" id="scene">
+    <svg
+      id="scene-svg"
+      viewBox="0 0 600 280"
+      role="img"
+      aria-label="テーブルの上の物の正体が隠れています。"
+    >
+      <defs>
+        <radialGradient id="ball-fill" cx="32%" cy="26%">
+          <stop offset="0" stop-color="#efb577" />
+          <stop offset="1" stop-color="#d17840" />
+        </radialGradient>
+        <pattern
+          id="place-pattern"
+          width="14"
+          height="14"
+          patternUnits="userSpaceOnUse"
+        >
+          <path d="M0 14L14 0" stroke="#dbe9e4" stroke-width="1" />
+        </pattern>
+      </defs>
+      <g id="context">
+        <path d="M50 258H550" stroke="#c9d1c8" stroke-width="2" />
+        <ellipse
+          id="ball-shadow"
+          cx="375"
+          cy="137"
+          rx="44"
+          ry="7"
+          fill="#957553"
+          opacity=".15"
+        />
+        <path
+          d="M167 139v110h18l8-110m214 0 8 110h18V139"
+          fill="#d4b993"
+          stroke="#977d5b"
+          stroke-width="3"
+          stroke-linejoin="round"
+        />
+        <rect
+          x="143"
+          y="126"
+          width="304"
+          height="18"
+          rx="5"
+          fill="#e8d4b2"
+          stroke="#977d5b"
+          stroke-width="3"
+        />
+      </g>
+      <g id="place-mask">
+        <rect
+          x="50"
+          y="16"
+          width="500"
+          height="242"
+          rx="16"
+          fill="url(#place-pattern)"
+          stroke="#adc8bc"
+          stroke-width="2"
+          stroke-dasharray="7 6"
+        />
+        <rect
+          id="known-ball-background"
+          x="326"
+          y="45"
+          width="98"
+          height="96"
+          rx="12"
+          fill="#fbfcf9"
+        />
+      </g>
+      <g id="ball" transform="translate(375 93)">
+        <circle
+          r="32"
+          fill="url(#ball-fill)"
+          stroke="#ac6539"
+          stroke-width="2"
+        />
+        <path
+          d="M-27-17Q0-3 28 15M-19 26Q0 2 18-26M-32 1Q-7 10 29-13"
+          stroke="#985a34"
+          stroke-width="2"
+          fill="none"
+        />
+      </g>
+      <g id="it-pointer" transform="translate(0 93)">
+        <text
+          x="375"
+          y="-42"
+          text-anchor="middle"
+          fill="#51685a"
+          font-size="18"
+        >
+          it
+        </text>
+      </g>
+      <g id="answer-ring" fill="none" stroke="#8960a5" stroke-width="3">
+        <circle id="object-ring" cx="375" cy="93" r="41" />
+        <rect id="place-ring" x="130" y="43" width="330" height="118" rx="15" />
+      </g>
+      <text
+        id="visual-label"
+        x="300"
+        y="276"
+        text-anchor="middle"
+        font-size="17"
+        fill="#50695b"
+      ></text>
+    </svg>
+    <button type="button" id="reveal" class="qw-reveal">
+      <span class="qw-mark" aria-hidden="true">?</span
+      ><span id="reveal-label">正体を見る</span>
+    </button>
+  </div>
+  <div class="qw-answer" id="answer-card">
+    <p class="qw-answer-caption" id="answer-caption">答えで分かること</p>
+    <p class="qw-answer-sentence" id="answer-sentence" lang="en">
+      <span>It is </span><strong id="answer-phrase">a ball</strong
+      ><span>.</span>
+    </p>
+    <p id="answer-ja">ボールです。</p>
+    <p class="qw-answer-hint" id="answer-hint">「？」の中を見てみよう。</p>
+  </div>
+  <p class="qw-connection" id="connection" aria-live="polite">
+    What は、物の正体をたずねる言葉です。
+  </p>
+  <div class="qw-tools">
+    <button type="button" id="hide" class="vl-secondary" disabled>
+      もう一度かくす</button
+    ><button type="button" id="reset" class="vl-secondary" disabled>
+      はじめに戻す
+    </button>
+  </div>
+  <div class="qw-previous" id="previous">
+    <span>同じ物について、What / Where で聞き比べよう。</span>
+  </div>
+  <button type="button" id="move" class="vl-secondary qw-move" hidden>
+    ボールの場所を変えて試す
+  </button>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>何を知りたいかを、最初の言葉で示す</h3><p>What is it? は物の正体、Where is it? はその物がある場所をたずねます。ここでは、同じボールについて聞いています。Whatへの答えはa ball、Whereへの答えはon the tableなど、場所を表すまとまりです。</p><h3>図と操作</h3><p>Whatでは物の正体を、Whereでは周りの場所を隠しています。図の「？」をタップすると、その質問で知りたかった情報が現れます。二つを見た後は、ボールが上／下にある場面を切り替えられます。場所が変わっても、物の正体はボールのままです。</p><h3>この教材の範囲</h3><p>isを使う二つの質問と答えを比べます。itは図の物を指しています。実際の会話では、場所を尋ねるときにWhere is the ball?のように物の名前を入れることもできます。Whoなどの他の疑問詞、一般動詞を使う質問、疑問詞が主語になる質問は扱いません。</p><label class="qw-motion"><input id="reduce-motion" type="checkbox">動きを減らす（答えをすぐ表示）</label><h3>出典</h3><p>例文・図・操作は自作です。文法は<a href="https://learnenglishteens.britishcouncil.org/grammar/a1-a2-grammar/question-words" target="_blank" rel="noopener noreferrer">British Council：Question words</a>、<a href="https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2/question-forms" target="_blank" rel="noopener noreferrer">Question forms</a>で確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var w=Object.freeze({what:{word:"What",unknown:"object",label:"\u7269\u306E\u6B63\u4F53",translation:"\u305D\u308C\u306F\u4F55\u3067\u3059\u304B\u3002"},where:{word:"Where",unknown:"place",label:"\u5834\u6240",translation:"\u305D\u308C\u306F\u3069\u3053\u306B\u3042\u308A\u307E\u3059\u304B\u3002"}});function l(e,r){if(typeof e!="string"||!Object.hasOwn(w,e))throw new RangeError("Unsupported question");if(r!=="on"&&r!=="under")throw new RangeError("Unsupported location");let a=w[e],i=e==="what"?"a ball":r+" the table";return{...a,question:a.word+" is it?",phrase:i,answer:"It is "+i+".",answerTranslation:e==="what"?"\u30DC\u30FC\u30EB\u3067\u3059\u3002":r==="on"?"\u30C6\u30FC\u30D6\u30EB\u306E\u4E0A\u306B\u3042\u308A\u307E\u3059\u3002":"\u30C6\u30FC\u30D6\u30EB\u306E\u4E0B\u306B\u3042\u308A\u307E\u3059\u3002"}}function m(){return{mode:"what",place:"on",phase:"hidden",runId:0,seen:[],previous:null}}var g=e=>e.phase==="shown"?{mode:e.mode,place:e.place}:e.previous;function b(e,r){switch(r.type){case"select":return l(r.mode,e.place),r.mode===e.mode?e:{...e,mode:r.mode,phase:"hidden",runId:e.runId+1,previous:g(e)};case"reveal":return e.phase==="hidden"?{...e,phase:"revealing",runId:e.runId+1}:e;case"finish":return e.phase==="revealing"&&r.runId===e.runId?{...e,phase:"shown",seen:[...new Set([...e.seen,e.mode])]}:e;case"hide":return e.phase==="hidden"?e:{...e,phase:"hidden",runId:e.runId+1};case"move":return e.seen.length===2?{...e,place:e.place==="on"?"under":"on",phase:"hidden",runId:e.runId+1,previous:g(e)}:e;case"reset":return{...m(),runId:e.runId+1};default:throw new RangeError("Unsupported action")}}function v(e){let r="running",a,i=new Promise(o=>{a=o});function s(o){r==="finished"||r==="cancelled"||(r=o,a(o))}return Promise.all(e.map(o=>o.finished)).then(()=>s("finished"),()=>s("cancelled")),{get status(){return r},finished:i,pause(){r==="running"&&(e.forEach(o=>o.pause()),r="paused")},resume(){r==="paused"&&(e.forEach(o=>o.play()),r="running")},finish(){["running","paused"].includes(r)&&(e.forEach(o=>o.finish()),s("finished"))},cancel(){["running","paused"].includes(r)&&(s("cancelled"),e.forEach(o=>o.cancel()))}}}var n=e=>document.getElementById(e),u=n("qw-lesson"),I=2400,t=m(),p=null,c=[];function E(){p?.cancel(),p=null,c.forEach(e=>e.cancel()),c=[]}function y(){let e=l(t.mode,t.place),r=t.phase==="shown",a=t.phase==="revealing";u.dataset.mode=t.mode,u.dataset.phase=t.phase,u.dataset.place=t.place,u.setAttribute("aria-busy",String(a)),n("question-word").textContent=e.word,n("question-ja").textContent=e.translation,n("answer-phrase").textContent=e.phrase,n("answer-ja").textContent=e.answerTranslation,n("answer-caption").textContent="\u7B54\u3048\u3067\u5206\u304B\u308B\u3053\u3068\uFF1A"+e.label,n("answer-sentence").setAttribute("aria-hidden",String(!r)),n("answer-ja").setAttribute("aria-hidden",String(!r)),n("intro").innerHTML=r?t.mode==="what"?"\u6B63\u4F53\u306F\u3001\u30DC\u30FC\u30EB\u3067\u3057\u305F\u3002<br><strong>\u6B21\u306F Where \u3067\u3001\u5834\u6240\u3092\u305F\u305A\u306D\u3088\u3046\u3002</strong>":"\u30DC\u30FC\u30EB\u306E\u5834\u6240\u304C\u5206\u304B\u308A\u307E\u3057\u305F\u3002<br><strong>What \u306E\u7B54\u3048\u3068\u6BD4\u3079\u3088\u3046\u3002</strong>":t.mode==="what"?"\u30C6\u30FC\u30D6\u30EB\u306E"+(t.place==="on"?"\u4E0A":"\u4E0B")+"\u306B\u3001\u4F55\u304B\u304C\u3042\u308A\u307E\u3059\u3002<br><strong>\u56F3\u306E\u300C\uFF1F\u300D\u3092\u30BF\u30C3\u30D7\u3057\u3066\u3001\u7B54\u3048\u3092\u898B\u3088\u3046\u3002</strong>":"\u30DC\u30FC\u30EB\u304C\u3042\u308B\u306E\u306F\u3001\u3069\u3053\u3067\u3057\u3087\u3046\u3002<br><strong>\u56F3\u306E\u300C\uFF1F\u300D\u3092\u30BF\u30C3\u30D7\u3057\u3066\u3001\u5834\u6240\u3092\u898B\u3088\u3046\u3002</strong>",document.querySelectorAll("button[data-mode]").forEach(s=>s.setAttribute("aria-pressed",String(s.dataset.mode===t.mode))),n("reveal").disabled=a||r,n("reveal").setAttribute("aria-label",e.label+"\u3092\u898B\u3066\u3001\u8CEA\u554F\u306E\u7B54\u3048\u3092\u8868\u793A"),n("reveal-label").textContent=t.mode==="what"?"it \u306F\u4F55\uFF1F":"\u5834\u6240\u3092\u898B\u308B";let i=t.place==="on"?93:219;if(n("ball").setAttribute("transform","translate(375 "+i+")"),n("object-ring").setAttribute("cy",i),n("it-pointer").setAttribute("transform","translate(0 "+i+")"),n("known-ball-background").setAttribute("y",i-48),n("ball-shadow").setAttribute("cy",t.place==="on"?"132":"251"),n("place-ring").setAttribute("y",t.place==="on"?"43":"145"),n("place-ring").setAttribute("height",t.place==="on"?"118":"107"),n("answer-ring").setAttribute("stroke",t.mode==="what"?"#8960a5":"#46876e"),n("visual-label").textContent=r?t.mode==="what"?"\u30DC\u30FC\u30EB":t.place==="on"?"\u30C6\u30FC\u30D6\u30EB\u306E\u4E0A":"\u30C6\u30FC\u30D6\u30EB\u306E\u4E0B":"",n("scene-svg").setAttribute("aria-label",r?(t.place==="on"?"\u30C6\u30FC\u30D6\u30EB\u306E\u4E0A":"\u30C6\u30FC\u30D6\u30EB\u306E\u4E0B")+"\u306B\u30DC\u30FC\u30EB\u304C\u3042\u308A\u307E\u3059\u3002":t.mode==="what"?"\u30C6\u30FC\u30D6\u30EB\u306E"+(t.place==="on"?"\u4E0A":"\u4E0B")+"\u306B\u3042\u308B\u7269\u306E\u6B63\u4F53\u304C\u96A0\u308C\u3066\u3044\u307E\u3059\u3002":"\u30DC\u30FC\u30EB\u304C\u898B\u3048\u3066\u3044\u307E\u3059\u3002\u5468\u308A\u306E\u5834\u6240\u304C\u96A0\u308C\u3066\u3044\u307E\u3059\u3002"),n("connection").textContent=a?"\u96A0\u308C\u3066\u3044\u305F\u60C5\u5831\u3068\u3001\u7B54\u3048\u306E\u8272\u306E\u4ED8\u3044\u305F\u90E8\u5206\u3092\u898B\u3088\u3046\u3002":r?e.word+" \u2192 "+e.phrase+"\u3002"+(t.mode==="what"?"\u300C\u4F55\u304B\u300D\u304C\u5206\u304B\u308A\u307E\u3057\u305F\u3002":"\u300C\u3069\u3053\u304B\u300D\u304C\u5206\u304B\u308A\u307E\u3057\u305F\u3002"):e.word+" \u306F\u3001"+e.label+"\u3092\u305F\u305A\u306D\u308B\u8A00\u8449\u3067\u3059\u3002",n("hide").textContent=a?"\u7B54\u3048\u3092\u3059\u3050\u898B\u308B":"\u3082\u3046\u4E00\u5EA6\u304B\u304F\u3059",n("hide").disabled=t.phase==="hidden",n("reset").disabled=t.mode==="what"&&t.place==="on"&&t.phase==="hidden"&&t.seen.length===0&&!t.previous,n("move").hidden=t.seen.length!==2,n("move").textContent="\u30DC\u30FC\u30EB\u3092"+(t.place==="on"?"\u4E0B":"\u4E0A")+"\u306B\u7F6E\u3044\u305F\u5834\u9762\u3067\u8A66\u3059",t.previous){let s=l(t.previous.mode,t.previous.place);n("previous").replaceChildren();let o=document.createElement("span");o.textContent="\u524D\u306B\u898B\u305F\u8CEA\u554F\u3068\u7B54\u3048\u3000";let f=document.createElement("b");f.lang="en",f.textContent=s.question+" \u2192 "+s.phrase,n("previous").append(o,f)}else n("previous").textContent="\u540C\u3058\u7269\u306B\u3064\u3044\u3066\u3001What / Where \u3067\u805E\u304D\u6BD4\u3079\u3088\u3046\u3002"}function x(){let e=n("question").getBoundingClientRect(),r=document.querySelector(".qw-tools").getBoundingClientRect();(e.top<12||r.bottom>innerHeight-12)&&window.scrollBy({top:e.top-14,behavior:"instant"})}function A(){let e={duration:I,easing:"linear",fill:"both"},r=t.runId,a=[{offset:0,opacity:0},{offset:.3,opacity:0},{offset:.72,opacity:1},{offset:1,opacity:1}],i=[{offset:0,opacity:1},{offset:.3,opacity:1},{offset:.6,opacity:0},{offset:1,opacity:0}];c=[n(t.mode==="what"?"ball":"context").animate(a,e),n("reveal").animate(i,e),n("answer-ring").animate([{offset:0,opacity:0},{offset:.62,opacity:0},{offset:.8,opacity:1},{offset:1,opacity:1}],e),n("answer-sentence").animate([{offset:0,opacity:0,transform:"translateY(-10px)"},{offset:.58,opacity:0,transform:"translateY(-10px)"},{offset:.83,opacity:1,transform:"translateY(0)"},{offset:1,opacity:1,transform:"translateY(0)"}],e),n("answer-ja").animate([{offset:0,opacity:0},{offset:.68,opacity:0},{offset:.88,opacity:1},{offset:1,opacity:1}],e),n("answer-hint").animate(i,e)],t.mode==="where"&&c.push(n("place-mask").animate(i,e)),p=v(c),p.finished.then(s=>{s==="finished"&&d({type:"finish",runId:r})})}function d(e){let r=b(t,e);if(r===t)return;let a=document.activeElement===n("reveal");if(E(),t=r,y(),t.phase==="revealing"){if(x(),n("reduce-motion").checked){d({type:"finish",runId:t.runId});return}A()}else a&&t.phase==="shown"&&n("hide").focus({preventScroll:!0})}n("reveal").addEventListener("click",()=>d({type:"reveal"}));n("hide").addEventListener("click",()=>d(t.phase==="revealing"?{type:"finish",runId:t.runId}:{type:"hide"}));n("reset").addEventListener("click",()=>d({type:"reset"}));n("move").addEventListener("click",()=>d({type:"move"}));document.querySelectorAll("button[data-mode]").forEach(e=>e.addEventListener("click",()=>d({type:"select",mode:e.dataset.mode})));function h(){t.phase==="revealing"&&d({type:"finish",runId:t.runId})}n("reduce-motion").checked=!1;n("reduce-motion").addEventListener("change",()=>{n("reduce-motion").checked&&h()});window.addEventListener("resize",h);window.addEventListener("pagehide",h);document.addEventListener("visibilitychange",()=>{document.hidden&&h()});y();})();
+</script>
+</body>
+</html>
