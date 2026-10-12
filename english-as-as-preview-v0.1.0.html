@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>as … as | 英語を、動かして見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-shell {
+  max-width: 1040px;
+}
+.vl-controls:empty {
+  display: none;
+}
+.vl-title {
+  font-size: clamp(25px, 3vw, 34px);
+}
+.aa-lesson {
+  padding: 18px;
+  --blue: #236d98;
+  --orange: #a95b20;
+  --green: #317754;
+}
+.aa-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #fffefb;
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  min-height: 52px;
+  padding: 4px 0;
+}
+.aa-toolbar > p {
+  margin: 0;
+  font-size: 13px;
+  color: #5f7168;
+}
+.aa-toolbar > div {
+  display: flex;
+  gap: 6px;
+}
+.aa-toolbar button {
+  min-height: 44px;
+  background: #f5f7f1;
+  border: 1px solid #cbd6ca;
+  color: #496458;
+  font-size: 13px;
+  padding: 8px 12px;
+}
+.aa-toolbar button:disabled {
+  opacity: 0.45;
+}
+.aa-toolbar #play[data-paused='true'] {
+  color: #177541;
+  background: #e8f5e9;
+}
+.aa-intro {
+  font-size: 14px;
+  color: #3b5349;
+  margin: 10px 0 14px;
+  line-height: 1.6;
+}
+.aa-comparison {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(285px, 1fr);
+  gap: 22px;
+  align-items: stretch;
+}
+.aa-world {
+  position: relative;
+  height: 340px;
+  background: linear-gradient(#f8f8ee, #f2f3ea);
+  border: 1px solid #dae1d7;
+  border-radius: 12px;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.aa-world svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.aa-name {
+  position: absolute;
+  top: 88%;
+  font-size: 13px;
+  font-weight: 650;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+.aa-name.blue {
+  left: 27%;
+  color: var(--blue);
+}
+.aa-name.orange {
+  left: 73%;
+  color: var(--orange);
+}
+.aa-ground {
+  position: absolute;
+  bottom: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #69756b;
+  background: #f3f4eb;
+  padding: 0 5px;
+}
+.aa-height-caption {
+  position: absolute;
+  top: 4%;
+  left: 60%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: #64786a;
+  padding: 3px 9px;
+  border-radius: 5px;
+  background: #edf1e3;
+  white-space: nowrap;
+}
+.aa-lesson[data-relation='equal'] .aa-height-caption {
+  color: #236849;
+  background: #dfedde;
+  font-weight: 700;
+}
+.aa-handle {
+  position: absolute;
+  left: 27%;
+  top: 51.176%;
+  transform: translate(-50%, -50%);
+  width: 62px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #247ca5;
+  border-radius: 12px;
+  background: #f8fdffef;
+  box-shadow: 0 3px 9px #375f7426;
+  color: var(--blue);
+  font-size: 28px;
+  cursor: ns-resize;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 3;
+}
+.aa-handle:focus-visible {
+  outline: 3px solid #297da5;
+  outline-offset: 4px;
+}
+.aa-handle[aria-disabled='true'] {
+  cursor: default;
+  opacity: 0.55;
+}
+.aa-lesson[data-phase='dragging'] .aa-handle {
+  background: #cfeefb;
+  border-color: #105c85;
+  box-shadow: 0 6px 18px #36799650;
+}
+.aa-handle.is-new {
+  animation: aa-pulse 1.4s 2;
+}
+.aa-drag-hint {
+  position: absolute;
+  left: 27%;
+  top: 35%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #276d94;
+  white-space: nowrap;
+  background: #eff9ff;
+  padding: 4px 7px;
+  border-radius: 6px;
+  pointer-events: none;
+}
+.aa-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.aa-actions button {
+  flex: 1;
+  min-height: 46px;
+  font-size: 13px;
+  padding: 8px 9px;
+  white-space: nowrap;
+  border: 1px solid #b9d1cf;
+  background: #edf6f5;
+  color: #285f6a;
+}
+.aa-actions button:last-child {
+  background: #fffdfa;
+  color: #627367;
+  border-color: #d4dacf;
+}
+.aa-actions button:disabled {
+  opacity: 0.45;
+}
+.aa-language {
+  padding: 16px 20px;
+  background: #fffef9;
+  border: 1px solid #dce2d7;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.aa-history {
+  min-height: 68px;
+  color: #738077;
+  font-size: 11px;
+  line-height: 1.45;
+  padding-bottom: 9px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e2e6dc;
+}
+.aa-history > span {
+  display: block;
+  color: #65766a;
+}
+.aa-history > p {
+  font-size: 13px;
+  margin: 5px 0 0;
+  line-height: 1.45;
+  min-height: 38px;
+  overflow-wrap: anywhere;
+}
+.aa-history b {
+  color: #aa5850;
+  font-weight: 650;
+}
+.aa-label {
+  font-size: 12px;
+  color: #67806b;
+  letter-spacing: 0.05em;
+  margin: 0 0 8px;
+  min-height: 18px;
+}
+.aa-sentence {
+  margin: 0;
+  color: #344c44;
+  font:
+    500 26px/1.5 -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  letter-spacing: -0.02em;
+}
+.aa-subject,
+.aa-predicate,
+.aa-object {
+  display: block;
+  white-space: nowrap;
+}
+.aa-subject b {
+  color: var(--blue);
+  font-weight: 650;
+}
+.aa-object b {
+  color: var(--orange);
+  font-weight: 650;
+}
+.aa-predicate {
+  display: flex;
+  align-items: baseline;
+  min-height: 53px;
+  padding-top: 10px;
+}
+.aa-not-slot {
+  display: inline-flex;
+  width: 1.9em;
+  position: relative;
+}
+.aa-not-slot > span {
+  color: #b1473e;
+  background: #faebe5;
+  border-radius: 5px;
+  padding: 0 0.12em;
+  position: relative;
+  will-change: transform, opacity;
+}
+.aa-as-pair {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.24em;
+  font-weight: 650;
+  color: var(--green);
+  border-bottom: 3px solid #99b996;
+  white-space: nowrap;
+}
+.aa-as-pair em {
+  font-style: normal;
+  color: #305b46;
+}
+.aa-translation {
+  font-size: 13px;
+  color: #576e60;
+  line-height: 1.7;
+  margin: 12px 0 0;
+  min-height: 44px;
+}
+.aa-meaning-hint {
+  font-size: 12px;
+  color: #607b66;
+  line-height: 1.5;
+  margin: 6px 0 0;
+  min-height: 36px;
+}
+.aa-meaning-hint > span {
+  font-weight: 700;
+  display: block;
+}
+.aa-takeaway {
+  font-size: 13px;
+  color: #5a7160;
+  margin: 14px 0 0;
+  border-left: 3px solid #b4cba9;
+  padding: 4px 0 4px 11px;
+  min-height: 30px;
+}
+.aa-motion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+.aa-motion input {
+  width: 20px;
+  height: 20px;
+}
+.aa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@keyframes aa-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 #3489ad00;
+  }
+  45% {
+    box-shadow: 0 0 0 10px #3489ad2b;
+  }
+}
+@media (max-width: 760px) {
+  .aa-lesson {
+    padding: 12px;
+  }
+  .aa-toolbar > p {
+    font-size: 12px;
+  }
+  .aa-toolbar button {
+    padding: 8px 10px;
+  }
+  .aa-toolbar #reset span {
+    display: none;
+  }
+  .aa-toolbar #reset {
+    min-width: 44px;
+  }
+  .aa-comparison {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .aa-world {
+    height: 238px;
+  }
+  .aa-intro {
+    font-size: 13px;
+    margin: 8px 0 10px;
+  }
+  .aa-name {
+    font-size: 12px;
+  }
+  .aa-height-caption {
+    font-size: 12px;
+    top: 3%;
+  }
+  .aa-ground {
+    font-size: 10px;
+  }
+  .aa-handle {
+    width: 56px;
+    height: 46px;
+    font-size: 26px;
+  }
+  .aa-drag-hint {
+    font-size: 11px;
+  }
+  .aa-language {
+    padding: 12px 16px;
+    display: block;
+  }
+  .aa-history {
+    min-height: 54px;
+    margin-bottom: 7px;
+    padding-bottom: 5px;
+  }
+  .aa-history > p {
+    min-height: 32px;
+    font-size: 11px;
+    margin: 3px 0 0;
+  }
+  .aa-label {
+    margin-bottom: 5px;
+    font-size: 11px;
+    min-height: 16px;
+  }
+  .aa-sentence {
+    font-size: 22px;
+    line-height: 1.35;
+  }
+  .aa-subject,
+  .aa-object {
+    display: inline;
+  }
+  .aa-subject::after {
+    content: ' ';
+  }
+  .aa-predicate {
+    min-height: 46px;
+  }
+  .aa-object {
+    display: block;
+  }
+  .aa-translation {
+    margin-top: 8px;
+    font-size: 12px;
+    min-height: 36px;
+    line-height: 1.5;
+  }
+  .aa-meaning-hint {
+    font-size: 11px;
+    margin-top: 4px;
+    min-height: 30px;
+  }
+  .aa-meaning-hint > span {
+    display: inline;
+  }
+  .aa-takeaway {
+    margin-top: 10px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+  .vl-main {
+    padding-top: 20px;
+  }
+  .vl-header {
+    padding-block: 12px;
+    min-height: 50px;
+  }
+  .vl-heading {
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 360px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-context {
+    display: none;
+  }
+  .aa-lesson {
+    padding: 10px;
+  }
+  .aa-toolbar > p {
+    font-size: 11px;
+  }
+  .aa-toolbar #play {
+    font-size: 12px;
+    padding: 8px;
+  }
+  .aa-world {
+    height: 218px;
+  }
+  .aa-actions {
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .aa-actions button {
+    font-size: 12px;
+    padding: 8px 6px;
+  }
+  .aa-language {
+    padding: 10px 12px;
+  }
+  .aa-sentence {
+    font-size: 21px;
+  }
+  .aa-translation {
+    font-size: 11px;
+  }
+  .aa-drag-hint {
+    font-size: 10px;
+  }
+  .aa-intro {
+    font-size: 12px;
+  }
+  .aa-history > p {
+    font-size: 11px;
+  }
+}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 20h18M5 20V6h5v14M14 20V6h5v14M3 6h18M5 11h5m4 0h5M5 16h5m4 0h5"/></svg><span>英語を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>as … as</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">as … as</h1><p class="vl-question">同じ高さを、英語でどう表す？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div id="aa-lesson" class="aa-lesson" data-phase="idle" data-relation="lower">
+  <div class="aa-toolbar" id="toolbar">
+    <p>比べるのは、<strong>塔の高さ</strong></p>
+    <div>
+      <button id="play" type="button" disabled aria-label="変化を一時停止">
+        Ⅱ <span>一時停止</span></button
+      ><button id="reset" type="button" aria-label="はじめに戻す">
+        ↺ <span>はじめに戻す</span>
+      </button>
+    </div>
+  </div>
+  <p class="aa-intro" id="intro">
+    青の上端をつかんで、オレンジと同じ高さまで上げよう。
+  </p>
+  <div class="aa-comparison" id="comparison">
+    <div class="aa-picture">
+      <div class="aa-world" id="world">
+        <svg
+          id="diagram"
+          viewBox="0 0 500 340"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <pattern
+              id="blue-bricks"
+              width="90"
+              height="32"
+              patternUnits="userSpaceOnUse"
+            >
+              <rect x="1" y="1" width="88" height="30" rx="3" fill="#3688b3" />
+              <path d="M5 6h78" stroke="#80b9d3" stroke-width="2" />
+            </pattern>
+            <pattern
+              id="orange-bricks"
+              width="90"
+              height="32"
+              patternUnits="userSpaceOnUse"
+            >
+              <rect x="1" y="1" width="88" height="30" rx="3" fill="#d88038" />
+              <path d="M5 6h78" stroke="#f0b574" stroke-width="2" />
+            </pattern>
+          </defs>
+          <path d="M30 294H470" stroke="#a9b4af" stroke-width="3" />
+          <path
+            d="M67 54H430"
+            id="target-line"
+            stroke="#d69a62"
+            stroke-width="2"
+            stroke-dasharray="6 6"
+          />
+          <rect
+            x="320"
+            y="54"
+            width="90"
+            height="240"
+            rx="4"
+            fill="url(#orange-bricks)"
+          />
+          <rect
+            id="blue-tower"
+            x="90"
+            y="174"
+            width="90"
+            height="120"
+            rx="4"
+            fill="url(#blue-bricks)"
+          />
+          <path
+            id="blue-top-line"
+            d="M80 174H192"
+            stroke="#216b98"
+            stroke-width="3"
+          />
+          <path
+            id="gap-line"
+            d="M245 57V171m-7-108 7-9 7 9m-14 99 7 9 7-9"
+            stroke="#8e9b9b"
+            stroke-width="2"
+            fill="none"
+          />
+          <path
+            id="equal-line"
+            d="M177 54H320"
+            stroke="#3b8b69"
+            stroke-width="4"
+            opacity="0"
+          />
+        </svg>
+        <span class="aa-name blue">青の塔</span
+        ><span class="aa-name orange">オレンジの塔</span>
+        <span class="aa-ground">同じ床</span>
+        <span id="height-caption" class="aa-height-caption"
+          >青のほうが低い</span
+        >
+        <div
+          id="handle"
+          class="aa-handle"
+          role="slider"
+          tabindex="0"
+          aria-label="青の塔の高さ。上下の矢印キーでも動かせます"
+          aria-valuemin="1"
+          aria-valuemax="6"
+          aria-valuenow="3"
+          aria-valuetext="オレンジの塔より低い"
+          aria-orientation="vertical"
+        >
+          <span aria-hidden="true">↕</span>
+        </div>
+        <div id="drag-hint" class="aa-drag-hint" aria-hidden="true">
+          ↑ 上げてみよう
+        </div>
+      </div>
+      <div class="aa-actions" role="group" aria-label="青の塔の高さを変える">
+        <button type="button" data-height="6">↑ 同じ高さにする</button
+        ><button type="button" data-height="3">↓ 低くする</button>
+      </div>
+    </div>
+    <div class="aa-language" id="language">
+      <div class="aa-history" id="history">
+        <span id="previous-label">上端をそろえると、文はどう変わる？</span>
+        <p lang="en" id="previous-sentence"></p>
+      </div>
+      <p class="aa-label" id="sentence-label">いまの高さ</p>
+      <p class="aa-sentence" id="sentence" lang="en" aria-hidden="true">
+        <span class="aa-subject">The <b>blue tower</b> is</span
+        ><span class="aa-predicate"
+          ><span id="not-slot" class="aa-not-slot"
+            ><span id="not-word">not</span></span
+          ><strong class="aa-as-pair"
+            ><span>as</span> <em>tall</em> <span>as</span></strong
+          ></span
+        ><span class="aa-object">the <b>orange tower</b>.</span>
+      </p>
+      <p id="translation" class="aa-translation">
+        青の塔は、オレンジの塔ほど高くありません。
+      </p>
+      <p id="meaning-hint" class="aa-meaning-hint">
+        <span lang="en">not as tall as</span> …ほど高くない
+      </p>
+      <p class="aa-sr-only" id="announcement" aria-live="polite">
+        The blue tower is not as tall as the orange tower.
+        青の塔は、オレンジの塔ほど高くありません。
+      </p>
+    </div>
+  </div>
+  <p class="aa-takeaway" id="takeaway">
+    低いところから、ぴったり同じ高さまで比べられます。
+  </p>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>比べるのは、高さ</h3><p>二つの塔は、同じ床からの高さを比べています。色や積み木が同じという意味ではありません。上端がそろうと The blue tower is as tall as the orange tower. と表せます。</p><h3>二つのasで挟む</h3><p>as tall asは「同じくらい高い」というまとまりです。二つのasの間のtallは原級で、tallerには変えません。青が低いときはnot as tall as（…ほど高くない）を使います。</p><h3>動かし方</h3><p>青の上端のつまみを上下へ動かし、指を離します。青は低いところから、オレンジと同じ高さまで動かせます。到達端ではぴったり同じ高さにそろいます。ボタンや、つまみにフォーカスして上下キーでも動かせます。Homeは最も低く、Endは同じ高さにします。つまみ以外はページを縦にスクロールできます。</p><p>動かしている間は元の文を残しています。「動かす前」と「いまの高さ」の見出しを比べて読んでみましょう。変化途中は一時停止できます。</p><label class="aa-motion"><input id="reduce-motion" type="checkbox">動きを減らす（変化後をすぐ表示）</label><h3>今回の範囲</h3><p>塔の高さを使ったas tall asとnot as tall asに絞っています。副詞・倍数表現、比較級への書換えは含みません。積み木の塔を伸ばす図は、高さを連続的に比べるための模式図です。</p><h3>出典</h3><p>例文・図は自作です。文法はBritish Councilの<a href="https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2/modifying-comparatives" target="_blank" rel="noopener noreferrer">Modifying comparatives</a>のComparingを確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{function H(e){if(!Number.isFinite(e))return null;let n=Math.max(1,Math.min(6,e));return n>=5.9?6:n}var o=e=>e>=6?"equal":"lower",T=e=>`The blue tower is ${o(e)==="lower"?"not ":""}as tall as the orange tower.`,w=(e=0)=>({phase:"idle",height:3,preview:3,target:3,previous:null,from:3,elapsed:0,mode:"button",paused:!1,runId:e}),L=e=>{let n=Math.max(0,Math.min(1,e));return n*n*(3-2*n)},$=e=>e.mode==="word"?1800:3e3;function b(e){let n=o(e.from)==="lower"?1:0,r=o(e.target)==="lower"?1:0;if(e.phase==="dragging")return{height:e.preview,notAmount:o(e.height)==="lower"?1:0,wordProgress:0};if(e.phase==="idle")return{height:e.height,notAmount:o(e.height)==="lower"?1:0,wordProgress:1};let d=L((e.elapsed-(e.mode==="word"?450:1500))/1e3);return{height:e.mode==="word"?e.target:e.from+(e.target-e.from)*L((e.elapsed-500)/1e3),notAmount:n+(r-n)*d,wordProgress:d}}function I(e){return{...e,phase:"idle",height:e.target,preview:e.target,elapsed:$(e),paused:!1}}function C(e,n,r){let d=o(n)!==o(e.height);return n===e.height?{...e,phase:"idle",preview:e.height}:r==="word"&&!d?{...e,phase:"idle",height:n,preview:n,target:n,from:n}:{...e,phase:"animating",mode:r,target:n,from:e.height,previous:d?e.height:e.previous,elapsed:0,paused:!1,runId:e.runId+1}}function g(e,n){switch(n.type){case"reset":return w(e.runId+1);case"set":{let r=H(n.height);return e.phase==="idle"&&r!==null?C(e,r,"button"):e}case"drag-start":return e.phase==="idle"?{...e,phase:"dragging",preview:e.height}:e;case"drag":{let r=H(n.height);return e.phase==="dragging"&&r!==null?{...e,preview:r}:e}case"drop":return e.phase==="dragging"?C(e,e.preview,"word"):e;case"cancel":return e.phase==="dragging"?{...e,phase:"idle",preview:e.height}:e;case"pause":return e.phase==="animating"?{...e,paused:!e.paused}:e;case"finish":return e.phase==="animating"?I(e):e;case"tick":{if(e.phase!=="animating"||e.paused||n.runId!==e.runId||!Number.isFinite(n.delta))return e;let r={...e,elapsed:e.elapsed+Math.max(0,n.delta)};return r.elapsed>=$(r)?I(r):r}default:return e}}var i=e=>document.getElementById(e),c=i("aa-lesson"),a=i("handle"),Y=i("world"),t=w(),y=!1,p=0,v=0,s=null,x=!1;function k(){i("announcement").textContent=T(t.height)+" "+(o(t.height)==="equal"?"\u9752\u306E\u5854\u306F\u3001\u30AA\u30EC\u30F3\u30B8\u306E\u5854\u3068\u540C\u3058\u304F\u3089\u3044\u9AD8\u3044\u3067\u3059\u3002":"\u9752\u306E\u5854\u306F\u3001\u30AA\u30EC\u30F3\u30B8\u306E\u5854\u307B\u3069\u9AD8\u304F\u3042\u308A\u307E\u305B\u3093\u3002")}function m(){let e=b(t),n=294-e.height*40,r=o(e.height)==="equal",d=t.phase==="animating",f=o(t.height)==="lower",P=o(t.target)==="lower";c.dataset.phase=t.phase,c.dataset.relation=r?"equal":"lower",c.dataset.height=String(e.height),c.dataset.paused=String(t.paused),i("blue-tower").setAttribute("y",n),i("blue-tower").setAttribute("height",e.height*40),i("blue-top-line").setAttribute("d",`M80 ${n}H192`),i("equal-line").setAttribute("opacity",r?1:0),i("target-line").setAttribute("stroke",r?"#438d67":"#d69a62"),i("gap-line").setAttribute("d",`M245 57V${Math.max(57,n-3)}m-7-${Math.max(0,n-66)} 7-9 7 9M238 ${n-12}l7 9 7-9`),i("gap-line").setAttribute("opacity",e.height>5.65?0:.7),a.style.top=`${n/340*100}%`,a.setAttribute("aria-valuenow",String(Math.round(e.height*10)/10)),a.setAttribute("aria-valuetext",r?"\u30AA\u30EC\u30F3\u30B8\u306E\u5854\u3068\u540C\u3058\u9AD8\u3055":"\u30AA\u30EC\u30F3\u30B8\u306E\u5854\u3088\u308A\u4F4E\u3044"),a.setAttribute("aria-disabled",String(d)),i("height-caption").textContent=r?"\u3074\u3063\u305F\u308A\u540C\u3058\u9AD8\u3055":"\u9752\u306E\u307B\u3046\u304C\u4F4E\u3044",i("drag-hint").hidden=x,i("drag-hint").style.top=`calc(${n/340*100}% - 52px)`;let M=Math.max(0,Math.min(1,(e.notAmount-.35)/.65)),G=Math.min(1,e.notAmount/.35);i("not-slot").style.width=`${1.9*G}em`,i("not-word").style.opacity=String(M),i("not-word").style.transform=`translateY(${-8*(1-M)}px)`;let E=t.phase==="dragging"?t.height:t.previous;if(E===null)i("previous-label").textContent="\u4E0A\u7AEF\u3092\u305D\u308D\u3048\u308B\u3068\u3001\u6587\u306F\u3069\u3046\u5909\u308F\u308B\uFF1F",i("previous-sentence").textContent="";else{let u=o(E)==="lower";i("previous-label").textContent=`${t.phase==="dragging"?"\u3053\u306E\u64CD\u4F5C\u306E\u524D":"\u52D5\u304B\u3059\u524D"}\uFF08${u?"\u9752\u304C\u4F4E\u3044":"\u540C\u3058\u9AD8\u3055"}\uFF09`,i("previous-sentence").innerHTML=`The blue tower is ${u?"<b>not</b> ":""}as tall as the orange tower.`}if(t.phase==="dragging")i("sentence-label").textContent="\u52D5\u304B\u3059\u524D\u306E\u6587",i("translation").textContent="\u6307\u3092\u96E2\u3059\u3068\u3001\u52D5\u304B\u3057\u305F\u5F8C\u306E\u6587\u3092\u898B\u3089\u308C\u307E\u3059\u3002",i("meaning-hint").textContent="\u4E0A\u7AEF\u3092\u305D\u308D\u3048\u3066\u307F\u3088\u3046\u3002";else if(d){i("sentence-label").textContent="\u6587\u306E\u5909\u5316\u3092\u898B\u3088\u3046";let u=o(t.from)!==o(t.target);i("translation").textContent=u?P?"\u4F4E\u304F\u3059\u308B\u3068\u3001not \u304C\u52A0\u308F\u308A\u307E\u3059\u3002":"\u540C\u3058\u9AD8\u3055\u306B\u306A\u308B\u3068\u3001not \u304C\u5916\u308C\u307E\u3059\u3002":"\u9752\u306E\u9AD8\u3055\u3092\u5909\u3048\u3066\u6BD4\u3079\u3066\u3044\u307E\u3059\u3002",i("meaning-hint").innerHTML='<span lang="en">as tall as</span> \u306E\u307E\u3068\u307E\u308A\u306F\u3001\u305D\u306E\u307E\u307E\u3002'}else i("sentence-label").textContent="\u3044\u307E\u306E\u9AD8\u3055",i("translation").textContent=f?"\u9752\u306E\u5854\u306F\u3001\u30AA\u30EC\u30F3\u30B8\u306E\u5854\u307B\u3069\u9AD8\u304F\u3042\u308A\u307E\u305B\u3093\u3002":"\u9752\u306E\u5854\u306F\u3001\u30AA\u30EC\u30F3\u30B8\u306E\u5854\u3068\u540C\u3058\u304F\u3089\u3044\u9AD8\u3044\u3067\u3059\u3002",i("meaning-hint").innerHTML=f?'<span lang="en">not as tall as</span> \u2026\u307B\u3069\u9AD8\u304F\u306A\u3044':'<span lang="en">as tall as</span> \u540C\u3058\u304F\u3089\u3044\u9AD8\u3044';i("play").disabled=!d,i("play").dataset.paused=String(t.paused),i("play").innerHTML=t.paused?"\u25B6 <span>\u518D\u958B</span>":"\u2161 <span>\u4E00\u6642\u505C\u6B62</span>",i("play").setAttribute("aria-label",t.paused?"\u5909\u5316\u3092\u518D\u958B":"\u5909\u5316\u3092\u4E00\u6642\u505C\u6B62"),document.querySelectorAll("[data-height]").forEach(u=>{u.disabled=t.phase!=="idle"||Number(u.dataset.height)===t.height}),i("takeaway").textContent=t.previous===null?"\u4F4E\u3044\u3068\u3053\u308D\u304B\u3089\u3001\u3074\u3063\u305F\u308A\u540C\u3058\u9AD8\u3055\u307E\u3067\u6BD4\u3079\u3089\u308C\u307E\u3059\u3002":"\u540C\u3058\u306A\u306E\u306F\u300C\u9AD8\u3055\u300D\u3002\u8272\u304C\u9055\u3063\u3066\u3082\u3001as tall as\u3067\u8868\u305B\u307E\u3059\u3002"}function _(){t.phase==="animating"&&!t.paused&&!p&&(v=performance.now(),p=requestAnimationFrame(q))}function q(e){p=0;let n=t.phase;t=g(t,{type:"tick",delta:Math.min(60,e-v),runId:t.runId}),v=e,m(),n==="animating"&&t.phase==="idle"&&k(),t.phase==="animating"&&!t.paused&&(p=requestAnimationFrame(q))}function l(e){let n=t;t=g(t,e),n!==t&&(y&&t.phase==="animating"&&(t=g(t,{type:"finish"})),p&&(cancelAnimationFrame(p),p=0),m(),t.phase==="idle"&&k(),_())}function A(){let e=c.getBoundingClientRect(),n=i("comparison").getBoundingClientRect().bottom;(e.top<4||n>innerHeight-10)&&window.scrollTo({top:Math.max(0,scrollY+e.top-8),behavior:"instant"})}function S(){x=!0,a.classList.remove("is-new")}function N(e){t.phase==="idle"&&(S(),l({type:"set",height:e}),A())}document.querySelectorAll("[data-height]").forEach(e=>e.addEventListener("click",()=>N(Number(e.dataset.height))));i("play").addEventListener("click",()=>l({type:"pause"}));function h(e=!1){if(!s)return;let n=s.id;s=null,a.hasPointerCapture(n)&&a.releasePointerCapture(n),l({type:e?"cancel":"drop"}),e||A()}i("reset").addEventListener("click",()=>{h(!0),x=!1,l({type:"reset"}),A()});a.addEventListener("pointerdown",e=>{if(e.button!==0||!e.isPrimary||t.phase!=="idle"||s)return;e.preventDefault(),S();let n=Y.getBoundingClientRect(),r=b(t);s={id:e.pointerId,startY:e.clientY,startHeight:r.height,scale:n.height/340},a.setPointerCapture(e.pointerId),l({type:"drag-start"})});a.addEventListener("pointermove",e=>{!s||s.id!==e.pointerId||(e.preventDefault(),l({type:"drag",height:s.startHeight+(s.startY-e.clientY)/(40*s.scale)}))});a.addEventListener("pointerup",e=>{s?.id===e.pointerId&&h()});a.addEventListener("pointercancel",e=>{s?.id===e.pointerId&&h(!0)});a.addEventListener("lostpointercapture",()=>h(!0));a.addEventListener("keydown",e=>{if(t.phase!=="idle")return;let n={ArrowUp:t.height+1,ArrowDown:t.height-1,Home:1,End:6};e.key in n&&(e.preventDefault(),N(n[e.key]))});i("reduce-motion").addEventListener("change",e=>{y=e.target.checked,h(!0),y&&l({type:"finish"}),a.classList.remove("is-new"),m()});window.addEventListener("resize",()=>h(!0));window.addEventListener("blur",()=>{h(!0),t.phase==="animating"&&!t.paused&&l({type:"pause"})});document.addEventListener("visibilitychange",()=>{document.hidden&&(h(!0),t.phase==="animating"&&!t.paused&&l({type:"pause"}))});matchMedia("(prefers-reduced-motion: reduce)").matches||a.classList.add("is-new");m();})();
+</script>
+</body>
+</html>
