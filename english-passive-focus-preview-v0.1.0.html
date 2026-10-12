@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>受け身：主語を選ぶ | 英語を、比べて見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-controls:empty {
+  display: none;
+}
+.pf-lesson {
+  max-width: 1040px;
+  margin: auto;
+  padding: 18px 24px;
+  --pf-person: #996124;
+  --pf-chair: #286b85;
+}
+.pf-intro {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 12px;
+  min-height: 48px;
+  color: #566b5b;
+}
+.pf-intro strong {
+  color: #2f4e39;
+}
+.pf-tools {
+  display: grid;
+  grid-template-columns: 1.65fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.pf-tools button {
+  min-height: 48px;
+  padding: 8px;
+  font-size: 14px;
+}
+.pf-tools #main-action {
+  background: #2d6e4e;
+  color: white;
+  border-color: #2d6e4e;
+}
+.pf-tools #main-action[data-running='true'] {
+  background: #ae483d;
+  border-color: #ae483d;
+}
+.pf-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+.pf-layout:has(.pf-language[hidden]) {
+  grid-template-columns: 1fr;
+}
+.pf-badge {
+  font-size: 12px;
+  color: #586c5c;
+  margin: 0 0 5px;
+}
+.pf-figure-area {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+.pf-figure {
+  position: relative;
+  max-width: 460px;
+  margin: auto;
+  padding-bottom: 51px;
+  touch-action: pan-y;
+}
+.pf-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#figure .pf-pick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: auto;
+  width: 28%;
+  padding: 0 !important;
+  border: 2px solid transparent !important;
+  border-radius: 12px;
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  -webkit-tap-highlight-color: transparent;
+}
+.pf-pick[data-subject='yui'] {
+  left: 22%;
+}
+.pf-pick[data-subject='chair'] {
+  left: 50.5%;
+}
+.pf-pick span {
+  font:
+    700 16px/1.4 Arial,
+    sans-serif;
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 2px 8px;
+  background: #fff;
+}
+.pf-yui span {
+  color: var(--pf-person);
+  border-color: #d9b581 !important;
+}
+.pf-chair span {
+  color: var(--pf-chair);
+  border-color: #97c0ce !important;
+}
+.pf-pick small {
+  font-size: 11px;
+  line-height: 1.5;
+  min-height: 20px;
+  color: #536657;
+}
+#figure .pf-pick:not(:disabled)[aria-pressed='true'] {
+  border-color: #94ac9b !important;
+}
+.pf-scene-note {
+  font-size: 12px;
+  line-height: 1.7;
+  min-height: 22px;
+  margin: 4px 0 0;
+  color: #586e5d;
+}
+.pf-before {
+  border: 1px solid #d7dfd8;
+  border-radius: 8px;
+  padding: 8px 11px;
+  background: #f6f8f5;
+  min-height: 86px;
+}
+.pf-before span {
+  font-size: 11px;
+  color: #627367;
+}
+.pf-before p {
+  font:
+    600 17px/1.6 Arial,
+    sans-serif;
+  margin: 2px 0 0;
+  color: #465f4c;
+}
+.pf-phase {
+  font-size: 12px;
+  color: #627368;
+  line-height: 1.6;
+  min-height: 20px;
+  margin: 6px 0 0;
+}
+.pf-sentence {
+  position: relative;
+  height: 202px;
+}
+.pf-word {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font:
+    700 25px/1.35 Arial,
+    sans-serif;
+  white-space: nowrap;
+  padding: 4px 5px;
+  border-radius: 7px;
+  will-change: transform, opacity;
+  color: #3e5948;
+}
+.pf-word-yui {
+  background: #fff0df;
+  color: var(--pf-person);
+  border-bottom: 2px solid var(--pf-person);
+}
+.pf-word-chair {
+  background: #e7f2f6;
+  color: var(--pf-chair);
+  border-bottom: 2px solid var(--pf-chair);
+}
+.pf-added {
+  color: #3d7458;
+  background: #e5f2e7;
+  border: 1px solid #9dc4a7;
+}
+.pf-time {
+  font-size: 21px;
+  font-weight: 500;
+  color: #6c766d;
+}
+.pf-predicate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 9px;
+  background: #edf5ec;
+  border: 1px solid #a9c6b0;
+  pointer-events: none;
+}
+.pf-predicate-label {
+  position: absolute;
+  font-size: 11px;
+  color: #486e52;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+.pf-translation {
+  font-size: 13px;
+  line-height: 1.7;
+  min-height: 45px;
+  margin: 0;
+  color: #425e49;
+}
+.pf-explanation {
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 64px;
+  margin: 8px 0 0;
+  padding: 9px 11px;
+  background: #f1f7f1;
+  border-left: 3px solid #94b49a;
+  color: #425e49;
+}
+.pf-motion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+}
+.pf-motion input {
+  width: 22px;
+  height: 22px;
+  accent-color: #2d6e4e;
+}
+.pf-language[hidden] {
+  display: none;
+}
+@media (max-width: 899px) {
+  .pf-layout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .pf-figure-area {
+    max-width: 600px;
+  }
+  .pf-language {
+    width: 100%;
+    max-width: 660px;
+    margin: auto;
+  }
+  .pf-sentence {
+    height: 205px;
+  }
+}
+@media (max-width: 620px) {
+  .pf-lesson {
+    padding: 14px 12px;
+  }
+  .pf-intro {
+    font-size: 13px;
+    min-height: 45px;
+  }
+  .pf-tools {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .pf-tools button {
+    font-size: 12px;
+  }
+  .pf-pick span {
+    font-size: 14px;
+    padding: 1px 7px;
+  }
+  .pf-pick small {
+    font-size: 10px;
+  }
+  .pf-figure {
+    padding-bottom: 46px;
+  }
+  .pf-scene-note {
+    font-size: 11px;
+    min-height: 20px;
+  }
+  .pf-badge {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+  .pf-before {
+    min-height: 94px;
+    padding: 6px 9px;
+  }
+  .pf-before p {
+    font-size: 16px;
+  }
+  .pf-word {
+    font-size: 21px;
+    padding: 3px 4px;
+  }
+  .pf-time {
+    font-size: 19px;
+  }
+  .pf-sentence {
+    height: 174px;
+  }
+  .pf-translation {
+    font-size: 12px;
+    min-height: 43px;
+  }
+  .pf-explanation {
+    font-size: 12px;
+    padding: 8px 10px;
+    min-height: 61px;
+  }
+  .pf-phase {
+    font-size: 11px;
+  }
+  .pf-predicate-label {
+    font-size: 10px;
+  }
+}
+@media (max-width: 360px) {
+  .pf-lesson {
+    padding: 12px 9px;
+  }
+  .pf-intro {
+    font-size: 12px;
+  }
+  .pf-tools button {
+    font-size: 11px;
+  }
+  .pf-pick span {
+    font-size: 12px;
+    padding: 1px 6px;
+  }
+  .pf-pick small {
+    font-size: 9px;
+  }
+  .pf-scene-note {
+    font-size: 10px;
+  }
+  .pf-word {
+    font-size: 20px;
+    padding: 3px;
+  }
+  .pf-time {
+    font-size: 18px;
+  }
+}
+
+#figure .pf-pick:not(:disabled)[aria-pressed='true']::before {
+  content: '主語';
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  background: #e5efe3;
+  color: #375d43;
+  font-size: 10px;
+  line-height: 1.4;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+.pf-lesson[data-phase='changing']
+  #figure
+  .pf-pick[aria-pressed='true']::before {
+  content: '主語へ';
+}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM13 7a3 3 0 0 1 3-3h5v14h-5a3 3 0 0 0-3 3M6 8h3M6 12h3M16 8h2M16 12h2"/></svg><span>英語を、比べて見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>受け身：主語を選ぶ</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">受け身：主語を選ぶ</h1><p class="vl-question">Yuiから？いすから？同じ出来事をどう言う？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div id="pf-lesson" class="pf-lesson" data-phase="ready" data-focus="yui">
+  <p id="intro" class="pf-intro">
+    昨日、Yuiがこのいすを塗りました。<br /><strong
+      >まず、昨日の出来事を見てみよう。</strong
+    >
+  </p>
+  <div class="pf-tools">
+    <button id="main-action" type="button">昨日の出来事を見る</button
+    ><button id="reset" class="vl-secondary" type="button" disabled>
+      はじめに戻す
+    </button>
+  </div>
+  <div class="pf-layout">
+    <div class="pf-figure-area">
+      <p class="pf-badge">昨日の場面を再現</p>
+      <div id="figure" class="pf-figure">
+        <svg
+          id="scene"
+          viewBox="0 0 600 255"
+          role="img"
+          aria-label="昨日、Yuiがいすを塗った場面を再現します。"
+        >
+          <defs>
+            <clipPath id="paint-clip">
+              <rect id="paint-progress" x="320" y="58" width="150" height="0" />
+            </clipPath>
+            <g id="chair-shape">
+              <path
+                d="M340 157V70q0-7 7-7h79q7 0 7 7v91"
+                fill="none"
+                stroke-width="13"
+              />
+              <path
+                d="M350 86h72M350 111h72M350 136h72"
+                fill="none"
+                stroke-width="16"
+              />
+              <path d="M329 163h114v17H329Z" stroke-width="3" />
+              <path
+                d="M339 179l-6 52m100-52 7 52"
+                fill="none"
+                stroke-width="14"
+                stroke-linecap="round"
+              />
+            </g>
+          </defs>
+          <rect x="8" y="8" width="584" height="239" rx="18" fill="#f7f4ec" />
+          <path d="M70 234h462" stroke="#d7d2bf" stroke-width="3" />
+          <use href="#chair-shape" stroke="#ac9b7e" fill="#c5b797" />
+          <g id="chair-paint" clip-path="url(#paint-clip)">
+            <use href="#chair-shape" stroke="#498ca2" fill="#68a8ba" />
+          </g>
+          <g id="yui-person">
+            <path d="M177 71q-5-42 34-43 32 2 29 44l7 40h-76Z" fill="#594c45" />
+            <circle cx="210" cy="66" r="27" fill="#e9bd99" />
+            <path
+              d="M183 63q3-39 36-30 20 6 18 27l-32-15-22 22"
+              fill="#594c45"
+            />
+            <path
+              d="M225 66h3"
+              stroke="#544b44"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+            <path d="M188 101q21-11 45 1l10 62h-67Z" fill="#d19a58" />
+            <path
+              d="M188 166l-5 64m42-64 4 64"
+              stroke="#526c70"
+              stroke-width="17"
+              stroke-linecap="round"
+            />
+            <path
+              d="M190 113l-25 34 16 27"
+              fill="none"
+              stroke="#e9bd99"
+              stroke-width="12"
+              stroke-linecap="round"
+            />
+            <path
+              id="paint-arm"
+              d="M231 114L275 130L328 93"
+              fill="none"
+              stroke="#e9bd99"
+              stroke-width="12"
+              stroke-linecap="round"
+            />
+          </g>
+          <g id="brush" transform="translate(344 78)">
+            <path
+              d="M-19 22 3 0"
+              stroke="#8b6542"
+              stroke-width="8"
+              stroke-linecap="round"
+            />
+            <path
+              d="m0-3 13-12 14 14L15 11Z"
+              fill="#447f99"
+              stroke="#365e69"
+              stroke-width="2"
+            />
+          </g>
+          <g id="paint-can">
+            <path
+              d="M120 200h40l-4 33h-32Z"
+              fill="#9cbac2"
+              stroke="#597e89"
+              stroke-width="3"
+            />
+            <ellipse cx="140" cy="200" rx="20" ry="6" fill="#448ca6" />
+            <path
+              d="M124 200q-7-24 17-24 22 0 17 24"
+              fill="none"
+              stroke="#597e89"
+              stroke-width="3"
+            />
+          </g>
+        </svg>
+        <button
+          class="pf-pick pf-yui"
+          type="button"
+          data-subject="yui"
+          disabled
+          aria-pressed="false"
+        >
+          <span lang="en">Yui</span><small>塗った人</small>
+        </button>
+        <button
+          class="pf-pick pf-chair"
+          type="button"
+          data-subject="chair"
+          disabled
+          aria-pressed="false"
+        >
+          <span lang="en">this chair</span><small>塗られたいす</small>
+        </button>
+      </div>
+      <p id="scene-note" class="pf-scene-note">
+        Yuiのはけで、いすに色がつきます。
+      </p>
+    </div>
+    <div id="language" class="pf-language" hidden>
+      <div class="pf-before">
+        <span id="before-label">Yuiを主語にした文</span>
+        <p id="before-sentence" lang="en">Yui painted this chair yesterday.</p>
+      </div>
+      <p id="phase-label" class="pf-phase">いまの文</p>
+      <div
+        id="sentence"
+        class="pf-sentence"
+        role="img"
+        aria-label="Yui painted this chair yesterday."
+      >
+        <span
+          id="predicate-group"
+          class="pf-predicate"
+          aria-hidden="true"
+        ></span>
+        <strong
+          id="word-yui"
+          class="pf-word pf-word-yui"
+          lang="en"
+          aria-hidden="true"
+          >Yui</strong
+        ><strong
+          id="word-chair"
+          class="pf-word pf-word-chair"
+          lang="en"
+          aria-hidden="true"
+          >this chair</strong
+        ><strong
+          id="word-painted"
+          class="pf-word pf-word-painted"
+          lang="en"
+          aria-hidden="true"
+          >painted</strong
+        ><strong
+          id="word-was"
+          class="pf-word pf-added"
+          lang="en"
+          aria-hidden="true"
+          >was</strong
+        ><strong
+          id="word-by"
+          class="pf-word pf-added"
+          lang="en"
+          aria-hidden="true"
+          >by</strong
+        ><strong
+          id="word-yesterday"
+          class="pf-word pf-time"
+          lang="en"
+          aria-hidden="true"
+          >yesterday.</strong
+        ><small
+          id="predicate-label"
+          class="pf-predicate-label"
+          aria-hidden="true"
+          >塗られた</small
+        >
+      </div>
+      <p id="translation" class="pf-translation">
+        Yuiが、昨日このいすを塗りました。
+      </p>
+    </div>
+  </div>
+  <p id="explanation" class="pf-explanation" aria-live="polite">
+    いすを塗ったのは、Yuiです。
+  </p>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>同じ出来事を、違う主語から述べる</h3><p>Yui painted this chair yesterday.は、Yuiを主語にして「Yuiがこのいすを塗った」と述べます。This chair was painted by Yui yesterday.は、いすを主語にして「このいすはYuiによって塗られた」と述べます。塗った人、いす、昨日の出来事は同じです。</p><h3>was paintedとby Yui</h3><p>受け身はbe動詞＋過去分詞の形です。この教材では単数のいすについて、昨日の出来事なのでwas paintedを使います。paintの過去形も過去分詞もpaintedという同じつづりです。つづりを変えるのではなく、wasが加わり、文の形が変わるところを見ます。by Yuiは塗った人を表しています。thisが文頭へ来ると最初の文字を大文字にします。</p><h3>図と操作</h3><p>最初の再生は昨日の場面を模式的に再現します。再生後は、図のYuiかいすをタップして文の主語を選びます。いすを選んでも、いすが塗る側になったり、出来事がやり直されたりはしません。旧文は上に残します。変化中の語列は移動の途中なので、最後にそろった英文を読みます。「完成形で止める」でいつでも確かめられます。</p><label class="pf-motion"><input id="reduce-motion" type="checkbox">動きを減らす（完成形をすぐ表示）</label><h3>この教材の範囲と出典</h3><p>過去の一つの出来事を表す能動文と受け身の文を比べます。現在形、疑問・否定、byの省略、不規則な過去分詞、全時制は扱いません。図と例文は自作です。文法は<a href="https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2/passives" target="_blank" rel="noopener noreferrer">British Council：Passives</a>で確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var O=Object.freeze({painter:"Yui",object:"this chair",time:"yesterday",action:"paint",result:"blue"});function f(e){if(!["yui","chair"].includes(e))throw new RangeError("Unsupported subject");return{event:O,verb:"painted",sentence:e==="yui"?"Yui painted this chair yesterday.":"This chair was painted by Yui yesterday.",translation:e==="yui"?"Yui\u304C\u3001\u6628\u65E5\u3053\u306E\u3044\u3059\u3092\u5857\u308A\u307E\u3057\u305F\u3002":"\u3053\u306E\u3044\u3059\u306F\u3001\u6628\u65E5Yui\u306B\u3088\u3063\u3066\u5857\u3089\u308C\u307E\u3057\u305F\u3002",additions:e==="yui"?[]:["was","by"]}}function v(){return{phase:"ready",seen:!1,focus:"yui",target:"yui",previous:null,runId:0}}var E=(e,t,a)=>({...e,focus:t,target:a,phase:"changing",runId:e.runId+1}),A=e=>e.phase==="painting"?{...e,phase:"idle",seen:!0,focus:"yui",target:"yui",previous:null}:{...e,focus:e.target,phase:"idle",previous:e.focus};function R(e,t){switch(t.type){case"start":return e.phase==="ready"?{...e,phase:"painting",runId:e.runId+1}:e;case"select":return f(t.focus),e.seen?e.phase==="changing"?t.focus===e.target?A(e):{...e,phase:"idle",target:e.focus,runId:e.runId+1}:t.focus===e.focus?e:E(e,e.focus,t.focus):e;case"finish":return["painting","changing"].includes(e.phase)&&t.runId===e.runId?A(e):e;case"replay":return e.phase==="idle"&&e.previous?E(e,e.previous,e.focus):e;case"reset":return{...v(),runId:e.runId+1};default:throw new RangeError("Unsupported action")}}function I(e,t,a,c){f(e);let s=8,r=c?50:60,u=c?112:132,o={},d=(p,x)=>{let T=p.reduce((g,q)=>g+a[q],0)+s*(p.length-1),C=(t-T)/2;for(let g of p)o[g]={x:C,y:x},C+=a[g]+s};return d(["chair","was","painted"],r),d(["by","yui","yesterday"],u),e==="yui"&&(d(["yui","painted","chair"],r),d(["yesterday"],u)),o}function S(e){let t="running",a,c=new Promise(r=>{a=r});function s(r){t==="finished"||t==="cancelled"||(t=r,a(r))}return Promise.all(e.map(r=>r.finished)).then(()=>s("finished"),()=>s("cancelled")),{get status(){return t},finished:c,pause(){t==="running"&&(e.forEach(r=>r.pause()),t="paused")},resume(){t==="paused"&&(e.forEach(r=>r.play()),t="running")},finish(){["running","paused"].includes(t)&&(e.forEach(r=>r.finish()),s("finished"))},cancel(){["running","paused"].includes(t)&&(s("cancelled"),e.forEach(r=>r.cancel()))}}}var i=e=>document.getElementById(e),l=i("pf-lesson"),L=["yui","chair","painted","was","by","yesterday"],n=v(),y=[],m=null,b=0,P=4200,U=3200;function W(){cancelAnimationFrame(b),b=0,m?.cancel(),m=null,y.forEach(e=>e.cancel()),y=[]}function B(e){i("paint-progress").setAttribute("height",String(e*180));let t=344+Math.sin(e*Math.PI*9)*17,a=78+e*143;e===1&&(t=312,a=163),i("brush").setAttribute("transform",`translate(${t} ${a})`),i("paint-arm").setAttribute("d",`M231 114L275 ${128+e*32}L${t-16} ${a+18}`),l.dataset.paint=String(e)}function M(){let e=i("word-chair"),t=e.textContent;e.style.width="",e.textContent="This chair";let a=e.getBoundingClientRect().width;e.textContent="this chair";let c=e.getBoundingClientRect().width;e.textContent=t,e.style.width=Math.max(a,c)+"px";let s=Object.fromEntries(L.map(o=>[o,i("word-"+o).getBoundingClientRect().width])),r=i("sentence").clientWidth,u=innerWidth<=620;return{active:I("yui",r,s,u),passive:I("chair",r,s,u),widths:s}}var Y=e=>`translate(${e.x}px, ${e.y}px)`;function k(){if(!n.seen)return;let{active:e,passive:t,widths:a}=M(),c=n.focus==="yui"?e:t;for(let o of L)i("word-"+o).style.transform=Y(c[o]),i("word-"+o).style.opacity=["was","by"].includes(o)&&n.focus==="yui"?"0":"1";i("word-chair").textContent=n.focus==="chair"?"This chair":"this chair";let s=i("predicate-group"),r=i("predicate-label"),u=n.phase==="idle"&&n.focus==="chair";s.hidden=r.hidden=!u,s.style.left=t.was.x-2+"px",s.style.top=t.was.y-2+"px",s.style.width=t.painted.x+a.painted-t.was.x+4+"px",s.style.height=i("word-painted").getBoundingClientRect().height+4+"px",r.style.left=t.was.x+"px",r.style.top=t.was.y+i("word-painted").getBoundingClientRect().height+5+"px"}function $(){let e=n.phase==="changing",t=n.phase==="painting";l.dataset.phase=n.phase,l.dataset.focus=n.focus,l.dataset.target=n.target,l.setAttribute("aria-busy",String(e||t)),i("language").hidden=!n.seen,B(n.seen?1:0),i("reset").disabled=n.phase==="ready",i("main-action").dataset.running=String(e||t),i("main-action").textContent=t?"\u5B8C\u6210\u56F3\u3067\u6B62\u3081\u308B":e?"\u5B8C\u6210\u5F62\u3067\u6B62\u3081\u308B":n.seen?n.previous?"\u5909\u5316\u3092\u3082\u3046\u4E00\u5EA6":"\u3044\u3059\u3092\u4E3B\u8A9E\u306B\u3059\u308B":"\u6628\u65E5\u306E\u51FA\u6765\u4E8B\u3092\u898B\u308B",i("intro").innerHTML=n.seen?"\u5857\u3063\u305F\u4EBA\u3082\u3001\u51FA\u6765\u4E8B\u3082\u540C\u3058\u3067\u3059\u3002<br><strong>\u56F3\u3067Yui\u304B\u3044\u3059\u3092\u9078\u3073\u3001\u4E3B\u8A9E\u3092\u66FF\u3048\u3088\u3046\u3002</strong>":"\u6628\u65E5\u3001Yui\u304C\u3053\u306E\u3044\u3059\u3092\u5857\u308A\u307E\u3057\u305F\u3002<br><strong>\u307E\u305A\u3001\u6628\u65E5\u306E\u51FA\u6765\u4E8B\u3092\u898B\u3066\u307F\u3088\u3046\u3002</strong>",i("scene-note").textContent=n.seen?"\u56F3\u306EYui\u304B\u3044\u3059\u3092\u30BF\u30C3\u30D7\u3002\u4E3B\u8A9E\u3092\u66FF\u3048\u3066\u307F\u3088\u3046\u3002":"Yui\u306E\u306F\u3051\u3067\u3001\u3044\u3059\u306B\u8272\u304C\u3064\u304D\u307E\u3059\u3002",i("scene").setAttribute("aria-label",n.seen?"\u6628\u65E5Yui\u304C\u5857\u3063\u305F\u9752\u3044\u3044\u3059\u3002\u4EBA\u7269\u3068\u3044\u3059\u306F\u540C\u3058\u307E\u307E\u3067\u3001\u6587\u306E\u4E3B\u8A9E\u3092\u9078\u3073\u307E\u3059\u3002":"\u6628\u65E5Yui\u304C\u3044\u3059\u3092\u5857\u3063\u305F\u5834\u9762\u3092\u518D\u73FE\u3057\u307E\u3059\u3002"),document.querySelectorAll("button[data-subject]").forEach(a=>{a.disabled=!n.seen,a.setAttribute("aria-pressed",String(n.seen&&a.dataset.subject===(e?n.target:n.focus))),a.setAttribute("aria-label",a.dataset.subject==="yui"?"\u56F3\u306EYui\u3092\u6587\u306E\u4E3B\u8A9E\u306B\u3059\u308B":"\u56F3\u306E\u3044\u3059\u3092\u6587\u306E\u4E3B\u8A9E\u306B\u3059\u308B")}),n.seen&&(i("before-label").textContent=e?"\u5207\u308A\u66FF\u3048\u308B\u524D\u306E\u6587":n.previous?"\u524D\u306E\u6587":"Yui\u3092\u4E3B\u8A9E\u306B\u3057\u305F\u6587",i("before-sentence").textContent=f(e?n.focus:n.previous||n.focus).sentence,i("phase-label").textContent=e?"\u540C\u3058\u51FA\u6765\u4E8B\u3092\u3001\u5225\u306E\u4E3B\u8A9E\u304B\u3089\u8A00\u3044\u66FF\u3048\u4E2D":"\u3044\u307E\u306E\u6587",i("sentence").setAttribute("aria-label",e?"\u6587\u306E\u4E3B\u8A9E\u3092\u5207\u308A\u66FF\u3048\u3066\u3044\u307E\u3059\u3002\u524D\u306E\u5B8C\u6210\u6587\u306F\u4E0A\u306B\u3042\u308A\u307E\u3059\u3002":f(n.focus).sentence),i("translation").textContent=e?"\u4E3B\u8A9E\u304C\u66FF\u308F\u3063\u3066\u3082\u3001\u5857\u3063\u305F\u4EBA\u306FYui\u3067\u3059\u3002":f(n.focus).translation,k()),i("explanation").textContent=n.seen?e?"\u3044\u3059\u306E\u8A00\u8449\u3068Yui\u3092\u8FFD\u304A\u3046\u3002painted\u306E\u3064\u3065\u308A\u306F\u5909\u308F\u308A\u307E\u305B\u3093\u3002":n.focus==="chair"?"was painted\u3067\u300C\u5857\u3089\u308C\u305F\u300D\u3002by Yui\u3067\u300CYui\u306B\u3088\u3063\u3066\u300D\u3002":"Yui\u3092\u4E3B\u8A9E\u306B\u3057\u3066\u3001\u300CYui\u304C\u5857\u3063\u305F\u300D\u3068\u8A00\u3063\u3066\u3044\u307E\u3059\u3002":"\u3044\u3059\u3092\u5857\u3063\u305F\u306E\u306F\u3001Yui\u3067\u3059\u3002"}function j(){let e=document.querySelector(".pf-tools").getBoundingClientRect(),t=i("explanation").getBoundingClientRect();(e.top<12||t.bottom>innerHeight-12)&&scrollBy({top:e.top-12,behavior:"instant"})}function F(){let e=performance.now(),t=n.runId;function a(c){if(n.phase!=="painting"||n.runId!==t)return;let s=Math.max(0,Math.min(1,(c-e-450)/(U-450)));B(s),s<1?b=requestAnimationFrame(a):h({type:"finish",runId:t})}b=requestAnimationFrame(a)}function N(){let{active:e,passive:t}=M(),a=n.target==="yui",c={duration:P,easing:"linear",fill:"both"},s=n.runId,r={chair:[[0,e.chair],[.22,e.chair],[.36,{x:e.chair.x,y:0}],[.58,{x:t.chair.x,y:0}],[.72,t.chair],[1,t.chair]],yui:[[0,e.yui],[.4,e.yui],[.54,{x:e.yui.x,y:t.yui.y}],[.66,t.yui],[1,t.yui]],painted:[[0,e.painted],[.38,e.painted],[.62,t.painted],[1,t.painted]],yesterday:[[0,e.yesterday],[.22,e.yesterday],[.35,t.yesterday],[1,t.yesterday]]};for(let[u,o]of Object.entries(r)){let d=o.map(([p,x])=>({offset:p,transform:Y(x),easing:"ease-in-out"}));a&&(d=d.map(p=>({...p,offset:1-p.offset})).reverse()),y.push(i("word-"+u).animate(d,c))}for(let u of["was","by"]){let o=i("word-"+u);o.style.transform=Y(t[u]);let d=[{offset:0,opacity:0},{offset:.7,opacity:0},{offset:.78,opacity:1},{offset:1,opacity:1}];y.push(o.animate(a?d.map(p=>({...p,offset:1-p.offset})).reverse():d,c))}m=S(y),m.finished.then(u=>{u==="finished"&&h({type:"finish",runId:s})})}function h(e){let t=R(n,e);if(t!==n)if(W(),n=t,$(),["painting","changing"].includes(n.phase)){if(j(),i("reduce-motion").checked){h({type:"finish",runId:n.runId});return}n.phase==="painting"?F():N()}else e.type==="finish"&&n.seen&&j()}i("main-action").addEventListener("click",()=>h(["painting","changing"].includes(n.phase)?{type:"finish",runId:n.runId}:n.phase==="ready"?{type:"start"}:n.previous?{type:"replay"}:{type:"select",focus:"chair"}));i("reset").addEventListener("click",()=>h({type:"reset"}));document.querySelectorAll("button[data-subject]").forEach(e=>e.addEventListener("click",()=>h({type:"select",focus:e.dataset.subject})));function w(){["painting","changing"].includes(n.phase)&&h({type:"finish",runId:n.runId})}i("reduce-motion").checked=!1;i("reduce-motion").addEventListener("change",()=>{i("reduce-motion").checked&&w()});window.addEventListener("resize",()=>{w(),k()});window.addEventListener("pagehide",w);document.addEventListener("visibilitychange",()=>{document.hidden&&w()});$();})();
+</script>
+</body>
+</html>
