@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>人称代名詞と役割 | 英語を、比べて見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-controls:empty {
+  display: none;
+}
+.pr-lesson {
+  max-width: 1040px;
+  padding: 18px 24px;
+  margin: auto;
+  --pr-blue: #23668d;
+  --pr-orange: #986024;
+}
+.pr-intro {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 12px;
+  color: #586c5e;
+  min-height: 48px;
+}
+.pr-intro strong {
+  color: #2f4939;
+}
+.pr-tools {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.pr-tools button {
+  min-height: 48px;
+  padding: 8px;
+  font-size: 14px;
+}
+.pr-tools #main-action {
+  background: #2d6e4e;
+  color: white;
+  border-color: #2d6e4e;
+}
+.pr-tools #main-action[data-running='true'] {
+  background: #ae483d;
+  border-color: #ae483d;
+}
+.pr-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+.pr-scene-label {
+  font-size: 13px;
+  color: #526a5b;
+  margin: 0 0 7px;
+}
+.pr-figure {
+  position: relative;
+  touch-action: pan-y;
+}
+.pr-figure svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.pr-person {
+  position: absolute;
+  top: 14%;
+  height: 80%;
+  width: 29%;
+  padding: 0 !important;
+  border: 2px solid transparent !important;
+  border-radius: 12px;
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  gap: 2px;
+  color: inherit !important;
+}
+.pr-person {
+  -webkit-tap-highlight-color: transparent;
+}
+.pr-lesson[data-kind='roles'] .pr-roles {
+  visibility: hidden;
+}
+.pr-person:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.pr-person[data-helper='ken'] {
+  left: 18%;
+}
+.pr-person[data-helper='yui'] {
+  left: 53%;
+}
+.pr-person span {
+  font:
+    700 16px/1.4 Arial,
+    sans-serif;
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 2px 14px;
+  background: #fff;
+}
+.pr-person small {
+  font-size: 10px;
+  line-height: 1.35;
+  background: #fffaf0;
+  padding: 2px 3px;
+  white-space: nowrap;
+}
+.pr-ken span {
+  color: var(--pr-blue);
+  border-color: #9bbfd2 !important;
+}
+.pr-yui span {
+  color: var(--pr-orange);
+  border-color: #d4b087 !important;
+}
+.pr-person:not(:disabled)[aria-pressed='true'] {
+  border-color: #9db2a3 !important;
+  box-shadow: inset 0 0 0 1px #ffffff80;
+}
+.pr-person:not(:disabled):hover {
+  background: #ffffff20 !important;
+}
+.pr-select-hint {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #5d7264;
+  margin: 7px 0 0;
+  min-height: 43px;
+}
+.pr-before {
+  border: 1px solid #d6dfd8;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: #f6f8f5;
+}
+.pr-before span {
+  font-size: 12px;
+  color: #65756a;
+}
+.pr-before p {
+  font:
+    600 18px/1.6 Arial,
+    sans-serif;
+  margin: 1px 0 0;
+  color: #48634f;
+}
+.pr-phase {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #65746a;
+  margin: 9px 0 0;
+  min-height: 20px;
+}
+.pr-sentence {
+  position: relative;
+  height: 239px;
+  --pr-word-size: 30px;
+}
+.pr-person-word {
+  position: absolute;
+  top: 96px;
+  width: 90px;
+  text-align: center;
+  transform: translateX(-50%);
+  will-change: transform;
+}
+.pr-word-slot {
+  display: grid;
+  place-items: center;
+  height: 48px;
+  background: #eaf3f8;
+  border-bottom: 3px solid var(--pr-blue);
+  border-radius: 8px;
+  color: var(--pr-blue);
+}
+.pr-word-yui .pr-word-slot {
+  background: #fff1e1;
+  border-color: var(--pr-orange);
+  color: var(--pr-orange);
+}
+.pr-word-slot strong {
+  grid-area: 1/1;
+  font:
+    700 var(--pr-word-size)/1.3 Arial,
+    sans-serif;
+  will-change: opacity, transform;
+}
+.pr-new {
+  opacity: 0;
+}
+.pr-person-word small {
+  font:
+    12px/1.8 Arial,
+    sans-serif;
+  display: block;
+  color: #6b7167;
+}
+.pr-verb {
+  position: absolute;
+  top: 101px;
+  left: 50%;
+  transform: translateX(-50%);
+  font:
+    600 var(--pr-word-size)/1.3 Arial,
+    sans-serif;
+  color: #42584a;
+}
+.pr-dot {
+  position: absolute;
+  top: 101px;
+  left: 95%;
+  font:
+    600 var(--pr-word-size)/1.3 Arial,
+    sans-serif;
+}
+.pr-roles {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 42%;
+  font-size: 12px;
+  line-height: 1.35;
+  color: #587062;
+  text-align: center;
+}
+.pr-roles > span {
+  display: block;
+}
+.pr-roles small {
+  font-size: 10px;
+  display: block;
+  color: #7a857d;
+  margin-top: 2px;
+}
+.pr-translation {
+  font-size: 13px;
+  line-height: 1.7;
+  min-height: 44px;
+  margin: 5px 0 0;
+  color: #425f4a;
+}
+.pr-explanation {
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 70px;
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid #94b69c;
+  background: #f1f7f1;
+  color: #405e48;
+}
+.pr-motion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+}
+.pr-motion input {
+  width: 22px;
+  height: 22px;
+  accent-color: #2d6e4e;
+}
+@media (max-width: 899px) {
+  .pr-layout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .pr-figure-area {
+    max-width: 600px;
+    margin: auto;
+    width: 100%;
+  }
+  .pr-figure svg {
+    max-height: 220px;
+  }
+  .pr-language {
+    max-width: 660px;
+    width: 100%;
+    margin: auto;
+  }
+  .pr-sentence {
+    height: 240px;
+  }
+  .pr-person-word {
+    top: 94px;
+  }
+  .pr-verb,
+  .pr-dot {
+    top: 99px;
+  }
+  .pr-before {
+    padding: 6px 10px;
+  }
+  .pr-before p {
+    font-size: 17px;
+  }
+  .pr-before span {
+    font-size: 11px;
+  }
+  .pr-person small {
+    font-size: 12px;
+  }
+  .pr-person span {
+    font-size: 18px;
+  }
+}
+@media (max-width: 620px) {
+  .pr-lesson {
+    padding: 14px 12px;
+  }
+  .pr-intro {
+    font-size: 13px;
+    min-height: 45px;
+  }
+  .pr-tools {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .pr-tools button {
+    font-size: 12px;
+  }
+  .pr-scene-label {
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  .pr-person span {
+    font-size: 15px;
+    padding: 1px 10px;
+  }
+  .pr-person small {
+    font-size: 10px;
+  }
+  .pr-select-hint {
+    font-size: 11px;
+    min-height: 20px;
+    margin-top: 3px;
+  }
+  .pr-sentence {
+    height: 220px;
+    --pr-word-size: 26px;
+  }
+  .pr-person-word {
+    width: 72px;
+    top: 84px;
+  }
+  .pr-word-slot {
+    height: 43px;
+  }
+  .pr-word-slot strong {
+    font-size: 26px;
+  }
+  .pr-person-word small {
+    font-size: 11px;
+  }
+  .pr-verb,
+  .pr-dot {
+    top: 88px;
+  }
+  .pr-translation {
+    font-size: 12px;
+    min-height: 26px;
+  }
+  .pr-explanation {
+    font-size: 12px;
+    min-height: 65px;
+    padding: 8px 10px;
+  }
+  .pr-roles {
+    font-size: 11px;
+    gap: 38%;
+  }
+  .pr-roles small {
+    font-size: 10px;
+  }
+}
+@media (max-width: 360px) {
+  .pr-lesson {
+    padding: 12px 9px;
+  }
+  .pr-tools {
+    grid-template-columns: 1.5fr 1fr;
+  }
+  .pr-tools button {
+    font-size: 11px;
+  }
+  .pr-intro {
+    font-size: 12px;
+  }
+  .pr-person-word {
+    width: 66px;
+  }
+  .pr-word-slot strong {
+    font-size: 24px;
+  }
+  .pr-sentence {
+    --pr-word-size: 24px;
+  }
+  .pr-person small {
+    font-size: 9px;
+  }
+  .pr-person span {
+    font-size: 13px;
+    padding: 1px 8px;
+  }
+  .pr-select-hint {
+    font-size: 10px;
+  }
+}
+
+.pr-figure {
+  max-width: 460px;
+  margin: auto;
+  padding-bottom: 52px;
+}
+.pr-person small {
+  min-height: 28px;
+  font-size: 11px;
+  line-height: 1.2;
+}
+#figure .pr-person {
+  top: 0;
+  bottom: 0;
+  height: auto;
+  justify-content: flex-end;
+}
+@media (max-width: 620px) {
+  .pr-person small {
+    font-size: 10px;
+    min-height: 25px;
+  }
+}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM13 7a3 3 0 0 1 3-3h5v14h-5a3 3 0 0 0-3 3M6 8h3M6 12h3M16 8h2M16 12h2"/></svg><span>英語を、比べて見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>人称代名詞と役割</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">人称代名詞と役割</h1><p class="vl-question">同じKenなのに、He と him はどう変わる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div
+  class="pr-lesson"
+  id="pr-lesson"
+  data-mode="names"
+  data-phase="idle"
+  data-helper="ken"
+>
+  <p class="pr-intro" id="intro">
+    Kenが、Yuiの勉強を手伝っています。<br /><strong
+      >同じ二人を、名前の代わりの言葉で表してみよう。</strong
+    >
+  </p>
+  <div class="pr-tools">
+    <button type="button" id="main-action">名前を代名詞に替える</button
+    ><button type="button" id="reset" class="vl-secondary" disabled>
+      はじめに戻す
+    </button>
+  </div>
+  <div class="pr-layout">
+    <div class="pr-figure-area">
+      <p class="pr-scene-label" id="scene-label">勉強を手伝う場面</p>
+      <div class="pr-figure" id="figure">
+        <svg
+          id="people-scene"
+          viewBox="0 0 600 290"
+          role="img"
+          aria-label="左のKenが、右のYuiの勉強を手伝っています。"
+        >
+          <rect x="10" y="10" width="580" height="270" rx="18" fill="#f7f4ec" />
+          <path
+            d="M104 196h394M123 196v67m356-67v67"
+            stroke="#b59c78"
+            stroke-width="13"
+            stroke-linecap="round"
+          />
+          <g id="ken-figure">
+            <circle cx="195" cy="79" r="27" fill="#e8bb95" />
+            <path
+              d="M169 77q-3-42 35-38 26 4 18 32l-24-10-29 20"
+              fill="#314852"
+            />
+            <path
+              d="M210 82h3"
+              stroke="#314852"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+            <path d="M173 112q22-13 44 1l12 62h-66Z" fill="#4b92bf" />
+          </g>
+          <g id="yui-figure">
+            <path d="M374 82q-6-45 33-44 32 1 28 42v42h-64Z" fill="#55453d" />
+            <circle cx="405" cy="79" r="26" fill="#e8bb95" />
+            <path
+              d="M379 72q3-40 36-30 16 6 15 26l-31-17-20 23"
+              fill="#55453d"
+            />
+            <path
+              d="M386 81h3"
+              stroke="#55453d"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+            <path d="M383 112q22-13 44 1l12 62h-66Z" fill="#d3934e" />
+          </g>
+          <rect
+            x="124"
+            y="178"
+            width="350"
+            height="14"
+            rx="3"
+            fill="#dfc7a5"
+            stroke="#b1936a"
+            stroke-width="2"
+          />
+          <path
+            d="M256 157l88-5 14 23-91 0Z"
+            fill="#fffdf5"
+            stroke="#c3c0ac"
+            stroke-width="2"
+          />
+          <path d="M275 164h45m-42 5h27" stroke="#a6b4ae" stroke-width="2" />
+          <g id="scene-ken">
+            <path
+              d="M182 125l31 21 66 14m-66-35-23 26-28 1M392 126l-28 30-28 9m80-39 20 30-26 5"
+              fill="none"
+              stroke="#e8bb95"
+              stroke-width="13"
+              stroke-linecap="round"
+            />
+            <path
+              d="M270 158l18 3m47 4-9-23"
+              stroke="#466a68"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <path
+              d="M143 146l18-8 22 11-19 9Z"
+              fill="#fff6d1"
+              stroke="#82967d"
+              stroke-width="3"
+            />
+            <path
+              d="M137 22h109v27H218l-10 10-1-10h-70Z"
+              fill="#e3eff8"
+              stroke="#b4d1e3"
+            />
+            <text
+              x="191"
+              y="42"
+              text-anchor="middle"
+              fill="#2e6d9a"
+              font-size="18"
+            >
+              ここを見て
+            </text>
+            <text
+              x="405"
+              y="38"
+              text-anchor="middle"
+              fill="#966128"
+              font-size="17"
+            >
+              なるほど
+            </text>
+          </g>
+          <g id="scene-yui" opacity="0">
+            <path
+              d="M416 125l-31 21-63 15m65-36 23 26 28 1M208 126l28 30 32 8m-81-38-20 30 26 5"
+              fill="none"
+              stroke="#e8bb95"
+              stroke-width="13"
+              stroke-linecap="round"
+            />
+            <path
+              d="M327 160l-15 2m-45 2 10-23"
+              stroke="#466a68"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <path
+              d="M418 148l18-10 24 8-21 11Z"
+              fill="#fff6d1"
+              stroke="#82967d"
+              stroke-width="3"
+            />
+            <path
+              d="M349 22h111v27h-32l-10 10-1-10h-68Z"
+              fill="#fff0df"
+              stroke="#e5c7a5"
+            />
+            <text
+              x="405"
+              y="42"
+              text-anchor="middle"
+              fill="#956028"
+              font-size="18"
+            >
+              ここを見て
+            </text>
+            <text
+              x="195"
+              y="38"
+              text-anchor="middle"
+              fill="#2e6d9a"
+              font-size="17"
+            >
+              なるほど
+            </text>
+          </g>
+        </svg>
+        <button
+          type="button"
+          class="pr-person pr-ken"
+          data-helper="ken"
+          aria-pressed="true"
+          disabled
+        >
+          <span lang="en">Ken</span><small>手伝う人</small>
+        </button>
+        <button
+          type="button"
+          class="pr-person pr-yui"
+          data-helper="yui"
+          aria-pressed="false"
+          disabled
+        >
+          <span lang="en">Yui</span><small>手伝ってもらう人</small>
+        </button>
+      </div>
+      <p class="pr-select-hint" id="select-hint">
+        青はKen、オレンジはYuiです。
+      </p>
+    </div>
+    <div class="pr-language">
+      <div class="pr-before">
+        <span id="before-label">名前を使った文</span>
+        <p lang="en" id="before-sentence">Ken helps Yui.</p>
+      </div>
+      <p class="pr-phase" id="phase-label">いまの文</p>
+      <div
+        class="pr-sentence"
+        id="sentence"
+        role="img"
+        aria-label="Ken helps Yui."
+      >
+        <div
+          class="pr-person-word pr-word-ken"
+          id="word-ken"
+          aria-hidden="true"
+        >
+          <span class="pr-word-slot"
+            ><strong class="pr-old" id="old-ken" lang="en">Ken</strong
+            ><strong class="pr-new" id="new-ken" lang="en">He</strong></span
+          ><small>Ken</small>
+        </div>
+        <strong class="pr-verb" id="verb" lang="en" aria-hidden="true"
+          >helps</strong
+        >
+        <div
+          class="pr-person-word pr-word-yui"
+          id="word-yui"
+          aria-hidden="true"
+        >
+          <span class="pr-word-slot"
+            ><strong class="pr-old" id="old-yui" lang="en">Yui</strong
+            ><strong class="pr-new" id="new-yui" lang="en">her</strong></span
+          ><small>Yui</small>
+        </div>
+        <span class="pr-dot" aria-hidden="true">.</span>
+        <div class="pr-roles" aria-hidden="true">
+          <span>手伝う人<small>主語</small></span
+          ><span>手伝って<br />もらう人<small>目的語</small></span>
+        </div>
+      </div>
+      <p class="pr-translation" id="translation">
+        KenがYuiの勉強を手伝っています。
+      </p>
+    </div>
+  </div>
+  <p class="pr-explanation" id="explanation" aria-live="polite">
+    名前を置き換えても、だれがだれを手伝うかは同じです。
+  </p>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>同じ人を、文の中の役割に合う形で表す</h3><p>KenがYuiの勉強を手伝う文はKen helps Yui.。名前を代名詞にするとHe helps her.です。役割を逆にしたYui helps Ken.はShe helps him.になります。人物の場所や色が変わるのではなく、文の中の役割に合わせて形が変わります。</p><h3>この二つの文の役割</h3><p>この教材のhelpsを使った文では、手伝う人を主語、手伝ってもらう人を動詞の目的語に置きます。主語のhe / sheと、目的語のhim / herを比べます。すべての英文の主語がいつも動作をする人、という意味ではありません。</p><h3>図と見直し</h3><p>図は、相手のプリントを指して勉強を手伝う人と、鉛筆で書きながら教わる人を示しています。初回は名前から代名詞へ替え、その後は図のKen / Yuiをタップして手伝う人を選べます。切り替える前の完成文は上に残します。変化中の語は移動の途中なので、英文は最後にそろった形で読みます。「完成形で止める」でいつでも完成形を確かめられます。</p><label class="pr-motion"><input id="reduce-motion" type="checkbox">動きを減らす（完成形をすぐ表示）</label><h3>この教材の範囲と出典</h3><p>he / him・she / herの主格と動詞の目的語を扱います。所有・再帰・他の人称・前置詞の後の使い方は含みません。人物・図・例文は自作です。文法は<a href="https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/personal-pronouns" target="_blank" rel="noopener noreferrer">British Council：Personal pronouns</a>で確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{function l(e,n){if(!["names","pronouns"].includes(e)||!["ken","yui"].includes(n))throw new RangeError("Unsupported helping view");let i=n==="ken"?"Ken":"Yui",s=n==="ken"?"Yui":"Ken",r={ken:{name:"Ken",word:e==="names"?"Ken":n==="ken"?"He":"him",role:n==="ken"?"subject":"object"},yui:{name:"Yui",word:e==="names"?"Yui":n==="yui"?"She":"her",role:n==="yui"?"subject":"object"}},a=r[n].word,u=r[n==="ken"?"yui":"ken"].word;return{people:r,verb:"helps",sentence:a+" helps "+u+".",names:i+" helps "+s+".",translation:i+"\u304C"+s+"\u306E\u52C9\u5F37\u3092\u624B\u4F1D\u3063\u3066\u3044\u307E\u3059\u3002"}}function g(){return{mode:"names",helper:"ken",phase:"idle",target:{mode:"names",helper:"ken"},kind:null,previous:null,runId:0}}var m=(e,n,i)=>({...e,...n,target:i,phase:"changing",kind:n.mode===i.mode?"roles":"names",runId:e.runId+1}),b=e=>({...e,...e.target,phase:"idle",kind:null,previous:{mode:e.mode,helper:e.helper}});function x(e,n){switch(n.type){case"introduce":return e.mode==="names"&&e.phase==="idle"?m(e,{mode:e.mode,helper:e.helper},{mode:"pronouns",helper:e.helper}):e;case"select":return l("pronouns",n.helper),e.mode!=="pronouns"?e:e.phase==="changing"?n.helper===e.target.helper?b(e):{...e,target:{mode:e.mode,helper:e.helper},phase:"idle",kind:null,runId:e.runId+1}:n.helper===e.helper?e:m(e,{mode:e.mode,helper:e.helper},{mode:"pronouns",helper:n.helper});case"finish":return e.phase==="changing"&&n.runId===e.runId?b(e):e;case"replay":return e.phase==="idle"&&e.previous?m(e,e.previous,{mode:e.mode,helper:e.helper}):e;case"reset":return{...g(),runId:e.runId+1};default:throw new RangeError("Unsupported action")}}function v(e){let n="running",i,s=new Promise(a=>{i=a});function r(a){n==="finished"||n==="cancelled"||(n=a,i(a))}return Promise.all(e.map(a=>a.finished)).then(()=>r("finished"),()=>r("cancelled")),{get status(){return n},finished:s,pause(){n==="running"&&(e.forEach(a=>a.pause()),n="paused")},resume(){n==="paused"&&(e.forEach(a=>a.play()),n="running")},finish(){["running","paused"].includes(n)&&(e.forEach(a=>a.finish()),r("finished"))},cancel(){["running","paused"].includes(n)&&(r("cancelled"),e.forEach(a=>a.cancel()))}}}var o=e=>document.getElementById(e),d=o("pr-lesson"),t=g(),f=null,p=[],Y=3600,y=e=>e==="subject"?19:81;function I(){f?.cancel(),f=null,p.forEach(e=>e.cancel()),p=[]}function w(){let e=l(t.mode,t.helper),n=l(t.target.mode,t.target.helper),i=t.phase==="changing",s=t.previous?l(t.previous.mode,t.previous.helper):e;d.dataset.mode=t.mode,d.dataset.phase=t.phase,d.dataset.kind=t.kind||"",d.dataset.helper=t.helper,d.dataset.target=t.target.helper,d.setAttribute("aria-busy",String(i)),o("before-label").textContent=i?"\u5207\u308A\u66FF\u3048\u308B\u524D\u306E\u6587":t.previous?"\u524D\u306E\u6587":"\u540D\u524D\u3092\u4F7F\u3063\u305F\u6587",o("before-sentence").textContent=(i?e:s).sentence,o("scene-ken").setAttribute("opacity",t.helper==="ken"?"1":"0"),o("scene-yui").setAttribute("opacity",t.helper==="yui"?"1":"0"),o("people-scene").setAttribute("aria-label",i&&t.kind==="roles"?"Ken\u3068Yui\u306F\u540C\u3058\u5834\u6240\u306B\u3044\u307E\u3059\u3002\u52C9\u5F37\u3092\u624B\u4F1D\u3046\u4EBA\u3068\u3001\u624B\u4F1D\u3063\u3066\u3082\u3089\u3046\u4EBA\u3092\u5165\u308C\u66FF\u3048\u3066\u3044\u307E\u3059\u3002":e.translation+"Ken\u306F\u5DE6\u3001Yui\u306F\u53F3\u3067\u3059\u3002");for(let r of["ken","yui"])o("old-"+r).textContent=e.people[r].word,o("new-"+r).textContent=n.people[r].word,o("word-"+r).style.left=y(e.people[r].role)+"%";document.querySelectorAll("button[data-helper]").forEach(r=>{r.disabled=t.mode==="names",r.setAttribute("aria-pressed",String(r.dataset.helper===(i?t.target.helper:t.helper))),r.setAttribute("aria-label",r.dataset.helper==="ken"?"Ken\u3092\u3001\u624B\u4F1D\u3046\u4EBA\u306B\u3059\u308B":"Yui\u3092\u3001\u624B\u4F1D\u3046\u4EBA\u306B\u3059\u308B");let a=r.querySelector("small");a.innerHTML=i&&t.kind==="roles"?"\u5F79\u5272\u3092<br>\u5165\u66FF\u4E2D":r.dataset.helper===t.helper?"\u624B\u4F1D\u3046\u4EBA":"\u624B\u4F1D\u3063\u3066<br>\u3082\u3089\u3046\u4EBA"}),o("sentence").setAttribute("aria-label",i?"\u4E8C\u4EBA\u3092\u8868\u3059\u8A00\u8449\u3092\u5207\u308A\u66FF\u3048\u3066\u3044\u307E\u3059\u3002\u524D\u306E\u5B8C\u6210\u6587\u306F\u4E0A\u306B\u3042\u308A\u307E\u3059\u3002":e.sentence),o("phase-label").textContent=i?t.kind==="names"?"\u540D\u524D\u304B\u3089\u3001\u4EE3\u540D\u8A5E\u3078":"\u540C\u3058\u4E8C\u4EBA\u306E\u3001\u6587\u306E\u4E2D\u306E\u5F79\u5272\u3092\u5165\u308C\u66FF\u3048\u4E2D":"\u3044\u307E\u306E\u6587",o("translation").textContent=i&&t.kind==="roles"?"\u4E8C\u4EBA\u306E\u5F79\u5272\u3092\u5165\u308C\u66FF\u3048\u3066\u3044\u307E\u3059\u3002":e.translation,o("main-action").textContent=i?"\u5B8C\u6210\u5F62\u3067\u6B62\u3081\u308B":t.mode==="names"?"\u540D\u524D\u3092\u4EE3\u540D\u8A5E\u306B\u66FF\u3048\u308B":"\u3082\u3046\u4E00\u5EA6\u898B\u308B",o("main-action").dataset.running=String(i),o("reset").disabled=t.mode==="names"&&!i&&!t.previous,o("intro").innerHTML=t.mode==="names"?"Ken\u304C\u3001Yui\u306E\u52C9\u5F37\u3092\u624B\u4F1D\u3063\u3066\u3044\u307E\u3059\u3002<br><strong>\u540C\u3058\u4E8C\u4EBA\u3092\u3001\u540D\u524D\u306E\u4EE3\u308F\u308A\u306E\u8A00\u8449\u3067\u8868\u3057\u3066\u307F\u3088\u3046\u3002</strong>":"\u540C\u3058\u4E8C\u4EBA\u3067\u3082\u3001\u5F79\u5272\u304C\u5909\u308F\u308B\u3068\u8A00\u8449\u304C\u5909\u308F\u308A\u307E\u3059\u3002<br><strong>\u56F3\u306EKen / Yui\u3092\u30BF\u30C3\u30D7\u3057\u3066\u3001\u624B\u4F1D\u3046\u4EBA\u3092\u9078\u307C\u3046\u3002</strong>",o("select-hint").textContent=t.mode==="names"?"\u9752\u306FKen\u3001\u30AA\u30EC\u30F3\u30B8\u306FYui\u3067\u3059\u3002":"\u56F3\u306E\u540D\u524D\u3092\u30BF\u30C3\u30D7\u3002\u624B\u4F1D\u3046\u4EBA\u3092\u5165\u308C\u66FF\u3048\u3066\u307F\u3088\u3046\u3002",o("explanation").textContent=i?"\u8272\u3068\u540D\u524D\u304C\u540C\u3058\u306A\u3089\u3001\u540C\u3058\u4EBA\u3067\u3059\u3002\u4E8C\u4EBA\u306E\u8A00\u8449\u3092\u8FFD\u3063\u3066\u307F\u3088\u3046\u3002":t.mode==="names"?"\u540D\u524D\u3092\u7F6E\u304D\u63DB\u3048\u3066\u3082\u3001\u3060\u308C\u304C\u3060\u308C\u3092\u624B\u4F1D\u3046\u304B\u306F\u540C\u3058\u3067\u3059\u3002":t.helper==="ken"?"Ken\u306F\u624B\u4F1D\u3046\u5074\u306A\u306E\u3067He\u3001Yui\u306F\u624B\u4F1D\u3063\u3066\u3082\u3089\u3046\u5074\u306A\u306E\u3067her\u3002":"\u540C\u3058Ken\u3067\u3082\u3001\u624B\u4F1D\u3063\u3066\u3082\u3089\u3046\u5074\u306B\u306A\u308B\u3068him\u3002Yui\u306F\u624B\u4F1D\u3046\u5074\u306A\u306E\u3067She\u3002"}function E(){let e=document.querySelector(".pr-tools").getBoundingClientRect(),n=o("explanation").getBoundingClientRect();(e.top<12||n.bottom>innerHeight-12)&&window.scrollBy({top:e.top-12,behavior:"instant"})}function K(){let e=l(t.mode,t.helper),n=l(t.target.mode,t.target.helper),i=t.runId,s={duration:Y,easing:"linear",fill:"both"};for(let r of["ken","yui"]){let a=o("word-"+r),u=(y(n.people[r].role)-y(e.people[r].role))/100*o("sentence").clientWidth,k=(r==="ken"?-1:1)*(innerWidth<=620?68:72);t.kind==="roles"&&p.push(a.animate([{offset:0,transform:"translateX(-50%)"},{offset:.25,transform:"translateX(-50%)",easing:"ease-in-out"},{offset:.4,transform:`translate(-50%, ${k}px)`,easing:"ease-in-out"},{offset:.72,transform:`translate(calc(-50% + ${u}px), ${k}px)`,easing:"ease-in-out"},{offset:.87,transform:`translate(calc(-50% + ${u}px), 0px)`},{offset:1,transform:`translate(calc(-50% + ${u}px), 0px)`}],s)),p.push(o("old-"+r).animate([{offset:0,opacity:1,transform:"translateY(0)"},{offset:.25,opacity:1,transform:"translateY(0)"},{offset:.43,opacity:1,transform:"translateY(-15px)"},{offset:.57,opacity:0,transform:"translateY(-24px)"},{offset:1,opacity:0,transform:"translateY(-24px)"}],s),o("new-"+r).animate([{offset:0,opacity:0,transform:"translateY(18px)"},{offset:.5,opacity:0,transform:"translateY(18px)"},{offset:.68,opacity:1,transform:"translateY(0)"},{offset:1,opacity:1,transform:"translateY(0)"}],s))}t.kind==="roles"&&p.push(o("scene-"+t.helper).animate([{offset:0,opacity:1},{offset:.25,opacity:1},{offset:.47,opacity:0},{offset:1,opacity:0}],s),o("scene-"+t.target.helper).animate([{offset:0,opacity:0},{offset:.5,opacity:0},{offset:.72,opacity:1},{offset:1,opacity:1}],s)),f=v(p),f.finished.then(r=>{r==="finished"&&c({type:"finish",runId:i})})}function c(e){let n=x(t,e);if(n!==t&&(I(),t=n,w(),t.phase==="changing")){if(E(),o("reduce-motion").checked){c({type:"finish",runId:t.runId});return}K()}}o("main-action").addEventListener("click",()=>c(t.phase==="changing"?{type:"finish",runId:t.runId}:t.mode==="names"?{type:"introduce"}:{type:"replay"}));o("reset").addEventListener("click",()=>c({type:"reset"}));document.querySelectorAll("button[data-helper]").forEach(e=>e.addEventListener("click",()=>c({type:"select",helper:e.dataset.helper})));function h(){t.phase==="changing"&&c({type:"finish",runId:t.runId})}o("reduce-motion").checked=!1;o("reduce-motion").addEventListener("change",()=>{o("reduce-motion").checked&&h()});window.addEventListener("resize",h);window.addEventListener("pagehide",h);document.addEventListener("visibilitychange",()=>{document.hidden&&h()});w();})();
+</script>
+</body>
+</html>
