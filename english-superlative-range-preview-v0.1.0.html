@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>最上級と比べる範囲 | 英語を、動かして見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-shell {
+  max-width: 1000px;
+}
+.vl-controls:empty {
+  display: none;
+}
+.vl-title {
+  font-size: clamp(24px, 3vw, 34px);
+}
+.sr-lesson {
+  padding: 18px;
+  --scope: #357962;
+  --scope-light: #e7f2e9;
+  --winner: #946316;
+  --b: #796298;
+  --d: #2e807b;
+}
+.sr-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #fffefb;
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  min-height: 52px;
+  padding: 4px 0;
+}
+.sr-toolbar > p {
+  margin: 0;
+  font-size: 13px;
+  color: #577164;
+}
+.sr-toolbar > div {
+  display: flex;
+  gap: 6px;
+}
+.sr-toolbar button {
+  min-height: 44px;
+  min-width: 44px;
+  background: #f4f7f0;
+  border: 1px solid #cbd6ca;
+  color: #496458;
+  font-size: 13px;
+  padding: 8px 12px;
+}
+.sr-toolbar button:disabled {
+  opacity: 0.45;
+}
+.sr-toolbar #play:not(:disabled) {
+  color: #a2362d;
+  background: #fff0ed;
+  border-color: #e3b9b1;
+}
+.sr-toolbar #play[data-paused='true']:not(:disabled) {
+  color: #177541;
+  background: #e8f5e9;
+  border-color: #abd2b7;
+}
+.sr-intro {
+  font-size: 14px;
+  color: #455f52;
+  margin: 10px 0 14px;
+  line-height: 1.6;
+}
+.sr-intro strong {
+  font-weight: 600;
+}
+.sr-world {
+  position: relative;
+  height: 310px;
+  background: #f7f5ed;
+  border: 1px solid #dfdfd3;
+  border-radius: 12px;
+  overflow: hidden;
+  touch-action: pan-y;
+  isolation: isolate;
+}
+.sr-world > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.sr-range-frame {
+  position: absolute;
+  left: 5.833333%;
+  top: 11.428571%;
+  width: 59.166667%;
+  height: 81.714286%;
+  background: linear-gradient(#e9f4e2d9, #ecf3e4a6);
+  border: 2px solid var(--scope);
+  border-right-width: 3px;
+  border-radius: 8px;
+  z-index: 0;
+  box-shadow: inset 0 0 0 3px #ffffff50;
+}
+.sr-scope-caption {
+  position: absolute;
+  top: 9px;
+  left: 6%;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--scope);
+  white-space: nowrap;
+}
+.sr-scope-caption i,
+.sr-group-phrase i {
+  display: inline-block;
+  vertical-align: -0.05em;
+  width: 0.65em;
+  height: 0.65em;
+  border: 2px solid var(--scope);
+  border-radius: 2px;
+  margin-right: 0.35em;
+}
+.sr-outside-caption {
+  position: absolute;
+  top: 10px;
+  right: 5%;
+  font-size: 12px;
+  color: #8a8f85;
+}
+.sr-tower-name {
+  position: absolute;
+  top: 84%;
+  transform: translateX(-50%);
+  font-size: 17px;
+  font-weight: 750;
+  z-index: 2;
+}
+.sr-tower-name.a {
+  left: 15%;
+  color: #7d6947;
+}
+.sr-tower-name.b {
+  left: 35%;
+  color: var(--b);
+}
+.sr-tower-name.c {
+  left: 55%;
+  color: #687b55;
+}
+.sr-tower-name.d {
+  left: 78.333%;
+  color: var(--d);
+}
+.sr-winner {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  font-size: 12px;
+  font-weight: 750;
+  color: #775117;
+  background: #ffedb5;
+  border: 1px solid #e7cb7c;
+  padding: 2px 6px;
+  border-radius: 6px;
+  z-index: 3;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px #85672513;
+}
+.sr-winner.b {
+  left: 35%;
+  top: 32%;
+}
+.sr-winner.d {
+  left: 78.333%;
+  top: 17.5%;
+}
+.sr-edge-handle {
+  position: absolute;
+  left: 65%;
+  top: 53%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 56px;
+  border: 2px solid var(--scope);
+  border-radius: 12px;
+  background: #fcfff8;
+  box-shadow: 0 3px 9px #2f5f452b;
+  display: grid;
+  place-items: center;
+  color: var(--scope);
+  font-size: 26px;
+  z-index: 4;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.sr-edge-handle:focus-visible {
+  outline: 3px solid #276d58;
+  outline-offset: 4px;
+}
+.sr-edge-handle[aria-disabled='true'] {
+  cursor: default;
+  opacity: 0.55;
+}
+.sr-lesson[data-phase='dragging'] .sr-edge-handle {
+  background: #cde8d4;
+  border-style: dashed;
+}
+.sr-lesson[data-phase='dragging'] .sr-range-frame {
+  border-style: dashed;
+}
+.sr-edge-handle.is-new {
+  animation: sr-pulse 1.4s 2;
+}
+.sr-drag-hint {
+  position: absolute;
+  left: 65%;
+  top: 37%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #376f56;
+  background: #f5fcf1;
+  padding: 4px 7px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 3;
+}
+.sr-height-note {
+  position: absolute;
+  left: 50%;
+  bottom: 1%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #75816f;
+  white-space: nowrap;
+  background: #f7f5ed;
+  z-index: 2;
+  padding-inline: 6px;
+}
+.sr-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.sr-actions button {
+  min-height: 46px;
+  min-width: 156px;
+  padding: 8px 15px;
+  border: 1px solid #b9cdc0;
+  color: #32634e;
+  background: #eef6ed;
+  font-size: 14px;
+}
+.sr-actions button:last-child {
+  background: #fffefa;
+  color: #627166;
+  border-color: #d4dccf;
+}
+.sr-actions button:disabled {
+  opacity: 0.45;
+}
+.sr-history {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 56px;
+  margin: 14px 0 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #dbe3d6;
+  font-size: 12px;
+  color: #6d7e70;
+}
+.sr-history > span {
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.sr-history > p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  min-height: 20px;
+}
+.sr-history strong {
+  color: #526e58;
+  font-weight: 650;
+}
+.sr-current {
+  padding: 0 12px;
+}
+.sr-current-label {
+  font-size: 12px;
+  color: #5e7867;
+  margin: 0 0 8px;
+  min-height: 18px;
+}
+.sr-sentence {
+  font:
+    500 clamp(23px, 3.4vw, 31px)/1.6 -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  letter-spacing: -0.02em;
+  color: #354e42;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sr-leading {
+  white-space: nowrap;
+}
+.sr-leading > strong {
+  font-weight: 700;
+  color: var(--winner);
+  border-bottom: 3px solid #dbc58a;
+}
+.sr-letter-slot {
+  display: inline-block;
+  vertical-align: -0.24em;
+  width: 1.1em;
+  height: 1.3em;
+  position: relative;
+}
+.sr-letter-slot b {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1.1em;
+  text-align: center;
+  background: #eee8f5;
+  border-radius: 6px;
+  line-height: 1.3;
+  color: var(--b);
+  font-weight: 750;
+  will-change: transform, opacity;
+}
+.sr-letter-slot b[data-tower='D'] {
+  color: var(--d);
+  background: #e2f1ec;
+}
+.sr-letter-slot #new-letter {
+  opacity: 0;
+}
+.sr-group-phrase {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+  color: var(--scope);
+  background: var(--scope-light);
+  border: 1px solid #abcfb5;
+  border-radius: 7px;
+  padding: 0 8px;
+  font-size: 0.9em;
+}
+.sr-group-phrase i {
+  align-self: center;
+}
+.sr-period {
+  color: #354e42;
+}
+.sr-translation {
+  font-size: 13px;
+  color: #536e5f;
+  margin: 10px 0 0;
+  min-height: 23px;
+  line-height: 1.6;
+}
+.sr-takeaway {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #5b7462;
+  margin: 14px 12px 0;
+  border-left: 3px solid #b4cba9;
+  padding: 3px 0 3px 10px;
+  min-height: 30px;
+}
+.sr-takeaway span {
+  font-weight: 650;
+  color: var(--scope);
+}
+.sr-motion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+.sr-motion input {
+  width: 20px;
+  height: 20px;
+}
+.sr-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  margin: -1px;
+}
+.sr-lesson [hidden] {
+  display: none !important;
+}
+@keyframes sr-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 #3f986400;
+  }
+  45% {
+    box-shadow: 0 0 0 10px #3f98642b;
+  }
+}
+@media (max-width: 620px) {
+  .sr-lesson {
+    padding: 12px;
+  }
+  .sr-toolbar > p {
+    font-size: 12px;
+  }
+  .sr-toolbar button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .sr-toolbar #reset span {
+    display: none;
+  }
+  .sr-intro {
+    font-size: 13px;
+    margin: 8px 0 10px;
+    min-height: 42px;
+  }
+  .sr-intro strong {
+    display: block;
+  }
+  .sr-world {
+    height: 250px;
+  }
+  .sr-scope-caption {
+    font-size: 12px;
+    top: 7px;
+  }
+  .sr-outside-caption {
+    font-size: 11px;
+    top: 8px;
+  }
+  .sr-tower-name {
+    font-size: 15px;
+  }
+  .sr-edge-handle {
+    width: 44px;
+    height: 52px;
+    font-size: 23px;
+  }
+  .sr-drag-hint {
+    font-size: 11px;
+    top: 35%;
+  }
+  .sr-winner {
+    font-size: 11px;
+    padding: 1px 4px;
+  }
+  .sr-height-note {
+    font-size: 10px;
+  }
+  .sr-actions {
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .sr-actions button {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    padding: 8px;
+    font-size: 13px;
+  }
+  .sr-history {
+    display: block;
+    min-height: 69px;
+    margin: 10px 0 8px;
+    padding: 7px 4px;
+  }
+  .sr-history > span {
+    display: block;
+    font-size: 10px;
+  }
+  .sr-history > p {
+    font-size: 11px;
+    min-height: 32px;
+    margin-top: 3px;
+  }
+  .sr-current {
+    padding: 0 4px;
+  }
+  .sr-current-label {
+    font-size: 11px;
+    margin-bottom: 5px;
+    min-height: 16px;
+  }
+  .sr-sentence {
+    display: block;
+    font-size: 24px;
+    line-height: 1.5;
+  }
+  .sr-leading {
+    display: block;
+  }
+  .sr-group-phrase {
+    font-size: 0.9em;
+    margin-top: 7px;
+  }
+  .sr-translation {
+    font-size: 12px;
+    min-height: 36px;
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+  .sr-takeaway {
+    font-size: 12px;
+    margin: 10px 4px 0;
+    min-height: 35px;
+  }
+  .vl-main {
+    padding-top: 20px;
+  }
+  .vl-header {
+    padding-block: 12px;
+    min-height: 50px;
+  }
+  .vl-heading {
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 360px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-context {
+    display: none;
+  }
+  .sr-lesson {
+    padding: 10px;
+  }
+  .sr-toolbar > p {
+    font-size: 11px;
+  }
+  .sr-toolbar button {
+    padding: 8px;
+  }
+  .sr-world {
+    height: 232px;
+  }
+  .sr-intro {
+    font-size: 12px;
+  }
+  .sr-sentence {
+    font-size: 22px;
+  }
+  .sr-scope-caption {
+    font-size: 11px;
+  }
+  .sr-outside-caption {
+    font-size: 10px;
+  }
+  .sr-drag-hint {
+    font-size: 10px;
+  }
+  .sr-current {
+    padding: 0 2px;
+  }
+  .sr-actions button {
+    font-size: 12px;
+  }
+  .sr-history > p {
+    font-size: 10px;
+  }
+  .sr-translation {
+    font-size: 11px;
+  }
+}
+
+.sr-play-feedback {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  color: white;
+  background: #de3025;
+  box-shadow: 0 2px 14px #63453433;
+  pointer-events: none;
+  z-index: 6;
+  animation: sr-feedback 1s ease-out both;
+}
+.sr-play-feedback[data-action='play'] {
+  background: #008749;
+}
+.sr-play-feedback svg {
+  width: 30px;
+  height: 30px;
+}
+@keyframes sr-feedback {
+  0% {
+    opacity: 0.95;
+  }
+  15% {
+    opacity: 0.82;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 3h18v18H3zM7 17v-5m5 5V7m5 10V9"/><path d="m19 5 3 3-3 3"/></svg><span>英語を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>最上級と比べる範囲</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">最上級と比べる範囲</h1><p class="vl-question">高さは変えず、比べる仲間を増やすと一番は変わる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div class="sr-lesson" id="sr-lesson" data-phase="idle" data-group="abc">
+  <div class="sr-toolbar" id="toolbar">
+    <p>動かすのは、<strong>比べる枠</strong></p>
+    <div>
+      <button id="play" type="button" disabled aria-label="変化を一時停止">
+        Ⅱ <span>一時停止</span></button
+      ><button id="reset" type="button" aria-label="はじめに戻す">
+        ↺ <span>はじめに戻す</span>
+      </button>
+    </div>
+  </div>
+  <p class="sr-intro" id="intro">
+    枠の右端をつかんで、<strong>Dも仲間に入れてみよう。</strong>
+  </p>
+  <div id="comparison">
+    <div class="sr-world" id="world">
+      <div id="range-frame" class="sr-range-frame"></div>
+      <div class="sr-scope-caption" id="scope-caption">
+        <i aria-hidden="true"></i>枠の中：A・B・C
+      </div>
+      <span id="outside-caption" class="sr-outside-caption">Dは枠の外</span>
+      <svg
+        id="diagram"
+        viewBox="0 0 600 350"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern
+            id="sr-windows"
+            width="18"
+            height="26"
+            patternUnits="userSpaceOnUse"
+          >
+            <rect
+              x="5"
+              y="7"
+              width="7"
+              height="9"
+              rx="1"
+              fill="#fff"
+              fill-opacity=".24"
+            />
+          </pattern>
+        </defs>
+        <path d="M24 290H575" stroke="#9baaa0" stroke-width="2" />
+        <g id="tower-a" data-tower="A">
+          <rect x="62" y="195" width="56" height="95" rx="4" fill="#b99e75" />
+          <rect x="62" y="195" width="56" height="95" fill="url(#sr-windows)" />
+          <path d="M61 196H119" stroke="#907a59" stroke-width="3" />
+        </g>
+        <g id="tower-b" data-tower="B">
+          <rect x="182" y="120" width="56" height="170" rx="4" fill="#8b7bae" />
+          <rect
+            x="182"
+            y="120"
+            width="56"
+            height="170"
+            fill="url(#sr-windows)"
+          />
+          <path d="M181 121H239" stroke="#6f6094" stroke-width="3" />
+        </g>
+        <g id="tower-c" data-tower="C">
+          <rect x="302" y="160" width="56" height="130" rx="4" fill="#8fa07b" />
+          <rect
+            x="302"
+            y="160"
+            width="56"
+            height="130"
+            fill="url(#sr-windows)"
+          />
+          <path d="M301 161H359" stroke="#6e825b" stroke-width="3" />
+        </g>
+        <g id="tower-d" data-tower="D">
+          <rect x="442" y="70" width="56" height="220" rx="4" fill="#4f9a96" />
+          <rect
+            x="442"
+            y="70"
+            width="56"
+            height="220"
+            fill="url(#sr-windows)"
+          />
+          <path d="M441 71H499" stroke="#367a78" stroke-width="3" />
+        </g>
+      </svg>
+      <span class="sr-tower-name a">A</span
+      ><span class="sr-tower-name b">B</span
+      ><span class="sr-tower-name c">C</span
+      ><span class="sr-tower-name d" id="name-d">D</span>
+      <span class="sr-winner b" id="winner-b">1番</span
+      ><span class="sr-winner d" id="winner-d" hidden>1番</span>
+      <div
+        class="sr-edge-handle"
+        id="edge-handle"
+        role="slider"
+        tabindex="0"
+        aria-label="比べる枠の右端。左右の矢印キーでも変えられます"
+        aria-valuemin="0"
+        aria-valuemax="1"
+        aria-valuenow="0"
+        aria-valuetext="A・B・Cの3本"
+        aria-orientation="horizontal"
+      >
+        <span aria-hidden="true">↔</span>
+      </div>
+      <span class="sr-drag-hint" id="drag-hint" aria-hidden="true"
+        >枠を右へ →</span
+      >
+      <div
+        class="sr-play-feedback"
+        id="play-feedback"
+        aria-hidden="true"
+        hidden
+      >
+        <svg id="pause-mark" viewBox="0 0 24 24">
+          <path d="M6 4h4v16H6zm8 0h4v16h-4z" fill="currentColor" />
+        </svg>
+        <svg id="play-mark" viewBox="0 0 24 24" hidden>
+          <path d="M6 3 21 12 6 21z" fill="currentColor" />
+        </svg>
+      </div>
+      <span class="sr-height-note">塔の高さは変わりません</span>
+    </div>
+    <div class="sr-actions" role="group" aria-label="比べる範囲を変える">
+      <button type="button" data-group="abcd">Dも入れる →</button
+      ><button type="button" data-group="abc">← 3本に戻す</button>
+    </div>
+    <div class="sr-history" id="history">
+      <span id="previous-label">いちばん高いのは、枠の中のどの塔？</span>
+      <p id="previous-sentence" lang="en"></p>
+    </div>
+    <div class="sr-current" id="current">
+      <p class="sr-current-label" id="sentence-label">この範囲：A・B・C</p>
+      <p class="sr-sentence" id="sentence" lang="en" aria-hidden="true">
+        <span class="sr-leading"
+          >Tower
+          <span class="sr-letter-slot"
+            ><b id="old-letter">B</b
+            ><b id="new-letter" aria-hidden="true">D</b></span
+          >
+          is <strong>the tallest</strong></span
+        ><span class="sr-group-phrase"
+          ><i aria-hidden="true"></i>in this group<span class="sr-period"
+            >.</span
+          ></span
+        >
+      </p>
+      <p class="sr-translation" id="translation">
+        Bの塔が、この仲間の中でいちばん高いです。
+      </p>
+      <p class="sr-sr-only" id="announcement" aria-live="polite">
+        比べる範囲はA・B・Cです。Tower B is the tallest in this group.
+      </p>
+    </div>
+  </div>
+  <p id="takeaway" class="sr-takeaway">
+    <span lang="en">in this group</span> は「この仲間の中で」。
+  </p>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>「一番」は、どの仲間の中？</h3><p>A・B・Cの3本の中ではBが一番高く、Dを加えた4本の中ではDが一番高くなります。塔の高さはどれも変えていません。最上級は、比べる範囲の中の一番を表します。</p><h3>the tallestとin this group</h3><p>the tallestは「一番高い」。tallにestをつけ、theと一緒に使います。この教材ではin this groupを「この仲間の中で」と読み、図の緑の枠と結びつけています。</p><h3>動かし方</h3><p>緑の枠の右端を左右に動かし、指を離すと3本または4本の範囲にそろいます。途中は「選択中」で、英文は動かす前の範囲を示しています。ボタンや、つまみにフォーカスして左右キー・Home・Endでも同じ操作ができます。つまみ以外はページを縦にスクロールできます。</p><label class="sr-motion"><input id="reduce-motion" type="checkbox">動きを減らす（変化後をすぐ表示）</label><h3>今回の範囲</h3><p>高さを固定した4本の塔で、比較する集団とthe tallestの関係を扱います。全形容詞の変化・不規則形・副詞の最上級、2本の比較級への書換え、同順位は含みません。</p><h3>出典</h3><p>図と例文は自作です。British Council Kidsの<a href="https://learnenglishkids.britishcouncil.org/grammar-vocabulary/grammar-practice/comparatives-superlatives" target="_blank" rel="noopener noreferrer">Comparatives and superlatives</a>で、集団内の最上位とthe tallestの形を確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var F=Object.freeze({A:95,B:170,C:130,D:220}),x=Object.freeze({abc:Object.freeze(["A","B","C"]),abcd:Object.freeze(["A","B","C","D"])});function m(e){if(!x[e])throw new RangeError("Unknown group");return x[e]}var d=e=>m(e).reduce((n,a)=>F[a]>F[n]?a:n),O=e=>`Tower ${d(e)} is the tallest in this group.`,l=e=>e==="abcd"?540:390,U=e=>e>=465?"abcd":"abc",E=(e=0)=>({phase:"idle",group:"abc",target:"abc",from:"abc",previous:null,edge:390,fromEdge:390,elapsed:0,mode:"button",paused:!1,runId:e}),R=e=>{let n=Math.max(0,Math.min(1,e));return n*n*(3-2*n)},j=e=>e.mode==="release"?1900:2600;function L(e){if(e.phase==="idle")return{edge:l(e.group),wordProgress:1,winner:d(e.group)};if(e.phase==="dragging")return{edge:e.edge,wordProgress:0,winner:null};let n=e.mode==="release"?0:400,a=e.mode==="release"?300:800,u=e.mode==="release"?500:1200,y=e.fromEdge+(l(e.target)-e.fromEdge)*R((e.elapsed-n)/a),g=R((e.elapsed-u)/1e3);return{edge:y,wordProgress:g,winner:e.elapsed<n?d(e.from):g>=.5?d(e.target):null}}function D(e){return{...e,phase:"idle",group:e.target,edge:l(e.target),paused:!1,elapsed:j(e)}}function H(e,n,a){return n===e.group?{...e,phase:"idle",edge:l(e.group)}:{...e,phase:"animating",mode:a,from:e.group,target:n,fromEdge:a==="release"?e.edge:l(e.group),previous:e.group,elapsed:0,paused:!1,runId:e.runId+1}}function b(e,n){switch(n.type){case"reset":return E(e.runId+1);case"set":return e.phase==="idle"&&x[n.group]?H(e,n.group,"button"):e;case"drag-start":return e.phase==="idle"?{...e,phase:"dragging",edge:l(e.group)}:e;case"drag":return e.phase==="dragging"&&Number.isFinite(n.edge)?{...e,edge:Math.max(390,Math.min(540,n.edge))}:e;case"drop":return e.phase==="dragging"?H(e,U(e.edge),"release"):e;case"cancel":return e.phase==="dragging"?{...e,phase:"idle",edge:l(e.group)}:e;case"pause":return e.phase==="animating"?{...e,paused:!e.paused}:e;case"finish":return e.phase==="animating"?D(e):e;case"tick":{if(e.phase!=="animating"||e.paused||e.runId!==n.runId||!Number.isFinite(n.delta))return e;let a={...e,elapsed:e.elapsed+Math.max(0,n.delta)};return a.elapsed>=j(a)?D(a):a}default:return e}}var r=e=>document.getElementById(e),f=r("sr-lesson"),i=r("edge-handle"),W=r("world"),t=E(),k=!1,h=0,A=0,o=null,$=!1,z=0,c=e=>m(e).join("\u30FB");function q(){r("announcement").textContent=`\u6BD4\u3079\u308B\u7BC4\u56F2\u306F${c(t.group)}\u3067\u3059\u3002${O(t.group)}`}function w(){let e=L(t),n=t.phase==="animating",a=t.phase==="dragging",u=t.phase==="idle";f.dataset.phase=t.phase,f.dataset.group=t.group,f.dataset.edge=String(e.edge),f.dataset.paused=String(t.paused),f.dataset.winner=e.winner||"none",r("range-frame").style.width=`${(e.edge-35)/600*100}%`,i.style.left=`${e.edge/600*100}%`,i.setAttribute("aria-disabled",String(n)),i.setAttribute("aria-valuenow",String(Math.round((e.edge-390)/150*100)/100)),i.setAttribute("aria-valuetext",a?"\u7BC4\u56F2\u3092\u9078\u629E\u4E2D":`${c(n?t.target:t.group)}\u306E${n?m(t.target).length:m(t.group).length}\u672C`);let y=u?`\u67A0\u306E\u4E2D\uFF1A${c(t.group)}`:a?"\u9078\u629E\u4E2D\uFF1A\u6307\u3092\u96E2\u3057\u3066\u6C7A\u3081\u308B":Math.abs(e.edge-(t.target==="abc"?390:540))>.1?"\u6BD4\u3079\u308B\u7BC4\u56F2\u3092\u5909\u66F4\u4E2D":`\u9078\u3093\u3060\u7BC4\u56F2\uFF1A${c(t.target)}`;r("scope-caption").innerHTML='<i aria-hidden="true"></i>'+y,r("outside-caption").hidden=!u||t.group==="abcd",r("tower-d").style.opacity=String(.4+.6*(e.edge-390)/150),r("name-d").style.opacity="1",r("winner-b").hidden=e.winner!=="B",r("winner-d").hidden=e.winner!=="D",r("drag-hint").hidden=$;let g=a?t.group:t.previous;g===null?(r("previous-label").textContent="\u3044\u3061\u3070\u3093\u9AD8\u3044\u306E\u306F\u3001\u67A0\u306E\u4E2D\u306E\u3069\u306E\u5854\uFF1F",r("previous-sentence").textContent=""):(r("previous-label").textContent=`${a?"\u3053\u306E\u64CD\u4F5C\u306E\u524D":"\u5909\u66F4\u524D\u306E\u7BC4\u56F2"}\uFF1A${c(g)}`,r("previous-sentence").innerHTML=`Tower <strong>${d(g)}</strong> is the tallest in this group.`);let v=n?d(t.from):d(t.group),S=n?d(t.target):v,I=n?e.wordProgress:0,T=n?Math.max(0,1-I/.4):1,P=n?Math.max(0,Math.min(1,(I-.6)/.4)):0;r("old-letter").textContent=v,r("old-letter").dataset.tower=v,r("new-letter").textContent=S,r("new-letter").dataset.tower=S,r("old-letter").style.opacity=String(T),r("new-letter").style.opacity=String(P),r("old-letter").style.transform=`translateY(${-7*(1-T)}px)`,r("new-letter").style.transform=`translateY(${7*(1-P)}px)`,r("sentence-label").textContent=u?`\u3053\u306E\u7BC4\u56F2\uFF1A${c(t.group)}`:a?`\u52D5\u304B\u3059\u524D\u306E\u7BC4\u56F2\uFF1A${c(t.group)}`:"\u6587\u3092\u5207\u308A\u66FF\u3048\u3066\u3044\u307E\u3059",r("translation").textContent=u?`${d(t.group)}\u306E\u5854\u304C\u3001\u3053\u306E\u4EF2\u9593\u306E\u4E2D\u3067\u3044\u3061\u3070\u3093\u9AD8\u3044\u3067\u3059\u3002`:a?"\u6307\u3092\u96E2\u3059\u3068\u3001\u9078\u3093\u3060\u4EF2\u9593\u306E\u4E2D\u3067\u6BD4\u3079\u307E\u3059\u3002":"\u5854\u306E\u9AD8\u3055\u306F\u305D\u306E\u307E\u307E\u3002\u65B0\u3057\u3044\u67A0\u306E\u4E2D\u3067\u6BD4\u3079\u307E\u3059\u3002",r("play").disabled=!n,r("play").dataset.paused=String(t.paused),r("play").innerHTML=t.paused?"\u25B6 <span>\u518D\u958B</span>":"\u2161 <span>\u4E00\u6642\u505C\u6B62</span>",r("play").setAttribute("aria-label",t.paused?"\u5909\u5316\u3092\u518D\u958B":"\u5909\u5316\u3092\u4E00\u6642\u505C\u6B62"),document.querySelectorAll("button[data-group]").forEach(B=>B.disabled=!u||B.dataset.group===t.group),r("takeaway").innerHTML=t.previous===null?'<span lang="en">in this group</span> \u306F\u300C\u3053\u306E\u4EF2\u9593\u306E\u4E2D\u3067\u300D\u3002':"\u5854\u306E\u9AD8\u3055\u3092\u5909\u3048\u306A\u304F\u3066\u3082\u3001<strong>\u6BD4\u3079\u308B\u7BC4\u56F2</strong>\u3067\u300C\u4E00\u756A\u300D\u304C\u5909\u308F\u308A\u307E\u3059\u3002"}function X(e){h=0,t=b(t,{type:"tick",delta:Math.min(60,e-A),runId:t.runId}),A=e,w(),t.phase==="idle"?q():t.paused||(h=requestAnimationFrame(X))}function s(e){let n=t;t=b(t,e),n!==t&&(k&&t.phase==="animating"&&(t=b(t,{type:"finish"})),h&&(cancelAnimationFrame(h),h=0),w(),t.phase==="idle"&&q(),t.phase==="animating"&&!t.paused&&(A=performance.now(),h=requestAnimationFrame(X)))}function M(){let e=f.getBoundingClientRect().top,n=r("comparison").getBoundingClientRect().bottom;(e<4||n>innerHeight-10)&&window.scrollTo({top:Math.max(0,scrollY+e-8),behavior:"instant"})}function Y(){$=!0,i.classList.remove("is-new")}function N(e){t.phase==="idle"&&(Y(),s({type:"set",group:e}),M())}document.querySelectorAll("button[data-group]").forEach(e=>e.addEventListener("click",()=>N(e.dataset.group)));function C(){clearTimeout(z),r("play-feedback").hidden=!0}function G(e){C();let n=r("play-feedback");n.dataset.action=e?"pause":"play",r("pause-mark").toggleAttribute("hidden",!e),r("play-mark").toggleAttribute("hidden",e),n.hidden=!1,n.style.animation="none",n.offsetWidth,n.style.animation="",z=setTimeout(C,1e3)}r("play").addEventListener("click",()=>{s({type:"pause"}),G(t.paused)});function p(e=!1){if(!o)return;let n=o.id;o=null,i.hasPointerCapture(n)&&i.releasePointerCapture(n),s({type:e?"cancel":"drop"}),e||M()}r("reset").addEventListener("click",()=>{C(),p(!0),$=!1,s({type:"reset"}),M()});i.addEventListener("pointerdown",e=>{e.button!==0||!e.isPrimary||t.phase!=="idle"||o||(e.preventDefault(),Y(),o={id:e.pointerId,startX:e.clientX,startEdge:L(t).edge,scale:W.getBoundingClientRect().width/600},i.setPointerCapture(e.pointerId),s({type:"drag-start"}))});i.addEventListener("pointermove",e=>{o?.id===e.pointerId&&(e.preventDefault(),s({type:"drag",edge:o.startEdge+(e.clientX-o.startX)/o.scale}))});i.addEventListener("pointerup",e=>{o?.id===e.pointerId&&p()});i.addEventListener("pointercancel",e=>{o?.id===e.pointerId&&p(!0)});i.addEventListener("lostpointercapture",()=>p(!0));i.addEventListener("keydown",e=>{let n={ArrowLeft:"abc",ArrowRight:"abcd",Home:"abc",End:"abcd"};t.phase==="idle"&&e.key in n&&(e.preventDefault(),N(n[e.key]))});r("reduce-motion").addEventListener("change",e=>{k=e.target.checked,p(!0),k&&s({type:"finish"}),i.classList.remove("is-new"),w()});window.addEventListener("resize",()=>p(!0));window.addEventListener("blur",()=>{p(!0),t.phase==="animating"&&!t.paused&&s({type:"pause"})});document.addEventListener("visibilitychange",()=>{document.hidden&&(p(!0),t.phase==="animating"&&!t.paused&&s({type:"pause"}))});matchMedia("(prefers-reduced-motion: reduce)").matches||i.classList.add("is-new");w();})();
+</script>
+</body>
+</html>
