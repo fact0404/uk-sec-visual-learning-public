@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>現在完了の経験 | 英語を、動かして見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-shell {
+  max-width: 1000px;
+}
+.vl-controls:empty {
+  display: none;
+}
+.vl-title {
+  font-size: clamp(24px, 3vw, 34px);
+}
+.pe-lesson {
+  padding: 18px;
+  --green: #327958;
+  --purple: #7e609f;
+  --amber: #9a6126;
+}
+.pe-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  background: #fffefb;
+  padding: 4px 0;
+  min-height: 56px;
+}
+.pe-toolbar button {
+  min-width: 44px;
+  min-height: 48px;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 1px solid #a6cbb7;
+  color: #226a45;
+  background: #e9f5eb;
+}
+.pe-toolbar #reset {
+  background: #fafbf7;
+  border-color: #d0dace;
+  color: #576d5d;
+}
+.pe-toolbar #play[data-running='true'] {
+  color: #a0372c;
+  border-color: #e1b5ad;
+  background: #fff0eb;
+}
+.pe-toolbar button:disabled {
+  opacity: 0.4;
+}
+.pe-intro {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #53695c;
+  margin: 8px 0 14px;
+}
+.pe-intro strong {
+  font-weight: 600;
+  margin-left: 4px;
+}
+.pe-world {
+  height: 270px;
+  position: relative;
+  background: #f7f6ef;
+  border: 1px solid #dde3d7;
+  border-radius: 12px;
+  overflow: hidden;
+  touch-action: pan-y;
+  isolation: isolate;
+}
+.pe-world > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.pe-example-title {
+  position: absolute;
+  top: 9px;
+  left: 4%;
+  margin: 0;
+  font-size: 13px;
+  color: #5f6f60;
+}
+.pe-fiction {
+  position: absolute;
+  top: 10px;
+  right: 4%;
+  font-size: 11px;
+  color: #7c8678;
+}
+.pe-trip {
+  position: absolute;
+  top: 17%;
+  width: 22%;
+  height: 55%;
+  border: 1px solid #ded9e3;
+  border-radius: 8px;
+  background: #fffcfa;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 2px 4px #7b70500b;
+  transition:
+    box-shadow 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+  z-index: 1;
+}
+.pe-trip.first {
+  left: 11%;
+}
+.pe-trip.second {
+  left: 39%;
+}
+.pe-trip svg {
+  width: 80%;
+  height: 49%;
+  max-height: 70px;
+}
+.pe-trip-caption {
+  font-size: 11px;
+  color: #756b7d;
+}
+.pe-trip b {
+  font-size: 17px;
+  letter-spacing: 0.1em;
+  color: #725b88;
+}
+.pe-trip small {
+  font-size: 11px;
+  color: #7a7080;
+  margin-top: 3px;
+}
+.pe-trip[data-active='true'] {
+  border-color: #9472af;
+  background: #f5eff9;
+  box-shadow: 0 0 0 3px #ad93c94d;
+}
+.pe-trip[data-seen='true']::after {
+  content: '✓';
+  position: absolute;
+  right: 5px;
+  top: 3px;
+  color: #6f5588;
+  font-size: 17px;
+}
+.pe-empty {
+  position: absolute;
+  left: 8%;
+  top: 25%;
+  width: 54%;
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: center;
+  color: #858b7c;
+}
+.pe-empty strong {
+  font-weight: 600;
+}
+.pe-now {
+  position: absolute;
+  right: 3%;
+  top: 13%;
+  width: 22%;
+  height: 59%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #edf4eb;
+  border: 1px solid #bdd2be;
+  border-radius: 9px;
+  z-index: 1;
+}
+.pe-now > span {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green);
+}
+.pe-now svg {
+  width: 83%;
+  height: 60%;
+  max-height: 83px;
+}
+.pe-now b {
+  font-size: 16px;
+  color: #76628e;
+}
+.pe-now small {
+  font-size: 11px;
+  margin-top: 2px;
+  color: #4c6b58;
+  white-space: nowrap;
+}
+.pe-now[data-active='true'] {
+  box-shadow: 0 0 0 3px #aacdb250;
+}
+.pe-past-label {
+  position: absolute;
+  left: 4%;
+  top: 70%;
+  font-size: 11px;
+  color: #74836d;
+  background: #f7f6ef;
+}
+.pe-until {
+  position: absolute;
+  left: 46%;
+  bottom: 5%;
+  padding: 0 10px;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green);
+  background: #f7f6ef;
+}
+.pe-until[data-active='true'] {
+  background: #dbedd9;
+  border-radius: 8px;
+  box-shadow: 0 0 0 4px #dbedd9;
+}
+.pe-progress {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 10px;
+  align-items: center;
+  margin: 7px 2px 0;
+  min-height: 55px;
+}
+.pe-progress > span {
+  font-size: 12px;
+  color: #716084;
+}
+.pe-progress > label {
+  font-size: 10px;
+  color: #8a9185;
+}
+.pe-progress input {
+  grid-column: 1/-1;
+  width: 100%;
+  min-height: 36px;
+  margin: 0;
+  accent-color: #8a6ba4;
+  touch-action: none;
+}
+.pe-progress input:disabled {
+  opacity: 0.3;
+}
+.pe-history {
+  margin: 5px 0 9px;
+  min-height: 46px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  border-bottom: 1px solid #dce3d5;
+  padding: 6px 8px;
+  color: #7b8473;
+}
+.pe-history > span {
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.pe-history p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 22px;
+}
+.pe-current {
+  padding: 0 8px;
+}
+.pe-current-label {
+  font-size: 12px;
+  color: #657b68;
+  margin: 0 0 6px;
+  min-height: 18px;
+}
+.pe-sentence {
+  font:
+    500 clamp(25px, 3.4vw, 31px)/1.7 -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  color: #3b5546;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.26em;
+  min-height: 58px;
+  align-content: center;
+}
+.pe-part {
+  white-space: nowrap;
+}
+.pe-never-slot,
+.pe-count-slot {
+  display: inline-block;
+  position: relative;
+  vertical-align: -0.23em;
+  height: 1.3em;
+  will-change: width;
+}
+.pe-count-slot {
+  margin-left: 0.2em;
+}
+.pe-never-slot b,
+.pe-count-slot b {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  line-height: 1.3;
+  border-radius: 5px;
+  padding: 0 0.08em;
+  font-weight: 700;
+  will-change: opacity, transform;
+}
+.pe-never-slot b {
+  color: #995b24;
+  background: #fff0d7;
+}
+.pe-count-slot b {
+  color: #725091;
+  background: #eee7f6;
+}
+.pe-translation {
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 22px;
+  margin: 6px 0 0;
+  color: #546d5c;
+}
+.pe-examples {
+  margin: 14px 8px 0;
+  padding-top: 10px;
+  border-top: 1px solid #e0e5d9;
+}
+.pe-examples > p {
+  font-size: 12px;
+  margin: 0 0 6px;
+  color: #637b66;
+}
+.pe-examples > div {
+  display: flex;
+  gap: 8px;
+}
+.pe-examples button {
+  min-height: 44px;
+  min-width: 88px;
+  padding: 8px 14px;
+  font-size: 13px;
+  border: 1px solid #ccdac7;
+  background: #fafcf6;
+  color: #50705a;
+}
+.pe-examples button[aria-pressed='true'] {
+  background: #e8f1e4;
+  border-color: #97b58d;
+  font-weight: 700;
+}
+.pe-examples button:disabled {
+  opacity: 0.5;
+}
+.pe-takeaway {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 12px 8px 0;
+  padding: 3px 0 3px 9px;
+  border-left: 3px solid #b7ccb1;
+  color: #617b65;
+}
+.pe-feedback {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #df3025;
+  color: #fff;
+  pointer-events: none;
+  z-index: 6;
+  animation: pe-feedback 1s ease-out both;
+}
+.pe-feedback[data-action='play'] {
+  background: #07894c;
+}
+.pe-feedback svg {
+  width: 29px;
+  height: 29px;
+}
+.pe-motion {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+}
+.pe-motion input {
+  width: 20px;
+  height: 20px;
+}
+.pe-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+.pe-lesson [hidden] {
+  display: none !important;
+}
+@keyframes pe-feedback {
+  0% {
+    opacity: 0.95;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 620px) {
+  .pe-lesson {
+    padding: 12px;
+  }
+  .pe-toolbar {
+    min-height: 52px;
+  }
+  .pe-toolbar button {
+    font-size: 12px;
+    padding: 8px 11px;
+    min-height: 44px;
+  }
+  .pe-toolbar #reset span {
+    display: none;
+  }
+  .pe-intro {
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 7px 0 10px;
+  }
+  .pe-intro strong {
+    display: block;
+    margin: 0;
+  }
+  .pe-world {
+    height: 228px;
+  }
+  .pe-example-title {
+    font-size: 11px;
+    top: 8px;
+  }
+  .pe-fiction {
+    font-size: 10px;
+    top: 9px;
+  }
+  .pe-trip {
+    width: 23%;
+    left: 10.5% !important;
+  }
+  .pe-trip.second {
+    left: 38.5% !important;
+  }
+  .pe-trip-caption,
+  .pe-trip small {
+    font-size: 9px;
+  }
+  .pe-trip b {
+    font-size: 14px;
+  }
+  .pe-trip svg {
+    height: 43%;
+  }
+  .pe-now {
+    width: 25%;
+    right: 1.8%;
+  }
+  .pe-now svg {
+    height: 54%;
+  }
+  .pe-now b {
+    font-size: 14px;
+  }
+  .pe-now small {
+    font-size: 9px;
+  }
+  .pe-now > span {
+    font-size: 12px;
+  }
+  .pe-empty {
+    font-size: 12px;
+    left: 5%;
+    width: 59%;
+    top: 27%;
+  }
+  .pe-past-label {
+    font-size: 10px;
+    left: 2%;
+  }
+  .pe-until {
+    font-size: 12px;
+  }
+  .pe-progress {
+    min-height: 53px;
+    margin-top: 5px;
+    gap: 0 4px;
+  }
+  .pe-progress > span {
+    font-size: 11px;
+  }
+  .pe-progress > label {
+    font-size: 9px;
+  }
+  .pe-history {
+    min-height: 58px;
+    margin: 1px 0 6px;
+    padding: 4px 2px;
+    display: block;
+  }
+  .pe-history > span {
+    font-size: 10px;
+  }
+  .pe-history p {
+    font-size: 11px;
+    min-height: 26px;
+  }
+  .pe-current {
+    padding: 0 2px;
+  }
+  .pe-current-label {
+    font-size: 11px;
+    min-height: 16px;
+    margin-bottom: 4px;
+  }
+  .pe-sentence {
+    font-size: 24px;
+    line-height: 1.65;
+    min-height: 81px;
+    align-content: center;
+    display: block;
+  }
+  .pe-part {
+    display: block;
+  }
+  .pe-translation {
+    font-size: 11px;
+    min-height: 32px;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .pe-examples {
+    margin: 10px 2px 0;
+    padding-top: 7px;
+  }
+  .pe-examples > p {
+    font-size: 11px;
+  }
+  .pe-examples button {
+    min-width: 0;
+    flex: 1;
+    font-size: 12px;
+    padding: 8px;
+  }
+  .pe-takeaway {
+    font-size: 11px;
+    margin: 9px 2px 0;
+  }
+  .vl-header {
+    padding-block: 12px;
+    min-height: 50px;
+  }
+  .vl-main {
+    padding-top: 20px;
+  }
+  .vl-heading {
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 360px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-context {
+    display: none;
+  }
+  .pe-lesson {
+    padding: 10px;
+  }
+  .pe-world {
+    height: 216px;
+  }
+  .pe-sentence {
+    font-size: 22px;
+    min-height: 74px;
+  }
+  .pe-intro {
+    font-size: 11px;
+  }
+  .pe-history p {
+    font-size: 10px;
+  }
+  .pe-toolbar button {
+    padding: 8px;
+    font-size: 12px;
+  }
+  .pe-now small {
+    font-size: 8.8px;
+  }
+}
+
+.pe-sentence-area {
+  position: relative;
+}
+.pe-first-clue {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #84907d;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.pe-first-clue strong {
+  color: #648067;
+  font-weight: 600;
+}
+.pe-first-clue br {
+  display: none;
+}
+@media (max-width: 620px) {
+  .pe-first-clue {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 620px) {
+  .pe-trip small {
+    font-size: 11px;
+    letter-spacing: -0.04em;
+  }
+  .pe-now small {
+    font-size: 10px;
+  }
+  .pe-trip-caption {
+    font-size: 10px;
+  }
+}
+
+.pe-progress input {
+  min-height: 44px;
+}
+.pe-now small {
+  font-size: 12px;
+}
+.pe-toolbar button {
+  -webkit-tap-highlight-color: transparent;
+}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 18h18M5 15V5h14v10M9 8h6M9 11h4"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/></svg><span>英語を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>現在完了の経験</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">現在完了の経験</h1><p class="vl-question">今までに行った経験は、どう表す？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div class="pe-lesson" id="pe-lesson" data-phase="ready">
+  <div class="pe-toolbar" id="toolbar">
+    <button id="play" type="button">▶ <span>今までを振り返る</span></button
+    ><button id="reset" type="button" aria-label="最初の2回の例へ戻す">
+      ↺ <span>はじめに戻す</span>
+    </button>
+  </div>
+  <p class="pe-intro" id="intro">
+    Minaの、終わった京都旅行の記録です。<strong
+      >過去の点を、今までの範囲で数えよう。</strong
+    >
+  </p>
+  <div id="comparison">
+    <div class="pe-world" id="world">
+      <p class="pe-example-title" id="example-title">旅行2回の記録</p>
+      <span class="pe-fiction">架空の記録</span>
+      <div id="past-records" class="pe-past-records">
+        <div class="pe-trip first" id="trip-0">
+          <span class="pe-trip-caption">春の旅行</span
+          ><svg viewBox="0 0 100 60" aria-hidden="true">
+            <path d="M5 49 30 30l12 12 19-24 35 31" fill="#e1e7d7" />
+            <path d="M24 44h53v9H24zM32 24h38v20H32z" fill="#ddd1bc" />
+            <path d="M22 24 51 8 80 24z" fill="#788c75" />
+            <path d="M20 44 51 29 82 44z" fill="#8da181" />
+            <path d="M44 44h14v9H44z" fill="#ab8c6f" /></svg
+          ><b>京都</b><small>旅行は終了</small>
+        </div>
+        <div class="pe-trip second" id="trip-1">
+          <span class="pe-trip-caption">夏の旅行</span
+          ><svg viewBox="0 0 100 60" aria-hidden="true">
+            <circle cx="79" cy="14" r="8" fill="#e7cb8b" />
+            <path d="M6 50 30 33 47 43 65 27 96 50" fill="#d6e4d1" />
+            <path d="M23 46h54v8H23zM32 25h36v21H32z" fill="#ddd1bc" />
+            <path d="M20 25 50 9 80 25zM18 46 50 30 82 46z" fill="#84977a" />
+            <path d="M45 46h11v8H45z" fill="#ad9175" /></svg
+          ><b>京都</b><small>旅行は終了</small>
+        </div>
+        <p class="pe-empty" id="empty-records" hidden>
+          京都旅行の記録は<br /><strong>ありません</strong>
+        </p>
+      </div>
+      <div class="pe-now" id="now-home">
+        <span>今</span
+        ><svg viewBox="0 0 100 82" aria-hidden="true">
+          <path
+            d="m12 37 37-29 37 29"
+            fill="#dfece7"
+            stroke="#6c9988"
+            stroke-width="3"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M20 33v42h48V33"
+            fill="#e5eeea"
+            stroke="#6c9988"
+            stroke-width="3"
+          />
+          <path d="M39 50h15v25H39z" fill="#bcd8cb" />
+          <circle cx="72" cy="48" r="12" fill="#e8c5a6" />
+          <path d="M59 47q0-22 17-14l10 14q-12 0-18-9" fill="#594c48" />
+          <path d="M54 80q0-20 18-20t18 20" fill="#9277a9" /></svg
+        ><b>Mina</b><small>今は家</small>
+      </div>
+      <svg
+        id="timeline"
+        viewBox="0 0 600 250"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M35 192H562m-8-6 8 6-8 6"
+          fill="none"
+          stroke="#aab7ad"
+          stroke-width="2"
+        />
+        <circle id="dot-0" cx="132" cy="192" r="6" fill="#9276ae" />
+        <circle id="dot-1" cx="300" cy="192" r="6" fill="#9276ae" />
+        <circle cx="516" cy="192" r="5" fill="#367c63" />
+        <path
+          d="M35 207v16h481v-16"
+          fill="none"
+          stroke="#4f9378"
+          stroke-width="2"
+        />
+      </svg>
+      <span class="pe-past-label">過去</span
+      ><span class="pe-until">今まで</span>
+      <div class="pe-feedback" id="feedback" aria-hidden="true" hidden>
+        <svg id="pause-mark" viewBox="0 0 24 24">
+          <path d="M6 4h4v16H6zm8 0h4v16h-4z" fill="currentColor" /></svg
+        ><svg id="play-mark" viewBox="0 0 24 24" hidden>
+          <path d="M6 3 21 12 6 21z" fill="currentColor" />
+        </svg>
+      </div>
+    </div>
+    <div class="pe-progress">
+      <span id="progress-label">2つの点が、終わった旅行です</span
+      ><label for="seek">振り返る位置</label
+      ><input
+        id="seek"
+        type="range"
+        min="0"
+        max="1000"
+        value="0"
+        step="1"
+        aria-label="振り返る位置"
+        disabled
+      />
+    </div>
+    <div class="pe-history" id="history">
+      <span id="previous-label">今までの経験を、英語にすると？</span>
+      <p id="previous-sentence" lang="en"></p>
+    </div>
+    <div class="pe-current" id="current">
+      <p id="sentence-label" class="pe-current-label">
+        まずは、2つの記録を振り返ろう
+      </p>
+      <div class="pe-sentence-area">
+        <p id="first-clue" class="pe-first-clue">
+          終わった旅行を<br /><strong>「今までの経験」</strong>として見る
+        </p>
+        <p id="sentence" lang="en" class="pe-sentence" aria-hidden="true">
+          <span class="pe-part"
+            >Mina has
+            <span class="pe-never-slot" id="never-slot"
+              ><b id="old-never"></b><b id="new-never"></b></span></span
+          ><span class="pe-part"
+            >visited Kyoto<span class="pe-count-slot" id="count-slot"
+              ><b id="old-count"></b><b id="new-count"></b></span
+            >.</span
+          >
+        </p>
+      </div>
+      <p id="translation" class="pe-translation">
+        再生すると、点と英文のつながりが見えます。
+      </p>
+      <p class="pe-sr-only" id="announcement" aria-live="polite"></p>
+    </div>
+  </div>
+  <div class="pe-examples" id="examples" hidden>
+    <p>記録の違う、別の例で比べる</p>
+    <div role="group" aria-label="架空の別の例を選ぶ">
+      <button data-count="2" type="button">2回の例</button
+      ><button data-count="1" type="button">1回の例</button
+      ><button data-count="0" type="button">0回の例</button>
+    </div>
+  </div>
+  <p class="pe-takeaway" id="takeaway">
+    点は一度ずつの旅行。範囲は「今まで」。
+  </p>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>終わった点と、今までの範囲</h3><p>二つの点は、それぞれ終わった京都旅行です。「今まで」の範囲で振り返り、経験した回数を表します。旅行の間ずっと京都にいた、今も旅行中だ、という意味ではありません。この例の今のMinaは家にいます。</p><h3>has visitedと、経験の回数</h3><p>Mina has visited Kyoto twice.は「Minaは今までに2度、京都を訪れたことがあります」。hasと過去分詞visitedを使います。onceは1度、twiceは2度で、文末に置きます。経験がない例では、hasとvisitedの間にneverを置きます。</p><h3>記録の違う例</h3><p>0回・1回・2回は教材の架空の別例です。Minaの実際の経験を消したり、時間を戻したりしているのではありません。旅行の季節は図の記録の説明であり、この現在完了の英文に特定の過去の日時は付けていません。</p><h3>振り返る位置</h3><p>再生後は、位置のつまみでも途中を見直せます。指を離すとその位置で一時停止し、「再開」で続けられます。左右キー・Home・Endでも動かせます。位置を戻しても、旅行の記録は消えません。</p><label class="pe-motion"><input id="reduce-motion" type="checkbox">動きを減らす（完成をすぐ表示）</label><h3>今回の範囲</h3><p>現在完了の経験とnever・once・twiceを扱います。beenとgoneの比較、everの疑問文、継続・結果・現在完了進行形は含みません。</p><h3>出典</h3><p>図と例文は自作です。British Council Kidsの<a href="https://learnenglishkids.britishcouncil.org/grammar-vocabulary/grammar-practice/present-perfect-experiences" target="_blank" rel="noopener noreferrer">Present perfect – experiences</a>で、人生の経験をhave/has＋過去分詞で表す形、neverの位置と、特定の過去日時は過去形で述べる区別を確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var z=e=>Number.isInteger(e)&&e>=0&&e<=2;function w(e){if(!z(e))throw new RangeError("Unknown example");return{never:e===0?"never":"",count:e===1?"once":e===2?"twice":""}}function k(e){let r=w(e);return`Mina has ${r.never?"never ":""}visited Kyoto${r.count?" "+r.count:""}.`}var Q=Object.freeze([Object.freeze({id:"spring",name:"\u6625\u306E\u65C5\u884C",position:.27,completed:!0}),Object.freeze({id:"summer",name:"\u590F\u306E\u65C5\u884C",position:.55,completed:!0})]);var L=(e=0)=>({phase:"ready",count:2,target:2,from:null,previous:null,elapsed:0,paused:!1,unlocked:!1,switchMs:0,runId:e,origin:null}),m=e=>e.switchMs+e.target*800+700+1100+450,b=e=>Math.min(1,Math.max(0,e));function W(e){let r=e.phase==="animating"||e.phase==="scrubbing",i=Math.max(0,e.elapsed-e.switchMs),o=r&&e.elapsed<e.switchMs,M=o&&e.elapsed<e.switchMs/2?e.from:e.target;return{currentPlace:"home",recordCount:e.phase==="ready"?2:M,seen:e.phase==="ready"?0:Math.min(e.target,Math.floor(i/800)),activeRecord:r&&!o&&i<e.target*800?Math.floor(i/800):-1,switching:o,switchProgress:e.switchMs?b(e.elapsed/e.switchMs):1,progress:e.phase==="ready"?0:b(e.elapsed/m(e)),wordProgress:e.phase==="complete"?1:b((i-e.target*800-700)/1100),sentenceReady:e.phase==="complete",targetSentence:k(e.target),reviewComplete:i>=e.target*800}}function I(e){return{...e,phase:"complete",count:e.target,elapsed:m(e),paused:!1,unlocked:!0,origin:null}}function q(e,r){return{...e,phase:"animating",from:e.phase==="ready"?null:e.count,target:r,previous:e.phase==="ready"||r===e.count?null:e.count,elapsed:0,paused:!1,switchMs:r===e.count?0:650,runId:e.runId+1,origin:null}}function x(e,r){switch(r.type){case"reset":return L(e.runId+1);case"start":return e.phase==="ready"||e.phase==="complete"?q(e,e.count):e;case"example":return e.phase==="complete"&&e.unlocked&&z(r.count)&&r.count!==e.count?q(e,r.count):e;case"pause":return e.phase==="animating"?{...e,paused:!e.paused}:e;case"finish":return e.phase==="animating"||e.phase==="scrubbing"?I(e):e;case"tick":{if(e.phase!=="animating"||e.paused||r.runId!==e.runId||!Number.isFinite(r.delta))return e;let i={...e,elapsed:e.elapsed+Math.max(0,r.delta)};return i.elapsed>=m(i)?I(i):i}case"seek-start":return e.phase==="animating"||e.phase==="complete"?{...e,phase:"scrubbing",origin:e,paused:!0,runId:e.runId+1}:e;case"seek":return e.phase==="scrubbing"&&Number.isFinite(r.progress)?{...e,elapsed:b(r.progress)*m(e)}:e;case"seek-cancel":return e.phase==="scrubbing"&&e.origin?{...e.origin,runId:e.runId+1}:e;case"seek-end":return e.phase==="scrubbing"?e.elapsed>=m(e)?I(e):{...e,phase:"animating",paused:!0,origin:null}:e;default:return e}}var n=e=>document.getElementById(e),p=n("pe-lesson"),s=n("seek"),t=L(),C=!1,h=0,$=0,f=null,H=0;function j(e,r,i,o){e.textContent=r,e.style.opacity=String(i),e.style.transform=`translateY(${o}px)`}function P(){let e=W(t),r=t.phase==="animating"||t.phase==="scrubbing",i=t.phase==="ready",o=t.phase==="complete";p.dataset.phase=t.phase,p.dataset.count=String(t.count),p.dataset.recordCount=String(e.recordCount),p.dataset.seen=String(e.seen),p.dataset.paused=String(t.paused),p.dataset.wordProgress=String(e.wordProgress),p.dataset.currentPlace="home",p.dataset.elapsed=String(t.elapsed),n("intro").innerHTML=e.recordCount===0?"Mina\u306E\u3001\u4ECA\u307E\u3067\u306E\u8A18\u9332\u3067\u3059\u3002<strong>\u4EAC\u90FD\u306B\u884C\u3063\u305F\u70B9\u304C\u306A\u3044\u4F8B\u3092\u898B\u3088\u3046\u3002</strong>":"Mina\u306E\u3001\u7D42\u308F\u3063\u305F\u4EAC\u90FD\u65C5\u884C\u306E\u8A18\u9332\u3067\u3059\u3002<strong>\u904E\u53BB\u306E\u70B9\u3092\u3001\u4ECA\u307E\u3067\u306E\u7BC4\u56F2\u3067\u6570\u3048\u3088\u3046\u3002</strong>",n("example-title").textContent=e.switching?"\u8A18\u9332\u306E\u9055\u3046\u4F8B\u3078\u5207\u66FF\u4E2D":`${t.previous!==null?"\u5225\u306E\u4F8B\uFF1A":""}\u65C5\u884C${e.recordCount}\u56DE\u306E\u8A18\u9332`;let M=e.switching?Math.abs(e.switchProgress-.5)*2:1;n("past-records").style.opacity=String(M);for(let a=0;a<2;a++){let u=n("trip-"+a);u.hidden=a>=e.recordCount,u.dataset.active=String(r&&!e.switching&&e.activeRecord===a),u.dataset.seen=String(!i&&!e.switching&&e.seen>a),n("dot-"+a).toggleAttribute("hidden",a>=e.recordCount)}n("empty-records").hidden=e.recordCount!==0,n("now-home").dataset.active=String(!i&&e.reviewComplete),document.querySelector(".pe-until").dataset.active=String(!i&&e.reviewComplete),n("progress-label").textContent=i?"2\u3064\u306E\u70B9\u304C\u3001\u7D42\u308F\u3063\u305F\u65C5\u884C\u3067\u3059":e.switching?"\u8A18\u9332\u306E\u9055\u3046\u4F8B\u3092\u958B\u3044\u3066\u3044\u307E\u3059":e.reviewComplete?`\u4ECA\u307E\u3067\u306E\u65C5\u884C\uFF1A${t.target}\u56DE`:`\u898B\u305F\u8A18\u9332 ${e.seen} / ${t.target}`,s.disabled=i,s.value=String(Math.round(e.progress*1e3)),s.setAttribute("aria-valuetext",i?"\u518D\u751F\u3057\u3066\u304B\u3089\u632F\u308A\u8FD4\u308C\u307E\u3059":`${Math.round(e.progress*100)}%\u3001${e.seen}\u4EF6\u306E\u8A18\u9332\u3092\u78BA\u8A8D`),n("previous-label").textContent=t.previous===null?"\u4ECA\u307E\u3067\u306E\u7D4C\u9A13\u3092\u3001\u82F1\u8A9E\u306B\u3059\u308B\u3068\uFF1F":`\u524D\u306E\u4F8B\uFF08${String(t.previous)}\u56DE\uFF09`,n("previous-sentence").textContent=t.previous===null?"":k(t.previous);let y=t.from===null?{never:"",count:""}:w(t.from),g=w(t.target),d=o?1:e.wordProgress,R=Math.max(0,1-d/.42),B=Math.max(0,Math.min(1,(d-.58)/.42)),S=Math.max(0,Math.min(1,(d-.42)/.16)),E=S*S*(3-2*S),K=r&&d===0&&t.from!==null;n("sentence").style.visibility=i||!o&&d===0&&t.from===null?"hidden":"visible",n("sentence").style.opacity=t.from===null&&!o?String(Math.min(1,d*3)):"1";for(let a of["never","count"]){let u=y[a]===g[a],G=o?g[a]:y[a],J=g[a];j(n("old-"+a),G,o||u?1:R,o||u?0:-12*(1-R)),j(n("new-"+a),J,o||u?0:B,8*(1-B));let F=y[a]?n("old-"+a).getBoundingClientRect().width:0,N=g[a]?n("new-"+a).getBoundingClientRect().width:0;n((a==="never"?"never":"count")+"-slot").style.width=`${o?N:F+(N-F)*E}px`}n("count-slot").style.marginLeft=`${(o?!!g.count:!!y.count*(1-E)+!!g.count*E)*.2}em`,n("first-clue").hidden=!(i||!o&&d===0&&t.from===null),n("history").hidden=t.previous===null,n("sentence-label").textContent=i?"\u3053\u3053\u304B\u3089\u3001\u4ECA\u307E\u3067\u306E\u7D4C\u9A13\u3092\u82F1\u8A9E\u3078":o?"\u4ECA\u307E\u3067\u306E\u7D4C\u9A13\u3092\u8868\u3059\u6587":K?t.previous===null?"\u3082\u3046\u4E00\u5EA6\u632F\u308A\u8FD4\u3063\u3066\u3044\u307E\u3059":"\u524D\u306E\u4F8B\u306E\u6587\uFF08\u65B0\u3057\u3044\u8A18\u9332\u3092\u78BA\u8A8D\u4E2D\uFF09":d>0?t.from===null?"\u8A18\u9332\u304B\u3089\u82F1\u6587\u3092\u4F5C\u3063\u3066\u3044\u307E\u3059":"\u6587\u3092\u5207\u308A\u66FF\u3048\u3066\u3044\u307E\u3059":"\u8A18\u9332\u3092\u305F\u3069\u3063\u3066\u3044\u307E\u3059",n("translation").textContent=o?t.count===0?"Mina\u306F\u4ECA\u307E\u3067\u306B\u4E00\u5EA6\u3082\u4EAC\u90FD\u3092\u8A2A\u308C\u305F\u3053\u3068\u304C\u3042\u308A\u307E\u305B\u3093\u3002":`Mina\u306F\u4ECA\u307E\u3067\u306B${t.count===1?"1\u5EA6":"2\u5EA6"}\u3001\u4EAC\u90FD\u3092\u8A2A\u308C\u305F\u3053\u3068\u304C\u3042\u308A\u307E\u3059\u3002`:i?"\u518D\u751F\u3059\u308B\u3068\u3001\u70B9\u3068\u82F1\u6587\u306E\u3064\u306A\u304C\u308A\u304C\u898B\u3048\u307E\u3059\u3002":d>0?"never\u306Fhas\u306E\u5F8C\u3002once\u30FBtwice\u306F\u6587\u306E\u7D42\u308F\u308A\u306B\u7F6E\u304D\u307E\u3059\u3002":e.switching?"\u3053\u308C\u306F\u3001\u8A18\u9332\u306E\u9055\u3046\u5225\u306E\u4F8B\u3067\u3059\u3002":e.recordCount===0?"\u4ECA\u307E\u3067\u306E\u8A18\u9332\u306B\u3001\u4EAC\u90FD\u65C5\u884C\u306E\u70B9\u306F\u3042\u308A\u307E\u305B\u3093\u3002":"\u3044\u307E\u898B\u3066\u3044\u308B\u306E\u306F\u3001\u7D42\u308F\u3063\u305F\u65C5\u884C\u306E\u8A18\u9332\u3067\u3059\u3002";let T=t.phase==="animating"&&!t.paused;n("play").dataset.running=String(T),n("play").disabled=t.phase==="scrubbing",n("play").innerHTML=T?"\u2161 <span>\u4E00\u6642\u505C\u6B62</span>":t.phase==="animating"?"\u25B6 <span>\u518D\u958B</span>":i?"\u25B6 <span>\u4ECA\u307E\u3067\u3092\u632F\u308A\u8FD4\u308B</span>":"\u25B6 <span>\u3082\u3046\u4E00\u5EA6\u632F\u308A\u8FD4\u308B</span>",n("examples").hidden=!t.unlocked,document.querySelectorAll("[data-count]").forEach(a=>{let u=Number(a.dataset.count);a.disabled=!o||u===t.count,a.setAttribute("aria-pressed",String(u===t.target))}),n("takeaway").textContent=o?t.count===0?"\u4ECA\u307E\u3067\u4E00\u5EA6\u3082\u306A\u3044\u7D4C\u9A13\u3092never\u3067\u8868\u3057\u307E\u3059\u3002":"\u65C5\u884C\u306F\u7D42\u308F\u3063\u3066\u3044\u3066\u3082\u3001\u4ECA\u307E\u3067\u306E\u7D4C\u9A13\u3068\u3057\u3066\u6570\u3048\u3089\u308C\u307E\u3059\u3002":e.recordCount===0?"\u70B9\u304C\u306A\u3044\u8A18\u9332\u3082\u3001\u300C\u4ECA\u307E\u3067\u300D\u3067\u632F\u308A\u8FD4\u308C\u307E\u3059\u3002":"\u70B9\u306F\u4E00\u5EA6\u305A\u3064\u306E\u65C5\u884C\u3002\u7BC4\u56F2\u306F\u300C\u4ECA\u307E\u3067\u300D\u3002"}function O(){t.phase==="complete"?n("announcement").textContent=`\u65C5\u884C${t.count}\u56DE\u306E\u8A18\u9332\u3002${k(t.count)} \u4ECA\u306EMina\u306F\u5BB6\u306B\u3044\u307E\u3059\u3002`:t.phase==="ready"&&(n("announcement").textContent="")}function U(e){h=0,t=x(t,{type:"tick",delta:Math.min(60,e-$),runId:t.runId}),$=e,P(),O(),t.phase==="animating"&&!t.paused&&(h=requestAnimationFrame(U))}function c(e){let r=t;t=x(t,e),t!==r&&(C&&t.phase==="animating"&&e.type!=="seek-end"&&(t=x(t,{type:"finish"})),h&&cancelAnimationFrame(h),h=0,P(),O(),t.phase==="animating"&&!t.paused&&($=performance.now(),h=requestAnimationFrame(U)))}function A(){let e=p.getBoundingClientRect().top,r=n("comparison").getBoundingClientRect().bottom;(e<4||r>innerHeight-10)&&scrollTo({top:Math.max(0,scrollY+e-8),behavior:"instant"})}function v(){clearTimeout(H),n("feedback").hidden=!0}function D(e){v(),n("feedback").dataset.action=e?"pause":"play",n("pause-mark").toggleAttribute("hidden",!e),n("play-mark").toggleAttribute("hidden",e),n("feedback").hidden=!1,n("feedback").style.animation="none",n("feedback").offsetWidth,n("feedback").style.animation="",H=setTimeout(v,1e3)}n("play").addEventListener("click",()=>{t.phase==="animating"?(c({type:"pause"}),D(t.paused)):(c({type:"start"}),C||D(!1),A())});function l(e=!1){if(f===null)return;let r=f;f=null,s.hasPointerCapture(r)&&s.releasePointerCapture(r),c({type:e?"seek-cancel":"seek-end"})}n("reset").addEventListener("click",()=>{l(!0),v(),c({type:"reset"}),A()});document.querySelectorAll("[data-count]").forEach(e=>e.addEventListener("click",()=>{v(),c({type:"example",count:Number(e.dataset.count)}),A()}));function X(e){let r=s.getBoundingClientRect();c({type:"seek",progress:(e-r.left-8)/(r.width-16)})}s.addEventListener("pointerdown",e=>{s.disabled||!e.isPrimary||e.button!==0||(e.preventDefault(),s.focus({preventScroll:!0}),f=e.pointerId,s.setPointerCapture(e.pointerId),c({type:"seek-start"}),X(e.clientX))});s.addEventListener("pointermove",e=>{f===e.pointerId&&(e.preventDefault(),X(e.clientX))});s.addEventListener("input",()=>{let e=Number(s.value)/1e3;t.phase!=="scrubbing"?(c({type:"seek-start"}),c({type:"seek",progress:e}),c({type:"seek-end"})):c({type:"seek",progress:e})});s.addEventListener("pointerup",()=>l());s.addEventListener("pointercancel",()=>l(!0));s.addEventListener("lostpointercapture",()=>l(!0));s.addEventListener("keydown",e=>{e.key==="Escape"&&(l(!0),e.preventDefault())});n("reduce-motion").addEventListener("change",e=>{C=e.target.checked,l(!0),v(),C&&c({type:"finish"})});window.addEventListener("resize",()=>l(!0));function Y(){l(!0),t.phase==="animating"&&!t.paused&&c({type:"pause"})}window.addEventListener("blur",Y);document.addEventListener("visibilitychange",()=>{document.hidden&&Y()});P();})();
+</script>
+</body>
+</html>
