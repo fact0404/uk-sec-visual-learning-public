@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>不定詞：何のために？ | 英語を、比べて見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-controls:empty {
+  display: none;
+}
+.ip-lesson {
+  padding: 18px 24px;
+  max-width: 1050px;
+  margin: auto;
+  --ip-blue: #376f86;
+  --ip-orange: #a6642b;
+}
+.ip-intro {
+  font-size: 14px;
+  color: #5c6f63;
+  line-height: 1.8;
+  margin: 0 0 12px;
+  min-height: 50px;
+}
+.ip-intro strong {
+  color: #3e5c46;
+}
+.ip-tools {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.ip-tools button {
+  padding: 8px;
+  min-height: 48px;
+}
+.ip-tools #main-action {
+  background: #2e7151;
+  border-color: #2e7151;
+  color: white;
+}
+.ip-tools #main-action[data-running='true'] {
+  background: #a74337;
+  border-color: #a74337;
+}
+.ip-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+.ip-layout:has(.ip-language[hidden]) {
+  grid-template-columns: 1fr;
+}
+.ip-diagram {
+  width: 100%;
+  max-width: 490px;
+  margin: auto;
+}
+.ip-label {
+  margin: 0 0 4px;
+  font-size: 12px;
+  color: #60766a;
+  min-height: 20px;
+}
+.ip-figure {
+  position: relative;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  min-height: 210px;
+}
+.ip-figure #scene {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ip-figure .ip-destination-label {
+  position: absolute;
+  left: 74%;
+  bottom: 21%;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ip-blue);
+  background: #e9f3f7;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+.ip-figure .ip-thought {
+  position: absolute;
+  right: 2%;
+  top: 0;
+  width: 53%;
+  height: clamp(92px, 12vw, 123px);
+  background: #fff7e8;
+  border: 2px dashed #d6af7a;
+  border-radius: 24px;
+  color: var(--ip-orange);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 5px;
+  line-height: 1.25;
+  font-size: 13px;
+  opacity: 1;
+  touch-action: pan-y;
+  box-shadow: none;
+}
+.ip-thought::before,
+.ip-thought::after {
+  content: '';
+  position: absolute;
+  border: 2px solid #d6af7a;
+  background: #fff7e8;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.ip-thought::before {
+  width: 11px;
+  height: 11px;
+  left: 20%;
+  bottom: -17px;
+}
+.ip-thought::after {
+  width: 5px;
+  height: 5px;
+  left: 13%;
+  bottom: -26px;
+}
+#thought-label {
+  font-size: 11px;
+  font-weight: 650;
+}
+#thought-hint {
+  font-size: 10px;
+  margin-top: 3px;
+  color: #967954;
+}
+.ip-thought-icon {
+  font:
+    600 30px/42px Arial,
+    sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 47px;
+}
+.ip-thought-icon svg {
+  width: 55px;
+  height: 42px;
+}
+.ip-thought[data-drop='true'] {
+  border-style: solid;
+  background: #fce6b7;
+  box-shadow: 0 0 0 4px #e8bd7044;
+}
+.ip-choices-label {
+  font-size: 12px;
+  color: #8a683c;
+  margin: 6px 0;
+}
+.ip-choices-label span {
+  margin-left: 10px;
+  color: #77816f;
+  font-size: 11px;
+}
+.ip-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.ip-choices .ip-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid #d6c2a6;
+  background: #fffcf4;
+  border-radius: 12px;
+  padding: 8px 4px;
+  min-height: 100px;
+  color: #795c37;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+.ip-choice svg.ip-icon {
+  width: 52px;
+  height: 39px;
+}
+.ip-choice strong {
+  font:
+    650 19px/1.2 Arial,
+    sans-serif;
+  white-space: nowrap;
+}
+.ip-choice > span {
+  font-size: 12px;
+}
+.ip-choice[aria-pressed='true'] {
+  border: 2px solid #b67836;
+  background: #fff1d8;
+  padding: 7px 3px;
+}
+.ip-choice.ip-drag-source {
+  opacity: 0.3;
+}
+.ip-drag-ghost {
+  position: fixed;
+  z-index: 30;
+  pointer-events: none;
+  border: 2px solid #a87339;
+  border-radius: 12px;
+  background: #fff1d8;
+  color: #795c37;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px #503c2533;
+  opacity: 0.96;
+}
+.ip-drag-ghost svg {
+  width: 52px;
+  height: 39px;
+}
+.ip-drag-ghost strong {
+  font:
+    650 17px/1.2 Arial,
+    sans-serif;
+  white-space: nowrap;
+}
+.ip-drag-ghost > span {
+  font-size: 12px;
+}
+.ip-language {
+  min-width: 0;
+  padding-top: 0;
+}
+.ip-sentence {
+  padding: 12px 4px 0;
+  background: #f8faf7;
+  border: 1px solid #d8e2da;
+  border-radius: 13px;
+}
+.ip-base {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: flex-start;
+  font:
+    500 25px/1.5 Arial,
+    sans-serif;
+  height: 70px;
+  white-space: nowrap;
+}
+.ip-place-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+#fixed-place {
+  border-bottom: 3px solid #9dbfce;
+  color: var(--ip-blue);
+}
+.ip-place-group small {
+  font:
+    11px/1.4 -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: var(--ip-blue);
+}
+.ip-purpose-line {
+  position: relative;
+  height: 105px;
+  overflow: hidden;
+}
+.ip-purpose-phrase {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 224px;
+  transform: translateX(-50%);
+  height: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  color: var(--ip-orange);
+  visibility: hidden;
+}
+.ip-purpose-phrase strong {
+  font:
+    650 24px/1.5 Arial,
+    sans-serif;
+  white-space: nowrap;
+  border-bottom: 3px solid #dcaf75;
+}
+.ip-purpose-phrase small {
+  font-size: 11px;
+}
+.ip-purpose-line #purpose-period {
+  position: absolute;
+  top: 11px;
+  left: calc(50% + 112px);
+  font:
+    24px/1.5 Arial,
+    sans-serif;
+  color: #546658;
+  visibility: hidden;
+}
+#empty-purpose {
+  position: absolute;
+  inset: 9px 0 auto;
+  text-align: center;
+  font-size: 13px;
+  color: #8b7756;
+}
+#empty-purpose small {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #849081;
+}
+.ip-translation {
+  min-height: 57px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #435c52;
+  margin: 10px 2px 4px;
+}
+.ip-meaning-note {
+  min-height: 51px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #73806a;
+  margin: 0 2px 9px;
+}
+.ip-previous {
+  border: 1px solid #deded0;
+  background: #fffdf7;
+  border-radius: 10px;
+  padding: 12px;
+}
+.ip-previous p {
+  margin: 0;
+}
+#previous-label {
+  font-size: 11px;
+  color: #818578;
+  margin-bottom: 6px;
+}
+#previous-sentence {
+  font:
+    500 18px/1.6 Arial,
+    sans-serif;
+  color: #677266;
+  min-height: 58px;
+}
+#previous-translation {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #7a8176;
+  min-height: 43px;
+}
+.ip-motion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+}
+.ip-motion input {
+  min-width: 24px;
+  min-height: 24px;
+}
+@media (max-width: 699px) {
+  .ip-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .ip-diagram,
+  .ip-language {
+    max-width: 490px;
+    width: 100%;
+    margin: auto;
+  }
+  .ip-language {
+    max-width: 490px;
+  }
+  .ip-base {
+    height: 63px;
+  }
+  .ip-purpose-line {
+    height: 90px;
+  }
+  .ip-translation {
+    min-height: 45px;
+  }
+  .ip-meaning-note {
+    min-height: 41px;
+  }
+  .ip-previous {
+    padding: 10px 12px;
+  }
+}
+@media (max-width: 620px) {
+  .ip-lesson {
+    padding: 12px 10px;
+  }
+  .ip-intro {
+    font-size: 13px;
+    min-height: 47px;
+  }
+  .ip-tools {
+    gap: 8px;
+  }
+  .ip-tools button {
+    font-size: 12px;
+  }
+  .vl-title {
+    font-size: 24px;
+  }
+  .ip-figure {
+    min-height: 0;
+  }
+  .ip-figure .ip-thought {
+    height: 92px;
+    font-size: 12px;
+    border-radius: 18px;
+  }
+  .ip-thought-icon {
+    height: 32px;
+    font-size: 25px;
+    line-height: 29px;
+  }
+  .ip-thought-icon svg {
+    width: 42px;
+    height: 31px;
+  }
+  #thought-label {
+    font-size: 10px;
+  }
+  #thought-hint {
+    font-size: 9px;
+  }
+  .ip-thought::before {
+    width: 8px;
+    height: 8px;
+    bottom: -13px;
+  }
+  .ip-thought::after {
+    width: 4px;
+    height: 4px;
+    bottom: -22px;
+  }
+  .ip-figure .ip-destination-label {
+    font-size: 11px;
+    padding: 1px 5px;
+    bottom: 17%;
+  }
+  .ip-choices {
+    gap: 8px;
+  }
+  .ip-choice strong {
+    font-size: 18px;
+  }
+  .ip-choice > span {
+    font-size: 11px;
+  }
+  .ip-choices .ip-choice {
+    min-height: 94px;
+  }
+  .ip-choice svg.ip-icon {
+    height: 31px;
+    width: 44px;
+  }
+  .ip-base {
+    font-size: 22px;
+  }
+  .ip-purpose-phrase {
+    width: 216px;
+  }
+  .ip-purpose-phrase strong {
+    font-size: 22px;
+  }
+  .ip-purpose-line #purpose-period {
+    left: calc(50% + 108px);
+    font-size: 22px;
+  }
+  #previous-sentence {
+    font-size: 17px;
+  }
+  .ip-layout {
+    gap: 16px;
+  }
+}
+@media (max-width: 370px) {
+  .ip-choice strong {
+    font-size: 16px;
+  }
+  .ip-choices .ip-choice {
+    padding-inline: 2px;
+  }
+  .ip-thought #thought-hint {
+    font-size: 8px;
+  }
+  .ip-figure .ip-thought {
+    height: 83px;
+    font-size: 11px;
+  }
+  .ip-thought-icon {
+    height: 27px;
+  }
+  .ip-thought-icon svg {
+    height: 26px;
+  }
+  .ip-base {
+    font-size: 20px;
+  }
+  .ip-choices-label span {
+    margin-left: 6px;
+  }
+  .ip-purpose-phrase strong {
+    font-size: 21px;
+  }
+}
+
+.ip-figure button.ip-thought:disabled {
+  opacity: 1;
+}
+.ip-figure .ip-thought .ip-thought-icon svg {
+  width: 55px;
+  height: 42px;
+}
+.ip-purpose-phrase strong {
+  display: flex;
+  gap: 3px;
+  align-items: baseline;
+}
+.ip-purpose-phrase #purpose-period {
+  position: static;
+  font: inherit;
+  font-weight: 500;
+  color: #546658;
+}
+.ip-figure .ip-destination-label {
+  bottom: 14%;
+}
+@media (max-width: 620px) {
+  .ip-figure .ip-thought .ip-thought-icon svg {
+    width: 42px;
+    height: 31px;
+  }
+  .ip-figure .ip-destination-label {
+    bottom: 12%;
+  }
+}
+@media (max-width: 370px) {
+  .ip-figure .ip-thought .ip-thought-icon svg {
+    height: 26px;
+  }
+  .ip-thought-icon {
+    height: 27px;
+  }
+}
+
+.ip-reset-break {
+  display: none;
+}
+@media (max-width: 699px) {
+  .ip-tools {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding-block: 6px;
+    background: var(--surface, #fffefa);
+  }
+  .ip-reset-break {
+    display: block;
+  }
+}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM13 7a3 3 0 0 1 3-3h5v14h-5a3 3 0 0 0-3 3M6 8h3M6 12h3M16 8h2M16 12h2"/></svg><span>英語を、比べて見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>不定詞：何のために？</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">不定詞：何のために？</h1><p class="vl-question">公園へ行ったのは、何のため？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div id="ip-lesson" class="ip-lesson" data-phase="ready" data-purpose="none">
+  <p id="intro" class="ip-intro">
+    Yuiは、公園へ行きました。<br /><strong
+      >まず、公園へ行った記録を見よう。</strong
+    >
+  </p>
+  <div class="ip-tools">
+    <button id="main-action" type="button">▶ 記録を見る</button
+    ><button id="reset" class="vl-secondary" type="button">
+      <span>記録を<br class="ip-reset-break" />はじめから</span>
+    </button>
+  </div>
+  <div class="ip-layout">
+    <section class="ip-diagram" aria-label="行き先と、行った目的">
+      <p id="figure-label" class="ip-label">過去の移動を再現</p>
+      <div id="figure" class="ip-figure">
+        <svg
+          id="scene"
+          viewBox="0 0 600 440"
+          role="img"
+          aria-label="Yuiが公園へ行った記録。行き先は公園。"
+        >
+          <defs>
+            <marker
+              id="arrow"
+              viewBox="0 0 10 10"
+              refX="8"
+              refY="5"
+              markerWidth="7"
+              markerHeight="7"
+              orient="auto-start-reverse"
+            >
+              <path
+                d="M0 1L9 5 0 9"
+                fill="none"
+                stroke="#538493"
+                stroke-width="1.8"
+              />
+            </marker>
+          </defs>
+          <g id="ground" transform="translate(0 90)">
+            <path
+              d="M30 285Q210 274 570 285"
+              stroke="#d5dbc9"
+              stroke-width="4"
+              fill="none"
+            />
+            <path
+              d="M125 290H385"
+              stroke="#b4cbd1"
+              stroke-width="4"
+              stroke-dasharray="8 9"
+              marker-end="url(#arrow)"
+            />
+            <g id="park">
+              <ellipse cx="486" cy="272" rx="89" ry="15" fill="#e6eedb" />
+              <path d="M446 258v-96" stroke="#938366" stroke-width="13" />
+              <path
+                d="M431 188l15 24 17-28"
+                stroke="#938366"
+                stroke-width="7"
+                fill="none"
+              />
+              <path
+                d="M406 155q-11-33 21-46 17-31 46-9 37-9 46 26 23 32-4 52-16 28-50 10-45 16-59-12Z"
+                fill="#a8c997"
+                stroke="#83a576"
+                stroke-width="3"
+              />
+              <path
+                d="M481 229h66m-67 23h70m-58 1-4 22m49-22 4 22"
+                fill="none"
+                stroke="#ad9b77"
+                stroke-width="8"
+                stroke-linecap="round"
+              />
+              <text
+                x="488"
+                y="324"
+                text-anchor="middle"
+                fill="#476e7f"
+                font-size="30"
+                font-weight="600"
+              >
+                公園
+              </text>
+            </g>
+            <g id="walker">
+              <path
+                d="M76 188q-5-43 25-44 27 0 26 45l4 23H72Z"
+                fill="#62524a"
+              />
+              <circle cx="101" cy="177" r="23" fill="#edc59c" />
+              <path
+                d="M78 172q4-31 28-27 25 5 20 29l-18-17-30 15"
+                fill="#62524a"
+              />
+              <path d="M87 208q14-7 30 0l8 37H80Z" fill="#cf9365" />
+              <path
+                d="M86 248l-5 32m34-32 7 32"
+                stroke="#637a82"
+                stroke-width="13"
+                stroke-linecap="round"
+              />
+              <path
+                d="M83 216l-10 26m48-24 11 25"
+                stroke="#edc59c"
+                stroke-width="9"
+                stroke-linecap="round"
+              />
+              <text
+                x="100"
+                y="323"
+                text-anchor="middle"
+                font-size="30"
+                font-family="Arial,sans-serif"
+                fill="#675245"
+              >
+                Yui
+              </text>
+            </g>
+          </g>
+        </svg>
+        <span class="ip-destination-label">行き先</span>
+        <button
+          id="purpose-target"
+          class="ip-thought"
+          type="button"
+          disabled
+          aria-label="目的のカードをここへ置く"
+        >
+          <span id="thought-label">目的</span
+          ><span id="thought-icon" class="ip-thought-icon" aria-hidden="true"
+            >?</span
+          ><span id="thought-meaning">何をしに？</span
+          ><small id="thought-hint">記録を見てから選ぼう</small>
+        </button>
+      </div>
+      <div id="choices-area" hidden>
+        <p class="ip-choices-label">
+          目的の違う例 <span>カードを吹き出しへ</span>
+        </p>
+        <div id="choices" class="ip-choices">
+          <button
+            class="ip-choice"
+            type="button"
+            data-purpose="soccer"
+            aria-label="例1 サッカーをするため。タップか吹き出しへドラッグ。"
+          >
+            <svg class="ip-icon" viewBox="0 0 64 48" aria-hidden="true">
+              <circle
+                cx="32"
+                cy="24"
+                r="21"
+                fill="#fffdf4"
+                stroke="#796f59"
+                stroke-width="2"
+              />
+              <path d="m32 12 10 7-4 12H26l-4-12Z" fill="#677e7b" />
+              <path
+                d="m22 19-10-3m30 3 10-3M26 31l-6 11m18-11 6 11M32 12V3"
+                stroke="#677e7b"
+                stroke-width="3"
+              /></svg
+            ><strong lang="en">to play soccer</strong
+            ><span>サッカーをするため</span>
+          </button>
+          <button
+            class="ip-choice"
+            type="button"
+            data-purpose="flowers"
+            aria-label="例2 花を描くため。タップか吹き出しへドラッグ。"
+          >
+            <svg class="ip-icon" viewBox="0 0 64 48" aria-hidden="true">
+              <rect
+                x="8"
+                y="3"
+                width="42"
+                height="40"
+                rx="3"
+                fill="#fffdf4"
+                stroke="#bfab8b"
+                stroke-width="2"
+              />
+              <path
+                d="M29 24v13m0-5-8-5m8 7 8-6"
+                fill="none"
+                stroke="#6c9660"
+                stroke-width="2"
+              />
+              <path
+                d="M28 13q-6-8-10-1-5 6 3 9-4 8 4 8 6 1 7-6 9 3 10-4 0-7-8-6 2-8-6-7Z"
+                fill="#dfac83"
+              />
+              <circle cx="28" cy="18" r="4" fill="#fff4ad" />
+              <path
+                d="m42 39 12-25 5 3-12 24-6 4Z"
+                fill="#829baf"
+                stroke="#526f83"
+                stroke-width="1.5"
+              /></svg
+            ><strong lang="en">to draw flowers</strong><span>花を描くため</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <section
+      id="language"
+      class="ip-language"
+      aria-label="文で行き先と目的を読む"
+      hidden
+    >
+      <p id="sentence-label" class="ip-label">行き先を表す文</p>
+      <div id="sentence" class="ip-sentence" aria-label="Yui went to the park.">
+        <div class="ip-base">
+          <span id="fixed-subject" lang="en">Yui went</span
+          ><span class="ip-place-group"
+            ><span id="fixed-place" lang="en"
+              >to the park<span id="base-period">.</span></span
+            ><small>行き先</small></span
+          >
+        </div>
+        <div id="purpose-line" class="ip-purpose-line">
+          <div id="empty-purpose">
+            何をしに行ったのかな。<small>目的のカードを選ぼう</small>
+          </div>
+          <div id="purpose-phrase" class="ip-purpose-phrase">
+            <strong lang="en"
+              ><span id="purpose-english"></span
+              ><span id="purpose-period" aria-hidden="true">.</span></strong
+            ><small>目的</small>
+          </div>
+        </div>
+      </div>
+      <p id="translation" class="ip-translation" aria-live="polite">
+        Yuiは公園へ行きました。
+      </p>
+      <p id="meaning-note" class="ip-meaning-note">
+        青は行き先。目的は、まだ書かれていません。
+      </p>
+      <aside class="ip-previous">
+        <p id="previous-label">はじめの完成文</p>
+        <p id="previous-sentence" lang="en">Yui went to the park.</p>
+        <p id="previous-translation">Yuiは公園へ行きました。</p>
+      </aside>
+    </section>
+  </div>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>行き先と目的</h3><p>Yui went to the park.は、Yuiが公園へ行ったことを述べます。to the parkは行き先です。to play soccerを加えると、サッカーをするために行ったという目的が分かります。to draw flowersを加えると、花を描くために行ったという別の目的の例になります。</p><h3>二つのto</h3><p>行き先のtoの後はthe parkという場所です。目的のtoのすぐ後は、playやdrawという動詞の原形です。wentは過去のままです。二つのtoは同じ働きではありません。</p><h3>図で表していること</h3><p>最初は公園へ行った過去の記録を再現します。その後は目的の違う二つの例を比較します。目的の絵は、しようと思ったことを表す吹き出しです。公園で実際にサッカーをしたり、花を描き終えたりした場面ではありません。目的だけで実行できたかどうかまでは分かりません。</p><h3>操作</h3><p>目的のカードをタップするか、吹き出しへドラッグします。主ボタンで一時停止・再開できます。目的切替中に吹き出しか元の例を選ぶと取り消します。Escapeでも戻せます。無効な場所で指を離した場合も元の表示を保ちます。「記録をはじめから」で最初の訪問記録へ戻します。</p><label class="ip-motion"><input id="reduce-motion" type="checkbox">動きを減らす（完成形をすぐ表示）</label><h3>この教材の範囲と出典</h3><p>不定詞の目的を表す用法だけを扱います。名詞的・形容詞的用法、形式主語、意味上の主語、感情の原因は初版の範囲外です。図と例文は自作。文法は<a href="https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/infinitives" target="_blank" rel="noopener noreferrer">British Council：to-infinitives（Infinitive of purpose）</a>で確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var A=Object.freeze({person:"Yui",tense:"past",destination:"the park",action:"went"});function u(e){if(![null,"soccer","flowers"].includes(e))throw new RangeError("Unknown purpose");let n=e==="soccer"?"to play soccer":e==="flowers"?"to draw flowers":"";return{visit:A,executed:null,phrase:n,verb:e==="soccer"?"play":e==="flowers"?"draw":null,meaning:e==="soccer"?"\u30B5\u30C3\u30AB\u30FC\u3092\u3059\u308B\u305F\u3081":e==="flowers"?"\u82B1\u3092\u63CF\u304F\u305F\u3081":"\u4F55\u3092\u3057\u306B\u884C\u3063\u305F\u306E\u304B\u306A\u3002",sentence:`Yui went to the park${n?" "+n:""}.`,translation:e==="soccer"?"Yui\u306F\u30B5\u30C3\u30AB\u30FC\u3092\u3059\u308B\u305F\u3081\u306B\u516C\u5712\u3078\u884C\u304D\u307E\u3057\u305F\u3002":e==="flowers"?"Yui\u306F\u82B1\u3092\u63CF\u304F\u305F\u3081\u306B\u516C\u5712\u3078\u884C\u304D\u307E\u3057\u305F\u3002":"Yui\u306F\u516C\u5712\u3078\u884C\u304D\u307E\u3057\u305F\u3002",example:e==="soccer"?"\u4F8B1":e==="flowers"?"\u4F8B2":""}}var x=()=>({phase:"ready",resumePhase:null,seen:!1,purpose:null,target:null,previous:null,dragPurpose:null,runId:0}),Y=e=>e.seen?{...e,phase:"idle",resumePhase:null,target:e.purpose,dragPurpose:null,runId:e.runId+1}:{...x(),runId:e.runId+1};function p(e,n){switch(n.type){case"start":return e.phase==="ready"?{...e,phase:"travel",runId:e.runId+1}:e;case"choose":return u(n.purpose),!n.purpose||e.phase!=="idle"||e.purpose===n.purpose?e:{...e,phase:"changing",target:n.purpose,previous:e.purpose,runId:e.runId+1};case"pause":return["travel","changing"].includes(e.phase)?{...e,resumePhase:e.phase,phase:"paused"}:e;case"resume":return e.phase==="paused"?{...e,phase:e.resumePhase,resumePhase:null}:e;case"finish":return n.runId!==e.runId||!["travel","changing","paused"].includes(e.phase)?e:e.phase==="travel"||e.resumePhase==="travel"?{...e,phase:"idle",resumePhase:null,seen:!0}:{...e,phase:"idle",resumePhase:null,purpose:e.target};case"cancel":return e.phase!=="idle"&&e.phase!=="ready"?Y(e):e;case"drag":return u(n.purpose),e.phase==="idle"&&n.purpose?{...e,phase:"dragging",dragPurpose:n.purpose,runId:e.runId+1}:e;case"drop":return e.phase!=="dragging"?e:n.valid?p({...e,phase:"idle",dragPurpose:null},{type:"choose",purpose:e.dragPurpose}):Y(e);case"reset":return{...x(),runId:e.runId+1};default:throw new RangeError("Unknown action")}}function P(e){let n="running",a,c=new Promise(i=>{a=i});function o(i){n==="finished"||n==="cancelled"||(n=i,a(i))}return Promise.all(e.map(i=>i.finished)).then(()=>o("finished"),()=>o("cancelled")),{get status(){return n},finished:c,pause(){n==="running"&&(e.forEach(i=>i.pause()),n="paused")},resume(){n==="paused"&&(e.forEach(i=>i.play()),n="running")},finish(){["running","paused"].includes(n)&&(e.forEach(i=>i.finish()),o("finished"))},cancel(){["running","paused"].includes(n)&&(o("cancelled"),e.forEach(i=>i.cancel()))}}}var r=e=>document.getElementById(e),H=r("ip-lesson"),g=r("purpose-phrase"),L=r("walker"),m=r("purpose-target"),I=[...document.querySelectorAll("button[data-purpose]")],b=r("reduce-motion"),t=x(),h=null,s=null,l=null,y=!1,M=()=>t.phase==="paused"?t.resumePhase:t.phase,S=()=>t.purpose==="soccer"?"flowers":"soccer",T=e=>I.find(n=>n.dataset.purpose===e).querySelector("svg").outerHTML;function k(){l&&l.remove(),l=null,s=null,I.forEach(e=>e.classList.remove("ip-drag-source")),m.dataset.drop="false"}function w(){let e=u(t.purpose);r("purpose-english").textContent=e.phrase,g.style.opacity="1",g.style.transform="translateX(-50%)",g.style.visibility=t.purpose?"visible":"hidden",r("purpose-period").style.visibility=t.purpose?"visible":"hidden",r("empty-purpose").hidden=!!t.purpose,r("base-period").hidden=!!t.purpose,L.style.transform=t.seen?"translateX(250px)":"translateX(0px)"}function d(){let e=M(),n=e==="changing",a=u(t.purpose),c=u(t.previous),o=n?t.target:t.purpose;Object.assign(H.dataset,{phase:t.phase,purpose:t.purpose||"none",target:t.target||"none",seen:String(t.seen)}),r("language").hidden=!t.seen,r("choices-area").hidden=!t.seen,m.disabled=!t.seen,I.forEach(X=>{X.setAttribute("aria-pressed",String(t.purpose===X.dataset.purpose))}),r("intro").innerHTML=t.seen?"\u884C\u304D\u5148\u306F\u3001\u3069\u3061\u3089\u306E\u4F8B\u3082\u516C\u5712\u3002<br><strong>\u76EE\u7684\u306E\u9055\u3046\u4E8C\u3064\u306E\u4F8B\u3092\u6BD4\u3079\u3088\u3046\u3002</strong>":"Yui\u306F\u3001\u516C\u5712\u3078\u884C\u304D\u307E\u3057\u305F\u3002<br><strong>\u307E\u305A\u3001\u516C\u5712\u3078\u884C\u3063\u305F\u8A18\u9332\u3092\u898B\u3088\u3046\u3002</strong>",r("figure-label").textContent=t.seen?"\u884C\u3063\u305F\u5834\u6240\u306F\u540C\u3058\u3002\u76EE\u7684\u306E\u9055\u3046\u4F8B\u3002":"\u904E\u53BB\u306E\u79FB\u52D5\u3092\u518D\u73FE",r("thought-label").textContent=o?n?"\u6B21\u306E\u4F8B\u306E\u76EE\u7684":u(o).example+"\uFF5C\u76EE\u7684":"\u76EE\u7684",r("thought-icon").innerHTML=o?T(o):"?",r("thought-meaning").textContent=o?u(o).meaning:"\u4F55\u3092\u3057\u306B\uFF1F",r("thought-hint").textContent=t.seen?n?"\u30BF\u30C3\u30D7\u3067\u5143\u306E\u4F8B\u3078\u623B\u3059":t.purpose?"\u601D\u3044\u63CF\u3044\u305F\u3053\u3068":"\u30AB\u30FC\u30C9\u3092\u3053\u3053\u3078":"\u8A18\u9332\u3092\u898B\u3066\u304B\u3089\u9078\u307C\u3046",m.setAttribute("aria-label",n?"\u76EE\u7684\u306E\u5207\u66FF\u3092\u53D6\u308A\u6D88\u3059":o?u(o).meaning+"\u3002\u76EE\u7684\u306E\u9055\u3046\u4F8B\u3078\u5207\u308A\u66FF\u3048\u308B\u3002":"\u4F55\u3092\u3057\u306B\u884C\u3063\u305F\u306E\u304B\u306A\u3002\u76EE\u7684\u30AB\u30FC\u30C9\u3092\u3053\u3053\u3078\u7F6E\u304F\u3002");let i=r("main-action");i.disabled=t.phase==="dragging",i.dataset.running=String(["travel","changing"].includes(t.phase)),i.textContent=t.phase==="paused"?"\u25B6 \u7D9A\u304D\u304B\u3089\u518D\u751F":["travel","changing"].includes(t.phase)?"\u2161 \u3053\u3053\u3067\u4E00\u6642\u505C\u6B62":t.phase==="ready"?"\u25B6 \u8A18\u9332\u3092\u898B\u308B":t.purpose?"\u76EE\u7684\u306E\u9055\u3046\u4F8B\u3092\u898B\u308B":"\u30B5\u30C3\u30AB\u30FC\u306E\u76EE\u7684\u3092\u3064\u306A\u3050",r("sentence-label").textContent=n?"\u76EE\u7684\u306E\u9055\u3046\u4F8B\u3078\u5207\u66FF\u4E2D":t.purpose?u(t.purpose).example+"\uFF5C\u884C\u304D\u5148\u3068\u76EE\u7684":"\u884C\u304D\u5148\u3092\u8868\u3059\u6587",r("sentence").setAttribute("aria-label",n?"\u6587\u3092\u3064\u306A\u3044\u3067\u3044\u308B\u9014\u4E2D\u3002\u79FB\u3059\u524D\u306E\u5B8C\u6210\u6587\u306F\u5225\u306E\u6B04\u3002":a.sentence),r("translation").textContent=n?"\u76EE\u7684\u306E\u307E\u3068\u307E\u308A\u3092\u3001\u6587\u306B\u3064\u306A\u3044\u3067\u3044\u307E\u3059\u3002":a.translation,r("meaning-note").textContent=n?"\u524D\u306E\u5B8C\u6210\u6587\u3092\u6B8B\u3057\u3066\u3001\u76EE\u7684\u306E\u9055\u3046\u4F8B\u3092\u6BD4\u3079\u307E\u3059\u3002":t.purpose?"\u9752\u306F\u884C\u304D\u5148\u3002\u30AA\u30EC\u30F3\u30B8\u306F\u76EE\u7684\u3002to\u306E\u3059\u3050\u5F8C\u306Eplay / draw\u306F\u539F\u5F62\u3002":"\u9752\u306F\u884C\u304D\u5148\u3002\u76EE\u7684\u306F\u3001\u307E\u3060\u66F8\u304B\u308C\u3066\u3044\u307E\u305B\u3093\u3002",r("previous-label").textContent=t.previous?"\u524D\u306E\u4F8B\u306E\u5B8C\u6210\u6587":"\u76EE\u7684\u3092\u52A0\u3048\u308B\u524D\u306E\u6587",r("previous-sentence").textContent=c.sentence,r("previous-translation").textContent=c.translation,t.phase==="dragging"&&(r("thought-hint").textContent="\u3053\u306E\u5439\u304D\u51FA\u3057\u3067\u6307\u3092\u96E2\u3059")}function E(){h&&h.cancel(),h=null;for(let e of[L,g])e.getAnimations().forEach(n=>n.cancel())}function f(){if(["travel","changing","paused"].includes(t.phase)){let e=t.runId;E(),t=p(t,{type:"finish",runId:e}),d(),w()}else t.phase==="dragging"&&v()}function v(){E(),k(),t=p(t,{type:"cancel"}),d(),w()}function B(e){let n=t.runId;h=P(e),h.finished.then(a=>{a==="finished"&&t.runId===n&&f()})}function j(){if(t=p(t,{type:"start"}),d(),b.checked){f();return}B([L.animate([{offset:0,transform:"translateX(0px)"},{offset:.15,transform:"translateX(0px)"},{offset:.9,transform:"translateX(250px)"},{offset:1,transform:"translateX(250px)"}],{duration:3e3,fill:"forwards",easing:"ease-in-out"})])}function O(){if(innerWidth>699)return;let e=document.querySelector(".ip-tools").getBoundingClientRect(),n=r("figure-label").getBoundingClientRect();(r("sentence").getBoundingClientRect().bottom>innerHeight-12||n.top<e.height+12)&&window.scrollBy(0,n.top-e.height-12)}function R(){if(d(),O(),r("empty-purpose").hidden=!0,r("base-period").hidden=!0,r("purpose-period").style.visibility="hidden",b.checked){f();return}let e=t.runId,n=t.purpose,a=u(t.target).phrase;g.style.visibility="visible",r("purpose-english").textContent=n?u(n).phrase:"";let c=g.animate([{offset:0,opacity:n?1:0,transform:"translateX(-50%) translateY(0)"},{offset:.4,opacity:n?1:0,transform:"translateX(-50%) translateY(0)"},{offset:1,opacity:0,transform:"translateX(-50%) translateY(-16px)"}],{duration:1800,fill:"forwards",easing:"ease-in-out"});h=P([c]),h.finished.then(o=>{if(o!=="finished"||t.runId!==e)return;c.cancel(),r("purpose-english").textContent=a;let i=g.animate([{offset:0,opacity:0,transform:"translateX(-50%) translateY(18px)"},{offset:.7,opacity:1,transform:"translateX(-50%) translateY(0)"},{offset:1,opacity:1,transform:"translateX(-50%) translateY(0)"}],{duration:1600,fill:"forwards",easing:"ease-in-out"});B([i])})}function C(e){if(!(!t.seen||t.phase==="dragging")){if(t.phase!=="idle"){e===t.purpose?v():e===t.target?f():(v(),C(e));return}e!==t.purpose&&(E(),t=p(t,{type:"choose",purpose:e}),R())}}r("main-action").addEventListener("click",()=>{t.phase==="ready"?j():t.phase==="paused"?(h.resume(),t=p(t,{type:"resume"}),d()):["travel","changing"].includes(t.phase)?(h.pause(),t=p(t,{type:"pause"}),d()):C(S())});m.addEventListener("click",()=>{M()==="changing"?v():C(S())});for(let e of I){e.addEventListener("click",n=>{if(y&&n.detail!==0){y=!1;return}C(e.dataset.purpose)}),e.addEventListener("pointerdown",n=>{if(t.phase!=="idle"||n.button!==0)return;y=!1;let a=e.getBoundingClientRect();s={id:n.pointerId,card:e,purpose:e.dataset.purpose,x:n.clientX,y:n.clientY,width:a.width,height:a.height,started:!1},e.setPointerCapture(n.pointerId)}),e.addEventListener("pointermove",n=>{if(!s||s.id!==n.pointerId||!s.started&&Math.hypot(n.clientX-s.x,n.clientY-s.y)<7)return;s.started||(s.started=!0,t=p(t,{type:"drag",purpose:s.purpose}),d(),l=document.createElement("div"),l.className="ip-drag-ghost",l.setAttribute("aria-hidden","true"),l.innerHTML=e.innerHTML,Object.assign(l.style,{width:s.width+"px",height:s.height+"px"}),document.body.append(l),e.classList.add("ip-drag-source")),Object.assign(l.style,{left:Math.max(2,Math.min(innerWidth-s.width-2,n.clientX-s.width/2))+"px",top:Math.max(2,Math.min(innerHeight-s.height-2,n.clientY-s.height/2))+"px"});let a=m.getBoundingClientRect();m.dataset.drop=String(n.clientX>=a.left&&n.clientX<=a.right&&n.clientY>=a.top&&n.clientY<=a.bottom)}),e.addEventListener("pointerup",n=>{if(!s||s.id!==n.pointerId)return;let a=s.started,c=m.dataset.drop==="true";k(),a&&(y=!0,t=p(t,{type:"drop",valid:c}),t.phase==="changing"?R():(d(),w())),e.hasPointerCapture(n.pointerId)&&e.releasePointerCapture(n.pointerId)});for(let n of["pointercancel","lostpointercapture"])e.addEventListener(n,()=>{s&&(y=!0,v())})}r("reset").addEventListener("click",()=>{E(),k(),y=!1,t=p(t,{type:"reset"}),d(),w()});document.addEventListener("keydown",e=>{e.key==="Escape"&&!["idle","ready"].includes(t.phase)&&(e.preventDefault(),v())});b.addEventListener("change",()=>{b.checked&&f()});window.addEventListener("pagehide",f);document.addEventListener("visibilitychange",()=>{document.hidden&&f()});window.addEventListener("resize",f);d();w();})();
+</script>
+</body>
+</html>
