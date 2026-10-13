@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>will と be going to | 英語を、動かして見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+:root {
+  --fp-ink: #344f47;
+  --fp-muted: #637c70;
+  --fp-green: #377859;
+  --fp-orange: #ad7439;
+}
+body {
+  background: #f5f6f2;
+  color: var(--fp-ink);
+}
+.vl-shell {
+  max-width: 1180px;
+}
+.vl-stage {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.vl-controls,
+.vl-legend:empty,
+.vl-preview-tools:empty {
+  display: none;
+}
+.fp-lesson {
+  background: #fffefa;
+  border: 1px solid #d5ded5;
+  border-radius: 18px;
+  padding: 20px;
+}
+.fp-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.fp-lesson button {
+  font: inherit;
+  font-size: 14px;
+  min-height: 46px;
+  padding: 10px 15px;
+  border: 1px solid #c7d6ca;
+  border-radius: 10px;
+  color: var(--fp-ink);
+  background: #fafbf6;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.fp-lesson button:focus-visible,
+#decision:focus-visible {
+  outline: 3px solid #277faa;
+  outline-offset: 3px;
+}
+.fp-lesson .fp-play {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #e9f4e9;
+  border-color: #97c9ae;
+  color: #246d48;
+}
+.fp-lesson .fp-play[data-playing='true'] {
+  background: #fff0e9;
+  border-color: #e4ab90;
+  color: #b34629;
+}
+.fp-reset {
+  color: #6a8174 !important;
+}
+.fp-intro {
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 26px;
+  margin: 0 0 14px;
+}
+.fp-comparison {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+.fp-visual {
+  min-width: 0;
+}
+.fp-diagram {
+  position: relative;
+  background: #f7f8f2;
+  border: 1px solid #dce1d5;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.fp-diagram svg#timeline {
+  touch-action: pan-y;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.fp-diagram text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 18px;
+  fill: var(--fp-ink);
+}
+#past-label text,
+#now-label text,
+#future-label text {
+  font-size: 16px;
+  font-weight: 650;
+}
+#now-label text {
+  fill: #37785c;
+}
+#future-action text {
+  font-size: 17px;
+  fill: #547681;
+}
+#future-action .fp-future-caption {
+  font-size: 16px;
+}
+#speech-1,
+#speech-2 {
+  font-size: 17px;
+  font-weight: 600;
+}
+#memo-title,
+#memo-line,
+#memo-tail {
+  font-size: 17px;
+  fill: #886b45;
+}
+.fp-diagram .fp-heat {
+  font-size: 12px;
+  fill: #b47a54;
+  writing-mode: vertical-rl;
+}
+#decision {
+  touch-action: none;
+  cursor: grab;
+  outline: none;
+}
+#decision[aria-disabled='true'] {
+  cursor: default;
+}
+#decision:focus-visible #decision-face {
+  stroke: #267d9c;
+  stroke-width: 3;
+}
+#decision text {
+  font-size: 16px;
+  fill: #916031;
+  font-weight: 650;
+}
+#decision:active {
+  cursor: grabbing;
+}
+.fp-diagram-note {
+  font-size: 13px;
+  text-align: center;
+  color: var(--fp-muted);
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+.fp-language {
+  min-width: 0;
+  padding: 10px 9px;
+}
+.fp-history {
+  border-bottom: 1px solid #d9e0d4;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  min-height: 49px;
+}
+.fp-history p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #73806f;
+}
+.fp-history p:first-child {
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+.fp-sentence-label {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fp-muted);
+  margin: 0 0 10px;
+  min-height: 20px;
+}
+.fp-sentence-box {
+  position: relative;
+  min-height: 95px;
+}
+.fp-sentence {
+  font:
+    550 29px/1.5 -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  margin: 0;
+  min-height: 95px;
+  white-space: nowrap;
+}
+.fp-sentence > span {
+  display: block;
+}
+.fp-phrase {
+  position: relative;
+  height: 1.8em;
+}
+.fp-phrase b {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 1.35;
+  padding: 0 0.12em;
+  border-radius: 5px;
+  background: #fff0d8;
+  color: #a66a31;
+  white-space: nowrap;
+  font-weight: 700;
+  will-change: opacity, transform;
+}
+.fp-first-clue {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  line-height: 1.9;
+  margin: 0;
+  color: #789080;
+}
+.fp-first-clue[hidden] {
+  display: none;
+}
+.fp-translation {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 6px 0 0;
+  min-height: 45px;
+  color: #5b7667;
+}
+.fp-alternatives {
+  border-top: 1px solid #dde3d7;
+  margin: 16px 0 0;
+  padding-top: 12px;
+}
+.fp-alternatives > p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--fp-muted);
+  line-height: 1.6;
+}
+.fp-options {
+  display: flex;
+  gap: 8px;
+}
+.fp-options button {
+  flex: 1;
+}
+.fp-options button[aria-pressed='true'] {
+  background: #faf0dd;
+  border-color: #caab79;
+  color: #8c6536;
+}
+.fp-options button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+.fp-takeaway {
+  border-left: 3px solid #b9ceb8;
+  padding-left: 10px;
+  margin: 15px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #5d785f;
+}
+.fp-feedback {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  pointer-events: none;
+  animation: fp-flash 1s ease-out forwards;
+  z-index: 3;
+}
+.fp-feedback svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: #02a83e;
+  filter: drop-shadow(0 2px 4px #fff);
+}
+.fp-feedback[data-kind='pause'] svg {
+  fill: #ed4519;
+}
+.fp-feedback[hidden],
+.fp-feedback svg[hidden] {
+  display: none;
+}
+.fp-motion {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+}
+.fp-motion input {
+  width: 20px;
+  height: 20px;
+}
+.fp-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+@keyframes fp-flash {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+@media (min-width: 900px) {
+  .fp-comparison {
+    grid-template-columns: minmax(0, 1.55fr) minmax(290px, 1fr);
+    gap: 22px;
+  }
+  .fp-language {
+    padding: 5px 5px 5px 14px;
+    border-left: 1px solid #e0e5da;
+  }
+  .fp-alternatives {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .fp-alternatives[hidden] {
+    display: none;
+  }
+  .fp-alternatives > p {
+    max-width: 360px;
+    margin: 0;
+  }
+  .fp-options {
+    min-width: 315px;
+  }
+  .fp-sentence {
+    font-size: 29px;
+  }
+}
+@media (max-width: 599px) {
+  .vl-shell {
+    padding: 16px 12px 24px;
+  }
+  .vl-header {
+    padding-bottom: 16px;
+  }
+  .vl-title {
+    font-size: 25px;
+  }
+  .vl-question {
+    font-size: 14px;
+  }
+  .fp-lesson {
+    padding: 12px;
+    border-radius: 14px;
+  }
+  .fp-toolbar {
+    margin-bottom: 10px;
+  }
+  .fp-lesson button {
+    font-size: 12px;
+    min-height: 44px;
+    padding: 9px 10px;
+  }
+  .fp-reset span {
+    display: none;
+  }
+  .fp-reset {
+    min-width: 44px;
+  }
+  .fp-intro {
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    min-height: 38px;
+  }
+  .fp-comparison {
+    gap: 8px;
+  }
+  .fp-diagram {
+    border-radius: 10px;
+  }
+  .fp-diagram text {
+    font-size: 15px;
+  }
+  #past-label text,
+  #now-label text,
+  #future-label text {
+    font-size: 15px;
+  }
+  #speech-1,
+  #speech-2 {
+    font-size: 16px;
+  }
+  #memo-title,
+  #memo-line,
+  #memo-tail {
+    font-size: 14.5px;
+  }
+  #future-action text {
+    font-size: 14px;
+  }
+  #future-action .fp-future-caption {
+    font-size: 14.5px;
+  }
+  .fp-diagram-note {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .fp-language {
+    padding: 4px 2px;
+  }
+  .fp-history {
+    margin-bottom: 9px;
+    padding-bottom: 8px;
+    min-height: 39px;
+  }
+  .fp-history p {
+    font-size: 12px;
+  }
+  .fp-history p:first-child {
+    font-size: 10px;
+  }
+  .fp-sentence-label {
+    font-size: 12px;
+    margin-bottom: 6px;
+    min-height: 18px;
+  }
+  .fp-sentence {
+    font-size: 25px;
+    min-height: 80px;
+  }
+  .fp-sentence-box {
+    min-height: 80px;
+  }
+  .fp-first-clue {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .fp-translation {
+    font-size: 12px;
+    min-height: 39px;
+    margin-top: 3px;
+    line-height: 1.6;
+  }
+  .fp-alternatives {
+    margin-top: 10px;
+    padding-top: 8px;
+  }
+  .fp-alternatives > p {
+    font-size: 11px;
+    margin-bottom: 7px;
+  }
+  .fp-takeaway {
+    font-size: 11px;
+    margin-top: 10px;
+  }
+  .fp-options {
+    gap: 6px;
+  }
+}
+@media (max-width: 360px) {
+  .fp-sentence {
+    font-size: 23px;
+  }
+  .fp-diagram-note {
+    font-size: 12px;
+  }
+}
+
+#decision * {
+  touch-action: none;
+}
+</style>
+<meta name="lesson-version" content="0.1.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 4h16v12H10l-5 4v-4H4zM8 8h8M8 12h5"/></svg><span>英語を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>will と be going to</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">will と be going to</h1><p class="vl-question">同じ未来の行動でも、いつ決めた話？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div id="fp-lesson" class="fp-lesson" data-phase="ready">
+  <div class="fp-toolbar">
+    <button id="play" class="fp-play" type="button">
+      <span id="play-icon" aria-hidden="true">▶</span
+      ><span id="play-label">会話を見る</span></button
+    ><button
+      id="reset"
+      class="fp-reset"
+      type="button"
+      aria-label="はじめに戻す"
+    >
+      ↺ <span>はじめに戻す</span>
+    </button>
+  </div>
+  <p id="intro" class="fp-intro">
+    暑い部屋で話しています。<strong>会話を再生してみよう。</strong>
+  </p>
+  <div class="fp-comparison" id="comparison">
+    <div class="fp-visual">
+      <div class="fp-diagram" id="diagram">
+        <svg
+          id="timeline"
+          viewBox="0 0 720 370"
+          aria-labelledby="diagram-title diagram-description"
+        >
+          <title id="diagram-title">決めたとき、話している今、未来の行動</title>
+          <desc id="diagram-description">
+            今、暑い部屋で話しています。窓を開けるのは、このあとです。
+          </desc>
+          <defs>
+            <marker
+              id="arrow"
+              viewBox="0 0 10 10"
+              refX="7"
+              refY="5"
+              markerWidth="5"
+              markerHeight="5"
+              orient="auto-start-reverse"
+            >
+              <path
+                d="M1 1 8 5 1 9"
+                fill="none"
+                stroke="#879b92"
+                stroke-width="1.6"
+              />
+            </marker>
+          </defs>
+          <path
+            id="axis"
+            stroke="#9caaa1"
+            stroke-width="2"
+            marker-end="url(#arrow)"
+          />
+          <path
+            id="now-link"
+            fill="none"
+            stroke="#82a996"
+            stroke-dasharray="4 5"
+          />
+          <g id="past-label">
+            <text y="0" text-anchor="middle">会話より前</text>
+            <circle cy="14" r="4" fill="#b69b77" />
+          </g>
+          <g id="now-label">
+            <text y="0" text-anchor="middle">話している今</text>
+            <circle cy="14" r="6" fill="#438268" />
+          </g>
+          <g id="future-label">
+            <text y="0" text-anchor="middle">これから</text>
+            <circle cy="14" r="4" fill="#729bad" />
+          </g>
+          <g id="scene-layer">
+            <g id="past-memo">
+              <rect
+                x="-50"
+                y="-43"
+                width="100"
+                height="84"
+                rx="8"
+                fill="#fcf7e9"
+                stroke="#d9c9a6"
+              />
+              <path d="M-24-30H20M-24-25H9" stroke="#d5c096" stroke-width="2" />
+              <text id="memo-title" y="-7" text-anchor="middle">
+                前の計画は
+              </text>
+              <text id="memo-line" y="13" text-anchor="middle">まだない</text>
+              <text id="memo-tail" y="32" text-anchor="middle"></text>
+            </g>
+            <g id="room">
+              <rect
+                x="-107"
+                y="-10"
+                width="214"
+                height="166"
+                rx="12"
+                fill="#f8eee6"
+                stroke="#ead4c1"
+              />
+              <rect
+                x="-76"
+                y="70"
+                width="62"
+                height="57"
+                rx="2"
+                fill="#dce9e5"
+                stroke="#8caba2"
+                stroke-width="3"
+              />
+              <path
+                d="M-45 71V125M-75 98H-15"
+                stroke="#8caba2"
+                stroke-width="2"
+              />
+              <path d="M-87 136H89" stroke="#d7bfa9" stroke-width="2" />
+              <g transform="translate(40 99)">
+                <path d="M-22 37Q-20 9 0 9T23 37" fill="#77939c" />
+                <ellipse cy="-9" rx="14" ry="18" fill="#eac6a3" />
+                <path
+                  d="M-15-9Q-17-34 3-30Q21-30 17-5L2-15-4-23Z"
+                  fill="#675c54"
+                />
+                <path
+                  d="M-7 0Q0 5 7 0"
+                  fill="none"
+                  stroke="#a87658"
+                  stroke-width="1.2"
+                />
+              </g>
+              <text x="79" y="100" class="fp-heat" id="heat">暑い…</text>
+              <path
+                d="M-88 0H87Q97 0 97 10V46Q97 56 87 56H42L34 66 26 56H-88Q-98 56-98 46V10Q-98 0-88 0"
+                fill="#fffefb"
+                stroke="#d5bb9f"
+              />
+              <text id="speech-1" y="22" text-anchor="middle">暑いな…</text>
+              <text id="speech-2" y="43" text-anchor="middle"></text>
+            </g>
+          </g>
+          <g id="future-action">
+            <rect
+              x="-50"
+              y="-58"
+              width="100"
+              height="118"
+              rx="10"
+              fill="#edf4f5"
+              stroke="#bed0d8"
+              stroke-dasharray="4 3"
+            />
+            <text y="-37" text-anchor="middle">窓を開ける</text>
+            <path
+              d="M-27-20H28V32H-27Z"
+              fill="#d6e8ed"
+              stroke="#7b9fab"
+              stroke-width="2.4"
+            />
+            <path
+              d="M0-20V32M-27-20-8-12V39L-27 32Z"
+              fill="#f4fafb"
+              stroke="#7b9fab"
+              stroke-width="2.4"
+            />
+            <path
+              d="M-4 7H20M11 1 20 7 11 13"
+              fill="none"
+              stroke="#548b9f"
+              stroke-width="2"
+            />
+            <text y="51" text-anchor="middle" class="fp-future-caption">
+              未来の行動
+            </text>
+          </g>
+          <g
+            id="decision"
+            role="slider"
+            tabindex="-1"
+            aria-label="決めたとき。左右に動かして別の場面を選ぶ"
+            aria-valuemin="0"
+            aria-valuemax="1"
+            aria-valuenow="1"
+            aria-valuetext="今、その場で決める"
+            aria-disabled="true"
+          >
+            <rect
+              x="-58"
+              y="-30"
+              width="116"
+              height="60"
+              rx="10"
+              fill="transparent"
+            />
+            <path d="M0-19V-29" stroke="#b58046" stroke-width="2" />
+            <rect
+              id="decision-face"
+              x="-54"
+              y="-19"
+              width="108"
+              height="38"
+              rx="19"
+              fill="#fff0d8"
+              stroke="#c9914e"
+              stroke-width="1.8"
+            />
+            <text id="decision-text" y="5" text-anchor="middle">
+              決めるとき
+            </text>
+            <path
+              id="drag-marks"
+              d="M-43-3-48 1-43 5M43-3 48 1 43 5"
+              fill="none"
+              stroke="#a87537"
+              stroke-width="1.5"
+            />
+          </g>
+        </svg>
+        <div id="feedback" class="fp-feedback" hidden aria-hidden="true">
+          <svg id="feedback-play" viewBox="0 0 64 64">
+            <path d="M22 12 52 32 22 52Z" /></svg
+          ><svg id="feedback-pause" viewBox="0 0 64 64">
+            <path d="M18 13H28V51H18ZM36 13H46V51H36Z" />
+          </svg>
+        </div>
+      </div>
+      <p id="diagram-note" class="fp-diagram-note">
+        窓を開けるのは、話している今より<strong>あと</strong>。
+      </p>
+    </div>
+    <div class="fp-language" id="language">
+      <div id="history" class="fp-history" hidden>
+        <p id="previous-label"></p>
+        <p id="previous-sentence" lang="en"></p>
+      </div>
+      <p id="sentence-label" class="fp-sentence-label">
+        今決めたことを、英語にすると？
+      </p>
+      <div id="sentence-box" class="fp-sentence-box">
+        <p id="first-clue" class="fp-first-clue">
+          「じゃあ、窓を開けよう」<br />今の決心を伝えることばへ。
+        </p>
+        <p id="sentence" class="fp-sentence" lang="en" aria-hidden="true">
+          <span class="fp-phrase"
+            ><b id="old-phrase"></b><b id="new-phrase"></b></span
+          ><span id="action-phrase">open the window.</span>
+        </p>
+      </div>
+      <p id="translation" class="fp-translation">
+        会話と、決めたときの札を見よう。
+      </p>
+    </div>
+  </div>
+  <div id="alternatives" class="fp-alternatives" hidden>
+    <p id="selection-hint">
+      「決めたとき」の札を左右に動かして、<strong>別の場面</strong>を比べよう。
+    </p>
+    <div class="fp-options">
+      <button data-example="before" type="button">前からの計画</button
+      ><button data-example="now" type="button">今その場で決める</button>
+    </div>
+  </div>
+  <p id="takeaway" class="fp-takeaway">
+    同じ「窓を開ける」でも、いつ決めた話でしょう。
+  </p>
+  <span id="announcement" class="fp-sr" aria-live="polite"></span>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>「いつするか」と「いつ決めたか」</h3>
+<p>
+  二つの場面とも、話しているのは今で、窓を開けるのは未来です。違うのは「窓を開けると決めたとき」。この例では、その場で決める話をI'll
+  open the window.、前から決めた計画をI'm going to open the window.で表します。
+</p>
+<h3>別の場面を比べる</h3>
+<p>
+  札を動かすと、決めた時点が違う別の場面を選べます。人物の実際の過去を書き換える操作ではありません。札を離すと場面と文が切り替わります。下のボタン、札にフォーカスして左右キー・Home・Endでも選べます。ドラッグ中にEscape、指の操作がキャンセルされた場合は元の場面へ戻ります。
+</p>
+<h3>今回の範囲</h3>
+<p>
+  未来を表す二つの形の、代表的な場面を比べています。willとbe going
+  toはこれ以外の意味でも使われます。「意志の強さ」「起こる確率」の違いではありません。この教材だけで全場面の使い方を二分するものではありません。予測・約束・申し出、未来を表す現在進行形、短縮形の作り方は今回扱いません。
+</p>
+<label class="fp-motion"
+  ><input
+    id="reduce-motion"
+    type="checkbox"
+  />動きを減らす（完成をすぐ表示）</label
+>
+<h3>出典</h3>
+<p>
+  場面・図・例文は自作です。British Councilの<a
+    href="https://learnenglish.britishcouncil.org/comment/168612"
+    target="_blank"
+    rel="noopener noreferrer"
+    >Future forms: will, be going to and present continuous</a
+  >で、発話時に決める計画と、それ以前に決めていた計画の区別を確認しました。
+</p>
+</div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var l=Object.freeze({now:Object.freeze({decisionTime:"now",speakingTime:"now",actionTime:"future",phrase:"I'll",label:"\u4ECA\u3001\u305D\u306E\u5834\u3067\u6C7A\u3081\u308B"}),before:Object.freeze({decisionTime:"before",speakingTime:"now",actionTime:"future",phrase:"I'm going to",label:"\u524D\u304B\u3089\u6C7A\u3081\u3066\u3044\u305F"})});function w(e){if(!Object.hasOwn(l,e))throw new RangeError("Unknown example");return`${l[e].phrase} open the window.`}var M=e=>Math.max(0,Math.min(1,e)),T=(e=0)=>({phase:"ready",example:"now",target:"now",from:null,previous:null,elapsed:0,switchMs:0,paused:!1,unlocked:!1,runId:e,selection:1,origin:null}),F=e=>e.switchMs+2850;function C(e){let a=e.phase==="animating"&&e.elapsed<e.switchMs,i=Math.max(0,e.elapsed-e.switchMs),r=e.phase==="complete";return{speakingTime:"now",actionTime:"future",scene:e.phase==="selecting"?e.example:a&&e.elapsed<e.switchMs/2?e.from:e.target,switching:a,switchProgress:e.switchMs?M(e.elapsed/e.switchMs):1,decisionShown:r||e.phase==="selecting"||i>=650,wordProgress:r?1:M((i-1450)/1e3),sentenceReady:r,targetSentence:w(e.target),selectionTarget:e.selection<.5?"before":"now",handlePosition:e.phase==="selecting"?e.selection:(e.phase==="ready"?"now":e.target)==="before"?0:1}}function k(e,a){return{...e,phase:"animating",target:a,from:e.phase==="ready"?null:e.example,previous:e.phase==="ready"||a===e.example?null:e.example,elapsed:0,switchMs:a===e.example?0:650,paused:!1,runId:e.runId+1,origin:null}}function O(e){return{...e,phase:"complete",example:e.target,elapsed:F(e),paused:!1,unlocked:!0,selection:e.target==="before"?0:1,origin:null}}function b(e,a){switch(a.type){case"reset":return T(e.runId+1);case"start":return e.phase==="ready"||e.phase==="complete"?k(e,e.example):e;case"example":return e.phase==="complete"&&e.unlocked&&Object.hasOwn(l,a.example)&&a.example!==e.example?k(e,a.example):e;case"pause":return e.phase==="animating"?{...e,paused:!e.paused}:e;case"finish":return e.phase==="animating"?O(e):e;case"tick":{if(e.phase!=="animating"||e.paused||e.runId!==a.runId||!Number.isFinite(a.delta))return e;let i={...e,elapsed:e.elapsed+Math.max(0,a.delta)};return i.elapsed>=F(i)?O(i):i}case"select-start":return e.phase==="complete"?{...e,phase:"selecting",selection:e.example==="before"?0:1,origin:e,runId:e.runId+1}:e;case"select":return e.phase==="selecting"&&Number.isFinite(a.position)?{...e,selection:M(a.position)}:e;case"select-cancel":return e.phase==="selecting"&&e.origin?{...e.origin,runId:e.runId+1}:e;case"select-end":{if(e.phase!=="selecting")return e;let i=e.selection<.5?"before":"now",r={...e.origin,runId:e.runId+1};return i===r.example?r:k(r,i)}default:return e}}var n=e=>document.getElementById(e),q=n("fp-lesson"),B=n("timeline"),s=n("decision"),t=T(),S=!1,m=0,h=0,f=null,A=0,o={past:110,now:370,future:625,axis:282,handle:320},j={play:"\u25B6",pause:"\u2161"};function g(e,a,i){n(e).setAttribute("transform",`translate(${a} ${i})`)}function D(){let e=n("diagram").clientWidth<500;o=e?{past:60,now:160,future:266,axis:336,handle:374}:{past:110,now:370,future:625,axis:282,handle:320},B.setAttribute("viewBox",e?"0 0 320 410":"0 0 720 354"),g("past-memo",o.past,e?250:155),g("room",o.now,e?30:50),g("future-action",o.future,e?252:153);for(let[a,i]of[["past-label",o.past],["now-label",o.now],["future-label",o.future]])g(a,i,o.axis-14);n("axis").setAttribute("d",`M${e?18:40} ${o.axis}H${e?304:687}`),n("now-link").setAttribute("d",`M${o.now} ${e?190:218}V${o.axis-36}`),E()}function H(e,a,i,r){e.textContent=a,e.style.opacity=String(i),e.style.transform=`translateY(${r}px)`}function E(){let e=C(t),a=t.phase==="ready",i=t.phase==="complete",r=t.phase==="selecting",I=t.phase==="animating"&&!t.paused;Object.assign(q.dataset,{phase:t.phase,example:t.example,target:t.target,scene:e.scene,elapsed:String(t.elapsed),wordProgress:String(e.wordProgress),paused:String(t.paused),selection:String(t.selection),speakingTime:e.speakingTime,actionTime:e.actionTime}),n("play").disabled=r,n("play").dataset.playing=String(I),n("play-label").textContent=a?"\u4F1A\u8A71\u3092\u898B\u308B":i?"\u3082\u3046\u4E00\u5EA6":t.paused?"\u518D\u958B":"\u4E00\u6642\u505C\u6B62",n("play-icon").textContent=I?j.pause:j.play;let p=e.scene==="before",y=e.decisionShown;n("intro").innerHTML=r?"\u672D\u3092\u52D5\u304B\u3057\u3066\u3001<strong>\u6C7A\u3081\u305F\u3068\u304D\u304C\u9055\u3046\u5225\u306E\u5834\u9762</strong>\u3092\u9078\u3093\u3067\u3044\u307E\u3059\u3002":e.switching?"\u6C7A\u3081\u305F\u3068\u304D\u304C\u9055\u3046\u3001<strong>\u5225\u306E\u5834\u9762\u3078\u5207\u308A\u66FF\u3048\u3066\u3044\u307E\u3059\u3002</strong>":p?"\u4F1A\u8A71\u3088\u308A\u524D\u306B\u3001\u63DB\u6C17\u3092\u6C7A\u3081\u3066\u3044\u305F\u5834\u9762\u3067\u3059\u3002":"\u6691\u3044\u90E8\u5C4B\u3067\u8A71\u3057\u3066\u3044\u307E\u3059\u3002<strong>\u4ECA\u3053\u3053\u3067\u3001\u7A93\u3092\u958B\u3051\u308B\u3068\u6C7A\u3081\u307E\u3059\u3002</strong>",a&&(n("intro").innerHTML="\u6691\u3044\u90E8\u5C4B\u3067\u8A71\u3057\u3066\u3044\u307E\u3059\u3002<strong>\u4F1A\u8A71\u3092\u518D\u751F\u3057\u3066\u307F\u3088\u3046\u3002</strong>"),n("speech-1").textContent=p?"\u7A93\u3092\u958B\u3051\u308B":y?"\u6691\u3044\u306A\u3002\u3058\u3083\u3042\u3001":"\u6691\u3044\u306A\u2026",n("speech-2").textContent=p?"\u3064\u3082\u308A\u3060\u3088\u3002":y?"\u7A93\u3092\u958B\u3051\u3088\u3046\u3002":"",n("heat").style.opacity=p?"0":"1",n("memo-title").textContent=p?"\u63DB\u6C17\u30E1\u30E2":"\u524D\u306E\u8A08\u753B\u306F",n("memo-line").textContent=p?"\u3042\u3068\u3067":"\u307E\u3060\u306A\u3044",n("memo-tail").textContent=p?"\u7A93\u3092\u958B\u3051\u308B":"",n("scene-layer").style.opacity=e.switching?String(Math.abs(e.switchProgress*2-1)):"1";let L=e.handlePosition;g("decision",o.past+(o.now-o.past)*L,o.handle),s.setAttribute("aria-disabled",String(!i&&!r)),s.setAttribute("tabindex",i||r?"0":"-1"),s.setAttribute("aria-valuenow",String(Math.round(L))),s.setAttribute("aria-valuetext",r?`\u9078\u629E\u4E2D\uFF1A${l[e.selectionTarget].label}`:l[t.target].label),n("decision-text").textContent=r?"\u9078\u629E\u4E2D":a?"\u6C7A\u3081\u308B\u3068\u304D":t.target==="before"?"\u524D\u306B\u6C7A\u3081\u305F":y?"\u4ECA\u6C7A\u3081\u305F":"\u6C7A\u3081\u308B\u3068\u304D",n("drag-marks").style.opacity=t.unlocked?"1":"0",n("decision-face").setAttribute("fill",r?"#ffe5b9":"#fff0d8"),n("diagram-description").textContent=p?"\u4F1A\u8A71\u3088\u308A\u524D\u306E\u63DB\u6C17\u30E1\u30E2\u304C\u3042\u308A\u307E\u3059\u3002\u8A71\u3057\u3066\u3044\u308B\u306E\u306F\u4ECA\u3001\u7A93\u3092\u958B\u3051\u308B\u306E\u306F\u3053\u306E\u3042\u3068\u3067\u3059\u3002":"\u6691\u3044\u90E8\u5C4B\u3067\u3001\u4ECA\u7A93\u3092\u958B\u3051\u3088\u3046\u3068\u6C7A\u3081\u308B\u5834\u9762\u3067\u3059\u3002\u7A93\u3092\u958B\u3051\u308B\u306E\u306F\u3053\u306E\u3042\u3068\u3067\u3059\u3002",n("diagram-note").innerHTML=r?"\u4ECA\u3068\u672A\u6765\u306F\u305D\u306E\u307E\u307E\u3002<strong>\u96E2\u3059\u3068\u5225\u306E\u5834\u9762\u3078\u3002</strong>":"\u7A93\u3092\u958B\u3051\u308B\u306E\u306F\u3001\u8A71\u3057\u3066\u3044\u308B\u4ECA\u3088\u308A<strong>\u3042\u3068</strong>\u3002",n("history").hidden=t.previous===null||r,n("sentence-box").hidden=a,n("translation").hidden=a,n("takeaway").hidden=a,n("previous-label").textContent=t.previous===null?"":`\u524D\u306E\u5834\u9762\uFF1A${l[t.previous].label}`,n("previous-sentence").textContent=t.previous===null?"":w(t.previous);let u=i||r?1:e.wordProgress,W=t.from===null?"":l[t.from].phrase,$=l[t.target].phrase,U=r?l[t.example].phrase:i?$:W;H(n("old-phrase"),U,i||r?1:Math.max(0,1-u/.42),i||r?0:-8*Math.min(1,u/.42));let P=Math.max(0,Math.min(1,(u-.58)/.42));H(n("new-phrase"),$,i||r?0:P,8*(1-P)),n("sentence").style.visibility=a||!r&&!i&&t.from===null&&u===0?"hidden":"visible",n("sentence").style.opacity=t.from===null&&!i&&!r?String(Math.min(1,u*3)):"1",n("first-clue").hidden=!(a||!r&&!i&&t.from===null&&u===0),n("sentence-label").textContent=r?"\u52D5\u304B\u3059\u524D\u306E\u5834\u9762\u306E\u6587\uFF08\u3044\u307E\u306F\u9078\u629E\u4E2D\uFF09":a?"\u4ECA\u6C7A\u3081\u305F\u3053\u3068\u3092\u3001\u82F1\u8A9E\u306B\u3059\u308B\u3068\uFF1F":i?"\u3053\u306E\u5834\u9762\u3067\u4F1D\u3048\u308B\u3053\u3068\u3070":u>0?t.previous===null?"\u540C\u3058\u5834\u9762\u306E\u3053\u3068\u3070\u3092\u3082\u3046\u4E00\u5EA6":"\u5225\u306E\u5834\u9762\u306E\u3053\u3068\u3070\u3078":t.from===null?"\u4F1A\u8A71\u3092\u898B\u3066\u3044\u307E\u3059":t.previous===null?"\u540C\u3058\u5834\u9762\u3092\u3082\u3046\u4E00\u5EA6":"\u524D\u306E\u5834\u9762\u306E\u6587\uFF08\u65B0\u3057\u3044\u5834\u9762\u3092\u78BA\u8A8D\u4E2D\uFF09",!i&&!r&&u>0&&t.from===null&&(n("sentence-label").textContent="\u4ECA\u306E\u6C7A\u5FC3\u3092\u3001\u82F1\u8A9E\u3067\u4F1D\u3048\u308B"),n("translation").textContent=r?"\u672D\u3092\u96E2\u3059\u307E\u3067\u306F\u3001\u52D5\u304B\u3059\u524D\u306E\u5834\u9762\u3092\u8868\u793A\u3057\u3066\u3044\u307E\u3059\u3002":i?p?"\u524D\u306B\u6C7A\u3081\u305F\u300C\u7A93\u3092\u958B\u3051\u308B\u3064\u3082\u308A\u300D\u3092\u4F1D\u3048\u3066\u3044\u307E\u3059\u3002":"\u300C\u3058\u3083\u3042\u7A93\u3092\u958B\u3051\u3088\u3046\u300D\u3068\u3001\u4ECA\u306E\u6C7A\u5FC3\u3092\u4F1D\u3048\u3066\u3044\u307E\u3059\u3002":u>0?"\u8868\u73FE\u304C\u66FF\u308F\u3063\u3066\u3082\u3001\u7A93\u3092\u958B\u3051\u308B\u306E\u306F\u672A\u6765\u3067\u3059\u3002":p?"\u63DB\u6C17\u306F\u3001\u8A71\u3059\u3088\u308A\u524D\u306B\u6C7A\u3081\u3066\u3044\u307E\u3057\u305F\u3002":"\u6691\u3044\u3068\u6C17\u3065\u3044\u3066\u3001\u305D\u306E\u5834\u3067\u6C7A\u3081\u307E\u3059\u3002",a&&(n("translation").textContent="\u4F1A\u8A71\u3068\u3001\u6C7A\u3081\u305F\u3068\u304D\u306E\u672D\u3092\u898B\u3088\u3046\u3002"),n("alternatives").hidden=!t.unlocked,document.querySelectorAll("[data-example]").forEach(v=>{v.disabled=!i,v.setAttribute("aria-pressed",String(v.dataset.example===t.example))}),n("takeaway").textContent=i?"\u3053\u3053\u3067\u306F\u300C\u4ECA\u6C7A\u3081\u308B\u300D\u3068\u300C\u524D\u304B\u3089\u306E\u8A08\u753B\u300D\u306E\u3001\u4E8C\u3064\u306E\u5834\u9762\u3092\u6BD4\u3079\u3066\u3044\u307E\u3059\u3002":"\u540C\u3058\u300C\u7A93\u3092\u958B\u3051\u308B\u300D\u3067\u3082\u3001\u3044\u3064\u6C7A\u3081\u305F\u8A71\u3067\u3057\u3087\u3046\u3002"}function R(){let e=C(t);n("announcement").textContent=t.phase==="complete"?`${l[t.example].label}\u3002${w(t.example)} \u7A93\u3092\u958B\u3051\u308B\u306E\u306F\u672A\u6765\u3067\u3059\u3002`:t.phase==="selecting"?`${l[e.selectionTarget].label}\u3092\u9078\u629E\u4E2D\u3002\u96E2\u3059\u3068\u5225\u306E\u5834\u9762\u3078\u3002`:t.paused?"\u4E00\u6642\u505C\u6B62\u3057\u307E\u3057\u305F\u3002":"\u4F1A\u8A71\u306E\u5834\u9762\u3092\u518D\u751F\u3057\u307E\u3059\u3002"}function z(e){m=0;let a=h?Math.min(80,e-h):0;h=e,t=b(t,{type:"tick",delta:a,runId:t.runId}),E(),t.phase==="animating"&&!t.paused?m=requestAnimationFrame(z):(h=0,t.phase==="complete"&&R())}function c(e){let a=b(t,e);a!==t&&(t=a,S&&t.phase==="animating"&&(t=b(t,{type:"finish"})),E(),m&&cancelAnimationFrame(m),m=0,h=0,t.phase==="animating"&&!t.paused&&(m=requestAnimationFrame(z)),e.type!=="select"&&R())}function x(){requestAnimationFrame(()=>{let e=q.getBoundingClientRect().top,a=n("language").getBoundingClientRect().bottom;(e<8||a>innerHeight-12)&&window.scrollTo({top:Math.max(0,window.scrollY+e-8),behavior:"instant"})})}function Y(e){clearTimeout(A),n("feedback").hidden=!0,n("feedback").offsetWidth,n("feedback").dataset.kind=e,n("feedback-play").toggleAttribute("hidden",e!=="play"),n("feedback-pause").toggleAttribute("hidden",e!=="pause"),n("feedback").hidden=!1,A=setTimeout(()=>{n("feedback").hidden=!0},1e3)}n("play").addEventListener("click",()=>{let e=t.phase==="animating"&&!t.paused;c({type:t.phase==="animating"?"pause":"start"}),Y(e?"pause":"play"),x()});function d(e=!1){if(f===null)return;let a=f;f=null,s.hasPointerCapture(a)&&s.releasePointerCapture(a),c({type:e?"select-cancel":"select-end"}),e||x()}n("reset").addEventListener("click",()=>{d(!0),clearTimeout(A),n("feedback").hidden=!0,c({type:"reset"}),x()});document.querySelectorAll("[data-example]").forEach(e=>e.addEventListener("click",()=>{c({type:"example",example:e.dataset.example}),Y("play"),x()}));function N(e){return(new DOMPoint(e.clientX,e.clientY).matrixTransform(B.getScreenCTM().inverse()).x-o.past)/(o.now-o.past)}s.addEventListener("pointerdown",e=>{t.phase!=="complete"||!e.isPrimary||e.button!==0||(e.preventDefault(),s.focus({preventScroll:!0}),f=e.pointerId,s.setPointerCapture(f),c({type:"select-start"}),c({type:"select",position:N(e)}))});s.addEventListener("pointermove",e=>{f===e.pointerId&&(e.preventDefault(),c({type:"select",position:N(e)}))});s.addEventListener("pointerup",()=>d());s.addEventListener("pointercancel",()=>d(!0));s.addEventListener("lostpointercapture",()=>d(!0));s.addEventListener("keydown",e=>{if(e.key==="Escape"){e.preventDefault(),d(!0);return}if(t.phase!=="complete")return;let a;(e.key==="ArrowLeft"||e.key==="Home")&&(a="before"),(e.key==="ArrowRight"||e.key==="End")&&(a="now"),a&&(e.preventDefault(),c({type:"example",example:a}),x())});function V(){d(!0),t.phase==="animating"&&!t.paused&&c({type:"pause"})}window.addEventListener("blur",V);document.addEventListener("visibilitychange",()=>{document.hidden&&V()});window.addEventListener("resize",()=>{d(!0),D()});n("reduce-motion").checked=!1;n("reduce-motion").addEventListener("change",e=>{S=e.target.checked,S&&t.phase==="animating"&&c({type:"finish"})});D();})();
+</script>
+</body>
+</html>
