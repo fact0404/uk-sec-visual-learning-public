@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>最上級と比べる範囲 | 英語を、動かして見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-shell {
+  max-width: 1000px;
+}
+.vl-controls:empty {
+  display: none;
+}
+.vl-title {
+  font-size: clamp(24px, 3vw, 34px);
+}
+.sr-lesson {
+  padding: 18px;
+  --scope: #357962;
+  --scope-light: #e7f2e9;
+}
+.sr-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+}
+.sr-toolbar p {
+  margin: 0;
+  font-size: 13px;
+  color: #4e6859;
+}
+.sr-toolbar button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 12px;
+  font-size: 13px;
+  background: #f4f7f0;
+  border: 1px solid #cbd6ca;
+  color: #496458;
+}
+.sr-intro {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #455f52;
+  margin: 8px 0 12px;
+}
+.sr-world {
+  position: relative;
+  height: 300px;
+  background: #f7f5ed;
+  border: 1px solid #dfdfd3;
+  border-radius: 12px;
+  overflow: hidden;
+  touch-action: pan-y;
+  isolation: isolate;
+}
+.sr-world > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.sr-range-frame {
+  position: absolute;
+  left: 5%;
+  top: 11.428571%;
+  width: 51.666667%;
+  height: 81.714286%;
+  background: #e7f0e1;
+  border: 2px solid var(--scope);
+  border-right-width: 3px;
+  border-radius: 8px;
+  z-index: 0;
+}
+.sr-scope-caption {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--scope);
+  white-space: nowrap;
+  z-index: 2;
+}
+.sr-scope-caption i,
+.sr-group-phrase i {
+  display: inline-block;
+  vertical-align: -0.05em;
+  width: 0.65em;
+  height: 0.65em;
+  border: 2px solid var(--scope);
+  border-radius: 2px;
+  margin-right: 0.35em;
+}
+.sr-tower-name {
+  font-family: inherit;
+  font-size: 19px;
+  font-weight: 750;
+  fill: #354b41;
+}
+.sr-winner {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  font-size: 12px;
+  font-weight: 750;
+  color: #775117;
+  background: #ffedb5;
+  border: 1px solid #e7cb7c;
+  padding: 2px 6px;
+  border-radius: 6px;
+  z-index: 3;
+  white-space: nowrap;
+}
+.sr-edge-handle {
+  position: absolute;
+  left: 56.666667%;
+  top: 53%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 56px;
+  border: 2px solid var(--scope);
+  border-radius: 12px;
+  background: #fcfff8;
+  box-shadow: 0 3px 9px #2f5f452b;
+  display: grid;
+  place-items: center;
+  color: var(--scope);
+  font-size: 26px;
+  z-index: 4;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.sr-edge-handle:focus-visible {
+  outline: 3px solid #276d58;
+  outline-offset: 4px;
+}
+.sr-lesson[data-phase='dragging'] .sr-edge-handle {
+  background: #cde8d4;
+}
+.sr-drag-hint {
+  position: absolute;
+  left: 56.666667%;
+  top: 29%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #376f56;
+  background: #f5fcf1;
+  padding: 3px 6px;
+  border-radius: 5px;
+  z-index: 3;
+  pointer-events: none;
+}
+.sr-rule {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #5b6b61;
+  margin: 7px 0 10px;
+}
+.sr-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.sr-actions button {
+  min-width: 44px;
+  min-height: 48px;
+  padding: 6px 8px;
+  border: 1px solid #bdcdbc;
+  background: #fffdf8;
+  color: #486353;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.sr-actions button[aria-pressed='true'] {
+  background: #e6f2e7;
+  border: 2px solid #357962;
+  color: #245640;
+}
+.sr-actions b {
+  font-size: 16px;
+}
+.sr-actions span {
+  font-size: 12px;
+}
+.sr-current {
+  text-align: center;
+  background: #fffdf8;
+  border: 1px solid #e0e4d7;
+  border-radius: 10px;
+  padding: 12px;
+}
+.sr-current-label {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: #496b58;
+}
+.sr-sentence {
+  font-size: 27px;
+  line-height: 1.45;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.sr-sentence > b {
+  color: #5c4977;
+}
+.sr-sentence > strong {
+  font-weight: 700;
+  color: #75531d;
+}
+.sr-group-phrase {
+  color: #34765a;
+  font-size: 0.92em;
+  white-space: nowrap;
+}
+.sr-translation {
+  font-size: 14px;
+  color: #536356;
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+.sr-takeaway {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 10px 2px;
+  color: #455f52;
+  min-height: 23px;
+}
+.sr-history {
+  border-top: 1px dashed #d2d9cc;
+  padding-top: 8px;
+  margin-top: 9px;
+  color: #647469;
+}
+.sr-history > span {
+  font-size: 12px;
+}
+.sr-history > p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 3px 0 0;
+}
+.sr-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.sr-lesson [hidden] {
+  display: none !important;
+}
+@media (max-width: 600px) {
+  .sr-lesson {
+    padding: 12px;
+  }
+  .sr-world {
+    height: 220px;
+  }
+  .sr-intro {
+    font-size: 13px;
+    margin: 6px 0 10px;
+  }
+  .sr-actions {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .sr-actions button {
+    flex-direction: column;
+    gap: 0;
+    padding: 4px;
+  }
+  .sr-actions b {
+    font-size: 15px;
+  }
+  .sr-actions span {
+    font-size: 11px;
+  }
+  .sr-current {
+    padding: 10px 4px;
+  }
+  .sr-sentence {
+    font-size: 23px;
+  }
+  .sr-translation {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .sr-current-label {
+    font-size: 11px;
+  }
+  .sr-takeaway {
+    font-size: 12px;
+    margin: 8px 0;
+    min-height: 38px;
+  }
+  .sr-history {
+    margin-top: 6px;
+    padding-top: 6px;
+  }
+  .sr-history > span {
+    font-size: 11px;
+  }
+  .sr-history > p {
+    font-size: 12px;
+  }
+  .sr-scope-caption {
+    font-size: 12px;
+  }
+  .sr-toolbar p,
+  .sr-toolbar button {
+    font-size: 12px;
+  }
+  .sr-rule {
+    font-size: 11px;
+  }
+  .vl-main {
+    padding-top: 18px;
+  }
+  .vl-heading {
+    margin-bottom: 14px;
+  }
+  .vl-header {
+    padding-block: 12px;
+    min-height: 50px;
+  }
+}
+@media (max-width: 360px) {
+  .vl-shell {
+    padding-inline: 12px;
+  }
+  .vl-context {
+    display: none;
+  }
+  .sr-lesson {
+    padding: 10px;
+  }
+  .sr-world {
+    height: 210px;
+  }
+  .sr-sentence {
+    font-size: 21px;
+  }
+  .sr-toolbar button {
+    padding: 7px;
+  }
+  .sr-scope-caption {
+    font-size: 11px;
+  }
+}
+@media (min-width: 760px) and (max-height: 850px) {
+  .sr-world {
+    height: 260px;
+  }
+  .sr-lesson {
+    padding: 12px 18px;
+  }
+  .sr-intro {
+    margin: 6px 0 8px;
+  }
+  .sr-actions {
+    margin-bottom: 10px;
+  }
+  .sr-current {
+    padding: 8px;
+  }
+  .sr-sentence {
+    font-size: 24px;
+  }
+  .sr-sentence br {
+    display: none;
+  }
+  .sr-group-phrase {
+    margin-left: 0.3em;
+  }
+  .sr-takeaway {
+    margin: 8px 0;
+  }
+  .sr-history {
+    margin-top: 6px;
+    padding-top: 6px;
+  }
+  .vl-main {
+    padding-top: 18px;
+  }
+  .vl-heading {
+    margin-bottom: 14px;
+  }
+}
+</style>
+<meta name="lesson-version" content="0.2.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 3h18v18H3zM7 17v-5m5 5V7m5 10V9"/><path d="m19 5 3 3-3 3"/></svg><span>英語を、動かして見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>最上級と比べる範囲</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">最上級と比べる範囲</h1><p class="vl-question">比べる仲間を増やすと、一番は必ず変わる？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div class="sr-lesson" id="sr-lesson" data-phase="idle" data-group="abc">
+  <div class="sr-toolbar" id="toolbar">
+    <p>動かすのは、<strong>比べる枠</strong></p>
+    <button id="reset" type="button">↺ はじめに戻す</button>
+  </div>
+  <p class="sr-intro" id="intro">
+    枠の右端をつかみ、まず<strong>Dも仲間に入れよう。</strong>
+  </p>
+  <div id="comparison">
+    <div class="sr-world" id="world">
+      <div id="range-frame" class="sr-range-frame"></div>
+      <p class="sr-scope-caption" id="scope-caption">
+        <i aria-hidden="true"></i><span id="scope-text">枠の中：A・B・C</span>
+      </p>
+      <svg
+        id="diagram"
+        viewBox="0 0 600 350"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern
+            id="sr-windows"
+            width="18"
+            height="26"
+            patternUnits="userSpaceOnUse"
+          >
+            <rect
+              x="5"
+              y="7"
+              width="7"
+              height="9"
+              rx="1"
+              fill="#fff"
+              fill-opacity=".25"
+            />
+          </pattern>
+        </defs>
+        <path d="M28 290H575" stroke="#96a49c" stroke-width="2" />
+        <g id="towers"></g>
+      </svg>
+      <span class="sr-winner" id="winner-label">Bが1番</span>
+      <div
+        class="sr-edge-handle"
+        id="edge-handle"
+        role="slider"
+        tabindex="0"
+        aria-label="比べる枠の右端。左右キーで3本、4本、5本を選べます"
+        aria-valuemin="3"
+        aria-valuemax="5"
+        aria-valuenow="3"
+        aria-valuetext="A・B・Cの3本。Bが一番高い"
+        aria-orientation="horizontal"
+      >
+        <span aria-hidden="true">↔</span>
+      </div>
+      <span class="sr-drag-hint" id="drag-hint" aria-hidden="true">右へ →</span>
+    </div>
+    <p class="sr-rule">
+      塔が<strong>全部</strong>枠に入ると仲間。塔の高さは変わりません。
+    </p>
+    <div class="sr-actions" role="group" aria-label="比べる範囲を選ぶ">
+      <button type="button" data-group="abc" aria-pressed="true">
+        <b>3本</b><span>A・B・C</span>
+      </button>
+      <button type="button" data-group="abcd" aria-pressed="false">
+        <b>4本</b><span>Dも入れる</span>
+      </button>
+      <button type="button" data-group="abcde" aria-pressed="false">
+        <b>5本</b><span>Eも入れる</span>
+      </button>
+    </div>
+    <div class="sr-current" id="current">
+      <p class="sr-current-label" id="sentence-label">いまの範囲：A・B・C</p>
+      <p class="sr-sentence" id="sentence" lang="en">
+        Tower <b id="winner-word">B</b> is <strong>the tallest</strong>
+        <br /><span class="sr-group-phrase"
+          ><i aria-hidden="true"></i>in this group.</span
+        >
+      </p>
+      <p class="sr-translation" id="translation">
+        Bの塔が、この3本の中でいちばん高いです。
+      </p>
+    </div>
+    <p id="takeaway" class="sr-takeaway">Dを加えると、一番はどうなる？</p>
+    <div class="sr-history" id="history" hidden>
+      <span id="previous-label"></span>
+      <p id="previous-sentence" lang="en"></p>
+    </div>
+  </div>
+  <p class="sr-sr-only" id="announcement" aria-live="polite"></p>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>仲間が増えたら、一番も変わる？</h3><p>A・B・Cの3本ではBが一番高いです。短いDを加えた4本でもBが一番。さらにBより高いEを加えると、5本ではEが一番になります。範囲を広げても、一番が変わるとは限りません。塔の高さと位置はどの範囲でも同じです。</p><h3>the tallestとin this group</h3><p>the tallestは「一番高い」。tallにestをつけ、theと一緒に使います。in this groupは「この仲間の中で」。緑の枠に全部入った塔を比べています。</p><h3>動かし方</h3><p>枠の右端を左右に動かすと、塔が全部入った時点で、比べる仲間・一番の印・英文が一緒に変わります。指を離すと同じ仲間を囲む位置にそろいます。3本・4本・5本のボタンでも選べます。つまみの左右キーは一段ずつ、Homeは3本、Endは5本。ドラッグ中のEscapeは操作前へ戻します。つまみ以外は縦にスクロールできます。</p><h3>今回の範囲</h3><p>高さを固定した5本の塔で、比較する集団とthe tallestの関係を扱います。全形容詞の変化・不規則形・副詞の最上級、2本の比較級への書換え、同順位は含みません。</p><h3>出典</h3><p>図と例文は自作です。British Council Kidsの<a href="https://learnenglishkids.britishcouncil.org/grammar-vocabulary/grammar-practice/comparatives-superlatives" target="_blank" rel="noopener noreferrer">Comparatives and superlatives</a>で、集団内の最上位とthe tallestの形を確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var f=Object.freeze({A:95,B:170,C:130,D:110,E:220}),c=Object.freeze(Object.fromEntries(Object.keys(f).map((e,t)=>[e,Object.freeze({x:60+t*105,width:50,height:f[e],floor:290})]))),h=Object.freeze({abc:Object.freeze(["A","B","C"]),abcd:Object.freeze(["A","B","C","D"]),abcde:Object.freeze(["A","B","C","D","E"])}),k=Object.freeze({abc:340,abcd:445,abcde:550}),C=e=>Object.hasOwn(h,e);function u(e){if(!C(e))throw new RangeError("Unknown group");return h[e]}var $=e=>u(e).reduce((t,r)=>f[r]>f[t]?r:t),E=e=>`Tower ${$(e)} is the tallest in this group.`;function O(e){return u(e),k[e]}function R(e){if(!Number.isFinite(e))throw new RangeError("Finite edge required");let t=r=>c[r].x+c[r].width;return e>=t("E")?"abcde":e>=t("D")?"abcd":"abc"}var m=()=>({phase:"idle",group:"abc",edge:340,previous:null,origin:null}),j=e=>({edge:e.edge,group:e.group,winner:$(e.group)});function v(e,t,r){return{...e,group:t,edge:r,previous:t===e.group?e.previous:e.group}}function A(e,t){switch(t.type){case"reset":return m();case"set":return e.phase==="idle"&&C(t.group)&&t.group!==e.group?v(e,t.group,O(t.group)):e;case"drag-start":return e.phase==="idle"?{...e,phase:"dragging",origin:e}:e;case"drag":{if(e.phase!=="dragging"||!Number.isFinite(t.edge))return e;let r=Math.max(340,Math.min(550,t.edge));return v(e,R(r),r)}case"drop":return e.phase==="dragging"?{...e,phase:"idle",edge:O(e.group),origin:null}:e;case"cancel":return e.phase==="dragging"?e.origin:e;default:return e}}var n=e=>document.getElementById(e),w=n("sr-lesson"),a=n("edge-handle"),B=n("world"),D=Object.keys(h),p=e=>u(e).join("\u30FB"),o=m(),i=null,x=!1,z={A:"#aa916d",B:"#83709e",C:"#899b72",D:"#b48a69",E:"#3f928c"},I="http://www.w3.org/2000/svg";function b(e,t){let r=document.createElementNS(I,e);for(let[d,l]of Object.entries(t))r.setAttribute(d,l);return r}for(let[e,t]of Object.entries(c)){let r=b("g",{"data-tower":e,id:`tower-${e.toLowerCase()}`});r.append(b("rect",{x:t.x,y:t.floor-t.height,width:t.width,height:t.height,rx:3,fill:z[e]}),b("rect",{x:t.x,y:t.floor-t.height,width:t.width,height:t.height,fill:"url(#sr-windows)"}));let d=b("text",{x:t.x+t.width/2,y:315,"text-anchor":"middle",class:"sr-tower-name"});d.textContent=e,n("towers").append(r,d)}function L(){let e=j(o),t=u(e.group).length,r=c[e.winner];w.dataset.phase=o.phase,w.dataset.group=e.group,w.dataset.edge=String(e.edge),w.dataset.winner=e.winner,n("range-frame").style.width=`${(e.edge-30)/600*100}%`,a.style.left=`${e.edge/600*100}%`,a.setAttribute("aria-valuenow",t),a.setAttribute("aria-valuetext",`${p(e.group)}\u306E${t}\u672C\u3002${e.winner}\u304C\u4E00\u756A\u9AD8\u3044`),n("scope-text").textContent=`\u67A0\u306E\u4E2D\uFF1A${p(e.group)}`,n("intro").textContent=e.group==="abc"?"\u67A0\u306E\u53F3\u7AEF\u3092\u3064\u304B\u307F\u3001\u307E\u305AD\u3082\u4EF2\u9593\u306B\u5165\u308C\u3088\u3046\u3002":e.group==="abcd"?"\u3053\u306E4\u672C\u3067\u306FB\u304C\u4E00\u756A\u3002E\u3082\u52A0\u3048\u308B\u3068\uFF1F":"\u67A0\u3092\u5DE6\u3078\u623B\u3057\u3066\u30014\u672C\u306E\u3068\u304D\u3068\u6BD4\u3079\u3088\u3046\u3002";for(let d of Object.keys(c)){let l=u(e.group).includes(d),y=n(`tower-${d.toLowerCase()}`);y.dataset.included=String(l),y.style.opacity=l?"1":".42"}n("winner-label").textContent=`${e.winner}\u304C1\u756A`,n("winner-label").style.left=`${(r.x+r.width/2)/600*100}%`,n("winner-label").style.top=`${(r.floor-r.height-9)/350*100}%`,n("winner-word").textContent=e.winner,n("sentence-label").textContent=`\u3044\u307E\u306E\u7BC4\u56F2\uFF1A${p(e.group)}\uFF08${t}\u672C\uFF09`,n("translation").textContent=`${e.winner}\u306E\u5854\u304C\u3001\u3053\u306E${t}\u672C\u306E\u4E2D\u3067\u3044\u3061\u3070\u3093\u9AD8\u3044\u3067\u3059\u3002`,n("takeaway").textContent=e.group==="abc"?"D\u3092\u52A0\u3048\u308B\u3068\u3001\u4E00\u756A\u306F\u3069\u3046\u306A\u308B\uFF1F":e.group==="abcd"?"D\u3092\u52A0\u3048\u3066\u3082\u3001D\u3088\u308A\u9AD8\u3044B\u304C\u4E00\u756A\u3002E\u3082\u52A0\u3048\u308B\u3068\uFF1F":"E\u3092\u52A0\u3048\u308B\u3068\u3001B\u3088\u308A\u9AD8\u3044E\u304C\u4E00\u756A\u306B\u306A\u308A\u307E\u3059\u3002",n("history").hidden=o.previous===null,o.previous!==null&&(n("previous-label").textContent=`\u3072\u3068\u3064\u524D\u306E\u7BC4\u56F2\uFF1A${p(o.previous)}\uFF08${u(o.previous).length}\u672C\uFF09`,n("previous-sentence").textContent=E(o.previous)),n("drag-hint").hidden=x;for(let d of document.querySelectorAll("[data-group]"))d.setAttribute("aria-pressed",String(d.dataset.group===e.group))}function g(e){let t=o;o=A(o,e),L(),(o.group!==t.group||e.type==="reset"||e.type==="cancel")&&(n("announcement").textContent=`${p(o.group)}\u306E${u(o.group).length}\u672C\u3002${E(o.group)}`)}function s(e=!1){if(!i)return;let t=i.id;i=null,a.hasPointerCapture(t)&&a.releasePointerCapture(t),g({type:e?"cancel":"drop"})}function S(e){s(!0),x=!0,g({type:"set",group:e})}for(let e of document.querySelectorAll("[data-group]"))e.addEventListener("click",()=>S(e.dataset.group));n("reset").addEventListener("click",()=>{s(!0),x=!1,g({type:"reset"})});a.addEventListener("pointerdown",e=>{e.button!==0||!e.isPrimary||i||(e.preventDefault(),a.focus({preventScroll:!0}),x=!0,i={id:e.pointerId,startX:e.clientX,startEdge:o.edge,scale:B.getBoundingClientRect().width/600},a.setPointerCapture(e.pointerId),g({type:"drag-start"}))});a.addEventListener("pointermove",e=>{i?.id===e.pointerId&&(e.preventDefault(),g({type:"drag",edge:i.startEdge+(e.clientX-i.startX)/i.scale}))});a.addEventListener("pointerup",e=>{i?.id===e.pointerId&&s()});a.addEventListener("pointercancel",e=>{i?.id===e.pointerId&&s(!0)});a.addEventListener("lostpointercapture",e=>{i?.id===e.pointerId&&s(!0)});a.addEventListener("keydown",e=>{if(e.key==="Escape"){i&&(e.preventDefault(),s(!0));return}let t=D.indexOf(o.group),r={ArrowLeft:Math.max(0,t-1),ArrowRight:Math.min(2,t+1),Home:0,End:2}[e.key];r!==void 0&&(e.preventDefault(),S(D[r]))});for(let e of["resize","blur","pagehide"])window.addEventListener(e,()=>s(!0));document.addEventListener("visibilitychange",()=>{document.hidden&&s(!0)});L();})();
+</script>
+</body>
+</html>
