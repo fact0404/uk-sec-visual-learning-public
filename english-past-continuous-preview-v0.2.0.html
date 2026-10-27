@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>過去進行形 | 英語を、比べて見る</title>
+  <style>/* Shared shell only. Lesson visuals retain their own scoped styles. */
+.vl-page{margin:0;background:#fafaf8;color:#263832;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6;color-scheme:light}
+.vl-shell,.vl-shell *{box-sizing:border-box}
+.vl-shell{--vl-line:#dce3de;--vl-muted:#59675f;--vl-accent:#25654c;--vl-space:clamp(16px,3vw,32px);width:100%;max-width:1088px;min-height:100svh;margin-inline:auto;padding-inline:var(--vl-space);display:flex;flex-direction:column}
+.vl-shell[data-width=wide]{max-width:1488px}
+.vl-header{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:16px;border-bottom:1px solid var(--vl-line);font-size:14px}
+.vl-brand{font-weight:700;white-space:nowrap}.vl-brand>span{margin-left:10px;color:var(--vl-muted);font-weight:400}
+.vl-context{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0;color:var(--vl-muted);overflow-wrap:anywhere}
+.vl-subject{color:var(--vl-accent);font-weight:700}
+.vl-main{width:100%;padding-block:clamp(24px,4vw,40px);flex:1;min-width:0;outline-offset:4px}
+.vl-question{font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:.015em;line-height:1.5;margin:0 0 24px;overflow-wrap:anywhere}
+.vl-experiment{border:1px solid var(--vl-line);border-radius:16px;background:#fff;min-width:0}
+.vl-stage{padding:clamp(16px,3vw,32px);min-width:0;border-radius:16px 16px 0 0}
+.vl-stage svg,.vl-stage canvas,.vl-stage img,.vl-stage video{display:block;max-width:100%}
+.vl-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px;border-top:1px solid var(--vl-line)}
+.vl-shell button,.vl-shell input,.vl-shell select{font:inherit}
+.vl-shell button{min-width:44px;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--vl-accent);background:var(--vl-accent);color:#fff;cursor:pointer;line-height:1.5;white-space:normal}
+.vl-shell button:disabled{cursor:default;opacity:.55}
+.vl-shell .vl-secondary{background:#fff;color:var(--vl-accent)}
+.vl-shell :is(button,input,select,summary,a):focus-visible,.vl-skip:focus-visible{outline:3px solid #266fb0;outline-offset:4px}
+.vl-shell input[type=range]{min-height:44px;max-width:100%;accent-color:var(--vl-accent)}
+.vl-details{margin-top:16px;border-bottom:1px solid var(--vl-line);color:var(--vl-muted);font-size:14px}
+.vl-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;cursor:pointer;list-style:none}
+.vl-details>summary::-webkit-details-marker{display:none}.vl-details>summary::after{content:'＋';font-size:20px}.vl-details[open]>summary::after{content:'−'}
+.vl-detail-body{padding:8px 0 20px;max-width:76ch;line-height:1.9;overflow-wrap:anywhere}.vl-detail-body p{margin:0 0 12px}.vl-detail-body p:last-child{margin-bottom:0}
+.vl-footer{border-top:1px solid var(--vl-line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;padding-block:16px;color:var(--vl-muted);font-size:12px}
+.vl-skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10;color:#263832}.vl-skip:focus{top:12px}
+.vl-page>noscript{display:block;padding:16px;text-align:center}
+@media(max-width:480px){.vl-header{align-items:flex-start;gap:8px}.vl-context{width:100%}.vl-question{margin-bottom:20px}.vl-controls{padding:12px}.vl-experiment{border-radius:12px}}
+@media print{.vl-shell{min-height:0}.vl-controls,.vl-skip{display:none}.vl-page{background:white}}
+/* v0.2: editorial header, theme tokens, player and scene surfaces. */
+.vl-page{--page:#f4f5f0;--surface:#fffefa;--ink:#152a31;--muted:#596e68;--line:#d6ded8;--accent:#2c7663;background:var(--page);color:var(--ink)}
+.vl-page[data-theme=dark]{--page:#0c1726;--surface:#132236;--ink:#e8eeef;--muted:#acbac9;--line:#334657;--accent:#82d6bf;color-scheme:dark}
+.vl-shell{--vl-line:var(--line);--vl-muted:var(--muted);--vl-accent:var(--accent);max-width:1260px}
+.vl-header{min-height:60px;font-size:12px}.vl-brand{display:flex;align-items:center;gap:9px;white-space:normal}.vl-brand>span{margin:0;color:var(--ink);font-weight:600}.vl-brand svg{width:20px;height:20px;flex-shrink:0}.vl-context{font-size:12px;letter-spacing:.08em}
+.vl-heading{margin-bottom:24px}.vl-kicker{margin:0 0 7px;color:var(--accent);font-size:12px;letter-spacing:.12em;font-weight:700}.vl-title{font-size:clamp(26px,3vw,36px);margin:0;line-height:1.5;letter-spacing:-.025em}.vl-question{font-size:15px;font-weight:400;letter-spacing:0;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.vl-experiment{background:var(--surface)}.vl-stage{padding:0;border-radius:0}.vl-controls{border-top:0;border-bottom:1px solid var(--line);justify-content:flex-start;padding:16px 20px}.vl-shell button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#e4f3e9;color:#216448;border-color:#bdcfc5;font-size:14px}.vl-shell button svg{width:18px;height:18px}.vl-shell .vl-secondary{background:transparent;color:var(--muted);border-color:var(--line)}.vl-shell button.is-playing{background:#fbeae6;color:#a5382c;border-color:#deb8b0}
+.vl-player{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.vl-timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;font-size:12px;color:var(--muted)}.vl-timeline input{width:100%;min-width:0;flex:1}.vl-time{font-variant-numeric:tabular-nums;white-space:nowrap}.vl-scene-count{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 18px}.vl-scene-count span{color:var(--muted);letter-spacing:.04em}.vl-panel-label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:0}.vl-panel-label span{font-size:12px;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font-variant-numeric:tabular-nums}
+.vl-legend{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 24px;margin:0;border-top:1px solid var(--line);list-style:none;color:var(--muted);font-size:12px}.vl-legend li{display:flex;align-items:center;gap:8px}.vl-legend i{display:inline-block;width:20px;height:12px;border:1px solid var(--muted)}.vl-legend .vl-fill{background:#a7d4bb}.vl-legend .vl-cut{height:0;border:0;border-top:2px dashed var(--muted)}
+.vl-feedback{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.vl-feedback>span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#091724dd;color:#30f27e;animation:vl-feedback-fade 1s linear forwards}.vl-feedback.is-pause>span{color:#ff4c51}.vl-feedback svg{width:40px;height:40px;fill:currentColor}@keyframes vl-feedback-fade{from{opacity:1}to{opacity:0}}
+.vl-footer{font-size:12px;letter-spacing:.04em}.vl-page [hidden]{display:none!important}.vl-skip{color:#152a31}
+@media(max-width:620px){.vl-main{padding-top:24px}.vl-context{letter-spacing:.04em}.vl-controls{padding:12px}.vl-timeline{flex-basis:100%}.vl-heading{margin-bottom:20px}}
+
+.vl-controls:empty{display:none}
+.pc-lesson{max-width:930px;margin:auto;padding:18px 24px;--pc-blue:#2878a9}
+.pc-intro{font-size:14px;line-height:1.7;margin:0 0 12px}
+.pc-timeline{padding:10px 0 0;border-top:1px solid #dce5e0;margin-bottom:14px}
+.pc-axis-note{font-size:13px;line-height:1.5;display:flex;align-items:center;gap:7px;margin:0}
+.pc-key{width:18px;height:9px;background:#abd5eb;border:1px solid #71b6da;display:inline-block;border-radius:3px}
+.pc-track{position:relative;margin:0 22px;height:119px}
+.pc-axis{position:absolute;left:0;right:0;top:31px;height:2px;background:#aab9bf}
+.pc-reading-band{position:absolute;left:20%;width:60%;top:17px;height:29px;background:#bcdff1;border:1px solid #78b8d8;border-radius:3px}
+.pc-reading-band:before,.pc-reading-band:after{content:"";position:absolute;top:-7px;width:2px;height:42px;background:#468eb4}
+.pc-reading-band:before{left:-1px}.pc-reading-band:after{right:-1px}
+.pc-cursor-line{position:absolute;left:40%;top:10px;height:64px;width:2px;background:#245e80;transform:translateX(-1px)}
+#hour{appearance:none;-webkit-appearance:none;position:absolute;left:-22px;top:48px;width:calc(100% + 44px);max-width:none;height:48px;margin:0;padding:0;background:transparent;cursor:grab;touch-action:none;outline:none}
+#hour:active{cursor:grabbing}
+#hour::-webkit-slider-runnable-track{height:4px;background:#c4d6df;border-radius:3px}
+#hour::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:44px;height:44px;margin-top:-20px;border-radius:50%;background:#fff;border:3px solid var(--pc-blue);box-shadow:0 2px 5px #264b6029}
+#hour::-moz-range-track{height:4px;background:#c4d6df;border-radius:3px}
+#hour::-moz-range-thumb{width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid var(--pc-blue)}
+#hour:focus-visible::-webkit-slider-thumb{outline:3px solid #d08726;outline-offset:3px}
+#hour:focus-visible::-moz-range-thumb{outline:3px solid #d08726;outline-offset:3px}
+.pc-ticks{position:absolute;top:96px;left:0;right:0;font-size:13px;line-height:1.3;pointer-events:none}
+.pc-ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap;text-align:center}
+.pc-ticks small{display:block;font-size:10px;color:#506775}
+.pc-drag-hint{font-size:13px;line-height:1.6;min-height:21px;margin:12px 0 0;color:#315568}
+.pc-main{display:grid;grid-template-columns:1.14fr 1fr;gap:20px;align-items:center}
+.pc-recording{position:relative;min-width:0}
+.pc-record-label{display:flex;gap:6px;align-items:center;font-size:13px;line-height:1.6;margin-bottom:8px}
+.pc-period{margin-left:auto;font-size:12px;color:#64706b}
+#picture{width:100%;height:auto;display:block}
+.pc-time{font-size:15px;font-weight:700;margin:0}
+.pc-state{font-size:19px;font-weight:700;min-height:29px;margin:0 0 8px;color:#235c78}
+.pc-language{min-height:144px;padding:12px;background:#f7faf8;border:1px solid #d6e4dc;border-radius:10px;display:flex;align-items:center}
+.pc-await{font-size:14px;line-height:1.8;margin:0}
+.pc-english{font:600 clamp(19px,2.5vw,24px)/1.7 Arial,sans-serif;margin:0;white-space:nowrap}
+.pc-english strong{background:#deebdc;border-bottom:2px solid #7eaa72;border-radius:3px;padding:2px 3px}
+.pc-english span{display:block;font-size:.88em}
+.pc-translation{font-size:13px;line-height:1.8;margin:8px 0 0}
+.pc-takeaway{font-size:13px;line-height:1.7;min-height:44px;margin:8px 0 0}
+.pc-tools{display:grid;grid-template-columns:1.6fr 1fr;gap:10px;margin-top:12px}
+.pc-tools button{min-height:48px;font-size:14px;display:flex;justify-content:center;align-items:center;gap:7px}
+#play{background:#e7f1e7;color:#375c38;border:1px solid #a8c5a4}
+#play[data-playing=true]{background:#f9e7e4;color:#a54332;border-color:#dfb1a7}
+#play:disabled{opacity:.6;cursor:default}
+.pc-motion-state{font-size:12px;line-height:1.6;min-height:20px;margin:7px 0 0;color:#546860}
+.pc-motion{display:flex;gap:8px;align-items:center;font-size:13px;min-height:44px}
+.pc-motion input{min-width:24px;min-height:24px}
+@media(max-width:719px){
+ .pc-lesson{padding:14px 12px}.pc-intro{font-size:13px;margin-bottom:8px}
+ .pc-timeline{padding-top:8px;margin-bottom:10px}.pc-main{grid-template-columns:1fr;gap:9px}
+ .pc-recording{width:100%;max-width:320px;margin:auto}.pc-record-label{font-size:12px;margin-bottom:4px}#picture{max-height:157px}
+ .pc-explanation{grid-row:1;display:grid;grid-template-columns:1fr auto;align-items:center}
+ .pc-time{font-size:13px}.pc-state{font-size:15px;min-height:23px;margin:0;text-align:right}
+ .pc-language{grid-column:1/-1;min-height:107px;padding:9px 12px;justify-content:center}
+ .pc-english{font-size:21px;text-align:center}.pc-translation{font-size:12px;text-align:center;margin-top:5px}
+ .pc-takeaway{grid-column:1/-1;min-height:22px;font-size:12px;margin-top:6px}
+ .pc-tools{margin-top:8px}.pc-tools button{font-size:13px}.pc-motion-state{font-size:11px;min-height:35px}
+}
+@media(max-width:360px){
+ .pc-lesson{padding:12px 9px}.pc-intro{font-size:12px}.pc-axis-note{font-size:12px}.pc-english{font-size:19px}
+ .pc-ticks{font-size:12px}.pc-tools button{font-size:12px}.pc-drag-hint{font-size:12px}.pc-state{font-size:14px}
+}
+</style>
+<meta name="lesson-version" content="0.2.0">
+</head>
+<body class="vl-page" data-theme="light">
+  
+  <a class="vl-skip" href="#lesson-main">教材へ進む</a>
+  <div class="vl-shell" data-width="standard">
+    <header class="vl-header">
+      <span class="vl-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM13 7a3 3 0 0 1 3-3h5v14h-5a3 3 0 0 0-3 3M6 8h3M6 12h3M16 8h2M16 12h2"/></svg><span>英語を、比べて見る</span></span>
+      <p class="vl-context"><span class="vl-subject">英語</span><span>過去進行形</span></p>
+    </header>
+    <main class="vl-main" id="lesson-main" tabindex="-1">
+      <div class="vl-heading"><p class="vl-kicker">英語</p><h1 class="vl-title">過去進行形</h1><p class="vl-question">昨日の7時も8時も、読書の途中だった？</p></div>
+      <section class="vl-experiment" aria-label="図と操作">
+        <div class="vl-controls"></div>
+        <div class="vl-stage"><div class="pc-lesson" id="pc-lesson" data-hour="7" data-phase="idle">
+  <p class="pc-intro">昨日の記録：彼は<strong>6時から9時まで</strong>本を読みました。<br />同じ読書を、7時と8時で見てみよう。</p>
+  <div class="pc-timeline" id="timeline">
+    <p class="pc-axis-note"><span class="pc-key"></span>読書の時間：6時〜9時（固定）</p>
+    <div class="pc-track" id="track">
+      <div class="pc-axis" aria-hidden="true"></div>
+      <div class="pc-reading-band" id="reading-band" aria-hidden="true"></div>
+      <div id="cursor-line" class="pc-cursor-line" aria-hidden="true"></div>
+      <input id="hour" aria-label="昨日の観察する時刻。5時から10時" type="range" min="5" max="10" step="1" value="7" aria-valuetext="昨日の7時、読書の途中" />
+      <div class="pc-ticks" aria-hidden="true">
+        <span style="left:0%">5時</span><span style="left:20%">6時<small>始まり</small></span><span style="left:40%">7時</span><span style="left:60%">8時</span><span style="left:80%">9時<small>終わり</small></span><span style="left:100%">10時</span>
+      </div>
+    </div>
+    <p class="pc-drag-hint" id="drag-hint">つまみを8時へ。8時も「読書の途中」かな？</p>
+  </div>
+  <div class="pc-main">
+    <div class="pc-recording">
+      <div class="pc-record-label"><span aria-hidden="true">↶</span> 昨日の場面を再現<span class="pc-period">夕方〜夜</span></div>
+      <svg
+        id="picture"
+        viewBox="0 0 380 242"
+        role="img"
+        aria-label="昨日の7時。読書の途中を再現した図です。"
+      >
+        <rect x="3" y="3" width="374" height="234" rx="16" fill="#f5f0e7" />
+        <rect
+          x="266"
+          y="31"
+          width="73"
+          height="90"
+          rx="3"
+          fill="#e7e2d0"
+          stroke="#d5ccb7"
+          stroke-width="3"
+        />
+        <path d="M302 32v88m-35-44h70" stroke="#faf6ed" stroke-width="4" />
+        <circle
+          cx="67"
+          cy="54"
+          r="31"
+          fill="#fffcf5"
+          stroke="#afac9a"
+          stroke-width="2"
+        />
+        <path
+          d="M67 28v4m26 22h-4M67 80v-4M41 54h4"
+          stroke="#a6a791"
+          stroke-width="2"
+        />
+        <path
+          id="hour-hand"
+          d="M67 54V36"
+          fill="none"
+          stroke="#476459"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <path
+          id="minute-hand"
+          d="M67 54V31"
+          fill="none"
+          stroke="#8b998e"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <circle cx="67" cy="54" r="3" fill="#476459" />
+        <path d="M25 215h330" stroke="#cec4b1" stroke-width="2" />
+        <path
+          d="M114 174h117m-105 0v39m94-39v39"
+          stroke="#a98e6e"
+          stroke-width="9"
+          stroke-linecap="round"
+        />
+        <rect x="111" y="144" width="16" height="35" rx="5" fill="#bfa580" />
+        <g id="person-head">
+          <circle cx="166" cy="61" r="20" fill="#e2b68f" />
+          <path d="M147 62q-6-36 28-32 21 3 12 25l-16-8-24 15" fill="#344650" />
+          <path
+            d="M177 63h2"
+            stroke="#344650"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+        </g>
+        <path d="M151 85q17-12 32 1l12 60-50 0Z" fill="#3b85ae" />
+        <path
+          d="m155 148 50 7-3 48h17m-42-51-37 9 5 42h-18"
+          stroke="#394e65"
+          stroke-width="14"
+          fill="none"
+          stroke-linecap="round"
+        />
+        <path
+          d="M153 102l-13 29 42 8m4-35 25 30-25 7"
+          stroke="#e2b68f"
+          stroke-width="12"
+          fill="none"
+          stroke-linecap="round"
+        />
+        <g id="book">
+          <path
+            id="book-back"
+            d="M178 129l40 5-4 11-36-5Z"
+            fill="#708c64"
+            stroke="#506b45"
+            stroke-width="2"
+          />
+          <path id="book-pages" d="M181 131l32 4-2 6-30-5Z" fill="#fff7d8" />
+          <path
+            id="page-turn"
+            d="M193 114q10 0 21 8l-19 19Z"
+            fill="#fffdf2"
+            stroke="#ded7bf"
+            opacity="0"
+          />
+        </g>
+        <path
+          d="M310 215v-35m-8 0h16l-3 20h-10Z"
+          fill="#bbab86"
+          stroke="#9e9479"
+          stroke-width="2"
+        />
+        <path
+          d="M310 181v-24m0 17q-23-20-17-23 17 0 17 23m0-5q21-22 23-16-3 17-23 16"
+          fill="#94a179"
+          stroke="#86956c"
+          stroke-width="2"
+        />
+      </svg>
+    </div>
+    <div class="pc-explanation">
+      <p class="pc-time" id="selected-time">昨日の7時</p><p class="pc-state" id="scene-state">読書の途中</p>
+      <div class="pc-language" id="language-card">
+        <p class="pc-await" id="await" hidden></p>
+        <div id="complete-sentence">
+          <p class="pc-english" lang="en">He <strong>was reading</strong> a book <span id="time-clause">at seven yesterday.</span></p>
+          <p class="pc-translation" id="translation">彼は昨日の7時、本を読んでいるところでした。</p>
+        </div>
+      </div>
+      <p class="pc-takeaway" id="takeaway">7時より前から読み始め、その後も読んでいました。</p>
+    </div>
+  </div>
+  <div class="pc-tools">
+    <button type="button" id="play"><span id="play-icon" aria-hidden="true">▶</span><span id="play-label">読書の再現を動かす</span></button>
+    <button type="button" id="reset" class="vl-secondary">7時に戻す</button>
+  </div>
+  <p class="pc-motion-state" id="motion-state">再現は停止中。昨日その時、読書の途中だったことは同じです。</p>
+</div>
+</div>
+        
+      </section>
+      <details class="vl-details">
+        <summary>ヒント・しくみ・出典</summary>
+        <div class="vl-detail-body"><h3>過去の、ある時の途中</h3><p>この記録では、昨日の6時に読み始め、9時に読み終えました。7時も8時もその途中です。つまみを動かすと、He was reading a bookの部分は同じまま、at seven yesterday. / at eight yesterday. が切り替わります。動く図も昨日の場面の再現です。</p><h3>was readingは一組</h3><p>過去進行形はwas / wereと動詞の-ing形で表します。ここでは主語がHeなのでwas readingです。I / he / she / itにはwas、you / we / theyにはwereを使います。主語の全組合せや疑問・否定は、この教材の操作範囲に含めません。</p><h3>帯の端と、その間</h3><p>5〜10時は、昨日の夕方から夜です。読書の帯は6〜9時に固定しています。6時・9時ちょうどは、この記録の読み始め・読み終わりの境目として日本語で説明します。その時刻で過去進行形が文法的に必ず使えない、という意味ではありません。英文だけから読書の正確な開始・終了時刻が分かるわけでもありません。</p><h3>操作</h3><p>つまみを5〜10時の整数時刻へ直接動かします。矢印キーは1時間ずつ、Home / Endは両端へ移動します。ドラッグ中にEscを押すと元の時刻へ戻ります。「7時に戻す」は初期の静止図へ戻します。「読書の再現を動かす」は7時・8時の選んだ場面のページだけを動かし、観察する時刻や読書の帯は変えません。一時停止しても、昨日その時に読書の途中だったことは同じです。</p><label class="pc-motion"><input id="reduce-motion" type="checkbox">動きを減らす（ページの再現を停止）</label><h3>この教材の範囲と出典</h3><p>過去の一時点と進行中の活動を扱います。電話が鳴るなどの出来事とのwhen / whileによる接続、過去形との対比全般は別の範囲です。図と例文は自作。文法は<a href="https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2/past-continuous-past-simple" target="_blank" rel="noopener noreferrer">British Council：Past continuous and past simple</a>で確認しました。</p></div>
+      </details>
+    </main>
+    <footer class="vl-footer"><span>佑啓塾</span><span>ビジュアル教材</span></footer>
+  </div>
+  <noscript>図はそのまま読めます。操作するにはJavaScriptを有効にしてください。</noscript>
+  <script>"use strict";(()=>{var x=["before","start","during","during","end","after"],v=["\u8AAD\u307F\u59CB\u3081\u308B\u524D","\u8AAD\u307F\u59CB\u3081\u308B\u77AC\u9593","\u8AAD\u66F8\u306E\u9014\u4E2D","\u8AAD\u66F8\u306E\u9014\u4E2D","\u8AAD\u307F\u7D42\u308F\u308B\u77AC\u9593","\u8AAD\u307F\u7D42\u3048\u305F\u5F8C"];function s(e){if(!Number.isInteger(e)||e<5||e>10)throw new RangeError("Unsupported hour");let r=e===7||e===8;return{hour:e,phase:x[e-5],label:v[e-5],time:`\u6628\u65E5\u306E${e}\u6642`,english:r?`He was reading a book at ${e===7?"seven":"eight"} yesterday.`:null,translation:r?`\u5F7C\u306F\u6628\u65E5\u306E${e}\u6642\u3001\u672C\u3092\u8AAD\u3093\u3067\u3044\u308B\u3068\u3053\u308D\u3067\u3057\u305F\u3002`:null}}function y(){return{hour:7,phase:"idle",playing:!1,origin:null}}var E=(e,r)=>{let d=s(r);return{...e,hour:r,playing:e.playing&&d.phase==="during"}};function f(e,r){switch(r.type){case"play":return e.playing||s(e.hour).phase!=="during"?e:{...e,playing:!0};case"pause":return e.playing?{...e,playing:!1}:e;case"select":return{...E(e,r.hour),phase:"idle",origin:null};case"begin":return e.phase==="dragging"?e:{...e,phase:"dragging",origin:e};case"seek":return e.phase==="dragging"?E(e,r.hour):e;case"release":return e.phase==="dragging"?{...e,phase:"idle",origin:null}:e;case"cancel":return e.phase==="dragging"?e.origin:e;case"reset":return y();default:throw new RangeError("Unsupported event")}}var t=e=>document.getElementById(e),m=t("pc-lesson"),a=t("hour"),n=y(),h=0,g=0,b=0,o=null;function L(){let e=s(n.hour),r=e.phase==="during"?1:e.phase==="start"||e.phase==="end"?.5:0,d=Math.sin(b/950)*.5+.5,l=18+r*32,c=133-r*17;t("hour-hand").setAttribute("transform",`rotate(${n.hour*30} 67 54)`),t("minute-hand").setAttribute("transform","rotate(0 67 54)"),t("book-back").setAttribute("d",r===0?"M176 132L218 138l-2 12-38-6Z":`M194 140L${194-l} ${c}l0 12 ${l} 14 ${l} -14 0 -12Z`),t("book-pages").setAttribute("d",r===0?"M179 135L214 140l-1 5-33-4Z":`M194 143L${197-l} ${c+3}v7l${l-3} 13 ${l-3} -13v-7Z`),t("page-turn").setAttribute("d",`M194 143Q${194+l*(.3+d*.6)} ${c-6} ${194+l*(.2+d*.7)} ${c+4}L194 157Z`),t("page-turn").setAttribute("opacity",e.phase==="during"?".85":"0"),t("person-head").setAttribute("transform",`rotate(${r*7} 167 76)`)}function k(){let e=s(n.hour),r=e.phase==="during";m.dataset.hour=n.hour,m.dataset.phase=n.phase,m.dataset.playing=String(n.playing),t("selected-time").textContent=e.time,t("scene-state").textContent=e.label,t("complete-sentence").hidden=!r,t("await").hidden=r,t("time-clause").textContent=`at ${n.hour===8?"eight":"seven"} yesterday.`,t("translation").textContent=e.translation||"",t("await").textContent=n.hour===5?"\u3053\u306E\u8A18\u9332\u3067\u306F\u30016\u6642\u306B\u8AAD\u307F\u59CB\u3081\u307E\u3059\u30025\u6642\u306F\u305D\u306E\u524D\u3067\u3059\u3002":n.hour===6?"\u3053\u306E\u8A18\u9332\u3067\u306F\u30016\u6642\u304C\u8AAD\u307F\u59CB\u3081\u305F\u5883\u76EE\u3067\u3059\u3002":n.hour===9?"\u3053\u306E\u8A18\u9332\u3067\u306F\u30019\u6642\u304C\u8AAD\u307F\u7D42\u3048\u305F\u5883\u76EE\u3067\u3059\u3002":"\u3053\u306E\u8A18\u9332\u3067\u306F\u30019\u6642\u306B\u8AAD\u307F\u7D42\u3048\u307E\u3057\u305F\u300210\u6642\u306F\u305D\u306E\u5F8C\u3067\u3059\u3002",t("takeaway").textContent=r?`${n.hour}\u6642\u3088\u308A\u524D\u304B\u3089\u8AAD\u307F\u59CB\u3081\u3001\u305D\u306E\u5F8C\u3082\u8AAD\u3093\u3067\u3044\u307E\u3057\u305F\u3002`:e.phase==="start"||e.phase==="end"?"\u5E2F\u306E\u7AEF\u306F\u59CB\u307E\u308A\u30FB\u7D42\u308F\u308A\u3002\u305D\u306E\u9593\u306E7\u6642\u30FB8\u6642\u3068\u6BD4\u3079\u3088\u3046\u3002":"\u3064\u307E\u307F\u3092\u5E2F\u306E\u4E2D\u3078\u623B\u3057\u3066\u30017\u6642\u30688\u6642\u3092\u6BD4\u3079\u3088\u3046\u3002",t("drag-hint").textContent=n.hour===7?"\u3064\u307E\u307F\u30928\u6642\u3078\u30028\u6642\u3082\u300C\u8AAD\u66F8\u306E\u9014\u4E2D\u300D\u304B\u306A\uFF1F":n.hour===8?"7\u6642\u30828\u6642\u3082\u9014\u4E2D\u3002\u5E2F\u306E\u5916\u3067\u306F\u3069\u3046\u306A\u308B\uFF1F":"\u3064\u307E\u307F\u30927\u6642\u30FB8\u6642\u3078\u623B\u3059\u3068\u3001\u3069\u3046\u306A\u308B\uFF1F",t("cursor-line").style.left=`${(n.hour-5)/5*100}%`,a.value=n.hour,a.setAttribute("aria-valuetext",`${e.time}\u3001${e.label}`),t("picture").setAttribute("aria-label",`${e.time}\u3002${e.label}\u3092\u518D\u73FE\u3057\u305F\u56F3\u3067\u3059\u3002`),t("play").disabled=!r||t("reduce-motion").checked,t("play").dataset.playing=String(n.playing),t("play-icon").textContent=n.playing?"\u2161":"\u25B6",t("play-label").textContent=n.playing?"\u518D\u73FE\u3092\u4E00\u6642\u505C\u6B62":"\u8AAD\u66F8\u306E\u518D\u73FE\u3092\u52D5\u304B\u3059",t("motion-state").textContent=n.playing?"\u6628\u65E5\u306E\u5834\u9762\u3092\u518D\u751F\u4E2D\u3002\u89B3\u5BDF\u3059\u308B\u6642\u523B\u306F\u305D\u306E\u307E\u307E\u3067\u3059\u3002":r?"\u518D\u73FE\u306F\u505C\u6B62\u4E2D\u3002\u6628\u65E5\u305D\u306E\u6642\u3001\u8AAD\u66F8\u306E\u9014\u4E2D\u3060\u3063\u305F\u3053\u3068\u306F\u540C\u3058\u3067\u3059\u3002":"7\u6642\u30FB8\u6642\u3067\u306F\u3001\u8AAD\u66F8\u306E\u518D\u73FE\u3092\u52D5\u304B\u305B\u307E\u3059\u3002",L()}function A(e){n.playing&&(b+=g?Math.min(100,Math.max(0,e-g)):0,g=e,L(),h=requestAnimationFrame(A))}function i(e){n=f(n,e),t("reduce-motion").checked&&n.playing&&(n=f(n,{type:"pause"})),k(),cancelAnimationFrame(h),h=0,g=0,n.playing&&(h=requestAnimationFrame(A))}function p(){let e=o;o=null,e!==null&&a.hasPointerCapture(e)&&a.releasePointerCapture(e)}function u(){p(),i({type:"cancel"})}function w(e){let r=t("track").getBoundingClientRect();return Math.max(5,Math.min(10,Math.round(5+(e-r.left)/r.width*5)))}a.addEventListener("pointerdown",e=>{if(!e.isPrimary||e.button!==0||o!==null){e.preventDefault();return}e.preventDefault(),a.focus({preventScroll:!0}),o=e.pointerId,a.setPointerCapture(o),i({type:"begin"}),i({type:"seek",hour:w(e.clientX)})});a.addEventListener("pointermove",e=>{e.pointerId===o&&(e.preventDefault(),i({type:"seek",hour:w(e.clientX)}))});a.addEventListener("pointerup",e=>{e.pointerId===o&&(i({type:"seek",hour:w(e.clientX)}),p(),i({type:"release"}))});a.addEventListener("pointercancel",e=>{e.pointerId===o&&u()});a.addEventListener("lostpointercapture",e=>{e.pointerId===o&&u()});a.addEventListener("input",()=>{p(),i({type:"select",hour:Math.round(Number(a.value))})});a.addEventListener("keydown",e=>{if(e.key==="Escape"){e.preventDefault(),u();return}let r=e.key==="ArrowRight"||e.key==="ArrowUp"?1:e.key==="ArrowLeft"||e.key==="ArrowDown"?-1:0;!r&&e.key!=="Home"&&e.key!=="End"||(e.preventDefault(),p(),i({type:"select",hour:e.key==="Home"?5:e.key==="End"?10:Math.max(5,Math.min(10,n.hour+r))}))});t("play").addEventListener("click",()=>{u(),i({type:n.playing?"pause":"play"})});t("reset").addEventListener("click",()=>{p(),b=0,i({type:"reset"})});t("reduce-motion").checked=!1;t("reduce-motion").addEventListener("change",()=>{t("reduce-motion").checked?(u(),i({type:"pause"})):k()});window.addEventListener("resize",()=>{o!==null&&u()});function $(){o!==null&&u(),i({type:"pause"})}window.addEventListener("pagehide",$);window.addEventListener("blur",$);document.addEventListener("visibilitychange",()=>{document.hidden&&$()});k();})();
+</script>
+</body>
+</html>
